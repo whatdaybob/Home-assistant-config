@@ -9,9 +9,9 @@
 
 # https://home-assistant.io/components/sensor.mqtt/
 
-- platform: mqtt		    
-  state_topic: "smartthings/Fibaro Motion Sensor ZW5/temperature"		    
-  name: 'Hallway Temp'		    
+- platform: mqtt
+  state_topic: "smartthings/Fibaro Motion Sensor ZW5/temperature"
+  name: 'Hallway Temp'
   unit_of_measurement: "C"
 
 # https://home-assistant.io/components/sensor.mqtt/
