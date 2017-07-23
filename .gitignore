@@ -1,0 +1,6 @@
+# Note: VisualStudio gitignore rules may also be relevant
+.uuid
+secrets.yaml
+shell_commands.yaml
+scripts.yaml
+panel_custom.yaml
