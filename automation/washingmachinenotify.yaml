@@ -1,0 +1,30 @@
+# Washer Notification Sequence
+
+- alias: 'Washer Start'
+  trigger:
+    platform: state
+    entity_id: sensor.washing_machine_current
+    from: 'True'
+    to: 'False'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.washer_switch
+
+- alias: 'Washer Done'
+  trigger:
+    platform: state
+    entity_id: sensor.washing_machine_current
+    from: 'False'
+    to: 'True'
+    for:
+      minutes: 3
+  condition:
+      condition: state
+      entity_id: input_boolean.washer_switch
+      state: 'on'
+  action:
+    - service: notify.all_devices
+      data:
+        message: 'Bob, the washer is done.'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.washer_switch

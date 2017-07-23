@@ -1,0 +1,29 @@
+#triggers
+#good_night:
+  #name: Good Night
+  #initial: off
+
+#good_morning:
+  #name: Good Morning
+  #initial: off
+
+#meal_time:
+  #name: Meal Time
+  #initial: off
+
+# tv_time:
+#   name: TV Time
+#   initial: off
+
+#work:
+  #name: Work
+  #initial: off
+
+#flash:
+  #name: Flash
+  #initial: off
+
+washer_switch:
+    name: Toggle Washer Automation
+    initial: off
+    icon: mdi:water

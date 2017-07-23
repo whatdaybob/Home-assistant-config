@@ -1,0 +1,12 @@
+- name: TV Time
+  entities:
+       light.lounge__sofa__rgb:
+           state: on
+           color_name: 'blueviolet'
+           brightness: 255
+       light.lounge__window__white:
+           state: off
+       light.lounge__door__rgb:
+           state: on
+           color_name: 'darkblue'
+           brightness: 255

@@ -1,0 +1,29 @@
+# ################################################# #
+# # Logger Configuration                          # #
+# # https://home-assistant.io/components/history/ # # 
+# ################################################# #
+
+exclude:
+  domains:
+    # Boring sensor groups
+    - weblink
+    - updater
+  entities:
+    # Boring sensors
+    - sensor.date
+    - sensor.sun
+    # London Underground, history is not needed at all
+    - sensor.Bakerloo
+    - sensor.Central
+    - sensor.Circle
+    - sensor.District
+    - sensor.DLR
+    - sensor.Hammersmith & City
+    - sensor.Jubilee
+    - sensor.London Overground
+    - sensor.Metropolitan
+    - sensor.Northern
+    - sensor.Piccadilly
+    - sensor.TfL Rail
+    - sensor.Victoria
+    - sensor.Waterloo & City

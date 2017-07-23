@@ -1,0 +1,18 @@
+- alias: 'Turn on Light - WeekDays - Morning - Nicos Room '
+  trigger:
+    platform: state
+    entity_id: device_tracker.nicosgs6
+    to: 'home'
+  condition:
+    condition: time
+    after: '07:00:00'
+    before: '10:00:00'
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+   service: homeassistant.turn_on
+   entity_id: light.room__nico__rgb

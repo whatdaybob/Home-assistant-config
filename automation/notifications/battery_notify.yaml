@@ -1,0 +1,17 @@
+- alias: Bob Battery Low - Notification
+  trigger:
+     platform: time
+     minutes: '/45'
+     seconds: 00
+  condition:
+     condition: or
+     conditions:
+       - condition: template
+         value_template: "{{ states.device_tracker.s8_s8.attributes.battery < 30 }}" 
+  action:
+    - service: notify.pushover
+      data:
+        message: "Bob's Telephone is on low Battery at {{ states('sensor.date__time') }}"
+    - service: notify.pushover
+      data:
+        message: "Bob's Telephone Battery Level is {{ states('sensor.batteria_telefono_nico') }}%"

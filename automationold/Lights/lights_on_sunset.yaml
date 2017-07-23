@@ -1,0 +1,15 @@
+- alias: 'Light on Sunset'  
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:15:00"
+  condition:
+    condition: state
+    entity_id: group.family
+    state: home
+  action:
+   - service: homeassistant.turn_on
+     entity_id: group.lights
+   - service: notify.homenicoassistant_bot
+     data:
+       message: "Sunset - Lights ON at {{ states('sensor.date__time') }}"

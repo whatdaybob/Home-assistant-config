@@ -1,0 +1,27 @@
+# ####################################################### #
+# # binary_sensor Configuration                         # #
+# # https://home-assistant.io/components/binary_sensor/ # # 
+# ####################################################### #
+
+- platform: iss
+
+- platform: workday
+  country: UK
+
+- platform: mqtt
+  name: Kitchen MultiSensor Motion
+  state_topic: "smartthings/Motion Sensor/motion"
+  command_topic: "smartthings/Motion Sensor/motion"
+  device_class: motion
+  payload_on: "active"
+  payload_off: "inactive"
+  retain: true
+
+- platform: mqtt
+  name: Hallway MultiSensor Motion
+  state_topic: "smartthings/Fibaro Motion Sensor ZW5/motion"
+  command_topic: "smartthings/Fibaro Motion Sensor ZW5/motion"
+  device_class: motion
+  payload_on: "active"
+  payload_off: "inactive"
+  retain: true

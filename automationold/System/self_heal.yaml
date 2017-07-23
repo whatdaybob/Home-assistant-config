@@ -1,0 +1,7 @@
+- alias: Flush TTS Cache
+  hide_entity: True
+  trigger:
+    platform: time
+    at: '2:35:00'
+  action:
+   service: tts.clear_cache

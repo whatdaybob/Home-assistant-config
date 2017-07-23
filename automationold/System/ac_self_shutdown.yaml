@@ -1,0 +1,16 @@
+- alias: AC Self Shutdown - Heat
+  trigger:
+    - platform: state
+      entity_id:
+        - switch.air_conditioner__heat_30
+      to: 'on'
+      for: '02:01:00'
+  action:
+    - service: switch.turn_off
+      data_template:
+        entity_id: " {{ trigger.entity_id }} "
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+          "{{ trigger.to_state.attributes.friendly_name }} just changed from {{ trigger.to_state.state }}
+          to {{ trigger.from_state.state }} - AC Selfshutdown Automation - Heat 30 Mode OFF"

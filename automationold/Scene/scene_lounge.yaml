@@ -1,0 +1,77 @@
+- alias: White Scene - Automation
+  trigger:
+    platform: state
+    entity_id: input_select.lounge_scene
+    to: "White"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.white__lounge
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "Lounge Scene changed to: {{ trigger.to_state.state }}"
+
+- alias: Romantic Scene - Automation
+  trigger:
+    platform: state
+    entity_id: input_select.lounge_scene
+    to: "Romantic (Red)"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.romantic__lounge
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "Lounge Scene changed to: {{ trigger.to_state.state }}"
+
+- alias: Movie Scene - Automation
+  trigger:
+    platform: state
+    entity_id: input_select.lounge_scene
+    to: "Movie (Blue)"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.movies__lounge
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "Lounge Scene changed to: {{ trigger.to_state.state }}"
+
+- alias: Gold Scene - Automation
+  trigger:
+    platform: state
+    entity_id: input_select.lounge_scene
+    to: "Gold"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.gold__lounge
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "Lounge Scene changed to: {{ trigger.to_state.state }}"
+
+- alias: Purple Scene - Automation
+  trigger:
+    platform: state
+    entity_id: input_select.lounge_scene
+    to: "Purple"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.purple__lounge
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "Lounge Scene changed to: {{ trigger.to_state.state }}"
+
+- alias: Green Scene - Automation
+  trigger:
+    platform: state
+    entity_id: input_select.lounge_scene
+    to: "Green"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.green__lounge
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "Lounge Scene changed to: {{ trigger.to_state.state }}"

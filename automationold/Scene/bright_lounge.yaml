@@ -1,0 +1,15 @@
+  - alias: Lounge Brightness
+    trigger:
+     - platform: state
+       entity_id: input_slider.lounge_bright
+
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.lounge__door__rgb
+          brightness: '{{ states.input_slider.lounge_bright.state | int }}'
+
+      - service: light.turn_on
+        data_template:
+          entity_id: light.lounge__door__rgb
+          brightness: '{{ states.input_slider.lounge_bright.state | int }}'

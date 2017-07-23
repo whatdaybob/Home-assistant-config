@@ -1,0 +1,9 @@
+- alias: Login Failure
+  hide_entity: True
+  trigger:
+    platform: template
+    value_template: "{{ states('persistent_notification.httplogin') != 'authentication' }}"
+  action:
+   service: notify.pushover
+   data:
+     message: 'Bad Login.. There was a Hack attempt! Go Check the GUI for details.'

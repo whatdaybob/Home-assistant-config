@@ -1,0 +1,108 @@
+# ###################### #
+# # Homeassistant Basics #
+# ###################### #
+
+homeassistant:
+  name: !secret name
+  temperature_unit: C
+  time_zone: !secret timezone
+  latitude: !secret latitude
+  longitude: !secret longitude
+  unit_system: metric
+  elevation: 140.72
+
+# enable config
+config:
+# enable hassio options
+hassio:
+updater:
+
+# discovery:
+
+conversation:
+logbook:
+frontend:
+  themes:
+    green:
+      primary-color: "#6CA518"
+
+tts:
+  - platform: google
+    #cache: true
+    #cache_dir: /tts
+    #time_memory: 300
+    #language: 'en'
+
+
+
+# ############################################### #
+# # IFTTT Configuration                         # #
+# # https://home-assistant.io/components/ifttt/ # # 
+# ############################################### #
+
+ifttt:
+  key: !secret ifttt_key
+
+# ################################################ #
+# # Logger Configuration                         # #
+# # https://home-assistant.io/components/logger/ # # 
+# ################################################ #
+
+logger:
+  default: warn
+  logs:
+    homeassistant.components.device_tracker: critical
+    homeassistant.components.camera: info
+    homeassistant.components.automation: debug
+    homeassistant.components.light: info
+    homeassistant.components.sensor: info
+    homeassistant.components.scene: info
+    homeassistant.components.switch: info
+    homeassistant.components.mqtt: debug
+
+# ############################################### #
+# # Enables                                     # #
+# # detailed information in corresponding files # # 
+# ############################################### #
+
+binary_sensor: !include binary_sensor.yaml
+camera: !include camera.yaml
+device_tracker: !include device_tracker.yaml
+history: !include history.yaml
+http: !include http.yaml
+group: !include group.yaml
+light: !include light.yaml
+media_player: !include media_player.yaml
+mqtt: !include mqtt.yaml
+notify: !include notify.yaml
+remote: !include remote.yaml
+sensor: !include sensor.yaml
+switch: !include switch.yaml
+weblink: !include weblink.yaml
+
+# ############################################### #
+# # Enables Directories                         # #
+# # detailed information in corresponding files # # 
+# ############################################### #
+
+automation: !include_dir_merge_list automation
+customize: !include_dir_merge_named customizations
+input_boolean: !include_dir_merge_named input_boolean
+
+# ############ #
+# # Disabled # #                                                  #
+# ############ #
+
+# feedreader: !include feedreeder.yaml
+# zone: !include zones.yaml
+# shell_command: !include shell_commands.yaml
+# script: !include scripts.yaml
+# telegram_bot:
+#   platform: polling
+#   api_key: !secret telegram_apikey
+#   allowed_chat_ids:
+#     - !secret telegram_clientid
+# scene: !include_dir_merge_list scene
+# input_select: !include_dir_merge_named input_select
+# input_slider: !include_dir_merge_named input_slider
+

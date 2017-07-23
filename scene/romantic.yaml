@@ -1,0 +1,14 @@
+- name: Romantic - Lounge
+  entities:
+    light.lounge__sofa__rgb:
+      state: on
+      color_name: red
+      brightness: 255
+    light.lounge__window__white:
+      state: off
+      #rgb_color: [220, 20, 60]
+      #brightness: 255
+    light.lounge__door__rgb:
+      state: on
+      color_name: red
+      brightness: 255

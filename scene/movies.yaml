@@ -1,0 +1,12 @@
+- name: Movies - Lounge
+  entities:
+    light.lounge__sofa__rgb:
+      state: on
+      color_name: 'blue'
+      brightness: 120
+    light.lounge__window__white:
+      state: off
+    light.lounge__door__rgb:
+      state: on
+      color_name: 'blue'
+      brightness: 120

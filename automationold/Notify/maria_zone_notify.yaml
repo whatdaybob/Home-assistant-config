@@ -1,0 +1,21 @@
+- alias: Maria at Home - Notification
+  trigger:
+     platform: state
+     entity_id: device_tracker.iphonemarie
+     from: 'not_home'
+     to: 'home'
+  action:
+   service: notify.homenicoassistant_bot
+   data:
+     message: "Maria is at Home <3 <3 {{ states('sensor.date__time') }}"
+
+- alias: Mamma Outside Home - Notification
+  trigger:
+     platform: state
+     entity_id: device_tracker.iphonemarie
+     from: 'home'
+     to: 'not_home'
+  action:
+   service: notify.homenicoassistant_bot
+   data:
+     message: "Maria is going out at {{ states('sensor.date__time') }} <3"

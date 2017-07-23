@@ -1,0 +1,9 @@
+sequence:
+- service: mqtt.publish
+  data:
+    topic: "owntracks/Nico/Nico/cmd"
+    payload_template: '{"_type":"cmd","action":"reportLocation"}'
+- service: mqtt.publish
+  data:
+    topic: "owntracks/mamma/mamma/cmd"
+    payload_template: '{"_type":"cmd","action":"reportLocation"}'

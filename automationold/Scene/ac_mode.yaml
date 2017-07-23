@@ -1,0 +1,37 @@
+- alias: AC Mode OFF - Automation
+  trigger:
+    platform: state
+    entity_id: input_select.ac_mode
+    to: "Power Off"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.air_conditioner__heat_30
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "AC Mode changed to: {{ trigger.to_state.state }}"
+
+- alias: AC Mode - Hot
+  trigger:
+    platform: state
+    entity_id: input_select.ac_mode
+    to: "Hot"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.air_conditioner__heat_30
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "AC Mode  changed to: {{ trigger.to_state.state }}"
+
+- alias: AC Mode - Hot Morning
+  trigger:
+    platform: state
+    entity_id: input_select.ac_mode
+    to: "Hot Morning"
+  action:
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+           "AC Mode  changed to: {{ trigger.to_state.state }}"
+# need to add the cold and the cold morning automation

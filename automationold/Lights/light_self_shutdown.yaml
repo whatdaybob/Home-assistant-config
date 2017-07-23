@@ -1,0 +1,28 @@
+- alias: Lights Self Shutdown
+  trigger:
+    - platform: state
+      entity_id:
+        - light.room__nico__rgb
+      to: 'on'
+      for: '00:30:00'
+    - platform: state
+      entity_id:
+        - light.kitchen__white
+      to: 'on'
+      for: '01:00:00'
+    - platform: state
+      entity_id:
+        - light.lounge__door__rgb
+        - light.lounge__sofa__rgb
+        - light.lounge__window__white
+      to: 'on'
+      for: '02:00:00'
+  action:
+    - service: light.turn_off
+      data_template:
+        entity_id: " {{ trigger.entity_id }} "
+    - service: notify.homenicoassistant_bot
+      data_template:
+        message: >
+          "{{ trigger.to_state.attributes.friendly_name }} just changed from {{ trigger.to_state.state }}
+          to {{ trigger.from_state.state }}. Self Shutdown!"

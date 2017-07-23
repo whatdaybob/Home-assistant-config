@@ -1,0 +1,85 @@
+- alias: Nico at Home - Notification
+  trigger:
+     platform: zone
+     entity_id: device_tracker.nico_nico
+     zone: zone.home
+     event: enter
+  action:
+   service: notify.homenicoassistant_bot
+   data:
+     message: "Nico is at Home at {{ states('sensor.date__time') }}"
+
+- alias: Nico is going out - Notification
+  trigger:
+     platform: zone
+     entity_id: device_tracker.nico_nico
+     zone: zone.home
+     event: leave    
+  action:
+   service: notify.homenicoassistant_bot
+   data:
+     message: "Nico is going out from {{ trigger.to_state.state }} at  {{ states('sensor.date__time') }}"
+
+- alias: Nico at Papa's Home - Notification
+  trigger:
+     platform: zone
+     event: enter
+     zone: zone.papa
+     entity_id: device_tracker.nico_nico
+  action:
+   service: notify.homenicoassistant_bot
+   data:
+     message: "Nico is at Papa's Home at {{ states('sensor.date__time') }}"
+
+-  alias: Nico leaving Papa's Home - Notification
+   trigger:
+      platform: zone
+      event: leave
+      zone: zone.papa
+      entity_id: device_tracker.nico_nico
+   action:
+    service: notify.homenicoassistant_bot
+    data:
+      message: "Nico is going out from Papa's Home {{ states('sensor.date__time') }}"
+
+- alias: Nico at Work - Notification
+  trigger:
+    platform: zone
+    event: enter
+    zone: zone.work
+    entity_id: device_tracker.nico_nico
+  condition:
+    condition: time
+    after: '07:00:00'
+    before: '20:00:00'
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+  -  service: notify.homenicoassistant_bot
+     data:
+       message: "Nico at Work at {{ states('sensor.date__time') }}"
+
+- alias: Nico out from Work - Notification
+  trigger:
+    platform: zone
+    event: leave
+    zone: zone.work
+    entity_id: device_tracker.nico_nico
+  condition:
+    condition: time
+    after: '07:00:00'
+    before: '20:00:00'
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+   - service: notify.homenicoassistant_bot
+     data:
+       message: "Nico is going out from Work at {{ states('sensor.date__time') }}"

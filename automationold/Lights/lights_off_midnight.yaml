@@ -1,0 +1,7 @@
+- alias: 'Turn off Light at Midnight'
+  trigger:
+    platform: time
+    at: '23:59:00'
+  action:
+   service: homeassistant.turn_off
+   entity_id: group.lights

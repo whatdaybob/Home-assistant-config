@@ -1,0 +1,27 @@
+- alias: Notify on sunrise
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '+00:00:00'
+  action:
+    # Actions are scripts so can also be a list of actions
+    - service: notify.homenicoassistant_bot
+      data:
+        message: "Beautiful sunrise!"
+    - service: notify.homenicoassistant_bot
+      data:
+        message: "The sun is up. Wake Up! {{ states('sensor.date__time') }}"
+
+- alias: Notify on sunset
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '+00:00:00'
+  action:
+    # Actions are scripts so can also be a list of actions
+    - service: notify.homenicoassistant_bot
+      data:
+        message: "Beautiful sunset!"
+    - service: notify.homenicoassistant_bot
+      data:
+        message: "Oh wow you really missed something great. {{ states('sensor.date__time') }}"

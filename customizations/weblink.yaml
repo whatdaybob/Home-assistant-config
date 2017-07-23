@@ -1,0 +1,6 @@
+ weblink.home_assistant:
+   icon: mdi:web
+ weblink.router_ext:
+   icon: mdi:router-wireless
+ weblink.router_lan:
+   icon: mdi:router-wireless

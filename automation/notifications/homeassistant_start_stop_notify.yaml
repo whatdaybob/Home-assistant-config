@@ -1,0 +1,17 @@
+- alias: Home Assistant Start - Notify
+  trigger:
+    platform: event
+    event_type: homeassistant_start
+  action:
+    service: notify.pushover
+    data:
+      message: "Home Assistant Start at {{ states('sensor.date__time') }}"
+
+- alias: Home Assistant Stop - Notify
+  trigger:
+    platform: event
+    event_type: homeassistant_stop
+  action:
+    service: notify.pushover
+    data:
+      message: "Home Assistant Stop at {{ states('sensor.date__time') }}"

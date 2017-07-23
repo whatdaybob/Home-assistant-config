@@ -1,0 +1,52 @@
+- alias: AC - Morning - ON
+  trigger:
+    platform: time
+    at: '07:30:00'
+  condition:
+   - condition: time
+     weekday:
+       - mon
+       - tue
+       - wed
+       - thu
+       - fri
+   - condition: state
+     entity_id: input_select.ac_mode
+     state: "Hot Morning"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.air_conditioner__heat_30
+    - service: notify.homenicoassistant_bot
+      data:
+        message: "AC Morning ON - Heat 30 - Automation"
+    - service: notify.homenicoassistant_bot
+      data:
+        message: "Air Conditioner ON. {{ trigger.entity_id }} Automation - AC Morning OFF"
+    #- service: notify.homenicoassistant_bot
+      #data_template:
+        #message: >
+          #"{{ trigger.to_state.attributes.friendly_name }} just changed from {{ trigger.to_state.state }}
+          #to {{ trigger.from_state.state }} - Heat 30 Mode ON - Automation"
+
+
+- alias: AC - Morning - OFF
+  trigger:
+    platform: time
+    at: '08:00:00'
+  condition:
+   - condition: time
+     weekday:
+       - mon
+       - tue
+       - wed
+       - thu
+       - fri
+  action:
+    - service: switch.turn_off
+      entity_id: switch.air_conditioner__heat_30
+    - service: notify.homenicoassistant_bot
+      data:
+        message: "AC Morning OFF - Heat 30 - Automation"
+    - service: notify.homenicoassistant_bot
+      data:
+        message: "AC Morning OFF - Heat 30 - Automation. {{ trigger.entity_id }}"

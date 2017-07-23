@@ -1,0 +1,8 @@
+lounge_bright:
+  name: Lounge Brightness
+  options:
+    - Low
+    - Medium
+    - Max
+  initial: Max
+  icon: mdi:lightbulb

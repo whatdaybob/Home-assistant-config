@@ -1,0 +1,29 @@
+- alias: State Changed - Notification  
+  trigger:
+    platform: time
+    at: '05:30:00'
+  condition:
+     condition: or
+     conditions:
+       - condition: zone
+         event: enter
+         zone: zone.home
+         entity_id: group.family
+       - condition: zone
+         event: leave
+         zone: zone.home
+         entity_id: group.family
+       - condition: zone
+         event: enter
+         zone: zone.work
+         entity_id: group.family
+       - condition: zone
+         event: leave
+         zone: zone.work
+         entity_id: group.family
+  action:
+    service: notify.homenicoassistant_bot
+    data_template:
+      message: >
+        " {{ trigger.to_state.attributes.friendly_name }} just changed from {{ trigger.from_state.state }}
+        to {{ trigger.to_state.state }} "

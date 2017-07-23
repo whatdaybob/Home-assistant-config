@@ -1,0 +1,15 @@
+script.restart_ha:
+  friendly_name: Restart Home Assistant
+  icon: mdi:script
+script.refresh_devices:
+  friendly_name: Update Owntracks
+  icon: mdi:script
+script.sunset:
+  friendly_name: Sunset
+  icon: mdi:script
+script.low_battery:
+  friendly_name: Low Battery Notification
+  icon: mdi:script
+script.sunrise:
+  friendly_name: Sunrise
+  icon: mdi:script

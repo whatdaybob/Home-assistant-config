@@ -1,0 +1,20 @@
+sensor.owm_temperature:
+  friendly_name: Outside Feels Like
+sensor.owm_humidity:
+  friendly_name: Outdoor Humidity
+  icon: mdi:water-percent
+sensor.owm_rain:
+  friendly_name: Rain
+  icon: mdi:weather-rainy
+sensor.owm_cloud_coverage:
+  friendly_name: Cloud Coverage
+  icon: mdi:weather-cloudy
+sensor.owm_wind_speed:
+  friendly_name: Wind Speed
+  icon: mdi:weather-windy
+sensor.owm_snow:
+  friendly_name: Snow
+  icon: mdi:weather-snowy
+sensor.owm_pressure:
+  friendly_name: Pressure
+  icon: mdi:nest-thermostat

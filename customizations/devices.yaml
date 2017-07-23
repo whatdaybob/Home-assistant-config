@@ -1,0 +1,16 @@
+switch.nicopc:
+ icon: mdi:laptop-windows
+device_tracker.fritzbox:
+ icon: mdi:router-wireless
+device_tracker.nicosgs6:
+  icon: mdi:cellphone-android
+device_tracker.nicopc:
+  icon: mdi:laptop-windows
+device_tracker.mammasgs3:
+  icon: mdi:cellphone-android
+device_tracker.wkmob021:
+  icon: mdi:laptop-windows
+device_tracker.dsm01:
+  icon: mdi:server-network
+device_tracker.tvsalone:
+  icon: mdi:television

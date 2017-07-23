@@ -1,0 +1,161 @@
+c005c211c5c8:
+  hide_if_away: false
+  icon:
+  mac: C0:05:C2:11:C5:C8
+  name: unknown1
+  picture:
+  track: true
+  vendor: ARRIS Group, Inc.
+
+00178829fccd:
+  hide_if_away: false
+  icon:
+  mac: 00:17:88:29:FC:CD
+  name: huehub
+  picture:
+  track: true
+  vendor: Philips Lighting BV
+
+000420f91751:
+  hide_if_away: false
+  icon:
+  mac: 00:04:20:F9:17:51
+  name: HarmonyHub
+  picture:
+  track: true
+  vendor: Slim Devices, Inc.
+
+10feedb2d494:
+  hide_if_away: false
+  icon:
+  mac: 10:FE:ED:B2:D4:94
+  name: tplinksecondrouter
+  picture:
+  track: true
+  vendor: TP-LINK TECHNOLOGIES CO.,LTD.
+
+bc644b83a12a:
+  hide_if_away: false
+  icon:
+  mac: BC:64:4B:83:A1:2A
+  name: virginmediav6
+  picture:
+  track: true
+  vendor: ARRIS Group, Inc.
+
+501ac5a62928:
+  hide_if_away: false
+  icon:
+  mac: 50:1A:C5:A6:29:28
+  name: xboxone
+  picture:
+  track: true
+  vendor: Microsoft
+
+448500dfdc02:
+  hide_if_away: false
+  icon:
+  mac: 44:85:00:DF:DC:02
+  name: worklaptop
+  picture:
+  track: true
+  vendor: Intel Corporate
+
+b8e937805740:
+  hide_if_away: false
+  icon:
+  mac: B8:E9:37:80:57:40
+  name: sonos
+  picture:
+  track: true
+  vendor: Sonos, Inc.
+
+00044b53c390:
+  hide_if_away: false
+  icon:
+  mac: 00:04:4B:53:C3:90
+  name: nvidiashield
+  picture:
+  track: true
+  vendor: NVIDIA
+
+50f5daea26fd:
+  hide_if_away: false
+  icon:
+  mac: 50:F5:DA:EA:26:FD
+  name: amazonechondot
+  picture:
+  track: true
+  vendor: Amazon Technologies Inc.
+
+50c7bf0b06cc:
+  hide_if_away: false
+  icon:
+  mac: 50:C7:BF:0B:06:CC
+  name: hs110
+  picture:
+  track: true
+  vendor: TP-LINK TECHNOLOGIES CO.,LTD.
+
+6854fd9a7322:
+  hide_if_away: false
+  icon:
+  mac: 68:54:FD:9A:73:22
+  name: amazonecho
+  picture:
+  track: true
+  vendor: Amazon Technologies Inc.
+
+d052a8263e19:
+  hide_if_away: false
+  icon:
+  mac: D0:52:A8:26:3E:19
+  name: smartthinghub
+  picture:
+  track: true
+  vendor: Physical Graph Corporation
+
+bc926b8010d3:
+  hide_if_away: false
+  icon:
+  mac: BC:92:6B:80:10:D3
+  name: kaysipad
+  picture:
+  track: true
+  vendor: Apple, Inc.
+
+b827eb77a81a:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:77:A8:1A
+  name: networkpi
+  picture:
+  track: true
+  vendor: Raspberry Pi Foundation
+
+30074d344cc6:
+  hide_if_away: false
+  icon:
+  mac: 30:07:4D:34:4C:C6
+  name: galaxys8
+  picture:
+  track: true
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+c81ee7eb939c:
+  hide_if_away: false
+  icon:
+  mac: C8:1E:E7:EB:93:9C
+  name: kaysiphone
+  picture:
+  track: true
+  vendor: Apple, Inc.
+
+dc6672676853:
+  hide_if_away: false
+  icon:
+  mac: DC:66:72:67:68:53
+  name: dc6672676853
+  picture:
+  track: true
+  vendor: Samsung Electronics Co.,Ltd
