@@ -4,3 +4,4 @@ secrets.yaml
 shell_commands.yaml
 scripts.yaml
 panel_custom.yaml
+ip_bans.yaml
