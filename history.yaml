@@ -12,18 +12,18 @@ exclude:
     # Boring sensors
     - sensor.date
     - sensor.sun
-    # London Underground, history is not needed at all
-    - sensor.Bakerloo
-    - sensor.Central
-    - sensor.Circle
-    - sensor.District
-    - sensor.DLR
-    - sensor.Hammersmith & City
-    - sensor.Jubilee
-    - sensor.London Overground
-    - sensor.Metropolitan
-    - sensor.Northern
-    - sensor.Piccadilly
-    - sensor.TfL Rail
-    - sensor.Victoria
-    - sensor.Waterloo & City
+    # London Underground history is not needed at all
+    - sensor.bakerloo
+    - sensor.central
+    - sensor.circle
+    - sensor.district
+    - sensor.dlr
+    - sensor.hammersmith__city
+    - sensor.jubilee
+    - sensor.london_overground
+    - sensor.metropolitan
+    - sensor.northern
+    - sensor.piccadilly
+    - sensor.victoria
+    - sensor.waterloo__city
+    - sensor.tfl_rail
