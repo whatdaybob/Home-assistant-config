@@ -1,0 +1,218 @@
+
+- platform: mqtt		    
+  state_topic: "smartthings/Fibaro Motion Sensor ZW5/temperature"		    
+  name: 'Hallway Temp'		    
+  unit_of_measurement: "C"
+
+- platform: uber
+  server_token: !secret uber_server_token
+  start_latitude: !secret latitude
+  start_longitude: !secret longitude
+
+- platform: london_underground
+  line:
+    - Bakerloo
+    - Central
+    - Circle
+    - District
+    - DLR
+    - Hammersmith & City
+    - Jubilee
+    - London Overground
+    - Metropolitan
+    - Northern
+    - Piccadilly
+    - TfL Rail
+    - Victoria
+    - Waterloo & City
+
+# Gaming Related
+
+- platform: twitch
+  channels:
+      - direwolf20
+      - soaryn
+
+- platform: xbox_live
+  api_key: !secret xbox_api
+  xuid:
+      - !secret xbox_whatdaybob
+      - !secret xbox_jimbabble
+      - !secret xbox_ashischarmed
+      - !secret xbox_iamaweapon
+      - !secret xbox_laidbacks
+# scan_interval: 120
+
+- platform: steam_online
+  api_key: !secret steam_api
+  accounts:
+      - !secret steam_whatdaybob
+      - !secret steam_laidbacks
+      - !secret steam_jimbabble
+      - !secret steam_acidash
+
+# Downloads Related
+
+- platform: sonarr
+  api_key: !secret sonarr_api
+  host: !secret sonarr_host
+  port: !secret sonarr_port
+  monitored_conditions:
+    - series
+    - upcoming
+    - wanted
+    - queue
+    - commands
+    - diskspace
+  days: 2
+
+- platform: radarr
+  api_key: !secret radarr_api
+  host: !secret radarr_host
+  port: !secret radarr_port
+  monitored_conditions:
+    - movies
+    - upcoming
+    - commands
+    - diskspace
+    - status
+  days: 2
+
+- platform: nzbget
+  host: !secret nzbget_host
+  port: !secret nzbget_port
+  username: !secret nzbget_user
+  password: !secret nzbget_pass
+  monitored_variables:
+    - article_cache
+    - download_size
+    - download_rate
+    - average_download_rate
+    - download_paused
+    - free_disk_space
+    - remaining_size
+    - uptime
+
+# Feeds Related
+
+- platform: pocketcasts
+  username: !secret pocketcasts_user
+  password: !secret pocketcasts_pass
+
+- platform: lastfm
+  api_key: !secret lastfm_api
+  users:
+    - whatdaybob
+
+# Security Related
+
+- platform: haveibeenpwned
+  email: 
+    - !secret haveibeenpwned_personal1
+    - !secret haveibeenpwned_personal2
+    - !secret haveibeenpwned_personal3
+    - !secret haveibeenpwned_business1
+    - !secret haveibeenpwned_business2
+
+# Network Related
+
+- platform: speedtest
+  minute:
+    - 15
+    - 45
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+- platform: fastdotcom
+  minute:
+    - 0
+    - 30
+
+# General Sensor
+
+- platform: time_date
+  display_options:
+    - time
+    - date
+    - date_time
+    - time_date
+    - time_utc
+
+- platform: openweathermap
+  api_key: !secret openweathermap
+  monitored_conditions:
+      - weather
+      - temperature
+      - wind_speed
+      - humidity
+      - pressure
+      - clouds
+      - rain
+      - snow
+
+# Device Tracking + Activity Templates
+
+- platform: template
+  sensors:
+    harmony_activity:
+      friendly_name: 'Harmony Activity'
+      value_template: '{{ states.remote.living_room.attributes.current_activity }}'
+    xboxone:
+      friendly_name: 'Xbox One'
+      value_template: "{{ 'Online' if is_state('device_tracker.501ac5a62928', 'home') else 'Offline' }}"
+    laptopwork:
+      friendly_name: 'Work Laptop'
+      value_template: "{{ 'Online' if is_state('device_tracker.448500dfdc02', 'home') else 'Offline' }}"
+    livingroomsonos:
+      friendly_name: 'Living Room Sonos'
+      value_template: "{{ 'Online' if is_state('device_tracker.b8e937805740', 'home') else 'Offline' }}"
+    livingroomshield:
+      friendly_name: 'Living Room ShieldTV'
+      value_template: "{{ 'Online' if is_state('device_tracker.00044b53c390', 'home') else 'Offline' }}"
+    livingroomtivo:
+      friendly_name: 'Living Room V6'
+      value_template: "{{ 'Online' if is_state('device_tracker.bc644b83a12a', 'home') else 'Offline' }}"
+    livingroomecho:
+      friendly_name: 'Living Room Echo'
+      value_template: "{{ 'Online' if is_state('device_tracker.50f5daea26fd', 'home') else 'Offline' }}"
+    washer_pwrdn:
+      friendly_name: 'Washing Machine Current'
+      value_template: '{{ states.switch.hs110washingmachine.attributes["Current consumption"].split(" ")[0] }}'
+      unit_of_measurement: 'W'
+
+- platform: mqtt
+  state_topic: "owntracks/s8/s8"
+  name: "Bob's S8 Battery"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.batt }}'
+
+
+# SENSORS TO ADD
+
+# - platform: pi_hole
+# - platform: plex
+
+# smartthings/Fibaro Motion Sensor ZW5/illuminance/cmd
+# smartthings/Fibaro Motion Sensor ZW5/motion/cmd
+# smartthings/Fibaro Motion Sensor ZW5/temperature/cmd
+# smartthings/Fibaro Motion Sensor ZW5/battery/cmd
+
+# smartthings/Motion Sensor/temperature/cmd
+# smartthings/Motion Sensor/motion/cmd
+# smartthings/Motion Sensor/battery/cmd
+
+# smartthings/Floor Lamp/power/cmd
+
+# smartthings/Main Hub/activities/cmd
+# smartthings/Main Hub/currentActivity/cmd
+
+# smartthings/Martin/rssi/cmd
+
+# smartthings/Contacts/notify/cmd
+# smartthings/System/notify/cmd
+
+# smartthings/Martin/battery/cmd
+# smartthings/Martin/lqi/cmd
+# smartthings/Martin/presence/cmd

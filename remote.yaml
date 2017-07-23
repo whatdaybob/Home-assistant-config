@@ -1,0 +1,3 @@
+  - platform: harmony
+    name: !secret harmonyhub_name
+    host: !secret harmonyhub_ip

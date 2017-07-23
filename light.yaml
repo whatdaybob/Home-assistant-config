@@ -1,0 +1,13 @@
+# ############################################### #
+# # Light Configuration                         # #
+# # https://home-assistant.io/components/light/ # # 
+# ############################################### #
+
+  - platform: hue
+    host: !secret huehub_ip
+    allow_unreachable: True
+    allow_hue_groups: False
+
+  - platform: hyperion
+    host: !secret pilivingroom_ip
+    name: LGtvBacklight

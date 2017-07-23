@@ -1,0 +1,29 @@
+# ################################################ #
+# # Notify Configuration                         # #
+# # https://home-assistant.io/components/notify/ # # 
+# ################################################ #
+
+- name: kodi_notify
+  platform: kodi
+  host: !secret nvidiashield_ip
+
+- platform: nfandroidtv
+  name: Living Room
+  host: !secret nvidiashield_ip
+
+- platform: html5
+  name: chrome
+  gcm_api_key: !secret html5api
+  gcm_sender_id: !secret html5sender
+
+- platform: pushover
+  name: pushover
+  api_key: ai5qbtcd1t3yakmunr2oayoi911bfx
+  user_key: ubq5aFtvf7dnLiAe67oGAsetHxaBqi
+
+- name: all_devices
+  platform: group
+  services:
+    - service: kodi_notify
+    - service: nfandroidtv
+    - service: chrome

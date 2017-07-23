@@ -1,0 +1,4 @@
+- platform: tplink
+  host: !secret hs110-wm
+  name: HS110washingmachine
+

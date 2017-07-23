@@ -1,0 +1,10 @@
+# ############################################## #
+# # MQTT Configuration                         # #
+# # https://home-assistant.io/components/mqtt/ # # 
+# ############################################## #
+
+broker: !secret MQTTbroker
+port: !secret MQTTport
+discovery: true
+client_id: !secret MQTTid
+discovery_prefix: !secret MQTTprefix
