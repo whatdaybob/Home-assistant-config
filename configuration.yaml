@@ -1,7 +1,3 @@
-# ###################### #
-# # Homeassistant Basics #
-# ###################### #
-
 homeassistant:
   name: !secret name
   temperature_unit: C
@@ -11,29 +7,26 @@ homeassistant:
   unit_system: metric
   elevation: 140.72
 
-# enable config
+# ###################### #
+# # Homeassistant Basics #
+# ###################### #
+
 config:
-# enable hassio options
 hassio:
 updater:
-
-# discovery:
-
+discovery:
 conversation:
 logbook:
 frontend:
   themes:
     green:
       primary-color: "#6CA518"
-
 tts:
   - platform: google
     #cache: true
     #cache_dir: /tts
     #time_memory: 300
     #language: 'en'
-
-
 
 # ############################################### #
 # # IFTTT Configuration                         # #
