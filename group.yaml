@@ -1,3 +1,4 @@
+--- 
 
 # ############################################### #
 # # Group Configuration                         # #
@@ -10,17 +11,6 @@ default_view:
         - group.lights
         - group.Entertainment
         - group.all_remotes
-        - group.iss
-        - group.twitch
-        # - group.scenes
-        # - group.salone_video_camera
-        # - group.family
-        # - group.Telephones_battery
-        # - group.efergy
-        # - group.ac
-        # - group.wake_on_lan
-        # - group.nico
-        # - group.mamma
 
 Weather:
     view: yes
@@ -31,7 +21,7 @@ Weather:
         - group.weather_card
         - group.iss
 
-Living Room:
+LivingRoom:
     view: yes
     name: Living Room
     entities:
@@ -45,438 +35,184 @@ Gaming:
     name: games
     entities:
         - group.Steam
+        - group.twitch
 
-Network and Security:
+Network_Security:
     view: yes
     icon: mdi:security-home
     name: System
     entities:
         - group.speedtest
-        - group.Security
+        - group.security
+        - group.weblinks
 
 TravelWork:
     view: yes
     icon: mdi:wallet-travel
     name: Travel and Work
     entities:
-        - group.UberX
-        - group.UberXL
+      - group.UberX
+      - group.UberXL
+      - group.LondonTravel
 
-# Scene:
-#   view: yes
-#   icon: mdi:lightbulb
-  # entities:
-    # - group.lights
-    # - group.scenes
+# LivingRoom
 
+LivingroomDevices: 
+  entities: 
+    - remote.living_room
+    - sensor.harmony_activity
+    - sensor.livingroomsonos
+    - sensor.livingroomshield
+    - sensor.livingroomtivo
+    - sensor.livingroomecho
+  name: Devices
+LivingroomEntertainment: 
+  entities: 
+    - media_player.shield
+    - media_player.kodi_livingroom
+    - media_player.living_room
+  name: "Media Players"
+LivingroomLights: 
+  entities: 
+    - light.living_room_main
+    - light.wall_lamp_stairs
+    - light.wall_lamp_windows
+    - switch.livingroom_floor_lamp
+  name: "Living Room Lights"
 
-# Energy:
-#   view: yes
-#   name: Energy
-#   entities:
-#   - group.efergy
+# Weather
 
-# Videocamere:
-#   view: yes
-#   icon: mdi:video
-#   name: Video Camere
-#   entities:
-#    - group.salone_video_camera
+Sun: 
+  entities: 
+    - sun.sun
+    - sensor.yr_symbol
 
-# Device:
-#   view: yes
-#   icon: mdi:laptop-mac
-#   name: Dispositivi
-#   entities:
-#    - group.dispositivi_fissi_casa_nico
-#    - group.fritz
+weather_card: 
+  entities: 
+    - sensor.pws_alerts
+    - sensor.pws_precip_1d
+    - sensor.pws_precip_1d_mm
+    - sensor.pws_temp_c
+    - sensor.pws_temp_high_1d_c
+    - sensor.pws_temp_high_record_c
+    - sensor.pws_temp_low_1d_c
+    - sensor.pws_temp_low_record_c
+    - sensor.pws_wind_1d_kph
+    - sensor.pws_wind_kph
+  name: Weather
 
-# Settings:
-#   view: yes
-#   name: Settings
-#   icon: mdi:settings
-#   entities:
-#   - group.triggers
-#   - group.wake_on_lan
-#   - group.scripts
-#   - group.automation_tasks
+ISS: 
+  - camera.iss
+  - binary_sensor.iss
 
-# clock:
-#   view: yes
-#   name: Wake Me Up
-#   icon: mdi:clock
-#   entities:
-#   - group.alarmclock
+# NetworkPi
 
-# Synology:
-#   view: Yes
-#   icon: mdi:server-network
-#   entities:
-#   - group.synology_cpus_status
-#   - group.synology_network_status
-#   - group.synology_memory_status
-#   - group.synology_disk_status
+radarr: 
+  - sensor.radarr_commands
+  - sensor.radarr_disk_space
+  - sensor.radarr_movies
+  - sensor.radarr_status
+  - sensor.radarr_upcoming
+sonarr: 
+  - sensor.sonarr_commands
+  - sensor.sonarr_disk_space
+  - sensor.sonarr_queue
+  - sensor.sonarr_series
+  - sensor.sonarr_upcoming
+  - sensor.sonarr_wanted
+NZBGet: 
+  - sensor.nzbget_article_cache
+  - sensor.nzbget_average_speed
+  - sensor.nzbget_disk_free
+  - sensor.nzbget_download_paused
+  - sensor.nzbget_queue_size
+  - sensor.nzbget_size
+  - sensor.nzbget_speed
+  - sensor.nzbget_uptime
 
-# Miscellaneous:
-#   view: yes
-#   name: Restart Home Assistant
-#   entities:
-#   - script.restart_ha
+# Other 
 
-# Nicos:
-#   view: yes
-#   name: Nico
-#   entities:
-#   - group.nico
+automations: 
+  - automation.login_failure
+  - automation.washer_done
+  - automation.washer_start
+  - automation.update_available_notifications
 
-# Mammas:
-#   view: yes
-#   name: Mamma
-#   entities:
-#   - group.mamma
+Lights: 
+  entities: 
+    - light.back_door_light
+    - light.hallway_light
+    - light.kitchen_light_1
+    - light.kitchen_lights_2
+    - light.living_room_main
+    - light.livingroompi
+    - light.master_bedroom_light
+    - light.wall_lamp_stairs
+    - light.wall_lamp_windows
 
-# Mascia:
-#   view: yes
-#   name: Mascia
-#   entities:
-#   - group.maria
+miscmedia: 
+  - sensor.lastfm_whatdaybob
+  - sensor.pocketcasts_unlistened_episodes
 
-# ############################################################
-# #                                                          #
-# #                  Entities Groups                         #
-# #                                                          #
-# ############################################################
+Date: 
+  - sensor.date
+  - sensor.date__time
+  - sensor.time
+  - sensor.time__date
+  - sensor.time_utc
 
-Sun:
-    entities:
-        - sun.sun
-        - sensor.yr_symbol
+#  TravelWork
 
-weather_card:
-    name: Weather
-    entities:
-        - sensor.owm_cloud_coverage
-        - sun.sun
-        - sensor.owm_condition
-        - sensor.owm_humidity
-        - sensor.owm_pressure
-        - sensor.owm_rain
-        - sensor.owm_snow
-        - sensor.owm_temperature
-        - sensor.owm_wind_speed
-        - weather.openweathermap
+UberX: 
+  - sensor.uberx_price
+  - sensor.uberx_time
+UberXL: 
+  - sensor.uberxl_price
+  - sensor.uberxl_time
+LondonTravel: 
+  - sensor.bakerloo
+  - sensor.central
+  - sensor.circle
+  - sensor.district
+  - sensor.dlr
+  - sensor.hammersmith__city
+  - sensor.jubilee
+  - sensor.london_overground
+  - sensor.metropolitan
+  - sensor.northern
+  - sensor.piccadilly
+  - sensor.victoria
+  - sensor.waterloo__city
+  - sensor.tfl_rail
 
+# Network_Security
 
-Lights:
-    entities:
-        - light.back_door_light
-        - light.hallway_light
-        - light.kitchen_light_1
-        - light.kitchen_lights_2
-        - light.living_room_main
-        - light.livingroompi
-        - light.master_bedroom_light
-        - light.wall_lamp_stairs
-        - light.wall_lamp_windows
+security: 
+  - sensor.breaches_martinjonesticketmastercouk
+  - sensor.breaches_ukmjo03lyvlivenationcom
+  - sensor.breaches_whatdaybobgmailcom
+  - sensor.breaches_whatdayboboutlookcom
+  - sensor.breaches_whatdaybobrartmcouk
+speedtest: 
+  - sensor.speedtest_ping
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
+  - sensor.fastcom_download
+weblinks: 
+  - weblink.home_assistant
+  - weblink.router_ext
+  - weblink.router_lan
 
-LivingroomLights:
-    name: Living Room Lights
-    entities:
-        - light.living_room_main
-        - light.wall_lamp_stairs
-        - light.wall_lamp_windows
-        - switch.livingroom_floor_lamp
+# Gaming
 
-LivingroomDevices:
-    name: Devices
-    entities:
-        - remote.living_room
-        - sensor.harmony_activity
-        - sensor.livingroomsonos
-        - sensor.livingroomshield
-        - sensor.livingroomtivo
-        - sensor.livingroomecho
-
-LivingroomEntertainment:
-    name: Media Players
-    entities:
-        - media_player.shield
-        - media_player.kodi_livingroom
-        - media_player.living_room
-
-
-Steam:
-    name: Steam
-    icon: mdi:steam
-    entities:
-        - sensor.steam_76561197972022737
-        - sensor.steam_76561197994146112
-        - sensor.steam_76561198046851607
-        - sensor.steam_76561198050119648
-
-Date:
-    - sensor.date
-    - sensor.date__time
-    - sensor.time
-    - sensor.time__date
-    - sensor.time_utc
-
-ISS:
-    - camera.iss
-    - binary_sensor.iss
-
-Speedtest:
-    - sensor.speedtest_ping
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
-    - sensor.fastcom_download
-
-Twitch:
-    - sensor.soaryn
-    - sensor.direwolf20
-
-Security:
-    - sensor.breaches_martinjonesticketmastercouk
-    - sensor.breaches_ukmjo03lyvlivenationcom
-    - sensor.breaches_whatdaybobgmailcom
-    - sensor.breaches_whatdayboboutlookcom
-    - sensor.breaches_whatdaybobrartmcouk
-
-NZBGet:
-    - sensor.nzbget_article_cache
-    - sensor.nzbget_average_speed
-    - sensor.nzbget_disk_free
-    - sensor.nzbget_download_paused
-    - sensor.nzbget_queue_size
-    - sensor.nzbget_size
-    - sensor.nzbget_speed
-    - sensor.nzbget_uptime
-
-Weblinks:
-    - weblink.home_assistant
-    - weblink.router_ext
-    - weblink.router_lan
-    
-UberX:
-    - sensor.uberx_price
-    - sensor.uberx_time
-UberXL:
-    - sensor.uberxl_price
-    - sensor.uberxl_time
-
-LondonTravel:
-    - sensor.bakerloo
-    - sensor.central
-    - sensor.circle
-    - sensor.district
-    - sensor.dlr
-    - sensor.hammersmith__city
-    - sensor.jubilee
-    - sensor.london_overground
-    - sensor.metropolitan
-    - sensor.northern
-    - sensor.piccadilly
-    - sensor.victoria
-    - sensor.waterloo__city
-    - sensor.tfl_rail
-
-sonarr:
-    - sensor.sonarr_commands
-    - sensor.sonarr_disk_space
-    - sensor.sonarr_queue
-    - sensor.sonarr_series
-    - sensor.sonarr_upcoming
-    - sensor.sonarr_wanted
-
-radarr:
-    - sensor.radarr_commands
-    - sensor.radarr_disk_space
-    - sensor.radarr_movies
-    - sensor.radarr_status
-    - sensor.radarr_upcoming
-
-miscmedia:
-    - sensor.lastfm_whatdaybob
-    - sensor.pocketcasts_unlistened_episodes
-
-
-# Scenes:
-#   entities:
-#     - scene.romantic__lounge
-#     - scene.movies__lounge
-#     - scene.lights_on__lounge
-#     - scene.lights_off__lounge
-#     - scene.romantic__nico
-#     - scene.tv_time
-#     - input_boolean.tv_time
-#     #- scene.month_st_patty_colors
-#     #- scene.month_standard_colors
-#     #- scene.month_valentine_colors
-
-
-# AC:
-#   - switch.air_conditioner__heat_30
-#   - automation.ac__morning__on
-#   - automation.ac__morning__off
-
-# Wake on LAN:
-#   - switch.nicopc
-#   - switch.dsm01
-
-# Weather Condition:
-#    entities:
-#     - sensor.owm_temperature
-#     - sensor.owm_condition
-#     - sensor.owm_cloud_coverage
-#     - sensor.owm_rain
-#     - sensor.owm_humidity
-#     - sensor.owm_pressure
-#     - sensor.owm_snow
-#     - sensor.owm_wind_speed
-#     - camera.rome
-
-# Efergy:
-#   - sensor.energy_usage
-#   - sensor.energy_budget
-#   - sensor.energy_consumed
-#   - sensor.energy_cost
-
-
-# Nico:
-#   - device_tracker.nico_nico
-#   - sensor.batteria_telefono_nico
-#   - camera.nico
-
-# Mamma:
-#   - device_tracker.mamma_mamma
-#   - sensor.batteria_telefono_mamma
-#   - camera.mamma
-
-# Maria:
-#   - device_tracker.iphonemarie
-
-
-
-# Scripts:
-#   - script.restart_ha
-#   - script.refresh_devices
-#   - script.low_battery
-#   - script.sunrise
-#   - script.sunset
-#   - script.voice_notify
-
-# Synology CPUs Status:
-#   - sensor.cpu_load_total
-#   - sensor.cpu_load_user
-#   - sensor.cpu_load_total
-#   - sensor.cpu_load_other
-#   - sensor.cpu_load_15_min
-
-# Synology Network Status:
-#   - sensor.network_up
-#   - sensor.network_down
-
-# Synology Memory Status:
-#   - sensor.memory_usage_real
-#   - sensor.memory_available_real
-#   - sensor.memory_size
-#   - sensor.memory_available_swap
-#   - sensor.memory_cached
-#   - sensor.memory_total_real
-#   - sensor.memory_total_swap
-
-# Synology Disk Status:
-#   - sensor.status_sda
-#   - sensor.status_smart_sda
-#   - sensor.temperature_sda
-#   - sensor.status_sdb
-#   - sensor.status_smart_sdb
-#   - sensor.temperature_sdb
-#   - sensor.status_volume_1
-#   - sensor.total_size_volume_1
-#   - sensor.type_volume_1
-#   - sensor.used_space_volume_1
-#   - sensor.volume_used_volume_1
-
-# fritz:
-#   - sensor.fritz_netmonitor
-
-# Dispositivi Mobili:
-#   entities:
-#     - device_tracker.mammasgs3
-#     - device_tracker.nicosgs6
-
-# Dispositivi fissi Casa Nico:
-#   entities:
-#      - device_tracker.yeelightrgbsalone
-#      - device_tracker.yeelightrgbsaloneporta
-#      - device_tracker.yeelightwhitesalonefinestra
-#      - device_tracker.yeelightwhitecucina
-#      - device_tracker.yeelightrgbnicoroom
-#      - device_tracker.fritzbox
-#      - device_tracker.chromecast
-#      - device_tracker.android7956eaa11ad0a44a
-#      - device_tracker.android7956eaa11ad0a44a_2
-#      - device_tracker.nicopc
-#      - device_tracker.pc101010214
-#      - device_tracker.android22b03b5e29e75f3
-#      - device_tracker.pc101010207
-#      - device_tracker.dsm01
-#      - device_tracker.wkmob021
-#      - device_tracker.tvsalone
-#      - device_tracker.videocamerasaloner2
-#      - device_tracker.efergyegocharger
-#      - device_tracker.efergysp2bcfaf1
-#      - device_tracker.efergyengage
-#      - device_tracker.broadlinkrmminifc0109
-
-# Automation Tasks:
-#   - automation.ac__morning__off
-#   - automation.ac__morning__on
-#   - automation.tv_time
-#   - automation.tv_time_off
-#   - automation.automation_24
-#   - automation.flush_tts_cache
-#   - automation.home_assistant_start__notify
-#   - automation.light_on_sunset
-#   - automation.lights_self_shutdown
-#   - automation.login_failure
-#   - automation.mamma_at_home__notification
-#   - automation.mamma_battery_low__notification
-#   - automation.mamma_outside_home__notification
-#   - automation.mamma_outside_home__notification_2
-#   - automation.maria_at_home__notification
-#   - automation.nico_at_home__notification
-#   - automation.nico_at_papas_home__notification
-#   - automation.nico_at_work__notification
-#   - automation.nico_battery_low__notification
-#   - automation.nico_is_going_out__notification
-#   - automation.nico_leaving_papas_home__notification
-#   - automation.nico_out_from_work__notification
-#   - automation.no_one_at_home__notification
-#   - automation.notify_on_sunrise
-#   - automation.notify_on_sunset
-#   - automation.owntracks_refresh
-#   - automation.people_greeting
-#   - automation.presence__notification
-#   - automation.turn_off_light_at_midnight
-#   - automation.turn_on_light__weekdays__morning__nicos_room
-#   - automation.update_available_notifications
-
-# Triggers:
-#   - input_select.log_level
-  #- input_boolean.tv_time
-
-
-# Family:
-#   entities:
-#     - device_tracker.nico_nico
-#     - device_tracker.mamma_mamma
-#     - device_tracker.iphonemarie
-
-# Telephones Battery: 
-#     - sensor.batteria_telefono_nico
-#     - sensor.batteria_telefono_mamma
-    
-# Salone Video Camera:
-#   - camera.camera_salone_r2
+Steam: 
+  entities: 
+    - sensor.steam_76561197972022737
+    - sensor.steam_76561197994146112
+    - sensor.steam_76561198046851607
+    - sensor.steam_76561198050119648
+  icon: "mdi:steam"
+  name: Steam
+Twitch: 
+  - sensor.soaryn
+  - sensor.direwolf20

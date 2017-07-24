@@ -1,15 +1,23 @@
+---
+
+# ################################################ #
+# # Camera Configuration                         # #
+# # https://home-assistant.io/components/camera/ # # 
+# ################################################ #
+
+# https://home-assistant.io/components/camera.generic/
 - platform: generic
   still_image_url: http://api.sat24.com/animated/IT/visual/1/Central%20European%20Standard%20Time/2380259'%20width=400%20height=291
   name: Rome
-# - platform: generic
-#   name: Martin
-#   still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.s8_s8.attributes.latitude }},{{ states.device_tracker.s8_s8.attributes.longitude }}&zoom=15&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.s8_s8.attributes.latitude }},{{ states.device_tracker.s8_s8.attributes.longitude }}
-#   limit_refetch_to_url_change: true
-# - platform: generic
-#   name: kayleigh
-#   still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.kayleigh_kayleigh.attributes.latitude }},{{ states.device_tracker.kayleigh_kayleigh.attributes.longitude }}&zoom=15&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.kayleigh_kayleigh.attributes.latitude }},{{ states.device_tracker.kayleigh_kayleigh.attributes.longitude }}
-#   limit_refetch_to_url_change: true
+
+# https://home-assistant.io/components/camera.generic/
 - platform: generic
   name: ISS
   still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.binary_sensor.iss.attributes.lat }},{{ states.binary_sensor.iss.attributes.long }}&zoom=3&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.binary_sensor.iss.attributes.lat }},{{ states.binary_sensor.iss.attributes.long }}
+  limit_refetch_to_url_change: true
+
+# https://home-assistant.io/components/camera.generic/
+- platform: generic
+  name: Martin
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.s8_s8.attributes.latitude }},{{ states.device_tracker.s8_s8.attributes.longitude }}&zoom=15&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.s8_s8.attributes.latitude }},{{ states.device_tracker.s8_s8.attributes.longitude }}
   limit_refetch_to_url_change: true

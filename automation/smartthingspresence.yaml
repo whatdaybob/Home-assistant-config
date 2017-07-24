@@ -1,0 +1,11 @@
+- alias: Smartthings Presence Detection
+  trigger:
+    platform: mqtt
+    topic: 'smartthings/+/presence/state'
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: >
+          location/{{ trigger.topic.split('/')[1] }}
+        payload: >
+          {% if trigger.payload == "present" %}home{% else %}not_home{% endif %}

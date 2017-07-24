@@ -1,3 +1,5 @@
+--- 
+
 # ################################################# #
 # # Logger Configuration                          # #
 # # https://home-assistant.io/components/history/ # # 
@@ -8,6 +10,7 @@ exclude:
     # Boring sensor groups
     - weblink
     - updater
+    - automation
   entities:
     # Boring sensors
     - sensor.date

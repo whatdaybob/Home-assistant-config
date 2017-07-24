@@ -79,7 +79,7 @@ weblink: !include weblink.yaml
 # ############################################### #
 
 automation: !include_dir_merge_list automation
-customize: !include_dir_merge_named customizations
+customize: !include_dir_merge_named customize
 input_boolean: !include_dir_merge_named input_boolean
 
 # ############ #

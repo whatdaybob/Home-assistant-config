@@ -1,15 +1,14 @@
+--- 
+
 # ######################################################## #
 # # Device Tracker Configuration                         # #
 # # https://home-assistant.io/components/device_tracker/ # # 
 # ######################################################## #
 
-#   Owntracks
+# https://home-assistant.io/components/device_tracker.owntracks/
 - platform: owntracks
 
-#   Router Based Device Tracking
+# https://home-assistant.io/components/device_tracker.nmap_tracker/
 - platform: nmap_tracker
   hosts: !secret hassnetworkrange
-  # exclude: 
-  #   - 192.168.1.105
-  #   - 192.168.1.100
   home_interval: 10

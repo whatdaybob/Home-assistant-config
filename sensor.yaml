@@ -1,3 +1,4 @@
+---
 
 # ################################################ #
 # # Sensors Configuration                        # #
@@ -15,6 +16,13 @@
   name: 'Hallway Temp'
   unit_of_measurement: "C"
 
+  # https://home-assistant.io/components/sensor.mqtt/
+
+- platform: mqtt
+  state_topic: "smartthings/Motion Sensor/temperature"
+  name: 'Kitchen Temp'
+  unit_of_measurement: "C"
+ 
 # https://home-assistant.io/components/sensor.mqtt/
 - platform: mqtt
   state_topic: "owntracks/s8/s8"
@@ -182,18 +190,18 @@
 
 # https://home-assistant.io/components/sensor.wunderground/
 - platform: wunderground
-    api_key: !secret weatherundergroundapi
-    monitored_conditions:
-      - temp_high_record_c
-      - temp_high_1d_c
-      - temp_c
-      - temp_low_1d_c
-      - temp_low_record_c
-      - precip_1d
-      - precip_1d_mm
-      - wind_kph
-      - wind_1d_kph
-      - alerts
+  api_key: !secret weatherundergroundapi
+  monitored_conditions:
+    - temp_high_record_c
+    - temp_high_1d_c
+    - temp_c
+    - temp_low_1d_c
+    - temp_low_record_c
+    - precip_1d
+    - precip_1d_mm
+    - wind_kph
+    - wind_1d_kph
+    - alerts
 
 ####################
 # Template Sensors #

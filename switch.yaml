@@ -1,3 +1,10 @@
+---
+
+# ################################################ #
+# # switch Configuration                         # #
+# # https://home-assistant.io/components/switch/ # # 
+# ################################################ #
+
 - platform: tplink
   host: !secret hs110-wm
   name: HS110washingmachine

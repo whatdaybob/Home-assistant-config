@@ -1,7 +1,14 @@
-  entities:
-    - name: Router (Ext)
-      url: !secret router_external
-    - name: Router (Lan)
-      url: !secret router_internal
-    - name: Home Assistant
-      url: https://home-assistant.io
+---
+
+# ################################################# #
+# # Weblink Configuration                          # #
+# # https://home-assistant.io/components/weblink/ # # 
+# ################################################# #
+
+entities:
+  - name: Router (Ext)
+    url: !secret router_external
+  - name: Router (Lan)
+    url: !secret router_internal
+  - name: Home Assistant
+    url: https://home-assistant.io

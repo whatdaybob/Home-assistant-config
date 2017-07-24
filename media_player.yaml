@@ -1,28 +1,35 @@
+---
+
 # ###################################################### #
 # # MQTT Configuration                                 # #
 # # https://home-assistant.io/components/media_player/ # # 
 # ###################################################### #
 
+# https://home-assistant.io/components/media_player.kodi/
 - platform: kodi
   host: !secret nvidiashield_ip
   name: kodi_livingroom
   turn_off_action: quit
   timeout: 30
 
+# https://home-assistant.io/components/media_player.sonos/
 - platform: sonos
   hosts: !secret sonos_ip
 
+# https://home-assistant.io/components/media_player.cast/
 - platform: cast  
   host: !secret nvidiashield_ip
 
-- platform: plex
-  entity_namespace: 'plex'
-  include_non_clients: true
-  scan_interval: 5
-  show_all_controls: false
-  use_custom_entity_ids: true
-  use_episode_art: true
+# https://home-assistant.io/components/media_player.plex/
+# - platform: plex
+#   entity_namespace: 'plex'
+#   include_non_clients: true
+#   scan_interval: 5
+#   show_all_controls: false
+#   use_custom_entity_ids: true
+#   use_episode_art: true
 
+# https://home-assistant.io/components/media_player.lg_netcast/
 # - platform: lg_netcast
 #   host: 192.168.0.20
 #   name: LG tv

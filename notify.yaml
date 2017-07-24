@@ -1,3 +1,5 @@
+---
+
 # ################################################ #
 # # Notify Configuration                         # #
 # # https://home-assistant.io/components/notify/ # # 
@@ -27,3 +29,4 @@
     - service: kodi_notify
     - service: nfandroidtv
     - service: chrome
+    - service: pushover
