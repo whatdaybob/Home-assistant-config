@@ -131,6 +131,11 @@
     - !secret haveibeenpwned_business1
     - !secret haveibeenpwned_business2
 
+# https://home-assistant.io/components/sensor.cert_expiry/
+- platform: cert_expiry
+  host: whatdaybob.com
+  name: SSL whatdaybob.com
+
 # https://home-assistant.io/components/sensor.uber/
 - platform: uber
   server_token: !secret uber_server_token

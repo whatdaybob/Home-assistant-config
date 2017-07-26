@@ -53,6 +53,12 @@ logger:
     homeassistant.components.switch: info
     homeassistant.components.mqtt: debug
 
+feedreader:
+  urls:
+    - https://home-assistant.io/atom.xml
+    - https://github.com/blog.atom
+    - https://hasspodcast.io/feed/podcast
+    
 # ############################################### #
 # # Enables                                     # #
 # # detailed information in corresponding files # # 
