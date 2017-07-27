@@ -3,6 +3,7 @@
 # Home Assistant Files
 secrets.yaml
 ip_bans.yaml
+HyperionExtras
 home-assistant_v2.db
 home-assistant.log
 feedreader.pickle
