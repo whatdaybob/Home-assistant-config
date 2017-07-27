@@ -1,0 +1,5 @@
+hyperion_effects:
+  name: Hyperion Effects
+  options: !include hyperion_effect_list.yaml
+  initial: Rainbow swirl
+  icon: mdi:white-balance-iridescent

@@ -1,0 +1,4 @@
+alias: Run Hyperion Effect
+sequence:
+  - alias: Run selected effect
+    service: shell_command.run_hyperion_effect
