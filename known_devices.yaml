@@ -1,5 +1,10 @@
 ---
 
+# ##################################################################### #
+# # nmap Known Devices Configuration                                  # #
+# # https://home-assistant.io/components/device_tracker.nmap_tracker/ # # 
+# ##################################################################### #
+
 unknown1:
   hide_if_away: false
   icon:

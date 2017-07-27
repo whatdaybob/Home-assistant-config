@@ -1,0 +1,8 @@
+  nico_update: 'mosquitto_pub -d -u Nico -P forzalazio -t owntracks/Nico/Nico/cmd -m "{"_type":"cmd","action":"reportLocation"}"'
+  mamma_update: 'mosquitto_pub -d -u mamma -P forzalazio -t owntracks/mamma/mamma/cmd -m "{"_type":"cmd","action":"reportLocation"}"'
+  restart_ha: sudo service hass-daemon restart &
+  shutdown_pc: '/usr/bin/curl -X GET "http://10.10.10.217:7760/poweroff"'
+  restart_pc: '/usr/bin/curl -X GET "http://10.10.10.217:7760/reboot"'
+  sleep_pc: '/usr/bin/curl -X GET "http://10.10.10.217:7760/suspend"'
+  hibernate_pc: '/usr/bin/curl -X GET "http://10.10.10.217:7760/hibernate"'
+  run_hyperion_effect:  "ssh kodi@192.168.1.99 \"hyperion-remote -e ''\" "

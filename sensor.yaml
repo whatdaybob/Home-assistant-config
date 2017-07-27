@@ -41,15 +41,35 @@
       - direwolf20
       - soaryn
 
-# https://home-assistant.io/components/sensor.xbox_live/
+# # https://home-assistant.io/components/sensor.xbox_live/
+# - platform: xbox_live
+#   api_key: !secret xbox_api
+#   xuid:
+#       - !secret xbox_whatdaybob
+#       - !secret xbox_jimbabble
+#       - !secret xbox_ashischarmed
+#       - !secret xbox_iamaweapon
+#       - !secret xbox_laidbacks
+
 - platform: xbox_live
   api_key: !secret xbox_api
-  xuid:
-      - !secret xbox_whatdaybob
-      - !secret xbox_jimbabble
-      - !secret xbox_ashischarmed
-      - !secret xbox_iamaweapon
-      - !secret xbox_laidbacks
+  xuid: !secret xbox_whatdaybob
+
+- platform: xbox_live
+  api_key: !secret xbox_api
+  xuid: !secret xbox_jimbabble
+
+- platform: xbox_live
+  api_key: !secret xbox_api
+  xuid: !secret xbox_ashischarmed
+
+- platform: xbox_live
+  api_key: !secret xbox_api
+  xuid: !secret xbox_iamaweapon
+
+- platform: xbox_live
+  api_key: !secret xbox_api
+  xuid: !secret xbox_laidbacks
 
 # https://home-assistant.io/components/sensor.steam_online/
 - platform: steam_online
@@ -130,6 +150,11 @@
     - !secret haveibeenpwned_personal3
     - !secret haveibeenpwned_business1
     - !secret haveibeenpwned_business2
+
+# https://home-assistant.io/components/sensor.cert_expiry/
+- platform: cert_expiry
+  host: whatdaybob.com
+  name: SSL whatdaybob.com
 
 # https://home-assistant.io/components/sensor.uber/
 - platform: uber

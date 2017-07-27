@@ -1,7 +1,7 @@
 - alias: Home Assistant Start - Notify
   trigger:
-    platform: event
-    event_type: homeassistant_start
+    platform: homeassistant
+    event: start
   action:
     service: notify.pushover
     data:

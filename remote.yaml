@@ -1,3 +1,11 @@
-  - platform: harmony
-    name: !secret harmonyhub_name
-    host: !secret harmonyhub_ip
+---
+
+# ################################################ #
+# # Notify Configuration                         # #
+# # https://home-assistant.io/components/remote/ # # 
+# ################################################ #
+
+# https://home-assistant.io/components/remote.harmony/
+- platform: harmony
+  name: !secret harmonyhub_name
+  host: !secret harmonyhub_ip

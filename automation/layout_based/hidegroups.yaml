@@ -1,0 +1,117 @@
+# Hide and show Kodi
+- alias: 'Hide kodi while not playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.kodi_livingroom
+    to: 'idle'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomKodi
+    data:
+      visible: False
+- alias: 'Hide kodi while not playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.kodi_livingroom
+    to: 'off'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomKodi
+    data:
+      visible: False
+# Hide and show Shield
+- alias: 'Hide Shield while not playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.shield
+    to: 'idle'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomShield
+    data:
+      visible: False
+- alias: 'Hide Sonos while not playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.shield
+    to: 'off'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomShield
+    data:
+      visible: False
+# Hide and show Sonos
+- alias: 'Hide Sonos while not playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    to: 'paused'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomSonos
+    data:
+      visible: False
+- alias: 'Hide Sonos while not playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    to: 'off'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomSonos
+    data:
+      visible: False
+
+# show whilst playing
+
+- alias: 'Show kodi while playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.kodi_livingroom
+    to: 'playing'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomKodi
+    data:
+      visible: True
+- alias: 'Show Shield while playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.shield
+    to: 'playing'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomShield
+    data:
+      visible: True
+- alias: 'Show Sonos while playing'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    to: 'playing'
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomSonos
+    data:
+      visible: True
+
+
+# hide all on start
+- alias: 'hide all default hidden (input and cast) when hass loaded'
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: group.set_visibility
+    entity_id: group.LivingroomKodi, group.LivingroomShield, group.LivingroomSonos
+    data:
+      visible: False

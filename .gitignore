@@ -1,8 +1,17 @@
 # Note: VisualStudio gitignore rules may also be relevant
 .uuid
+# Home Assistant Files
 secrets.yaml
-shell_commands.yaml
-scripts.yaml
-panel_custom.yaml
 ip_bans.yaml
+home-assistant_v2.db
+home-assistant.log
+feedreader.pickle
+phue.conf
+plex.conf
+harmony_living_room.conf
+tts/
+deps/
+screenshots/
 screenshots/*
+homebridge/
+hadaemon/

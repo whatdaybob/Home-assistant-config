@@ -1,0 +1,5 @@
+restart_ha: !include scripts/restart_ha.yaml
+low_battery: !include scripts/low_battery.yaml
+voice_notify: !include scripts/voice_notify.yaml
+refresh_devices: !include scripts/refresh_devices.yaml
+hyperion_run: !include scripts/hyperion_effect.yaml

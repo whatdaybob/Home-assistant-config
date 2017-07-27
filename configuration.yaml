@@ -6,11 +6,21 @@ homeassistant:
   longitude: !secret longitude
   unit_system: metric
   elevation: 140.72
+  customize: !include_dir_merge_named customize
 
 # ###################### #
 # # Homeassistant Basics #
 # ###################### #
 
+# https://home-assistant.io/components/emulated_hue/
+emulated_hue:
+  host_ip: !secret hassio
+  listen_port: 8300
+  expose_by_default: false
+  exposed_domains:
+    - light
+
+sun:
 config:
 hassio:
 updater:
@@ -23,10 +33,6 @@ frontend:
       primary-color: "#6CA518"
 tts:
   - platform: google
-    #cache: true
-    #cache_dir: /tts
-    #time_memory: 300
-    #language: 'en'
 
 # ############################################### #
 # # IFTTT Configuration                         # #
@@ -53,6 +59,12 @@ logger:
     homeassistant.components.switch: info
     homeassistant.components.mqtt: debug
 
+feedreader:
+  urls:
+    - https://home-assistant.io/atom.xml
+    - https://github.com/blog.atom
+    - https://hasspodcast.io/feed/podcast
+    
 # ############################################### #
 # # Enables                                     # #
 # # detailed information in corresponding files # # 
@@ -70,8 +82,11 @@ mqtt: !include mqtt.yaml
 notify: !include notify.yaml
 remote: !include remote.yaml
 sensor: !include sensor.yaml
+script: !include scripts.yaml
+shell_command: !include shell_commands.yaml
 switch: !include switch.yaml
 weblink: !include weblink.yaml
+zone: !include zones.yaml
 
 # ############################################### #
 # # Enables Directories                         # #
@@ -79,23 +94,7 @@ weblink: !include weblink.yaml
 # ############################################### #
 
 automation: !include_dir_merge_list automation
-customize: !include_dir_merge_named customize
 input_boolean: !include_dir_merge_named input_boolean
-
-# ############ #
-# # Disabled # #                                                  #
-# ############ #
-
-# feedreader: !include feedreeder.yaml
-# zone: !include zones.yaml
-# shell_command: !include shell_commands.yaml
-# script: !include scripts.yaml
-# telegram_bot:
-#   platform: polling
-#   api_key: !secret telegram_apikey
-#   allowed_chat_ids:
-#     - !secret telegram_clientid
-# scene: !include_dir_merge_list scene
-# input_select: !include_dir_merge_named input_select
-# input_slider: !include_dir_merge_named input_slider
-
+input_select: !include_dir_merge_named input_select
+input_slider: !include_dir_merge_named input_slider
+scene: !include_dir_merge_list scene

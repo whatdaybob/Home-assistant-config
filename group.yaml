@@ -27,7 +27,11 @@ LivingRoom:
     entities:
         - group.LivingroomLights
         - group.LivingroomDevices
-        - group.LivingroomEntertainment
+        # - group.LivingroomEntertainment
+        - group.LivingroomShield
+        - group.LivingroomKodi
+        - group.LivingroomSonos
+        - group.hyperion_group
 
 Gaming:
     view: yes
@@ -61,17 +65,32 @@ LivingroomDevices:
   entities: 
     - remote.living_room
     - sensor.harmony_activity
-    - sensor.livingroomsonos
-    - sensor.livingroomshield
-    - sensor.livingroomtivo
-    - sensor.livingroomecho
-  name: Devices
+    # - sensor.livingroomsonos
+    # - sensor.livingroomshield
+    # - sensor.livingroomtivo
+    # - sensor.livingroomecho
+  name: Remote
 LivingroomEntertainment: 
   entities: 
     - media_player.shield
     - media_player.kodi_livingroom
     - media_player.living_room
   name: "Media Players"
+LivingroomShield:
+  entities: 
+    - media_player.shield
+  name: ShieldTV
+LivingroomKodi:
+  entities: 
+    - media_player.kodi_livingroom
+    - light.tv_lights
+  name: Kodi
+LivingroomSonos:
+  entities: 
+    - media_player.living_room
+  name: Sonos
+
+    
 LivingroomLights: 
   entities: 
     - light.living_room_main
@@ -216,3 +235,10 @@ Steam:
 Twitch: 
   - sensor.soaryn
   - sensor.direwolf20
+
+hyperion_group:
+  name: Hyperion Control
+  entities:
+    - input_select.hyperion_effects
+    - script.hyperion_run
+    - switch.hyperion_service
