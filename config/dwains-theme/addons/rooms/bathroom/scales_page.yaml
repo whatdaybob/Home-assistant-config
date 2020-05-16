@@ -1,0 +1,47 @@
+- type: 'custom:dwains-flexbox-card'
+  cards:
+  - type: entity
+    item_classes: 'col-xs-6 col-md-3'
+    entity: sensor.withings_weight_kg_bob
+    footer:
+      type: graph
+      entity: sensor.withings_weight_kg_bob
+      hours_to_show: 144
+      detail: 1
+    name: Weight
+  - type: entity
+    item_classes: 'col-xs-6 col-md-3'
+    entity: sensor.withings_muscle_mass_kg_bob
+    footer:
+      type: graph
+      entity: sensor.withings_muscle_mass_kg_bob
+      hours_to_show: 144
+      detail: 1
+    name: Muscle Mass
+  - type: entity
+    item_classes: 'col-xs-6 col-md-3'
+    entity: sensor.withings_hydration_bob
+    footer:
+      type: graph
+      entity: sensor.withings_hydration_bob
+      hours_to_show: 144
+      detail: 1
+    name: Water Mass
+  - type: entity
+    item_classes: 'col-xs-6 col-md-3'
+    entity: sensor.withings_fat_ratio_pct_bob
+    footer:
+      type: graph
+      entity: sensor.withings_fat_ratio_pct_bob
+      hours_to_show: 144
+      detail: 1
+    name: BMI
+
+- type: entities
+  title: Withings Data
+  entities:
+    - sensor.withings_bone_mass_kg_bob # BONE MASS
+    - sensor.withings_fat_free_mass_kg_bob # LEAN MASS
+    - sensor.withings_fat_mass_kg_bob # FAT MASS
+    - sensor.withings_heart_pulse_bpm_bob # HEART RATE
+    - sensor.withings_height_m_bob # HEIGHT

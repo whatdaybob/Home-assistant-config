@@ -1,0 +1,47 @@
+- type: 'custom:dwains-flexbox-card'
+  cards:
+
+  - type: custom:upcoming-media-card
+    item_classes: 'col-xs-12 col-md-4'
+    entity: sensor.trakt_upcoming_calendar
+    title: Trakt Upcoming
+    date: ddmm
+    clock: 24
+    max: 8
+    image_style: fanart
+    hide_empty: true
+    hide_flagged: false
+    hide_unflagged: false
+    flag: true
+    text_shadows: false
+    box_shadows: false
+
+  - type: custom:upcoming-media-card
+    item_classes: 'col-xs-12 col-md-4'
+    entity: sensor.server_plex_recently_added_movies
+    title: Recently Downloaded Movies
+    date: ddmm
+    clock: 24
+    max: 8
+    image_style: fanart
+    hide_empty: true
+    hide_flagged: false
+    hide_unflagged: true
+    flag: false
+    text_shadows: false
+    box_shadows: false
+
+  - type: custom:upcoming-media-card
+    item_classes: 'col-xs-12 col-md-4'
+    entity: sensor.server_plex_recently_added_tv
+    title: Recently Downloaded TV
+    date: ddmm
+    clock: 24
+    max: 8
+    image_style: fanart
+    hide_empty: true
+    hide_flagged: false
+    hide_unflagged: true
+    flag: false
+    text_shadows: false
+    box_shadows: false
