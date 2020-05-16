@@ -16,6 +16,7 @@ config/icloud/
 config/ssl/
 config/Extras/
 disabled/
+config/configuration/themes/
 #-------------------------------------------
 # Ensure these files are ignored
 #-------------------------------------------
@@ -33,4 +34,5 @@ __pycache__/
 #-------------------------------------------
 *.old 
 *.disabled 
+
 
