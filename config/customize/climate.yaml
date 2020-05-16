@@ -1,0 +1,28 @@
+#-------------------------------------------
+#  Climate Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+climate.hallway:
+  friendly_name: Hallway
+
+climate.kids_bedroom:
+  friendly_name: Kids Bedroom
+
+climate.kitchen:
+  friendly_name: Kitchen
+
+climate.landing:
+  friendly_name: Landing
+
+climate.living_room:
+  friendly_name: Living Room
+
+climate.master_bedroom:
+  friendly_name: Master Bedroom

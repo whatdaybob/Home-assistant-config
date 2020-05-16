@@ -1,0 +1,13 @@
+#-------------------------------------------
+#  Remote Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+remote.living_room_harmony:
+  friendly_name: Living Room

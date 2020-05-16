@@ -1,0 +1,86 @@
+#-------------------------------------------
+#  Binary Sensor Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+binary_sensor.desktop_5ept5hq_battery_status:
+  friendly_name: Desktop-5ept5hq Battery Status
+  device_class: plug
+
+binary_sensor.desktop_5ept5hq_media_playing:
+  friendly_name: Desktop-5ept5hq Media Playing
+
+binary_sensor.desktop_5ept5hq_network_0_wired:
+  friendly_name: Desktop-5ept5hq Network
+
+binary_sensor.desktop_5ept5hq_power_status:
+  friendly_name: Desktop-5ept5hq Power Status
+  device_class: plug
+
+binary_sensor.desktop_5ept5hq_volume_muted:
+  friendly_name: Desktop-5ept5hq Volume Muted
+
+binary_sensor.hallway_open_window:
+  friendly_name: Hallway Open Window
+  device_class: window
+
+binary_sensor.hue_motion_sensor_occupancy:
+  friendly_name: Hue Motion Sensor Occupancy
+  device_class: motion
+
+binary_sensor.hue_motion_sensor_update_available:
+  friendly_name: Hue Motion Sensor Update Available
+
+binary_sensor.iss:
+  friendly_name: International Space Station
+  device_class: visible
+
+binary_sensor.kids_bedroom_open_window:
+  friendly_name: Kids Bedroom Open Window
+  device_class: window
+
+binary_sensor.kitchen_open_window:
+  friendly_name: Kitchen Open Window
+  device_class: window
+
+binary_sensor.landing_boiler:
+  friendly_name: Boiler
+  icon: mdi:thermometer-chevron-down
+  device_class: heat
+
+binary_sensor.landing_open_window:
+  friendly_name: Landing Open Window
+  device_class: window
+
+binary_sensor.living_room_open_window:
+  friendly_name: Living Room Open Window
+  device_class: window
+
+binary_sensor.master_bedroom_open_window:
+  friendly_name: Master Bedroom Open Window
+  device_class: window
+
+binary_sensor.office_smartthing_motion_sensor_motion:
+  friendly_name: Office Smartthing Motion Sensor Motion
+  device_class: motion
+
+binary_sensor.office_smartthing_motion_sensor_tamper:
+  friendly_name: Office Smartthing Motion Sensor Tamper
+  device_class: problem
+
+binary_sensor.smartthings_multi_sensor_2015_model_contact:
+  friendly_name: Smartthings Multi Sensor (2015 Model) Contact
+  device_class: door
+
+binary_sensor.updater:
+  friendly_name: Updater
+
+binary_sensor.workday_sensor:
+  friendly_name: Workday Sensor
+  device_class: None

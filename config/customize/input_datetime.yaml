@@ -1,0 +1,28 @@
+#-------------------------------------------
+#  Input Date Time Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+input_datetime.lastvisit_barnsleyfc:
+  friendly_name: Lastvisit Barnsleyfc
+
+input_datetime.lastvisit_crewealexandrafc:
+  friendly_name: Lastvisit Crewealexandrafc
+
+input_datetime.lastvisit_middlesbroughfc:
+  friendly_name: Lastvisit Middlesbroughfc
+
+input_datetime.lastvisit_qprfc:
+  friendly_name: Lastvisit Qprfc
+
+input_datetime.lastvisit_shrewsburytownfc:
+  friendly_name: Lastvisit Shrewsburytownfc
+
+input_datetime.lastvisit_sussexccc:
+  friendly_name: Lastvisit Sussexccc

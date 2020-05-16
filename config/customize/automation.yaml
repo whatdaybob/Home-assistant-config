@@ -1,0 +1,73 @@
+#-------------------------------------------
+#  Automation Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+automation.battery_charged:
+  friendly_name: Battery Charged
+
+automation.battery_charging:
+  friendly_name: Battery Charging
+
+automation.bob_away_homeassistant_start:
+  friendly_name: Bob Away Homeassistant Start
+
+automation.bob_zone_entered:
+  friendly_name: Bob Zone Entered
+
+automation.button_press_skyq:
+  friendly_name: Button Press Skyq
+
+automation.check_home_assistant_versions:
+  friendly_name: Check Home Assistant Versions
+
+automation.check_zigbee2mqtt_version:
+  friendly_name: Check Zigbee2mqtt Version
+
+automation.dwains_theme_selector:
+  friendly_name: Dwains Theme Selector
+
+automation.kay_away_homeassistant_start:
+  friendly_name: Kay Away Homeassistant Start
+
+automation.logger_setdefault_component:
+  friendly_name: Logger Setdefault Component
+
+automation.logger_setdefaultlevel:
+  friendly_name: Logger Setdefaultlevel
+
+automation.logs_counters_reset_on_start:
+  friendly_name: Logs Counters Reset On Start
+
+automation.logs_critical_counter:
+  friendly_name: Count Logs Messages (Critical)
+  initial_state: True
+
+automation.logs_error_counter:
+  friendly_name: Count Logs Messages (Error)
+  initial_state: True
+
+automation.logs_warning_counter:
+  friendly_name: Count Logs Messages (Warnings)
+  initial_state: True
+
+automation.python_script_date_countdown:
+  friendly_name: Python Script Date Countdown
+
+automation.zigbee2mqtt_log_level:
+  friendly_name: Zigbee2mqtt Log Level
+
+automation.zigbee_join_disabled:
+  friendly_name: Zigbee Join Disabled
+
+automation.zigbee_join_enabled:
+  friendly_name: Zigbee Join Enabled
+
+automation.zigbee_successfull_interview:
+  friendly_name: Zigbee Successfull Interview

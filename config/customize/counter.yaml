@@ -1,0 +1,22 @@
+#-------------------------------------------
+#  Counter Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+counter.logs_critical_counter:
+  friendly_name: Critical
+  icon: mdi:alert-decagram
+
+counter.logs_error_counter:
+  friendly_name: Error
+  icon: mdi:alert-circle
+
+counter.logs_warning_counter:
+  friendly_name: Warning
+  icon: mdi:alert-circle-outline

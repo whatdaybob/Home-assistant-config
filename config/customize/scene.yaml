@@ -1,0 +1,16 @@
+#-------------------------------------------
+#  Scene Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+scene.lights_movie:
+  friendly_name: Lights Movie
+
+scene.lights_normal:
+  friendly_name: Lights Normal

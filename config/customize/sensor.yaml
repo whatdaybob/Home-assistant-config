@@ -1,0 +1,1793 @@
+#-------------------------------------------
+#  Sensor Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+sensor.adguard_average_processing_speed:
+  friendly_name: Adguard Average Processing Speed
+  icon: mdi:speedometer
+  unit_of_measurement: ms
+
+sensor.adguard_dns_queries:
+  friendly_name: Adguard Dns Queries
+  icon: mdi:magnify
+  unit_of_measurement: queries
+
+sensor.adguard_dns_queries_blocked:
+  friendly_name: Adguard Dns Queries Blocked
+  icon: mdi:magnify-close
+  unit_of_measurement: queries
+
+sensor.adguard_dns_queries_blocked_ratio:
+  friendly_name: Adguard Dns Queries Blocked Ratio
+  icon: mdi:magnify-close
+  unit_of_measurement: '%'
+
+sensor.adguard_parental_control_blocked:
+  friendly_name: Adguard Parental Control Blocked
+  icon: mdi:human-male-girl
+  unit_of_measurement: requests
+
+sensor.adguard_rules_count:
+  friendly_name: Adguard Rules Count
+  icon: mdi:counter
+  unit_of_measurement: rules
+
+sensor.adguard_safe_browsing_blocked:
+  friendly_name: Adguard Safe Browsing Blocked
+  icon: mdi:shield-half-full
+  unit_of_measurement: requests
+
+sensor.adguard_safe_searches_enforced:
+  friendly_name: Adguard Safe Searches Enforced
+  icon: mdi:shield-search
+  unit_of_measurement: requests
+
+sensor.aeotec_power_monitor_energy_meter:
+  friendly_name: Aeotec Power Monitor Energy Meter
+  unit_of_measurement: kWh
+
+sensor.aeotec_power_monitor_power_meter:
+  friendly_name: Aeotec Power Monitor Power Meter
+  unit_of_measurement: W
+
+sensor.aeotec_power_monitor_voltage_measurement:
+  friendly_name: Aeotec Power Monitor Voltage Measurement
+  unit_of_measurement: V
+
+sensor.bankholiday_early_may_bank_holiday:
+  friendly_name: Early May Bank Holiday Bankholiday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.bankholiday_easter_monday:
+  friendly_name: Easter Monday Bankholiday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.bankholiday_good_friday:
+  friendly_name: Good Friday Bankholiday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.bankholiday_spring_bank_holiday:
+  friendly_name: Spring Bank Holiday Bankholiday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.bankholiday_summer_bank_holiday:
+  friendly_name: Summer Bank Holiday Bankholiday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.bathroom_scales_rx:
+  friendly_name: Bathroom Scales Rx
+  unit_of_measurement: MB
+
+sensor.bathroom_scales_tx:
+  friendly_name: Bathroom Scales Tx
+  unit_of_measurement: MB
+
+sensor.bin_week:
+  friendly_name: Bin Week
+  icon: mdi:recycle
+
+sensor.birthday_ava:
+  friendly_name: Ava's Birthday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.birthday_kayleigh:
+  friendly_name: Kayleigh's Birthday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.birthday_leah:
+  friendly_name: Leah's Birthday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.birthday_martin:
+  friendly_name: Martin's Birthday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.blue_bin:
+  friendly_name: Blue Bin
+  unit_of_measurement: days until collection
+
+sensor.bob_and_kay_s_home_tado_bridge_status:
+  friendly_name: Tado Bridge Connected
+
+sensor.brown_bin:
+  friendly_name: Brown Bin
+  unit_of_measurement: days until collection
+
+sensor.bulb_energy_meter_energy_meter:
+  friendly_name: Bulb Energy Meter Energy Meter
+  unit_of_measurement: kWh
+
+sensor.cert_expiry_whatdaybob_com:
+  friendly_name: Cert Expiry (Whatdaybob.com)
+  icon: mdi:certificate
+  unit_of_measurement: d
+
+sensor.clock_am_pm:
+  friendly_name: Am/pm
+
+sensor.clock_date:
+  friendly_name: Clock Date
+
+sensor.clock_day:
+  friendly_name: Day
+
+sensor.clock_time:
+  friendly_name: Clock Time
+
+sensor.coordinator_version:
+  friendly_name: Coordinator Version
+  icon: mdi:chip
+
+sensor.daily_energy:
+  friendly_name: Daily Use
+  icon: mdi:counter
+  unit_of_measurement: kWh
+
+sensor.date:
+  friendly_name: Date
+  icon: mdi:calendar
+
+sensor.desktop_5ept5hq_battery_full_lifetime:
+  friendly_name: Desktop-5ept5hq Battery Full Lifetime
+  icon: mdi:timer
+  unit_of_measurement: minutes
+
+sensor.desktop_5ept5hq_battery_remaining:
+  friendly_name: Desktop-5ept5hq Battery Remaining
+  device_class: battery
+  unit_of_measurement: '%'
+
+sensor.desktop_5ept5hq_battery_remaining_time:
+  friendly_name: Desktop-5ept5hq Battery Remaining Time
+  icon: mdi:timer
+  unit_of_measurement: minutes
+
+sensor.desktop_5ept5hq_cpu_usage:
+  friendly_name: Desktop-5ept5hq Cpu Usage
+  icon: mdi:speedometer
+  unit_of_measurement: '%'
+
+sensor.desktop_5ept5hq_current_username:
+  friendly_name: Desktop-5ept5hq Current Username
+  icon: mdi:account
+
+sensor.desktop_5ept5hq_media_volume:
+  friendly_name: Desktop-5ept5hq Media Volume
+
+sensor.desktop_5ept5hq_memory_available:
+  friendly_name: Desktop-5ept5hq Memory Available
+  icon: mdi:memory
+  unit_of_measurement: MB
+
+sensor.desktop_5ept5hq_memory_total:
+  friendly_name: Desktop-5ept5hq Memory Total
+  icon: mdi:memory
+  unit_of_measurement: MB
+
+sensor.desktop_5ept5hq_memory_usage:
+  friendly_name: Desktop-5ept5hq Memory Usage
+  icon: mdi:memory
+  unit_of_measurement: '%'
+
+sensor.desktop_5ept5hq_memory_used:
+  friendly_name: Desktop-5ept5hq Memory Used
+  icon: mdi:memory
+  unit_of_measurement: MB
+
+sensor.desktop_5ept5hq_network_0_bps_received:
+  friendly_name: Desktop-5ept5hq Network
+  unit_of_measurement: Bps
+
+sensor.desktop_5ept5hq_network_0_bps_sent:
+  friendly_name: Desktop-5ept5hq Network
+  unit_of_measurement: Bps
+
+sensor.desktop_5ept5hq_network_0_bytes_received:
+  friendly_name: Desktop-5ept5hq Network
+  unit_of_measurement: B
+
+sensor.desktop_5ept5hq_network_0_bytes_sent:
+  friendly_name: Desktop-5ept5hq Network
+  unit_of_measurement: B
+
+sensor.desktop_5ept5hq_network_0_ipv4:
+  friendly_name: Desktop-5ept5hq Network
+  icon: mdi:lan
+
+sensor.desktop_5ept5hq_network_0_speed:
+  friendly_name: Desktop-5ept5hq Network
+  icon: mdi:speedometer
+  unit_of_measurement: Mbps
+
+sensor.desktop_5ept5hq_screen_0_height:
+  friendly_name: Desktop-5ept5hq Screen
+
+sensor.desktop_5ept5hq_screen_0_width:
+  friendly_name: Desktop-5ept5hq Screen
+
+sensor.desktop_5ept5hq_screen_1_height:
+  friendly_name: Desktop-5ept5hq Screen
+
+sensor.desktop_5ept5hq_screen_1_width:
+  friendly_name: Desktop-5ept5hq Screen
+
+sensor.desktop_5ept5hq_storage_c_available_free_space:
+  friendly_name: Desktop-5ept5hq Storage C - Available Free Space
+  icon: mdi:harddisk
+  unit_of_measurement: GB
+
+sensor.desktop_5ept5hq_storage_c_format:
+  friendly_name: Desktop-5ept5hq Storage C - Format
+  icon: mdi:harddisk
+
+sensor.desktop_5ept5hq_storage_c_label:
+  friendly_name: Desktop-5ept5hq Storage C - Label
+  icon: mdi:harddisk
+
+sensor.desktop_5ept5hq_storage_c_total_free_space:
+  friendly_name: Desktop-5ept5hq Storage C - Total Free Space
+  icon: mdi:harddisk
+  unit_of_measurement: GB
+
+sensor.desktop_5ept5hq_storage_c_total_storage:
+  friendly_name: Desktop-5ept5hq Storage C - Total Storage
+  icon: mdi:harddisk
+  unit_of_measurement: GB
+
+sensor.desktop_5ept5hq_storage_c_usage:
+  friendly_name: Desktop-5ept5hq Storage C - Usage
+  icon: mdi:chart-donut
+  unit_of_measurement: '%'
+
+sensor.desktop_5ept5hq_storage_c_used_space:
+  friendly_name: Desktop-5ept5hq Storage C - Used Space
+  icon: mdi:harddisk
+  unit_of_measurement: GB
+
+sensor.desktop_5ept5hq_storage_d_available_free_space:
+  friendly_name: Desktop-5ept5hq Storage D - Available Free Space
+  icon: mdi:harddisk
+  unit_of_measurement: GB
+
+sensor.desktop_5ept5hq_storage_d_format:
+  friendly_name: Desktop-5ept5hq Storage D - Format
+  icon: mdi:harddisk
+
+sensor.desktop_5ept5hq_storage_d_label:
+  friendly_name: Desktop-5ept5hq Storage D - Label
+  icon: mdi:harddisk
+
+sensor.desktop_5ept5hq_storage_d_total_free_space:
+  friendly_name: Desktop-5ept5hq Storage D - Total Free Space
+  icon: mdi:harddisk
+  unit_of_measurement: GB
+
+sensor.desktop_5ept5hq_storage_d_total_storage:
+  friendly_name: Desktop-5ept5hq Storage D - Total Storage
+  icon: mdi:harddisk
+  unit_of_measurement: GB
+
+sensor.desktop_5ept5hq_storage_d_usage:
+  friendly_name: Desktop-5ept5hq Storage D - Usage
+  icon: mdi:chart-donut
+  unit_of_measurement: '%'
+
+sensor.desktop_5ept5hq_storage_d_used_space:
+  friendly_name: Desktop-5ept5hq Storage D - Used Space
+  icon: mdi:harddisk
+  unit_of_measurement: GB
+
+sensor.desktop_5ept5hq_system_boot_time:
+  friendly_name: Desktop-5ept5hq System Boot Time
+  icon: mdi:timer
+  unit_of_measurement: s
+
+sensor.desktop_5ept5hq_system_idle_time:
+  friendly_name: Desktop-5ept5hq System Idle Time
+  icon: mdi:timer
+  unit_of_measurement: s
+
+sensor.desktop_5ept5hq_system_uptime:
+  friendly_name: Desktop-5ept5hq System Uptime
+  icon: mdi:timer
+  unit_of_measurement: s
+
+sensor.dwains_theme_version:
+  friendly_name: Dwains Theme Version
+
+sensor.fibaro_button_orange_battery:
+  friendly_name: Fibaro Button Orange Battery
+  device_class: battery
+  unit_of_measurement: '%'
+
+sensor.fibaro_dimmer_2_zw5_energy_meter:
+  friendly_name: Fibaro Dimmer 2 Zw5 Energy Meter
+  unit_of_measurement: kWh
+
+sensor.fibaro_dimmer_2_zw5_energy_meter_2:
+  friendly_name: Fibaro Dimmer 2 Zw5 Energy Meter
+  unit_of_measurement: kWh
+
+sensor.fibaro_dimmer_2_zw5_power_meter:
+  friendly_name: Fibaro Dimmer 2 Zw5 Power Meter
+  unit_of_measurement: W
+
+sensor.fibaro_dimmer_2_zw5_power_meter_2:
+  friendly_name: Fibaro Dimmer 2 Zw5 Power Meter
+  unit_of_measurement: W
+
+sensor.floorplan_date:
+  friendly_name: Date
+
+sensor.floorplan_time:
+  friendly_name: Time
+
+sensor.gdacs_53_10033_2_029591:
+  friendly_name: Gdacs (53.10033, -2.029591)
+  icon: mdi:alert
+  unit_of_measurement: alerts
+
+sensor.grey_bin:
+  friendly_name: Grey Bin
+  unit_of_measurement: days until collection
+
+sensor.ha_github_version:
+  friendly_name: Ha Github Version
+
+sensor.ha_pypi_version:
+  friendly_name: Ha Pypi Version
+  icon: mdi:package-up
+
+sensor.ha_version:
+  friendly_name: Ha Version
+  icon: mdi:package-up
+
+sensor.hacs:
+  friendly_name: Hacs
+  icon: hacs:hacs
+  unit_of_measurement: pending update(s)
+
+sensor.hallway_alexa_rx:
+  friendly_name: Hallway Alexa Rx
+  unit_of_measurement: MB
+
+sensor.hallway_alexa_tx:
+  friendly_name: Hallway Alexa Tx
+  unit_of_measurement: MB
+
+sensor.hallway_camera_rx:
+  friendly_name: Hallway Camera Rx
+  unit_of_measurement: MB
+
+sensor.hallway_camera_tx:
+  friendly_name: Hallway Camera Tx
+  unit_of_measurement: MB
+
+sensor.hallway_early_start:
+  friendly_name: Hallway Early Start
+
+sensor.hallway_echo_next_alarm:
+  friendly_name: Hallway Echo Next Alarm
+  icon: mdi:alarm
+  device_class: timestamp
+
+sensor.hallway_echo_next_reminder:
+  friendly_name: Hallway Echo Next Reminder
+  icon: mdi:reminder
+  device_class: timestamp
+
+sensor.hallway_echo_next_timer:
+  friendly_name: Hallway Echo Next Timer
+  icon: mdi:timer
+  device_class: timestamp
+
+sensor.hallway_energymonitor_rx:
+  friendly_name: Hallway Energymonitor Rx
+  unit_of_measurement: MB
+
+sensor.hallway_energymonitor_tx:
+  friendly_name: Hallway Energymonitor Tx
+  unit_of_measurement: MB
+
+sensor.hallway_heating:
+  friendly_name: Hallway Heating
+  unit_of_measurement: '%'
+
+sensor.hallway_humidity:
+  friendly_name: Hallway Humidity
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+  device_class: humidity
+
+sensor.hallway_lightpercent:
+  friendly_name: Hallway Lightpercent
+
+sensor.hallway_link:
+  friendly_name: Hallway Link
+
+sensor.hallway_mold:
+  friendly_name: Hallway Mold
+  unit_of_measurement: '%'
+
+sensor.hallway_open_window:
+  friendly_name: Hallway Open Window
+
+sensor.hallway_overlay:
+  friendly_name: Hallway Overlay
+
+sensor.hallway_power:
+  friendly_name: Hallway Power
+
+sensor.hallway_tado_mode:
+  friendly_name: Hallway Tado Mode
+
+sensor.hallway_temperature:
+  friendly_name: Hallway Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.harmony_activity_living_room:
+  friendly_name: Current Harmony Activity
+
+sensor.hass_count_automations:
+  friendly_name: Hass Count Automations
+
+sensor.hass_count_binary_sensors:
+  friendly_name: Hass Count Binary Sensors
+
+sensor.hass_count_device_trackers:
+  friendly_name: Hass Count Device Trackers
+
+sensor.hass_count_lights:
+  friendly_name: Hass Count Lights
+
+sensor.hass_count_sensors:
+  friendly_name: Hass Count Sensors
+
+sensor.hass_count_switches:
+  friendly_name: Hass Count Switches
+
+sensor.hass_count_zones:
+  friendly_name: Hass Count Zones
+
+sensor.hass_last_motion_sensor_triggered:
+  friendly_name: Hass Last Motion Sensor Triggered
+
+sensor.hass_uptime:
+  friendly_name: Uptime
+  icon: mdi:clock
+  unit_of_measurement: hours
+
+sensor.holiday_christmas_day:
+  friendly_name: Christmas Day Holiday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.holiday_new_year:
+  friendly_name: New Year Holiday
+  icon: mdi:calendar-star
+  unit_of_measurement: days
+
+sensor.home_phone_rx:
+  friendly_name: Home Phone Rx
+  unit_of_measurement: MB
+
+sensor.home_phone_tx:
+  friendly_name: Home Phone Tx
+  unit_of_measurement: MB
+
+sensor.hue_hub_rx:
+  friendly_name: Hue Hub Rx
+  unit_of_measurement: MB
+
+sensor.hue_hub_tx:
+  friendly_name: Hue Hub Tx
+  unit_of_measurement: MB
+
+sensor.hue_motion_sensor_battery:
+  friendly_name: Hue Motion Sensor Battery
+  device_class: battery
+  unit_of_measurement: '%'
+
+sensor.hue_motion_sensor_illuminance:
+  friendly_name: Hue Motion Sensor Illuminance
+
+sensor.hue_motion_sensor_illuminance_lux:
+  friendly_name: Hue Motion Sensor Illuminance Lux
+  unit_of_measurement: lx
+  device_class: illuminance
+
+sensor.hue_motion_sensor_linkquality:
+  friendly_name: Hue Motion Sensor Linkquality
+  icon: mdi:signal
+  unit_of_measurement: lqi
+
+sensor.hue_motion_sensor_temperature:
+  friendly_name: Hue Motion Sensor Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+
+sensor.icloud3_event_log:
+  friendly_name: Icloud3 Event Log
+
+sensor.kids_bedroom_early_start:
+  friendly_name: Kids Bedroom Early Start
+
+sensor.kids_bedroom_heating:
+  friendly_name: Heating
+  unit_of_measurement: '%'
+
+sensor.kids_bedroom_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+  device_class: humidity
+
+sensor.kids_bedroom_lightpercent:
+  friendly_name: Kids Bedroom Lightpercent
+
+sensor.kids_bedroom_link:
+  friendly_name: Connection
+
+sensor.kids_bedroom_mold:
+  friendly_name: Kids Bedroom Mold
+  unit_of_measurement: '%'
+
+sensor.kids_bedroom_open_window:
+  friendly_name: Kids Bedroom Open Window
+
+sensor.kids_bedroom_overlay:
+  friendly_name: Temperature Override
+
+sensor.kids_bedroom_power:
+  friendly_name: Target Temp Status
+
+sensor.kids_bedroom_tado_mode:
+  friendly_name: Tado Mode
+
+sensor.kids_bedroom_temperature:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.kitchen_alexa_rx:
+  friendly_name: Kitchen Alexa Rx
+  unit_of_measurement: MB
+
+sensor.kitchen_alexa_tx:
+  friendly_name: Kitchen Alexa Tx
+  unit_of_measurement: MB
+
+sensor.kitchen_dot_next_alarm:
+  friendly_name: Kitchen Dot Next Alarm
+  icon: mdi:alarm
+  device_class: timestamp
+
+sensor.kitchen_dot_next_reminder:
+  friendly_name: Kitchen Dot Next Reminder
+  icon: mdi:reminder
+  device_class: timestamp
+
+sensor.kitchen_dot_next_timer:
+  friendly_name: Kitchen Dot Next Timer
+  icon: mdi:timer
+  device_class: timestamp
+
+sensor.kitchen_early_start:
+  friendly_name: Kitchen Early Start
+
+sensor.kitchen_heating:
+  friendly_name: Kitchen Heating
+  unit_of_measurement: '%'
+
+sensor.kitchen_humidity:
+  friendly_name: Kitchen Humidity
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+  device_class: humidity
+
+sensor.kitchen_link:
+  friendly_name: Kitchen Link
+
+sensor.kitchen_mold:
+  friendly_name: Kitchen Mold
+  unit_of_measurement: '%'
+
+sensor.kitchen_open_window:
+  friendly_name: Kitchen Open Window
+
+sensor.kitchen_overlay:
+  friendly_name: Kitchen Overlay
+
+sensor.kitchen_power:
+  friendly_name: Kitchen Power
+
+sensor.kitchen_sonos_rx:
+  friendly_name: Kitchen Sonos Rx
+  unit_of_measurement: MB
+
+sensor.kitchen_sonos_tx:
+  friendly_name: Kitchen Sonos Tx
+  unit_of_measurement: MB
+
+sensor.kitchen_tado_mode:
+  friendly_name: Kitchen Tado Mode
+
+sensor.kitchen_temperature:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.landing1_lightpercent:
+  friendly_name: Landing1 Lightpercent
+
+sensor.landing2_lightpercent:
+  friendly_name: Landing2 Lightpercent
+
+sensor.landing_boiler_heat_call:
+  friendly_name: Boiler Heat Call
+  icon: mdi:thermometer-chevron-up
+  unit_of_measurement: '%'
+
+sensor.landing_early_start:
+  friendly_name: Landing Early Start
+
+sensor.landing_heating:
+  friendly_name: Landing Heating
+  unit_of_measurement: '%'
+
+sensor.landing_humidity:
+  friendly_name: Landing Humidity
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+  device_class: humidity
+
+sensor.landing_link:
+  friendly_name: Landing Link
+
+sensor.landing_mold:
+  friendly_name: Landing Mold
+  unit_of_measurement: '%'
+
+sensor.landing_open_window:
+  friendly_name: Landing Open Window
+
+sensor.landing_overlay:
+  friendly_name: Landing Overlay
+
+sensor.landing_power:
+  friendly_name: Landing Power
+
+sensor.landing_tado_mode:
+  friendly_name: Landing Tado Mode
+
+sensor.landing_temperature:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.laptop_bob_personal_rx:
+  friendly_name: Laptop Bob Personal Rx
+  unit_of_measurement: MB
+
+sensor.laptop_bob_personal_tx:
+  friendly_name: Laptop Bob Personal Tx
+  unit_of_measurement: MB
+
+sensor.living_room_early_start:
+  friendly_name: Living Room Early Start
+
+sensor.living_room_harmony_rx:
+  friendly_name: Living Room Harmony Rx
+  unit_of_measurement: MB
+
+sensor.living_room_harmony_tx:
+  friendly_name: Living Room Harmony Tx
+  unit_of_measurement: MB
+
+sensor.living_room_heating:
+  friendly_name: Heating
+  unit_of_measurement: '%'
+
+sensor.living_room_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+  device_class: humidity
+
+sensor.living_room_lightpack_rx:
+  friendly_name: Living Room Lightpack Rx
+  unit_of_measurement: MB
+
+sensor.living_room_lightpack_tx:
+  friendly_name: Living Room Lightpack Tx
+  unit_of_measurement: MB
+
+sensor.living_room_lightpercent_floor:
+  friendly_name: Living Room Lightpercent Floor
+
+sensor.living_room_lightpercent_table:
+  friendly_name: Living Room Lightpercent Table
+
+sensor.living_room_link:
+  friendly_name: Connection
+
+sensor.living_room_mold:
+  friendly_name: Living Room Mold
+  unit_of_measurement: '%'
+
+sensor.living_room_open_window:
+  friendly_name: Living Room Open Window
+
+sensor.living_room_overlay:
+  friendly_name: Temperature Override
+
+sensor.living_room_pi_rx:
+  friendly_name: Living Room Pi Rx
+  unit_of_measurement: MB
+
+sensor.living_room_pi_tx:
+  friendly_name: Living Room Pi Tx
+  unit_of_measurement: MB
+
+sensor.living_room_power:
+  friendly_name: Target Temp Status
+
+sensor.living_room_shield_wired_rx:
+  friendly_name: Living Room Shield Wired Rx
+  unit_of_measurement: MB
+
+sensor.living_room_shield_wired_tx:
+  friendly_name: Living Room Shield Wired Tx
+  unit_of_measurement: MB
+
+sensor.living_room_skq_ethernet_rx:
+  friendly_name: Living Room Skq Ethernet Rx
+  unit_of_measurement: MB
+
+sensor.living_room_skq_ethernet_tx:
+  friendly_name: Living Room Skq Ethernet Tx
+  unit_of_measurement: MB
+
+sensor.living_room_skq_unknown_rx:
+  friendly_name: Living Room Skq Unknown Rx
+  unit_of_measurement: MB
+
+sensor.living_room_skq_unknown_tx:
+  friendly_name: Living Room Skq Unknown Tx
+  unit_of_measurement: MB
+
+sensor.living_room_sonos_rx:
+  friendly_name: Living Room Sonos Rx
+  unit_of_measurement: MB
+
+sensor.living_room_sonos_tx:
+  friendly_name: Living Room Sonos Tx
+  unit_of_measurement: MB
+
+sensor.living_room_switch_battery_level:
+  friendly_name: Living Room Switch Battery Level
+  device_class: battery
+  unit_of_measurement: '%'
+
+sensor.living_room_tado_mode:
+  friendly_name: Tado Mode
+
+sensor.living_room_temperature:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.living_room_tv_rx:
+  friendly_name: Living Room Tv Rx
+  unit_of_measurement: MB
+
+sensor.living_room_tv_tx:
+  friendly_name: Living Room Tv Tx
+  unit_of_measurement: MB
+
+sensor.living_room_xbox_rx:
+  friendly_name: Living Room Xbox Rx
+  unit_of_measurement: MB
+
+sensor.living_room_xbox_tx:
+  friendly_name: Living Room Xbox Tx
+  unit_of_measurement: MB
+
+sensor.master_bedroom_alexa_rx:
+  friendly_name: Master Bedroom Alexa Rx
+  unit_of_measurement: MB
+
+sensor.master_bedroom_alexa_tx:
+  friendly_name: Master Bedroom Alexa Tx
+  unit_of_measurement: MB
+
+sensor.master_bedroom_dot_next_alarm:
+  friendly_name: Master Bedroom Dot Next Alarm
+  icon: mdi:alarm
+  device_class: timestamp
+
+sensor.master_bedroom_dot_next_reminder:
+  friendly_name: Master Bedroom Dot Next Reminder
+  icon: mdi:reminder
+  device_class: timestamp
+
+sensor.master_bedroom_dot_next_timer:
+  friendly_name: Master Bedroom Dot Next Timer
+  icon: mdi:timer
+  device_class: timestamp
+
+sensor.master_bedroom_early_start:
+  friendly_name: Master Bedroom Early Start
+
+sensor.master_bedroom_heating:
+  friendly_name: Heating
+  unit_of_measurement: '%'
+
+sensor.master_bedroom_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+  device_class: humidity
+
+sensor.master_bedroom_lightpercent:
+  friendly_name: Master Bedroom Lightpercent
+
+sensor.master_bedroom_link:
+  friendly_name: Connection
+
+sensor.master_bedroom_mold:
+  friendly_name: Master Bedroom Mold
+  unit_of_measurement: '%'
+
+sensor.master_bedroom_open_window:
+  friendly_name: Master Bedroom Open Window
+
+sensor.master_bedroom_overlay:
+  friendly_name: Temperature Override
+
+sensor.master_bedroom_power:
+  friendly_name: Target Temp Status
+
+sensor.master_bedroom_tado_mode:
+  friendly_name: Tado Mode
+
+sensor.master_bedroom_temperature:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.monthly_energy:
+  friendly_name: Monthly Use
+  icon: mdi:counter
+  unit_of_measurement: kWh
+
+sensor.nodered_blue_bin_collection:
+  friendly_name: Nodered Blue Bin Collection
+  icon: mdi:delete
+  device_class: timestamp
+
+sensor.nodered_brown_bin_collection:
+  friendly_name: Nodered Brown Bin Collection
+  icon: mdi:delete
+  device_class: timestamp
+
+sensor.nodered_grey_bin_collection:
+  friendly_name: Nodered Grey Bin Collection
+  icon: mdi:delete
+  device_class: timestamp
+
+sensor.nodered_xbox_ashischarmed:
+  friendly_name: Nodered Xbox Ashischarmed
+  icon: mdi:xbox
+  device_class: sensor
+
+sensor.nodered_xbox_gremo:
+  friendly_name: Nodered Xbox Gremo
+  icon: mdi:xbox
+  device_class: sensor
+
+sensor.nodered_xbox_iamaweapon:
+  friendly_name: Nodered Xbox Iamaweapon
+  icon: mdi:xbox
+  device_class: sensor
+
+sensor.nodered_xbox_laidbacks:
+  friendly_name: Nodered Xbox Laidbacks
+  icon: mdi:xbox
+  device_class: sensor
+
+sensor.nodered_xbox_whatdaybob:
+  friendly_name: Nodered Xbox Whatdaybob
+  icon: mdi:xbox
+  device_class: sensor
+
+sensor.nuc_server_rx:
+  friendly_name: Nuc Server Rx
+  unit_of_measurement: MB
+
+sensor.nuc_server_tx:
+  friendly_name: Nuc Server Tx
+  unit_of_measurement: MB
+
+sensor.nzbget_article_cache:
+  friendly_name: Cached Articles
+  unit_of_measurement: MB
+
+sensor.nzbget_average_speed:
+  friendly_name: Average Download Rate
+  unit_of_measurement: MB/s
+
+sensor.nzbget_disk_free:
+  friendly_name: Free Disk Space
+  unit_of_measurement: MB
+
+sensor.nzbget_download_paused:
+  friendly_name: Paused Downloads
+
+sensor.nzbget_post_processing_jobs:
+  friendly_name: Nzbget Post Processing Jobs
+  unit_of_measurement: Jobs
+
+sensor.nzbget_post_processing_paused:
+  friendly_name: Paused Posts
+
+sensor.nzbget_queue_size:
+  friendly_name: Queue Size
+  unit_of_measurement: MB
+
+sensor.nzbget_size:
+  friendly_name: Remaining Size
+  unit_of_measurement: MB
+
+sensor.nzbget_speed:
+  friendly_name: Download Rate
+  unit_of_measurement: MB/s
+
+sensor.nzbget_uptime:
+  friendly_name: Uptime
+  unit_of_measurement: min
+
+sensor.office_dot_next_alarm:
+  friendly_name: Office Dot Next Alarm
+  icon: mdi:alarm
+  device_class: timestamp
+
+sensor.office_dot_next_reminder:
+  friendly_name: Office Dot Next Reminder
+  icon: mdi:reminder
+  device_class: timestamp
+
+sensor.office_dot_next_timer:
+  friendly_name: Office Dot Next Timer
+  icon: mdi:timer
+  device_class: timestamp
+
+sensor.office_pc_rx:
+  friendly_name: Office Pc Rx
+  unit_of_measurement: MB
+
+sensor.office_pc_tx:
+  friendly_name: Office Pc Tx
+  unit_of_measurement: MB
+
+sensor.office_smartthing_motion_sensor_battery:
+  friendly_name: Office Smartthing Motion Sensor Battery
+  device_class: battery
+  unit_of_measurement: '%'
+
+sensor.office_smartthing_motion_sensor_illuminance:
+  friendly_name: Office Smartthing Motion Sensor Illuminance
+  device_class: illuminance
+  unit_of_measurement: lux
+
+sensor.office_smartthing_motion_sensor_temperature:
+  friendly_name: Office Smartthing Motion Sensor Temperature Measurement
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.office_smartthing_motion_sensor_x_coordinate:
+  friendly_name: Office Smartthing Motion Sensor X Coordinate
+
+sensor.office_smartthing_motion_sensor_y_coordinate:
+  friendly_name: Office Smartthing Motion Sensor Y Coordinate
+
+sensor.office_smartthing_motion_sensor_z_coordinate:
+  friendly_name: Office Smartthing Motion Sensor Z Coordinate
+
+sensor.office_wlanbridge_rx:
+  friendly_name: Office Wlanbridge Rx
+  unit_of_measurement: MB
+
+sensor.office_wlanbridge_tx:
+  friendly_name: Office Wlanbridge Tx
+  unit_of_measurement: MB
+
+sensor.outdoor_humidity:
+  friendly_name: Outdoor Humidity
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+  device_class: humidity
+
+sensor.outdoor_moon:
+  friendly_name: Moon
+  icon: mdi:moon-waning-crescent
+
+sensor.outdoor_temperature:
+  friendly_name: Temperature Outdoor
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.phone_bob_activity:
+  friendly_name: Phone Bob Activity
+  icon: mdi:help-circle
+
+sensor.phone_bob_average_active_pace:
+  friendly_name: Phone Bob Average Active Pace
+  icon: mdi:speedometer
+  unit_of_measurement: m/s
+
+sensor.phone_bob_badge:
+  friendly_name: Phone Bob
+  entity_picture: /local/images/people/martin-square.jpg
+  icon: mdi:shield-account
+
+sensor.phone_bob_battery:
+  friendly_name: Phone-Bob-Battery
+  icon: mdi:battery
+
+sensor.phone_bob_battery_level:
+  friendly_name: Phone Bob Battery Level
+  icon: mdi:battery-80
+  device_class: battery
+  unit_of_measurement: '%'
+
+sensor.phone_bob_battery_state:
+  friendly_name: Phone Bob Battery State
+  icon: mdi:battery-80
+  device_class: battery
+
+sensor.phone_bob_battery_status:
+  friendly_name: Phone-Bob-Battery Status
+  icon: mdi:battery
+
+sensor.phone_bob_bssid:
+  friendly_name: Phone Bob Bssid
+  icon: mdi:wifi-star
+
+sensor.phone_bob_calc_distance:
+  friendly_name: Phone-Bob-Calc Dist
+  icon: mdi:map-marker-distance
+  unit_of_measurement: mi
+
+sensor.phone_bob_connection_type:
+  friendly_name: Phone Bob Connection Type
+  icon: mdi:wifi
+
+sensor.phone_bob_dir_of_travel:
+  friendly_name: Phone-Bob-Direction
+  icon: mdi:compass-outline
+
+sensor.phone_bob_distance:
+  friendly_name: Phone Bob Distance
+  icon: mdi:hiking
+  unit_of_measurement: m
+
+sensor.phone_bob_floors_ascended:
+  friendly_name: Phone Bob Floors Ascended
+  icon: mdi:slope-uphill
+  unit_of_measurement: floors
+
+sensor.phone_bob_floors_descended:
+  friendly_name: Phone Bob Floors Descended
+  icon: mdi:slope-downhill
+  unit_of_measurement: floors
+
+sensor.phone_bob_geocoded_location:
+  friendly_name: Phone Bob Geocoded Location
+  icon: mdi:map
+
+sensor.phone_bob_gps_accuracy:
+  friendly_name: Phone-Bob-Gps Accuracy
+  icon: mdi:map-marker-radius
+
+sensor.phone_bob_info:
+  friendly_name: Phone-Bob-Info
+  icon: mdi:information-outline
+
+sensor.phone_bob_interval:
+  friendly_name: Phone-Bob-Interval
+  icon: mdi:clock-start
+
+sensor.phone_bob_last_located:
+  friendly_name: Phone-Bob-Last Located
+  icon: mdi:restore-clock
+
+sensor.phone_bob_last_update:
+  friendly_name: Phone-Bob-Last Update
+  icon: mdi:restore-clock
+
+sensor.phone_bob_last_update_trigger:
+  friendly_name: Phone Bob Last Update Trigger
+
+sensor.phone_bob_last_zone:
+  friendly_name: Phone-Bob-Last Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_last_zone_name1:
+  friendly_name: Phone-Bob-Last Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_last_zone_name2:
+  friendly_name: Phone-Bob-Last Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_last_zone_name3:
+  friendly_name: Phone-Bob-Last Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_name:
+  friendly_name: Phone-Bob-Name
+  icon: mdi:account
+
+sensor.phone_bob_next_update:
+  friendly_name: Phone-Bob-Next Update
+  icon: mdi:update
+
+sensor.phone_bob_poll_count:
+  friendly_name: Phone-Bob-Poll Count
+  icon: mdi:counter
+
+sensor.phone_bob_rx:
+  friendly_name: Phone Bob Rx
+  unit_of_measurement: MB
+
+sensor.phone_bob_sim_1:
+  friendly_name: Phone Bob Sim 1
+  icon: mdi:sim
+
+sensor.phone_bob_ssid:
+  friendly_name: Phone Bob Ssid
+  icon: mdi:wifi
+
+sensor.phone_bob_steps:
+  friendly_name: Phone Bob Steps
+  icon: mdi:walk
+  unit_of_measurement: steps
+
+sensor.phone_bob_travel_distance:
+  friendly_name: Phone-Bob-Travel Dist
+  icon: mdi:map-marker-distance
+  unit_of_measurement: mi
+
+sensor.phone_bob_travel_time:
+  friendly_name: Phone-Bob-Travel Time
+  icon: mdi:clock-outline
+
+sensor.phone_bob_trigger:
+  friendly_name: Phone-Bob-Trigger
+  icon: mdi:flash-outline
+
+sensor.phone_bob_tx:
+  friendly_name: Phone Bob Tx
+  unit_of_measurement: MB
+
+sensor.phone_bob_waze_distance:
+  friendly_name: Phone-Bob-Waze Dist
+  icon: mdi:map-marker-distance
+  unit_of_measurement: 
+
+sensor.phone_bob_zone:
+  friendly_name: Phone-Bob-Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_zone_distance:
+  friendly_name: Phone-Bob-Zone Distance
+  icon: mdi:map-marker-distance
+  unit_of_measurement: mi
+
+sensor.phone_bob_zone_name1:
+  friendly_name: Phone-Bob-Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_zone_name2:
+  friendly_name: Phone-Bob-Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_zone_name3:
+  friendly_name: Phone-Bob-Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_zone_timestamp:
+  friendly_name: Phone-Bob-Zone Timestamp
+  icon: mdi:restore-clock
+
+sensor.phone_kay_activity:
+  friendly_name: Phone Kay Activity
+  icon: mdi:human-male
+
+sensor.phone_kay_average_active_pace:
+  friendly_name: Phone Kay Average Active Pace
+  icon: mdi:speedometer
+  unit_of_measurement: m/s
+
+sensor.phone_kay_badge:
+  friendly_name: Phone Kay
+  entity_picture: /local/images/people/kay-square.jpg
+  icon: mdi:shield-account
+
+sensor.phone_kay_battery:
+  friendly_name: Phone-Kay-Battery
+  icon: mdi:battery
+
+sensor.phone_kay_battery_level:
+  friendly_name: Phone Kay Battery Level
+  icon: mdi:battery-alert
+  device_class: battery
+  unit_of_measurement: '%'
+
+sensor.phone_kay_battery_state:
+  friendly_name: Phone Kay Battery State
+  icon: mdi:battery-alert
+  device_class: battery
+
+sensor.phone_kay_battery_status:
+  friendly_name: Phone-Kay-Battery Status
+  icon: mdi:battery
+
+sensor.phone_kay_bssid:
+  friendly_name: Phone Kay Bssid
+  icon: mdi:wifi-star
+
+sensor.phone_kay_calc_distance:
+  friendly_name: Phone-Kay-Calc Dist
+  icon: mdi:map-marker-distance
+  unit_of_measurement: mi
+
+sensor.phone_kay_connection_type:
+  friendly_name: Phone Kay Connection Type
+  icon: mdi:wifi
+
+sensor.phone_kay_dir_of_travel:
+  friendly_name: Phone-Kay-Direction
+  icon: mdi:compass-outline
+
+sensor.phone_kay_distance:
+  friendly_name: Phone Kay Distance
+  icon: mdi:hiking
+  unit_of_measurement: m
+
+sensor.phone_kay_floors_ascended:
+  friendly_name: Phone Kay Floors Ascended
+  icon: mdi:slope-uphill
+  unit_of_measurement: floors
+
+sensor.phone_kay_floors_descended:
+  friendly_name: Phone Kay Floors Descended
+  icon: mdi:slope-downhill
+  unit_of_measurement: floors
+
+sensor.phone_kay_geocoded_location:
+  friendly_name: Phone Kay Geocoded Location
+  icon: mdi:map
+
+sensor.phone_kay_gps_accuracy:
+  friendly_name: Phone-Kay-Gps Accuracy
+  icon: mdi:map-marker-radius
+
+sensor.phone_kay_info:
+  friendly_name: Phone-Kay-Info
+  icon: mdi:information-outline
+
+sensor.phone_kay_interval:
+  friendly_name: Phone-Kay-Interval
+  icon: mdi:clock-start
+
+sensor.phone_kay_last_located:
+  friendly_name: Phone-Kay-Last Located
+  icon: mdi:restore-clock
+
+sensor.phone_kay_last_update:
+  friendly_name: Phone-Kay-Last Update
+  icon: mdi:restore-clock
+
+sensor.phone_kay_last_update_trigger:
+  friendly_name: Phone Kay Last Update Trigger
+
+sensor.phone_kay_last_zone:
+  friendly_name: Phone-Kay-Last Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_kay_last_zone_name1:
+  friendly_name: Phone-Kay-Last Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_kay_last_zone_name2:
+  friendly_name: Phone-Kay-Last Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_kay_last_zone_name3:
+  friendly_name: Phone-Kay-Last Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_kay_name:
+  friendly_name: Phone-Kay-Name
+  icon: mdi:account
+
+sensor.phone_kay_next_update:
+  friendly_name: Phone-Kay-Next Update
+  icon: mdi:update
+
+sensor.phone_kay_poll_count:
+  friendly_name: Phone-Kay-Poll Count
+  icon: mdi:counter
+
+sensor.phone_kay_rx:
+  friendly_name: Phone Kay Rx
+  unit_of_measurement: MB
+
+sensor.phone_kay_sim_1:
+  friendly_name: Phone Kay Sim 1
+  icon: mdi:sim
+
+sensor.phone_kay_ssid:
+  friendly_name: Phone Kay Ssid
+  icon: mdi:wifi
+
+sensor.phone_kay_steps:
+  friendly_name: Phone Kay Steps
+  icon: mdi:walk
+  unit_of_measurement: steps
+
+sensor.phone_kay_travel_distance:
+  friendly_name: Phone-Kay-Travel Dist
+  icon: mdi:map-marker-distance
+  unit_of_measurement: mi
+
+sensor.phone_kay_travel_time:
+  friendly_name: Phone-Kay-Travel Time
+  icon: mdi:clock-outline
+
+sensor.phone_kay_trigger:
+  friendly_name: Phone-Kay-Trigger
+  icon: mdi:flash-outline
+
+sensor.phone_kay_tx:
+  friendly_name: Phone Kay Tx
+  unit_of_measurement: MB
+
+sensor.phone_kay_waze_distance:
+  friendly_name: Phone-Kay-Waze Dist
+  icon: mdi:map-marker-distance
+  unit_of_measurement: 
+
+sensor.phone_kay_zone:
+  friendly_name: Phone-Kay-Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_kay_zone_distance:
+  friendly_name: Phone-Kay-Zone Distance
+  icon: mdi:map-marker-distance
+  unit_of_measurement: mi
+
+sensor.phone_kay_zone_name1:
+  friendly_name: Phone-Kay-Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_kay_zone_name2:
+  friendly_name: Phone-Kay-Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_kay_zone_name3:
+  friendly_name: Phone-Kay-Zone
+  icon: mdi:cellphone-iphone
+
+sensor.phone_kay_zone_timestamp:
+  friendly_name: Phone-Kay-Zone Timestamp
+  icon: mdi:restore-clock
+
+sensor.phone_louise_rx:
+  friendly_name: Phone Louise Rx
+  unit_of_measurement: MB
+
+sensor.phone_louise_tx:
+  friendly_name: Phone Louise Tx
+  unit_of_measurement: MB
+
+sensor.plex_shieldtv:
+  friendly_name: Plex (Shieldtv)
+  icon: mdi:plex
+  unit_of_measurement: Watching
+
+sensor.potential_breaking_changes:
+  friendly_name: Potential Breaking Changes
+  icon: mdi:package-up
+
+sensor.presence_bob_last_changed:
+  friendly_name: Presence Bob Last Changed
+
+sensor.presence_kay_last_changed:
+  friendly_name: Presence Kay Last Changed
+
+sensor.rx_2:
+  friendly_name: Living Room Xbox Rx
+  unit_of_measurement: MB
+
+sensor.server_plex_recently_added_movies:
+  friendly_name: Plex Recently Added Movies
+
+sensor.server_plex_recently_added_tv:
+  friendly_name: Plex Recently Added Tv
+
+sensor.smartthings_hub_rx:
+  friendly_name: Smartthings Hub Rx
+  unit_of_measurement: MB
+
+sensor.smartthings_hub_tx:
+  friendly_name: Smartthings Hub Tx
+  unit_of_measurement: MB
+
+sensor.smartthings_multi_sensor_2015_model_linkquality:
+  friendly_name: Smartthings Multi Sensor (2015 Model) Linkquality
+  icon: mdi:signal
+  unit_of_measurement: lqi
+
+sensor.smartthings_multi_sensor_2015_model_temperature:
+  friendly_name: Smartthings Multi Sensor (2015 Model) Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.smartthings_outlet_linkquality:
+  friendly_name: Smartthings Outlet Linkquality
+  icon: mdi:signal
+  unit_of_measurement: lqi
+
+sensor.smartthings_outlet_power:
+  friendly_name: Smartthings Outlet Power
+  icon: mdi:flash
+  unit_of_measurement: W
+
+sensor.steam_wishlist:
+  friendly_name: Steam Wishlist
+  icon: mdi:format-list-bulleted-square
+  unit_of_measurement: on sale
+
+sensor.system_intelnuc:
+  friendly_name: Intelnuc
+
+sensor.tablet_ipad_rx:
+  friendly_name: Tablet Ipad Rx
+  unit_of_measurement: MB
+
+sensor.tablet_ipad_tx:
+  friendly_name: Tablet Ipad Tx
+  unit_of_measurement: MB
+
+sensor.tado_hub_rx:
+  friendly_name: Tado Hub Rx
+  unit_of_measurement: MB
+
+sensor.tado_hub_tx:
+  friendly_name: Tado Hub Tx
+  unit_of_measurement: MB
+
+sensor.time:
+  friendly_name: Time
+  icon: mdi:clock
+
+sensor.tx_2:
+  friendly_name: Living Room Xbox Tx
+  unit_of_measurement: MB
+
+sensor.unifi_gateway_alerts:
+  friendly_name: Unifi Gateway Alerts
+  icon: mdi:information-outline
+
+sensor.unifi_gateway_cpu:
+  friendly_name: Cpu
+  unit_of_measurement: '%'
+
+sensor.unifi_gateway_lan:
+  friendly_name: Unifi Gateway Lan
+  icon: mdi:lan
+
+sensor.unifi_gateway_memory:
+  friendly_name: Memory
+  unit_of_measurement: '%'
+
+sensor.unifi_gateway_speedtest_download:
+  friendly_name: Download
+  unit_of_measurement: Mbps
+
+sensor.unifi_gateway_speedtest_ping:
+  friendly_name: Ping
+  unit_of_measurement: ms
+
+sensor.unifi_gateway_speedtest_upload:
+  friendly_name: Upload
+  unit_of_measurement: Mbps
+
+sensor.unifi_gateway_uptime:
+  friendly_name: Uptime
+
+sensor.unifi_gateway_vpn:
+  friendly_name: Unifi Gateway Vpn
+  icon: mdi:folder-key-network
+
+sensor.unifi_gateway_wan:
+  friendly_name: Unifi Gateway Wan
+  icon: mdi:shield-outline
+
+sensor.unifi_gateway_wan_ip:
+  friendly_name: Wan Ip
+
+sensor.unifi_gateway_wlan:
+  friendly_name: Unifi Gateway Wlan
+  icon: mdi:wifi
+
+sensor.unifi_gateway_www:
+  friendly_name: Unifi Gateway Www
+  icon: mdi:web
+
+sensor.unifi_lan_clients:
+  friendly_name: Lan Clients
+  unit_of_measurement: clients
+
+sensor.unifi_wlan_clients:
+  friendly_name: Wlan Clients
+  unit_of_measurement: clients
+
+sensor.withings_body_temperature_c_bob:
+  friendly_name: Withings Body Temperature C Bob
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.withings_bone_mass_kg_bob:
+  friendly_name: Withings Bone Mass Kg Bob
+  icon: mdi:weight-kilogram
+  unit_of_measurement: kg
+
+sensor.withings_diastolic_blood_pressure_mmhg_bob:
+  friendly_name: Withings Diastolic Blood Pressure Mmhg Bob
+  icon: None
+  unit_of_measurement: mmhg
+
+sensor.withings_fat_free_mass_kg_bob:
+  friendly_name: Withings Fat Free Mass Kg Bob
+  icon: mdi:weight-kilogram
+  unit_of_measurement: kg
+
+sensor.withings_fat_mass_kg_bob:
+  friendly_name: Withings Fat Mass Kg Bob
+  icon: mdi:weight-kilogram
+  unit_of_measurement: kg
+
+sensor.withings_fat_ratio_pct_bob:
+  friendly_name: Withings Fat Ratio Pct Bob
+  icon: None
+  unit_of_measurement: '%'
+
+sensor.withings_heart_pulse_bpm_bob:
+  friendly_name: Withings Heart Pulse Bpm Bob
+  icon: mdi:heart-pulse
+  unit_of_measurement: bpm
+
+sensor.withings_height_m_bob:
+  friendly_name: Withings Height M Bob
+  icon: mdi:ruler
+  unit_of_measurement: m
+
+sensor.withings_hydration_bob:
+  friendly_name: Withings Hydration Bob
+  icon: mdi:water
+  unit_of_measurement: '%'
+
+sensor.withings_muscle_mass_kg_bob:
+  friendly_name: Withings Muscle Mass Kg Bob
+  icon: mdi:weight-kilogram
+  unit_of_measurement: kg
+
+sensor.withings_pulse_wave_velocity_bob:
+  friendly_name: Withings Pulse Wave Velocity Bob
+  icon: None
+  unit_of_measurement: m/s
+
+sensor.withings_skin_temperature_c_bob:
+  friendly_name: Withings Skin Temperature C Bob
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.withings_sleep_deep_duration_seconds_bob:
+  friendly_name: Withings Sleep Deep Duration Seconds Bob
+  icon: mdi:sleep
+  unit_of_measurement: s
+
+sensor.withings_sleep_heart_rate_average_bpm_bob:
+  friendly_name: Withings Sleep Heart Rate Average Bpm Bob
+  icon: mdi:heart-pulse
+  unit_of_measurement: bpm
+
+sensor.withings_sleep_heart_rate_max_bpm_bob:
+  friendly_name: Withings Sleep Heart Rate Max Bpm Bob
+  icon: mdi:heart-pulse
+  unit_of_measurement: bpm
+
+sensor.withings_sleep_heart_rate_min_bpm_bob:
+  friendly_name: Withings Sleep Heart Rate Min Bpm Bob
+  icon: mdi:heart-pulse
+  unit_of_measurement: bpm
+
+sensor.withings_sleep_light_duration_seconds_bob:
+  friendly_name: Withings Sleep Light Duration Seconds Bob
+  icon: mdi:sleep
+  unit_of_measurement: s
+
+sensor.withings_sleep_rem_duration_seconds_bob:
+  friendly_name: Withings Sleep Rem Duration Seconds Bob
+  icon: mdi:sleep
+  unit_of_measurement: s
+
+sensor.withings_sleep_respiratory_average_bpm_bob:
+  friendly_name: Withings Sleep Respiratory Average Bpm Bob
+  icon: None
+  unit_of_measurement: br/min
+
+sensor.withings_sleep_respiratory_max_bpm_bob:
+  friendly_name: Withings Sleep Respiratory Max Bpm Bob
+  icon: None
+  unit_of_measurement: br/min
+
+sensor.withings_sleep_respiratory_min_bpm_bob:
+  friendly_name: Withings Sleep Respiratory Min Bpm Bob
+  icon: None
+  unit_of_measurement: br/min
+
+sensor.withings_sleep_state_bob:
+  friendly_name: Withings Sleep State Bob
+  icon: mdi:sleep
+  unit_of_measurement: None
+
+sensor.withings_sleep_tosleep_duration_seconds_bob:
+  friendly_name: Withings Sleep Tosleep Duration Seconds Bob
+  icon: mdi:sleep
+  unit_of_measurement: s
+
+sensor.withings_sleep_towakeup_duration_seconds_bob:
+  friendly_name: Withings Sleep Towakeup Duration Seconds Bob
+  icon: mdi:sleep-off
+  unit_of_measurement: s
+
+sensor.withings_sleep_wakeup_count_bob:
+  friendly_name: Withings Sleep Wakeup Count Bob
+  icon: mdi:sleep-off
+  unit_of_measurement: times
+
+sensor.withings_sleep_wakeup_duration_seconds_bob:
+  friendly_name: Withings Sleep Wakeup Duration Seconds Bob
+  icon: mdi:sleep-off
+  unit_of_measurement: s
+
+sensor.withings_spo2_pct_bob:
+  friendly_name: Withings Spo2 Pct Bob
+  icon: None
+  unit_of_measurement: '%'
+
+sensor.withings_systolic_blood_pressure_mmhg_bob:
+  friendly_name: Withings Systolic Blood Pressure Mmhg Bob
+  icon: None
+  unit_of_measurement: mmhg
+
+sensor.withings_temperature_c_bob:
+  friendly_name: Withings Temperature C Bob
+  icon: mdi:thermometer
+  unit_of_measurement: °C
+  device_class: temperature
+
+sensor.withings_weight_kg_bob:
+  friendly_name: Withings Weight Kg Bob
+  icon: mdi:weight-kilogram
+  unit_of_measurement: kg
+
+sensor.withings_weight_stlb_bob:
+  friendly_name: Withings Weight Stlb Bob
+
+sensor.xiaomi_aqara_wireless_switch_action:
+  friendly_name: Xiaomi Aqara Wireless Switch Action
+  icon: mdi:gesture-double-tap
+
+sensor.xiaomi_aqara_wireless_switch_battery:
+  friendly_name: Xiaomi Aqara Wireless Switch Battery
+  device_class: battery
+  unit_of_measurement: '%'
+
+sensor.xiaomi_aqara_wireless_switch_click:
+  friendly_name: Xiaomi Aqara Wireless Switch Click
+  icon: mdi:toggle-switch
+
+sensor.xiaomi_aqara_wireless_switch_linkquality:
+  friendly_name: Xiaomi Aqara Wireless Switch Linkquality
+  icon: mdi:signal
+  unit_of_measurement: lqi
+
+sensor.youtube_direwolf20:
+  friendly_name: Direwolf20
+  entity_picture: https://i4.ytimg.com/vi/SlYC9KOVoY8/hqdefault.jpg
+  icon: mdi:youtube
+
+sensor.youtube_funhaus:
+  friendly_name: Funhaus
+  entity_picture: https://i3.ytimg.com/vi/rPMu9pATsfE/hqdefault.jpg
+  icon: mdi:youtube
+
+sensor.youtube_inside_gaming:
+  friendly_name: Inside Gaming
+  entity_picture: https://i1.ytimg.com/vi/H9kx47F9rPc/hqdefault.jpg
+  icon: mdi:youtube
+
+sensor.youtube_letsplay:
+  friendly_name: Letsplay
+  entity_picture: https://i1.ytimg.com/vi/pN-bRMbj0nk/hqdefault.jpg
+  icon: mdi:youtube
+
+sensor.zigbee2mqtt_bridge_state:
+  friendly_name: Zigbee2mqtt Bridge State
+  icon: mdi:router-wireless
+
+sensor.zigbee2mqtt_github_version:
+  friendly_name: Zigbee2mqtt Github Version
+
+sensor.zigbee2mqtt_networkmap:
+  friendly_name: Zigbee2mqtt Networkmap
+
+sensor.zigbee2mqtt_version:
+  friendly_name: Zigbee2mqtt Version
+  icon: mdi:zigbee

@@ -1,0 +1,28 @@
+#-------------------------------------------
+#  Script Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+script.lightpack_brightness_change:
+  friendly_name: Change Lightpack Brightness
+
+script.lightpack_input_change:
+  friendly_name: Change Lightpack Input
+
+script.lightpack_mode_change:
+  friendly_name: Change Lightpack Mode
+
+script.lightpack_mood_change:
+  friendly_name: Change Lightpack Mood
+
+script.zigbee2mqtt_remove:
+  friendly_name: Zigbee2mqtt Remove
+
+script.zigbee2mqtt_rename:
+  friendly_name: Zigbee2mqtt Rename

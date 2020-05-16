@@ -1,0 +1,134 @@
+#-------------------------------------------
+#  Device Tracker Customisation
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Documentation:
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+device_tracker.bathroom_scales:
+  friendly_name: Bathroom Scales
+
+device_tracker.bedroom_alexa:
+  friendly_name: Master Bedroom Alexa
+
+device_tracker.bob_tado:
+  friendly_name: Bob (Tado)
+  entity_picture: https://www.gravatar.com/avatar/39aabbb24a0cb3ca2c5223e3c9a9effc.jpg?s=80&d=wavatar
+
+device_tracker.guest_tado:
+  friendly_name: Guest (Tado)
+
+device_tracker.hallway_alexa:
+  friendly_name: Hallway Alexa
+
+device_tracker.hallway_camera:
+  friendly_name: Hallway Camera
+
+device_tracker.hallway_energymonitor:
+  friendly_name: Hallway Energymonitor
+
+device_tracker.home_phone:
+  friendly_name: Home Phone
+
+device_tracker.hue_hub:
+  friendly_name: Hue Hub
+
+device_tracker.kay_tado:
+  friendly_name: Kay (Tado)
+  entity_picture: /local/images/people/kay-square.jpg
+
+device_tracker.kitchen_alexa:
+  friendly_name: Kitchen Alexa
+
+device_tracker.kitchen_sonos:
+  friendly_name: Kitchen Sonos
+
+device_tracker.laptop_bob_personal:
+  friendly_name: Laptop Bob Personal
+
+device_tracker.living_room_harmony:
+  friendly_name: Living Room Harmony
+
+device_tracker.living_room_lightpack:
+  friendly_name: Living Room Lightpack
+
+device_tracker.living_room_pi:
+  friendly_name: Living Room Pi
+
+device_tracker.living_room_shield_wired:
+  friendly_name: Living Room Shield Wired
+
+device_tracker.living_room_skq_ethernet:
+  friendly_name: Living Room Skq Ethernet
+
+device_tracker.living_room_skq_unknown:
+  friendly_name: Living Room Skq Unknown
+
+device_tracker.living_room_sonos:
+  friendly_name: Living Room Sonos
+
+device_tracker.living_room_switch:
+  friendly_name: Living Room Switch
+
+device_tracker.living_room_tv:
+  friendly_name: Living Room Tv
+
+device_tracker.living_room_xbox:
+  friendly_name: Living Room Xbox
+
+device_tracker.nuc_server:
+  friendly_name: Nuc Server
+
+device_tracker.office_pc:
+  friendly_name: Office Pc
+
+device_tracker.office_switch:
+  friendly_name: Office Switch
+
+device_tracker.office_wlanbridge:
+  friendly_name: Office Wlanbridge
+
+device_tracker.phone_bob:
+  friendly_name: Phone Bob
+  entity_picture: /local/images/people/martin-square.jpg
+
+device_tracker.phone_bob_gps:
+  friendly_name: Phone Bob
+
+device_tracker.phone_bob_unifi:
+  friendly_name: Phone Bob
+
+device_tracker.phone_kay:
+  friendly_name: Phone Kay
+  entity_picture: /local/images/people/kay-square.jpg
+
+device_tracker.phone_kay_gps:
+  friendly_name: Phone Kay
+
+device_tracker.phone_kay_unifi:
+  friendly_name: Phone Kay
+
+device_tracker.phone_louise:
+  friendly_name: Phone Louise
+
+device_tracker.smartthings_hub:
+  friendly_name: Smartthings Hub
+
+device_tracker.tablet_ipad:
+  friendly_name: Tablet Ipad
+
+device_tracker.tado_hub:
+  friendly_name: Tado Hub
+
+device_tracker.u7pg2:
+  friendly_name: U7pg2
+
+device_tracker.ugw3:
+  friendly_name: Ugw3
+
+device_tracker.unifi_28_16_a8_d0_4d_f3_default:
+  friendly_name: Living Room Xbox
