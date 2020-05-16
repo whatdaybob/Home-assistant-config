@@ -1,0 +1,46 @@
+#-------------------------------------------
+#  Package to manage MQTT retained flag
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Usage:
+#     Adds the ability to clear a retained MQTT Topic
+#   Input Text:
+#     Ability to clear retained topic
+#   Automations:
+#     Clear a MQTT Topic
+#-------------------------------------------
+
+#-------------------------------------------
+# Input Text - https://www.home-assistant.io/integrations/input_text/
+#-------------------------------------------
+
+input_text:
+  clear_mqtt_topic:
+    name: MQTT Topic to Clear
+    mode: text
+    initial: ''
+
+#-------------------------------------------
+# Automation - https://www.home-assistant.io/integrations/automation/
+#-------------------------------------------
+
+automation:
+#-- Send MQTT message on input text change and match sensor
+  - alias: clear_mqtt_topic
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id:
+          - input_text.clear_mqtt_topic
+    condition:
+      - condition: template
+        value_template: "{{ 'homeassistant/sensor/' in states.input_text.clear_mqtt_topic.state }}"
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "{{ states.input_text.clear_mqtt_topic.state }}"
+          retain: true

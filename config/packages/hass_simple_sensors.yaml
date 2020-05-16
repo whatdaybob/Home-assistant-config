@@ -1,0 +1,69 @@
+#-------------------------------------------
+#  Package to handle standalone and misc sensors
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Usage:
+#     Handles simple sensors and extracts more information
+#   Sensors:
+#     Moon
+#     Time and Date with extras (Friendly Date and Time,AM/PM,Day etc)
+#-------------------------------------------
+
+sensor:
+
+#-------------------------------------------
+# Moon Sensor - https://www.home-assistant.io/components/moon/
+#-------------------------------------------
+
+  - platform: moon
+    entity_namespace: outdoor
+
+#-------------------------------------------
+# Time & Date - https://www.home-assistant.io/integrations/time_date/
+#-------------------------------------------
+
+  - platform: time_date
+    display_options:
+      - 'date'
+      - 'time'
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+  - platform: template
+    sensors:
+      floorplan_date:
+        friendly_name: 'Date'
+        entity_id: []
+        value_template: >-
+          {{now().strftime("%A")}}, {{now().strftime("%B")}} {{now().strftime("%d")}}
+      clock_am_pm:
+        friendly_name: 'AM/PM'
+        entity_id: []
+        value_template: >-
+          {{now().strftime("%p")}}
+      clock_day:
+        friendly_name: 'Day'
+        entity_id: []
+        value_template: >-
+          {{now().strftime("%A")}}
+      clock_date:
+        friendly_name: 'Clock Date'
+        entity_id: []
+        value_template: >-
+          {{now().strftime("%B")}} {{now().strftime("%d")}} {{now().year}}
+      floorplan_time:
+        friendly_name: 'Time'
+        entity_id: []
+        value_template: >-
+          {{now().strftime("%-I")}}:{{now().strftime("%M")}} {{now().strftime("%p")}}
+      clock_time:
+        friendly_name: 'Clock Time'
+        entity_id: []
+        value_template: >-
+          {{now().strftime("%-I")}}:{{now().strftime("%M")}}

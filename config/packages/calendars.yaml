@@ -1,0 +1,114 @@
+#-------------------------------------------
+#  Package to manage calendars
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Dependancies:
+#     python date countdown
+#   Calendar:
+#     Bills
+#     Birthdays
+#   Sensors:
+#     Date countdown of close family
+#-------------------------------------------
+
+calendar:
+
+#-------------------------------------------
+# CalDAV - https://www.home-assistant.io/integrations/caldav/
+#-------------------------------------------
+
+  - platform: caldav
+    username: !secret icloud_real_username
+    password: !secret icloud_caldav_app_spec_pass
+    url: !secret icloud_caldav
+    custom_calendars:
+      - name: 'Birthdays'
+        calendar: Family
+        search: 'Birthday:'
+      - name: 'Bills'
+        calendar: Family
+        search: 'Bill:'
+
+automation:
+#-- Update date countdown sensors
+  - id: python_script_date_countdown
+    alias: python_script_date_countdown
+    initial_state: on
+    trigger:
+      - platform: time
+        at: '00:00:01'
+      - platform: homeassistant
+        event: start
+    action:
+
+#-- Birthdays
+
+      - service: python_script.date_countdown
+        data:
+          name: Martin
+          type: birthday
+          date: !secret ps_date_countdown_bday_1
+          # date: 13/09/1985
+      - service: python_script.date_countdown
+        data:
+          name: Kayleigh
+          type: birthday
+          date: !secret ps_date_countdown_bday_2
+          # date: 30/05/1985
+      - service: python_script.date_countdown
+        data:
+          name: Leah
+          type: birthday
+          date: !secret ps_date_countdown_bday_3
+          # date: 28/10/2016
+      - service: python_script.date_countdown
+        data:
+          name: Ava
+          type: birthday
+          date: !secret ps_date_countdown_bday_4
+          # date: 08/05/2018
+
+#-- UK Holidays 
+
+      - service: python_script.date_countdown
+        data:
+          name: Christmas Day
+          type: holiday
+          date: 25/12/2019
+      - service: python_script.date_countdown
+        data:
+          name: New Year
+          type: holiday
+          date: 01/01/2020
+
+#-- Bank Holidays
+
+      - service: python_script.date_countdown
+        data:
+          name: Good Friday
+          type: bankholiday
+          date: 10/04/2020
+      - service: python_script.date_countdown
+        data:
+          name: Easter Monday
+          type: bankholiday
+          date: 13/04/2020
+      - service: python_script.date_countdown
+        data:
+          name: Early May bank holiday
+          type: bankholiday
+          date: 04/05/2020
+      - service: python_script.date_countdown
+        data:
+          name: Spring bank holiday
+          type: bankholiday
+          date: 25/05/2020
+      - service: python_script.date_countdown
+        data:
+          name: Summer bank holiday
+          type: bankholiday
+          date: 31/08/2020

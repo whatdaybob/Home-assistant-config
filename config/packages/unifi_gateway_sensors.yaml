@@ -1,0 +1,130 @@
+#-------------------------------------------
+#  Package to extract information about the Unifi system
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Usage:
+#     Expose extra sensors and template out more information
+#   Sensors:
+#     Unifi Gateway custom integration sensors
+#     USG Stats (Uptime,CPU,Mem,Ping,Upload,Download,WAN IP)
+#     Unifi Clients (Wlan,LAN)
+#     WAN (Upload,Download)
+#-------------------------------------------
+
+sensor:
+
+#-------------------------------------------
+# Unifi Gateway Custom Integration - https://github.com/custom-components/sensor.unifigateway/
+#-------------------------------------------
+
+- platform: unifigateway
+  host: !secret custom_unifigateway_host
+  username: !secret custom_unifigateway_user
+  password: !secret custom_unifigateway_pass
+  monitored_conditions:
+    - vpn
+    - www
+    - lan
+    - wan
+    - wlan
+    - alerts
+    - firmware
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+- platform: template
+  sensors:
+  #-- Unifi USG: Uptime
+    unifi_gateway_uptime:
+      friendly_name: 'Uptime'
+      entity_id: sensor.time
+      value_template: >-
+        {%- set time = states.sensor.unifi_gateway_wan.attributes['gw_system-stats']['uptime'] | int %}
+        {%- set minutes = ((time % 3600) // 60) %}
+        {%- set hours = ((time % 86400) // 3600) %}
+        {%- set days = (time // 86400) %}
+        {% if time <= 60 %}
+        {# smaller or less or = 59 Seconds #}
+          0m
+        {% elif time <= 3600 %}
+        {# smaller or less or = 59 Minutes #}
+        {{ minutes }}m
+        {% elif time <= 86400 %}
+        {# smaller or less or = 23h And 59 Minutes #}
+        {{ hours }}h
+        {% elif time > 86400 %}
+        {# more or more = 1 Day #}
+        {{ days }}d 
+        {% else %}
+        {% endif %}
+
+  #-- Unifi USG: CPU
+    unifi_gateway_cpu:
+      friendly_name: 'CPU'
+      value_template: "{{ states.sensor.unifi_gateway_wan.attributes['gw_system-stats']['cpu'] | int }}"
+      unit_of_measurement: '%'
+
+  #-- Unifi USG: Memory
+    unifi_gateway_memory:
+      friendly_name: 'Memory'
+      value_template: "{{ states.sensor.unifi_gateway_wan.attributes['gw_system-stats']['mem'] | int }}"
+      unit_of_measurement: '%'
+
+  #-- Unifi USG: Speedtest ping
+    unifi_gateway_speedtest_ping:
+      friendly_name: 'Ping'
+      value_template: "{{ states.sensor.unifi_gateway_www.attributes['speedtest_ping'] | int }}"
+      unit_of_measurement: ms
+
+  #-- Unifi USG: Speedtest Upload
+    unifi_gateway_speedtest_upload:
+      friendly_name: 'Upload'
+      value_template: "{{ states.sensor.unifi_gateway_www.attributes['xput_up'] | float }}"
+      unit_of_measurement: Mbps
+
+  #-- Unifi USG: Speedtest Download
+    unifi_gateway_speedtest_download:
+      friendly_name: 'Download'
+      value_template: "{{ states.sensor.unifi_gateway_www.attributes['xput_down'] | float }}"
+      unit_of_measurement: Mbps
+
+  #-- Unifi USG: WAN IP
+    unifi_gateway_wan_ip:
+      friendly_name: 'WAN IP'
+      value_template: "{{ states.sensor.unifi_gateway_wan.attributes['wan_ip'] | string }}"
+
+  #-- Unifi LAN: Connected Clients
+    unifi_lan_clients:
+      friendly_name: 'LAN Clients'
+      value_template: "{{ states.sensor.unifi_gateway_lan.attributes['num_user'] | int }}"
+      unit_of_measurement: clients
+
+  #-- Unifi Wlan: Connected Clients
+    unifi_wlan_clients:
+      friendly_name: 'Wlan Clients'
+      value_template: "{{ states.sensor.unifi_gateway_wlan.attributes['num_user'] | int }}"
+      unit_of_measurement: clients
+
+  #-- Unifi WAN: Current Download
+    unifi_gateway_wan_download:
+      friendly_name: 'WAN Download'
+      unit_of_measurement: Kbps
+      value_template: "{{ (states.sensor.unifi_gateway_wan.attributes['rx_bytes-r'] / 1024) | int }}"
+
+  #-- Unifi WAN: Current Upload
+    unifi_gateway_wan_upload:
+      friendly_name: 'WAN Upload'
+      unit_of_measurement: Kbps
+      value_template: "{{ (states.sensor.unifi_gateway_wan.attributes['tx_bytes-r'] / 1024) | int }}"
+
+# {{ states.sensor.unifi_gateway_lan.attributes['tx_bytes-r'] }}
+# {{ states.sensor.unifi_gateway_lan.attributes['rx_bytes-r'] }}
+# {{ states.sensor.unifi_gateway_wlan.attributes['tx_bytes-r'] | int }}
+# {{ states.sensor.unifi_gateway_wlan.attributes['rx_bytes-r'] | int }}
+

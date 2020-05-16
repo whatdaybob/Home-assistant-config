@@ -1,0 +1,207 @@
+#-------------------------------------------
+#  Package to manage all the Tado Features
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Binary_sensors:
+#     Boiler activity
+#     Open window sensor to binary sensors for use with homekit
+#   Sensors:
+#     Maximum boiler heating call percentage
+#     Mold sensors for all the TRVs using their humidity sensors
+#     History sensors for heating and cooling for the last 3 days
+#-------------------------------------------
+
+binary_sensor:
+
+#-------------------------------------------
+# Template Binary Sensor - https://www.home-assistant.io/integrations/binary_sensor.template/
+#-------------------------------------------
+
+  - platform: template
+    sensors:
+      #-- If any heating is on, consider the boiler active
+      landing_boiler:
+        friendly_name: "Boiler"
+        device_class: heat
+        value_template: >- 
+          {{ is_state_attr('climate.hallway', 'hvac_action', 'heating')
+            or is_state_attr('climate.kids_bedroom', 'hvac_action', 'heating')
+            or is_state_attr('climate.kitchen', 'hvac_action', 'heating')
+            or is_state_attr('climate.landing', 'hvac_action', 'heating')
+            or is_state_attr('climate.living_room', 'hvac_action', 'heating')
+            or is_state_attr('climate.master_bedroom', 'hvac_action', 'heating')
+          }}
+        icon_template: >-
+          {% if is_state("binary_sensor.landing_boiler", "on") %}
+            mdi:thermometer-chevron-up
+          {% else %}
+            mdi:thermometer-chevron-down
+          {% endif %}
+
+#-------------------------------------------
+# Template Binary Sensor - https://www.home-assistant.io/integrations/binary_sensor.template/
+#-------------------------------------------
+
+  - platform: template
+    sensors:
+      #-- Convert Tado Sensor to Binary for Homekit
+      hallway_open_window:
+        device_class: window
+        value_template: >-
+          {{ is_state('sensor.hallway_open_window', 'True') }}
+      #-- Convert Tado Sensor to Binary for Homekit
+      kids_bedroom_open_window:
+        device_class: window
+        value_template: >-
+          {{ is_state('sensor.kids_bedroom_open_window', 'True') }}
+      #-- Convert Tado Sensor to Binary for Homekit
+      kitchen_open_window:
+        device_class: window
+        value_template: >-
+          {{ is_state('sensor.kitchen_open_window', 'True') }}
+      #-- Convert Tado Sensor to Binary for Homekit
+      landing_open_window:
+        device_class: window
+        value_template: >-
+          {{ is_state('sensor.landing_open_window', 'True') }}
+      #-- Convert Tado Sensor to Binary for Homekit
+      living_room_open_window:
+        device_class: window
+        value_template: >-
+          {{ is_state('sensor.living_room_open_window', 'True') }}
+      #-- Convert Tado Sensor to Binary for Homekit
+      master_bedroom_open_window:
+        device_class: window
+        value_template: >-
+          {{ is_state('sensor.master_bedroom_open_window', 'True') }}
+
+sensor:
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+  - platform: template
+    sensors:
+      #-- If any heating is on, consider the boiler active
+      landing_boiler_heat_call:
+        friendly_name: "Boiler heat call"
+        unit_of_measurement: "%"
+        value_template: >- 
+          {{[ states.sensor.hallway_heating.state|int, states.sensor.kids_bedroom_heating.state|int, states.sensor.kitchen_heating.state|int, states.sensor.landing_heating.state|int, states.sensor.living_room_heating.state|int, states.sensor.master_bedroom_heating.state|int ]| max}}
+        icon_template: >-
+          {% if is_state("sensor.landing_boiler_heat_call", 0) %}
+            mdi:thermometer-low
+          {% else %}
+            mdi:thermometer-chevron-up
+          {% endif %}
+      #-- Used for Mold Sensors
+      outdoor_temperature:
+        value_template: "{{ states.weather.home.attributes.temperature }}"
+        unit_of_measurement: °C
+      #-- Might as well add other climate sensors
+      outdoor_humidity:
+        value_template: "{{ states.weather.home.attributes.humidity }}"
+        unit_of_measurement: '%'
+
+#-------------------------------------------
+# Mold Indicator - https://www.home-assistant.io/components/mold_indicator/
+#-------------------------------------------
+
+  - platform: mold_indicator
+    name: kids_bedroom_mold
+    indoor_temp_sensor: sensor.kids_bedroom_temperature
+    indoor_humidity_sensor: sensor.kids_bedroom_humidity
+    outdoor_temp_sensor: sensor.outdoor_temperature
+    calibration_factor: 2.0 # Need to calibrate
+  - platform: mold_indicator
+    name: living_room_mold
+    indoor_temp_sensor: sensor.living_room_temperature
+    indoor_humidity_sensor: sensor.living_room_humidity
+    outdoor_temp_sensor: sensor.outdoor_temperature
+    calibration_factor: 2.0 # Need to calibrate
+  - platform: mold_indicator
+    name: master_bedroom_mold
+    indoor_temp_sensor: sensor.master_bedroom_temperature
+    indoor_humidity_sensor: sensor.master_bedroom_humidity
+    outdoor_temp_sensor: sensor.outdoor_temperature
+    calibration_factor: 2.0 # Need to calibrate
+  - platform: mold_indicator
+    name: hallway_mold
+    indoor_temp_sensor: sensor.hallway_temperature
+    indoor_humidity_sensor: sensor.hallway_humidity
+    outdoor_temp_sensor: sensor.outdoor_temperature
+    calibration_factor: 2.0 # Need to calibrate
+  - platform: mold_indicator
+    name: landing_mold
+    indoor_temp_sensor: sensor.landing_temperature
+    indoor_humidity_sensor: sensor.landing_humidity
+    outdoor_temp_sensor: sensor.outdoor_temperature
+    calibration_factor: 2.0 # Need to calibrate
+  - platform: mold_indicator
+    name: kitchen_mold
+    indoor_temp_sensor: sensor.kitchen_temperature
+    indoor_humidity_sensor: sensor.kitchen_humidity
+    outdoor_temp_sensor: sensor.outdoor_temperature
+    calibration_factor: 2.0 # Need to calibrate
+
+#-------------------------------------------
+# History Stats - https://www.home-assistant.io/integrations/history_stats/
+#-------------------------------------------
+
+  - platform: history_stats
+    name: Cooling Hours Today
+    entity_id: binary_sensor.landing_boiler
+    state: 'off'
+    type: time
+    start: >
+      {{ now().strftime('%Y-%m-%d 00:00:00+01:00')}}
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Cooling Hours Yesterday
+    entity_id: binary_sensor.landing_boiler
+    state: 'off'
+    type: time
+    end: >
+      {{ now().strftime('%Y-%m-%d 00:00:00+01:00')}}
+    duration:
+      hours: 24
+  - platform: history_stats
+    name: Cooling Hours Two Days Ago
+    entity_id: binary_sensor.landing_boiler
+    state: 'off'
+    type: time
+    end: >
+      {{ as_timestamp(now().strftime('%Y-%m-%d 00:00:00+01:00')) - 86400}}
+    duration:
+      hours: 24
+  - platform: history_stats
+    name: Heating Hours Today
+    entity_id: binary_sensor.landing_boiler
+    state: 'on'
+    type: time
+    start: >
+      {{ now().strftime('%Y-%m-%d 00:00:00+01:00')}}
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Heating Hours Yesterday
+    entity_id: binary_sensor.landing_boiler
+    state: 'off'
+    type: time
+    end: >
+      {{ now().strftime('%Y-%m-%d 00:00:00+01:00')}}
+    duration:
+      hours: 24
+  - platform: history_stats
+    name: Heating Hours Two Days Ago
+    entity_id: binary_sensor.landing_boiler
+    state: 'off'
+    type: time
+    end: >
+      {{ as_timestamp(now().strftime('%Y-%m-%d 00:00:00+01:00')) - 86400}}
+    duration:
+      hours: 24

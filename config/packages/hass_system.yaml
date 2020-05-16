@@ -1,0 +1,370 @@
+#-------------------------------------------
+#  Package to manage Home Assistant Features and Sensors
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Sensors:
+#     HA Uptime
+#     HA Version Sensors (Docker,Local,Python,Github)
+#     Database Size sensor
+#     Integrations counts 
+#   Automations:
+#     Notify on new HA version
+#     Increment Log Counters (Warn,Error,Critical)
+#     Reset Log Counters on HA Restart
+#     Update integrations counts
+#-------------------------------------------
+
+#-------------------------------------------
+# Counter - https://www.home-assistant.io/integrations/counter/
+#-------------------------------------------
+
+counter:
+  logs_warning_counter:
+    name: Warnings
+    initial: 0
+    icon: mdi:alert
+    step: 1
+  logs_critical_counter:
+    name: Critical
+    initial: 0
+    icon: mdi:alert
+    step: 1
+  logs_error_counter:
+    name: Error
+    initial: 0
+    icon: mdi:alert
+    step: 1
+
+sensor:
+
+#-------------------------------------------
+# Uptime Sensor - https://www.home-assistant.io/components/uptime/
+#-------------------------------------------
+
+  - platform: uptime
+    entity_namespace: hass
+    unit_of_measurement: hours
+
+#-------------------------------------------
+# Version Sensor - https://www.home-assistant.io/integrations/version/
+#-------------------------------------------
+
+  - platform: version
+    beta: false
+    source: docker
+    name: ha_version_docker_stable
+  - platform: version
+    name: ha_version
+    source: local
+    beta: false
+  - platform: version
+    name: ha_pypi_version
+    source: pypi
+    beta: false
+
+#-------------------------------------------
+# SQL Sensor - https://www.home-assistant.io/integrations/sql/
+#-------------------------------------------
+
+  - platform: sql
+    db_url: !secret recorder_dburl
+    queries:
+      - name: DB size
+        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+        column: 'value'
+        unit_of_measurement: kB
+
+#-------------------------------------------
+# RESTful Sensor - https://www.home-assistant.io/integrations/rest/
+#-------------------------------------------
+
+  - platform: rest
+    name: ha_github_version
+    resource: 'https://api.github.com/repos/home-assistant/home-assistant/releases/latest'
+    headers:
+      accept: application/vnd.github.v3+json
+      content-type: application/json
+      user-agent: home-assistant/rest-sensor
+    value_template: >-
+      {{ value_json.tag_name if value_json.tag_name.split('.')|length != 2 else value_json.tag_name ~ '.0' }}
+    scan_interval: 1800
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+  - platform: template
+    sensors:
+    #-- Count All Entities
+      total_entities:
+        entity_id: []
+        friendly_name: 'Entities'
+        icon_template: mdi:code-tags
+        value_template: "{{ states | count }}"
+    #-- Count Automations
+      total_automations:
+        entity_id: []
+        friendly_name: 'Automations'
+        icon_template: mdi:robot
+        value_template: "{{ states.automation | list | length }}"
+    #-- Count Binary Sensors
+      total_binary_sensors:
+        entity_id: []
+        friendly_name: 'Binary Sensors'
+        icon_template: mdi:checkbox-multiple-marked-circle
+        value_template: "{{ states.binary_sensor | list | length }}"
+    #-- Count Cameras
+      total_cameras:
+        entity_id: []
+        friendly_name: 'Cameras'
+        icon_template: mdi:cctv
+        value_template: "{{ states.camera | list | length }}"
+    #-- Count Counters (haha)
+      total_counters:
+        entity_id: []
+        friendly_name: 'Counters'
+        icon_template: mdi:counter
+        value_template: "{{ states.counter | list | length }}"
+    #-- Count Device Trackers
+      total_devicetrackers:
+        entity_id: []
+        friendly_name: 'Devices'
+        icon_template: mdi:cellphone-link
+        value_template: "{{ states.device_tracker | list | length }}"
+    #-- Count Groups
+      total_groups:
+        entity_id: []
+        friendly_name: 'Groups'
+        icon_template: mdi:group
+        value_template: "{{ states.group | list | length }}"
+    #-- Count Input Booleans
+      total_input_booleans:
+        entity_id: []
+        friendly_name: 'Input Booleans'
+        icon_template: mdi:toggle-switch
+        value_template: "{{ states.input_boolean | list | length }}"
+    #-- Count Input Datetimes
+      total_input_datetimes:
+        entity_id: []
+        friendly_name: 'Input Datetimes'
+        icon_template: mdi:calendar-clock
+        value_template: "{{ states.input_datetime | list | length }}"
+    #-- Count Input Numbers
+      total_input_numbers:
+        entity_id: []
+        friendly_name: 'Input Numbers'
+        icon_template: mdi:numeric
+        value_template: "{{ states.input_number | list | length }}"
+    #-- Count Input Selects
+      total_input_selects:
+        entity_id: sensor.date
+        friendly_name: 'Input Selects'
+        icon_template: mdi:format-align-justify
+        value_template: "{{ states.input_select | list | length }}"
+    #-- Count Input Texts
+      total_input_texts:
+        entity_id: []
+        friendly_name: 'Input Texts'
+        icon_template: mdi:alphabetical
+        value_template: "{{ states.input_text | list | length }}"
+    #-- Count Lights
+      total_lights:
+        entity_id: sensor.date
+        friendly_name: 'Lights'
+        icon_template: mdi:lightbulb-on
+        value_template: "{{ states.light | list | length }}"
+    #-- Count Media Players
+      total_media_players:
+        entity_id: []
+        friendly_name: 'Media Players'
+        icon_template: mdi:cast-connected
+        value_template: "{{ states.media_player | list | length }}"
+    #-- Count Persons
+      total_persons:
+        entity_id: []
+        friendly_name: 'Persons'
+        icon_template: mdi:account-multiple
+        value_template: "{{ states.person | list | length }}"
+    #-- Count Remotes
+      total_remotes:
+        entity_id: []
+        friendly_name: 'Remotes'
+        icon_template: mdi:remote
+        value_template: "{{ states.remote | list | length }}"
+    #-- Count Scenes
+      total_scenes:
+        entity_id: []
+        friendly_name: 'Scenes'
+        icon_template: mdi:palette
+        value_template: "{{ states.scene | list | length }}"
+    #-- Count Scripts
+      total_scripts:
+        entity_id: []
+        friendly_name: 'Scripts'
+        icon_template: mdi:script-text-outline
+        value_template: "{{ states.script | list | length }}"
+    #-- Count Sensors
+      total_sensors:
+        entity_id: []
+        friendly_name: 'Sensors'
+        icon_template: mdi:pulse
+        value_template: "{{ states.sensor | list | length }}"
+    #-- Count Switches
+      total_switches:
+        entity_id: []
+        friendly_name: 'Switches'
+        icon_template: mdi:power-socket-us
+        value_template: "{{ states.switch | list | length }}"
+    #-- Count Timers
+      total_timers:
+        entity_id: []
+        friendly_name: 'Timers'
+        icon_template: mdi:timer
+        value_template: "{{ states.timer | list | length }}"
+    #-- Count Zones
+      total_zones:
+        entity_id: []
+        friendly_name: 'Zones'
+        icon_template: mdi:map-marker-radius
+        value_template: "{{ states.zone | list | length }}"
+    #-- Count Z-Wave Devices
+      total_zwave_devices:
+        entity_id: []
+        friendly_name: 'ZWave'
+        icon_template: mdi:z-wave
+        value_template: "{{ states.zwave | list | length }}"
+    #-- Name of last motion sensor triggered
+      hass_last_motion_sensor_triggered:
+        value_template: >-
+          {% set sensors = [states.binary_sensor.office_smartthing_motion_sensor_motion,states.binary_sensor.hue_motion_sensor_occupancy] %}
+          {% for sensor in sensors %}
+            {% if as_timestamp(sensor.last_changed) == as_timestamp(sensors | map(attribute='last_changed') | max) %}
+              {{ sensor.attributes.friendly_name }}
+            {% endif %}
+          {% endfor %}
+
+#-------------------------------------------
+# Automation - https://www.home-assistant.io/integrations/automation/
+#-------------------------------------------
+
+automation:
+
+#-- Create notifications on newer version available
+  - id: check_home_assistant_versions
+    alias: Check Home Assistant Versions
+    trigger:
+      platform: time_pattern
+      minutes: '/30'
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.ha_version') != states('sensor.ha_version_docker_stable') }}"
+        - condition: template
+          value_template: "{{ states('sensor.ha_version_docker_stable') != 'unavailable'}}"
+        - condition: template
+          value_template: >-
+            {% set check = namespace(exists=false) %}      
+            {% for notifications in states.persistent_notification %}
+              {% if notifications.attributes.title == 'HA Update available' %}
+                {% set check.exists = True %}
+              {% endif %}
+            {% endfor %}
+            {% if check.exists %}false{% else %}true{% endif %}
+    action:
+      - service: persistent_notification.create
+        data_template:
+          message: "{{states('sensor.ha_version_docker_stable') | string }} is available for download" 
+          title: 'HA Update available'
+      - service: dwains_theme.notification_create
+        data_template:
+          message: "{{states('sensor.ha_version_docker_stable') | string }} is available for download" 
+          notification_id: '1'
+
+#-- Increment Warnings Counter
+  - id: logs_warning_counter
+    alias: Logs Warning Counter
+    trigger:
+      platform: event
+      event_type: system_log_event
+      event_data:
+        level: WARNING
+    action:
+      service: counter.increment
+      entity_id: counter.logs_warning_counter
+
+#-- Increment Error Counter
+  - id: logs_error_counter
+    alias: Logs Error Counter
+    trigger:
+      platform: event
+      event_type: system_log_event
+      event_data:
+        level: ERROR
+    action:
+      service: counter.increment
+      entity_id: counter.logs_error_counter
+
+#-- Increment Critical Counter
+  - id: logs_critical_counter
+    alias: Logs Critical Counter
+    trigger:
+      platform: event
+      event_type: system_log_event
+      event_data:
+        level: CRITICAL
+    action:
+      service: counter.increment
+      entity_id: counter.logs_critical_counter
+
+#-- Reset All Counters On System Startup
+  - id: logs_counter_reset
+    alias: Logs Counters reset on start
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+    - delay: '00:00:30'
+    - service: counter.reset
+      entity_id: counter.logs_warning_counter
+    - service: counter.reset
+      entity_id: counter.logs_critical_counter
+    - service: counter.reset
+      entity_id: counter.logs_error_counter
+
+#-- Updates integrations counts every half hour
+  - alias: "System - Update Template Sensors"
+    initial_state: 'on'
+    trigger:
+        platform: time_pattern
+        minutes: '/30'
+    action:
+      - service: homeassistant.update_entity
+        entity_id:
+          - sensor.total_automations
+          - sensor.total_binary_sensors
+          - sensor.total_cameras
+          - sensor.total_counters
+          - sensor.total_devicetrackers
+          - sensor.total_entities
+          - sensor.total_groups
+          - sensor.total_input_booleans
+          - sensor.total_input_datetimes
+          - sensor.total_input_numbers
+          - sensor.total_input_selects
+          - sensor.total_input_texts
+          - sensor.total_lights
+          - sensor.total_media_players
+          - sensor.total_persons
+          - sensor.total_remotes
+          - sensor.total_scenes
+          - sensor.total_scripts
+          - sensor.total_sensors
+          - sensor.total_switches
+          - sensor.total_timers
+          - sensor.total_zones
+          - sensor.total_zwave_devices
