@@ -1,0 +1,13 @@
+#-------------------------------------------
+#  Trakt Custom Integration Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Custom Integration Details:
+# https://github.com/custom-components/sensor.trakt/
+#-------------------------------------------
+
+client_id: !secret  Integration_Custom_Trakt_Client_ID
+client_secret: !secret Integration_Custom_Trakt_Client_Secret

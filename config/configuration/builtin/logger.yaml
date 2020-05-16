@@ -1,0 +1,16 @@
+#-------------------------------------------
+#  Logger Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/logger/
+#-------------------------------------------
+
+default: warn
+logs:
+  homeassistant.components.shell_command: debug
+  # Below is used to help identify Alexa names for filtering
+  # alexa_media.helpers: debug 

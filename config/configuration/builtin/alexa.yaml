@@ -1,0 +1,143 @@
+#-------------------------------------------
+#  Alexa Smart Home Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/alexa.smart_home/
+#-------------------------------------------
+
+smart_home:
+  locale: en-GB
+  endpoint: !secret integrations_alexa_smarthome_endpoint
+  client_id: !secret integrations_alexa_smarthome_clientid
+  client_secret: !secret integrations_alexa_smarthome_clientsecret
+  filter:
+    include_entities:
+    # climate
+    - climate.hallway
+    - climate.kids_bedroom
+    - climate.kitchen
+    - climate.landing
+    - climate.living_room
+    - climate.master_bedroom
+    # light
+    - light.master_bedroom_main
+    - light.kids_bedroom
+    - light.Landing_Group
+    - light.living_room_floor_lamp
+    - light.living_room_table_lamp
+    - light.hallway_light
+    # script
+    - script.living_room_universal_hdmi1
+    - script.living_room_universal_hdmi2
+    - script.living_room_universal_hdmi3
+    - script.living_room_universal_off
+    # binary_sensor
+    - binary_sensor.office_smartthing_motion_sensor_motion
+    - binary_sensor.hue_motion_sensor_occupancy
+    - binary_sensor.smartthings_multi_sensor_2015_model_contact
+    - binary_sensor.hallway_open_window
+    - binary_sensor.kids_bedroom_open_window
+    - binary_sensor.kitchen_open_window
+    - binary_sensor.landing_open_window
+    - binary_sensor.living_room_open_window
+    - binary_sensor.master_bedroom_open_window
+    # switch
+    - switch.smartthings_outlet_switch
+  entity_config:
+  # climate
+    climate.hallway:
+      name: "Hallway Thermostat"
+      display_categories: THERMOSTAT
+    climate.kids_bedroom:
+      name: "Kids Bedroom Thermostat"
+      display_categories: THERMOSTAT
+    climate.kitchen:
+      name: "Kitchen Thermostat"
+      display_categories: THERMOSTAT
+    climate.landing:
+      name: "Landing Thermostat"
+      display_categories: THERMOSTAT
+    climate.living_room:
+      name: "Living Room Thermostat"
+      display_categories: THERMOSTAT
+    climate.master_bedroom:
+      name: "Master Bedroom Thermostat"
+      display_categories: THERMOSTAT
+  # light
+    light.master_bedroom_main:
+      name: "Master Bedroom Light"
+      description: "The light in the main bedroom"
+      display_categories: LIGHT
+    light.kids_bedroom:
+      name: "Kids Bedroom Light"
+      description: "The light in the kids bedroom"
+      display_categories: LIGHT
+    light.landing_group:
+      name: "Landing Light"
+      description: "The lights in the landing area"
+      display_categories: LIGHT
+    light.living_room_floor_lamp:
+      name: "Living Room Floor Lamp"
+      description: "The living room floor lamp"
+      display_categories: LIGHT
+    light.living_room_table_lamp:
+      name: "Living Room Table Lamp"
+      description: "The living room table lamp"
+      display_categories: LIGHT
+    light.hallway_light:
+      name: "Hallway Light"
+      description: "The light in the hallway"
+      display_categories: LIGHT
+  # script
+    script.living_room_universal_hdmi1:
+      name: "Xbox"
+      description: "Turns on Xbox"
+      display_categories: SCENE_TRIGGER
+    script.living_room_universal_hdmi2:
+      name: "Sky Q"
+      description: "Turns on Sky Q"
+      display_categories: SCENE_TRIGGER
+    script.living_room_universal_hdmi3:
+      name: "Shield TV"
+      description: "Turns on Shield TV"
+      display_categories: SCENE_TRIGGER
+    script.living_room_universal_off:
+      name: "Living Room Media Off"
+      description: "Turns off all Living Room Media Players"
+      display_categories: SCENE_TRIGGER
+  # binary_sensor
+    binary_sensor.office_smartthing_motion_sensor_motion:
+      name: "Office Motion"
+      display_categories: MOTION_SENSOR
+    binary_sensor.hue_motion_sensor_occupancy:
+      name: "Hallway Motion"
+      display_categories: MOTION_SENSOR
+    binary_sensor.smartthings_multi_sensor_2015_model_contact:
+      name: "Hallway Door"
+      display_categories: DOOR
+    binary_sensor.hallway_open_window:
+      name: "Hallway Open Window"
+      display_categories: CONTACT_SENSOR
+    binary_sensor.kids_bedroom_open_window:
+      name: "Kids Bedroom Open Window"
+      display_categories: CONTACT_SENSOR
+    binary_sensor.kitchen_open_window:
+      name: "Kitchen Open Window"
+      display_categories: CONTACT_SENSOR
+    binary_sensor.landing_open_window:
+      name: "Landing Open Window"
+      display_categories: CONTACT_SENSOR
+    binary_sensor.living_room_open_window:
+      name: "Living Room Open Window"
+      display_categories: CONTACT_SENSOR
+    binary_sensor.master_bedroom_open_window:
+      name: "Master Bedroom Open Window"
+      display_categories: CONTACT_SENSOR
+  # switch
+    switch.smartthings_outlet_switch:
+      name: "Battery Charger"
+      display_categories: SWITCH

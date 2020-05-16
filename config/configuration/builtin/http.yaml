@@ -1,0 +1,19 @@
+#-------------------------------------------
+#  HTTP Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/http/
+#-------------------------------------------
+
+use_x_forwarded_for: true
+trusted_proxies:
+  - !secret ipaddr_Comp_IntelNuc # Caddy-Proxy
+  - 127.0.0.1
+  - ::1
+base_url: !secret http_base_url
+ip_ban_enabled: True
+login_attempts_threshold: 5

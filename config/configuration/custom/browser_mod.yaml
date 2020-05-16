@@ -1,0 +1,22 @@
+#-------------------------------------------
+#  Browser_mod Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Custom Integration Details:
+# https://github.com/thomasloven/hass-browser_mod/
+#-------------------------------------------
+
+prefix: "browser_"
+devices:
+  5fa1ba05-0cef78cb:
+    name: browser_office_pc
+    disable:
+      - light
+      - media_player
+  aef728ae-10078b15:
+    name: browser_bob_mobile
+disable:
+  - all

@@ -1,0 +1,111 @@
+#-------------------------------------------
+#  HomeKit Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/homekit/
+#-------------------------------------------
+
+auto_start: true
+filter:
+  include_entities:
+  # climate
+    - climate.hallway
+    - climate.kids_bedroom
+    - climate.kitchen
+    - climate.landing
+    - climate.living_room
+    - climate.master_bedroom
+  # person
+    - person.kayleigh_johnson
+    - person.martin_jones
+  # media_players
+    - media_player.living_room_skyq
+    - media_player.living_room_universal
+    - media_player.living_room_androidtv
+  # light
+    - light.hallway_light
+    - light.kids_bedroom
+    - light.landing_1
+    - light.landing_2
+    - light.living_room_floor_lamp
+    - light.living_room_table_lamp
+    - light.master_bedroom_main
+  # binary_sensors
+    - binary_sensor.office_smartthing_motion_sensor_motion
+    - binary_sensor.hue_motion_sensor_occupancy
+    - binary_sensor.smartthings_multi_sensor_2015_model_contact
+    - binary_sensor.hallway_open_window
+    - binary_sensor.kids_bedroom_open_window
+    - binary_sensor.kitchen_open_window
+    - binary_sensor.landing_open_window
+    - binary_sensor.living_room_open_window
+    - binary_sensor.master_bedroom_open_window
+    # switch
+    - switch.smartthings_outlet_switch
+entity_config:
+# media_players
+  media_player.living_room_skyq:
+    name: Sky Q
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+  media_player.living_room_universal:
+    name: Media Centre
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+      - feature: toggle_mute
+  media_player.living_room_androidtv:
+    name: Nvidia Shield
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+# light
+  light.master_bedroom_main:
+    name: Master Bedroom
+  light.kids_bedroom:
+    name: Kids Bedroom 
+  light.landing_1:
+    name: Landing (Office Side)
+  light.landing_2:
+    name: Landing (Bathroom Side)
+  light.living_room_floor_lamp:
+    name: Living Room floor
+  light.living_room_table_lamp:
+    name: Living Room Table
+  light.hallway_light:
+    name: Light
+# binary_sensors
+  binary_sensor.office_smartthing_motion_sensor_motion:
+    name: Office
+    linked_battery_sensor: sensor.office_smartthing_motion_sensor_battery
+    low_battery_threshold: 31
+  binary_sensor.hue_motion_sensor_occupancy:
+    name: Hallway
+    linked_battery_sensor: sensor.hue_motion_sensor_battery
+    low_battery_threshold: 31
+  binary_sensor.smartthings_multi_sensor_2015_model_contact:
+    name: Hallway
+  binary_sensor.hallway_open_window:
+    name: Hallway
+  binary_sensor.kids_bedroom_open_window:
+    name: Kids Bedroom
+  binary_sensor.kitchen_open_window:
+    name: Kitchen
+  binary_sensor.landing_open_window:
+    name: Landing
+  binary_sensor.living_room_open_window:
+    name: Living Room
+  binary_sensor.master_bedroom_open_window:
+    name: Master Bedroom
+# switch
+  switch.smartthings_outlet_switch:
+    name: Battery Charger
+    type: outlet

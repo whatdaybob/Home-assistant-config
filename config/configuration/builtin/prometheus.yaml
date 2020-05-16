@@ -1,0 +1,74 @@
+#-------------------------------------------
+#  Prometheus Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/prometheus/
+#-------------------------------------------
+
+namespace: hass
+component_config_glob:
+  sensor.*_humidity:
+    override_metric: humidity_percent
+  sensor.*_temperature:
+    override_metric: temperature_c
+  sensor.*_temperature_target:
+    override_metric: temperature_c
+  sensor.*_battery_level:
+    override_metric: battery_percent
+  sensor.*_heating:
+    override_metric: heating_percent
+  sensor.*_mold:
+    override_metric: mold_percent
+filter:
+  # include_domains:
+  # exclude_domains:
+  # exclude_entities:
+  include_entities:
+  # mold
+    - sensor.hallway_mold
+    - sensor.kids_bedroom_mold
+    - sensor.kitchen_mold
+    - sensor.landing_mold
+    - sensor.living_room_mold
+    - sensor.master_bedroom_mold
+  # heating sensors
+    - sensor.hallway_heating
+    - sensor.kids_bedroom_heating
+    - sensor.kitchen_heating
+    - sensor.landing_boiler_heat_call
+    - sensor.landing_heating
+    - sensor.living_room_heating
+    - sensor.master_bedroom_heating
+  # temperature sensors
+    - sensor.hallway_temperature
+    - sensor.hue_motion_sensor_temperature
+    - sensor.kids_bedroom_temperature
+    - sensor.kitchen_temperature
+    - sensor.landing_temperature
+    - sensor.living_room_temperature
+    - sensor.master_bedroom_temperature
+    - sensor.office_smartthing_motion_sensor_temperature
+    - sensor.outdoor_temperature
+  # temperature target sensors
+    - sensor.hallway_temperature_target
+    - sensor.kids_bedroom_temperature_target
+    - sensor.kitchen_temperature_target
+    - sensor.landing_temperature_target
+    - sensor.living_room_temperature_target
+    - sensor.master_bedroom_temperature_target
+  # humidity sensors
+    - sensor.hallway_humidity
+    - sensor.kids_bedroom_humidity
+    - sensor.kitchen_humidity
+    - sensor.landing_humidity
+    - sensor.living_room_humidity
+    - sensor.master_bedroom_humidity
+    - sensor.outdoor_humidity
+  # energy monitors
+    - sensor.aeotec_power_monitor_energy_meter
+    - sensor.aeotec_power_monitor_power_meter
+    - sensor.aeotec_power_monitor_voltage_measurement

@@ -1,0 +1,64 @@
+#-------------------------------------------
+#  Configuration file to load integrations
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# CONFIGURATION - BUILTIN
+#-------------------------------------------
+api:
+alexa: !include configuration/builtin/alexa.yaml
+config:
+history: !include configuration/builtin/history.yaml
+http: !include configuration/builtin/http.yaml
+homeassistant: !include configuration/builtin/homeassistant.yaml
+homekit: !include configuration/builtin/homekit.yaml
+logbook: !include configuration/builtin/logbook.yaml
+logger: !include configuration/builtin/logger.yaml
+map:
+mobile_app:
+nzbget: !include configuration/builtin/nzbget.yaml
+prometheus: !include configuration/builtin/prometheus.yaml
+python_script:
+recorder: !include configuration/builtin/recorder.yaml
+ssdp:
+sun:
+system_health:
+system_log: !include configuration/builtin/system_log.yaml
+telegram_bot: !include configuration/builtin/telegram_bot.yaml
+tts: !include configuration/builtin/tts.yaml
+utility_meter: !include configuration/builtin/utility_meter.yaml
+wake_on_lan:
+withings: !include configuration/builtin/withings.yaml
+zeroconf:
+#-------------------------------------------
+# CONFIGURATION - CUSTOM
+#-------------------------------------------
+browser_mod: !include configuration/custom/browser_mod.yaml
+breaking_changes:
+trakt: !include configuration/custom/trakt.yaml
+#-------------------------------------------
+# INTEGRATIONS
+#-------------------------------------------
+automation: !include_dir_merge_list integrations/automations
+binary_sensor: !include_dir_merge_list  integrations/binary_sensors/
+calendar: !include_dir_merge_list  integrations/calendar/
+camera: !include_dir_merge_list  integrations/camera/
+counter: !include_dir_merge_named integrations/counter/
+device_tracker: !include_dir_merge_list  integrations/device_tracker/
+group: !include_dir_merge_named integrations/group/
+input_boolean: !include_dir_merge_named integrations/input_boolean/
+input_datetime: !include_dir_merge_named integrations/input_datetime/
+input_select: !include_dir_merge_named integrations/input_select/
+light: !include_dir_merge_list  integrations/lights/
+media_player: !include_dir_merge_list  integrations/media_players/
+notify: !include_dir_merge_list  integrations/notify/
+scene: !include_dir_merge_list integrations/scenes/
+script: !include_dir_merge_named integrations/scripts/
+sensor: !include_dir_merge_list integrations/sensors/
+shell_command: !include_dir_merge_named integrations/shellcommands/
+switch: !include_dir_merge_list  integrations/switch/
+#-------------------------------------------
+# OTHER
+#-------------------------------------------

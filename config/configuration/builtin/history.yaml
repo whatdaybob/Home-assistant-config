@@ -1,0 +1,31 @@
+#-------------------------------------------
+#  History Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/components/history/
+#-------------------------------------------
+
+include:
+  domains:
+    - light
+    - media_player
+    - climate
+    - person
+    - input_select
+    - media_player
+
+  entities:
+  ### Withings
+    - sensor.withings_bone_mass_kg_bob # BONE MASS
+    - sensor.withings_fat_free_mass_kg_bob # LEAN MASS
+    - sensor.withings_fat_mass_kg_bob # FAT MASS
+    - sensor.withings_fat_ratio_pct_bob # BMI
+    - sensor.withings_heart_pulse_bpm_bob  # HEART RATE
+    - sensor.withings_height_m_bob # HEIGHT
+    - sensor.withings_hydration_bob # WATER MASS
+    - sensor.withings_muscle_mass_kg_bob # MUSCLE MASS
+    - sensor.withings_weight_kg_bob # WEIGHT

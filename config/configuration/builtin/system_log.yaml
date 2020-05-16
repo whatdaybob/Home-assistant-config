@@ -1,0 +1,13 @@
+#-------------------------------------------
+#  System Log Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/system_log/
+#-------------------------------------------
+
+max_entries: 25
+fire_event: true

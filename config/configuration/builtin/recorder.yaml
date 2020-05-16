@@ -1,0 +1,85 @@
+#-------------------------------------------
+#  Recorder Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/recorder/
+#-------------------------------------------
+
+purge_keep_days: 3
+db_url: !secret recorder_dburl
+include:
+  domains:
+    - sensor
+    - switch
+  entities:
+  # binary_sensor
+    - binary_sensor.hallway_open_window
+    - binary_sensor.hue_motion_sensor_occupancy
+    - binary_sensor.kids_bedroom_open_window
+    - binary_sensor.kitchen_open_window
+    - binary_sensor.landing_boiler
+    - binary_sensor.landing_open_window
+    - binary_sensor.living_room_open_window
+    - binary_sensor.master_bedroom_open_window
+    - binary_sensor.office_smartthing_motion_sensor_motion
+    - binary_sensor.office_smartthing_motion_sensor_tamper
+    - binary_sensor.smartthings_multi_sensor_2015_model_contact
+  # climate
+    - climate.hallway
+    - climate.kids_bedroom
+    - climate.kitchen
+    - climate.landing
+    - climate.living_room
+    - climate.master_bedroom
+  # device_tracker
+    - device_tracker.bob_tado
+    - device_tracker.guest_tado
+    - device_tracker.kay_tado
+    - device_tracker.phone_bob
+    - device_tracker.phone_bob_gps
+    - device_tracker.phone_bob_unifi
+    - device_tracker.phone_kay
+    - device_tracker.phone_kay_gps
+    - device_tracker.phone_kay_unifi
+    - device_tracker.phone_louise
+  # input_select
+    - input_select.bob_tado
+    - input_select.kay_tado
+    - input_select.lightpack_input
+  # light
+    - light.hallway_light
+    - light.kids_bedroom
+    - light.landing_1
+    - light.landing_2
+    - light.living_room_floor_lamp
+    - light.living_room_table_lamp
+    - light.master_bedroom_main
+  # media_player
+    - media_player.kitchen_sonos
+    - media_player.living_room_androidtv
+    - media_player.living_room_kodi
+    - media_player.living_room_lg_netcast
+    - media_player.living_room_plexapp
+    - media_player.living_room_shield_cast
+    - media_player.living_room_skyq
+    - media_player.living_room_sonos
+    - media_player.living_room_universal
+    - media_player.living_room_xboxone
+  # person
+    - person.kayleigh_johnson
+    - person.martin_jones
+  # remote
+    - remote.living_room_harmony
+exclude:
+  entities:
+    - dwains_theme.1
+    - dwains_theme.2
+    - dwains_theme.3
+    - sensor.phone_kay_info
+    - sensor.phone_bob_info
+    - sensor.phone_kay_next_update
+    - sensor.phone_bob_next_update

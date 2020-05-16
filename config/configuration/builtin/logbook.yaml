@@ -1,0 +1,73 @@
+#-------------------------------------------
+#  Logbook Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/logbook/
+#-------------------------------------------
+
+exclude:
+  entities:
+  # Generic Sensors
+    - sensor.time
+    - sensor.date
+    - input_boolean.node_red
+    - counter.logs_critical_counter
+    - counter.logs_error_counter
+    - counter.logs_warning_counter
+  # Unifi Sensors
+    - sensor.alexa_bedroom_dot_tx
+    - sensor.alexa_hallway_echo_tx
+    - sensor.amazon_echo_dot_kitchen_tx
+    - sensor.bobs_phone_tx
+    - sensor.bulb_energy_monitor_tx
+    - sensor.camera_hallway_tx
+    - sensor.hue_hub_tx
+    - sensor.intel_nuc_tx
+    - sensor.kays_phone_tx
+    - sensor.lg_tv_tx
+    - sensor.lightpack_tv_tx
+    - sensor.logitech_harmony_hub_tx
+    - sensor.louise_phone_tx
+    - sensor.nokia_body_scale_tx
+    - sensor.none_tx
+    - sensor.office_pc_tx
+    - sensor.raspbian_tx
+    - sensor.shieldtv_tx
+    - sensor.skyq_tx
+    - sensor.sl450go_tx
+    - sensor.smartthings_hub_tx
+    - sensor.sonos_beam_tx
+    - sensor.sonos_play_1_tx
+    - sensor.tado_hub_tx
+    - sensor.work_pc_tx
+    - sensor.xbox_one_x_tx
+    - sensor.alexa_bedroom_dot_rx
+    - sensor.alexa_hallway_echo_rx
+    - sensor.amazon_echo_dot_kitchen_rx
+    - sensor.bobs_phone_rx
+    - sensor.bulb_energy_monitor_rx
+    - sensor.camera_hallway_rx
+    - sensor.hue_hub_rx
+    - sensor.intel_nuc_rx
+    - sensor.kays_phone_rx
+    - sensor.lg_tv_rx
+    - sensor.lightpack_tv_rx
+    - sensor.logitech_harmony_hub_rx
+    - sensor.louise_phone_rx
+    - sensor.nokia_body_scale_rx
+    - sensor.none_rx
+    - sensor.office_pc_rx
+    - sensor.raspbian_rx
+    - sensor.shieldtv_rx
+    - sensor.skyq_rx
+    - sensor.sl450go_rx
+    - sensor.smartthings_hub_rx
+    - sensor.sonos_beam_rx
+    - sensor.sonos_play_1_rx
+    - sensor.tado_hub_rx
+    - sensor.work_pc_rx
+    - sensor.xbox_one_x_rx

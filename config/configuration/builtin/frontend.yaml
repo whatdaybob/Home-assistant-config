@@ -1,0 +1,12 @@
+#-------------------------------------------
+#  Home Assistant Frontend Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/frontend/
+#-------------------------------------------
+
+themes: !include_dir_merge_named ../themes/

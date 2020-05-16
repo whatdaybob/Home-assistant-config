@@ -1,0 +1,43 @@
+#-------------------------------------------
+#  Setup basic information Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Basic Documentation:
+# https://www.home-assistant.io/docs/configuration/basic/
+#-------------------------------------------
+
+name: !secret homeassistant_name
+latitude: !secret homeassistant_latitude
+longitude: !secret homeassistant_longitude
+elevation: !secret homeassistant_elevation
+unit_system: metric
+temperature_unit: C
+time_zone: !secret homeassistant_timezone
+customize: !include_dir_merge_named ../../customize
+packages: !include_dir_named ../../packages
+whitelist_external_dirs:
+  - /config
+
+#-------------------------------------------
+# MFA Documentation
+# https://www.home-assistant.io/docs/authentication/multi-factor-auth/#setting-up-totp
+#-------------------------------------------
+
+auth_mfa_modules:
+  - type: notify
+  - type: totp
+    name: Authenticator app
+
+#-------------------------------------------
+# Auth Providers Documentation
+# https://www.home-assistant.io/docs/authentication/providers/#home-assistant-auth-provider
+#-------------------------------------------
+
+auth_providers:
+  - type: homeassistant
+  - type: trusted_networks
+    trusted_networks:
+      - 192.168.1.0/24

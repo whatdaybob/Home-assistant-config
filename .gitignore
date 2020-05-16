@@ -1,0 +1,36 @@
+#-------------------------------------------
+#  Basic .gitignore to ensure correct files are uploaded to git
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Ensure these folders are ignored
+#-------------------------------------------
+.ssh/
+.storage/
+.cloud/
+.O365-token-cache/
+config/deps/
+config/icloud/
+config/ssl/
+config/Extras/
+disabled/
+#-------------------------------------------
+# Ensure these files are ignored
+#-------------------------------------------
+.vscode/settings.json
+.homekit.state
+.uuid
+config/*.conf
+config/*.log
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml
+__pycache__/
+#-------------------------------------------
+# Temp files to be removed
+#-------------------------------------------
+*.old 
+*.disabled 
+
