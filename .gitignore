@@ -29,10 +29,9 @@ ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 __pycache__/
+config/custom_components/installed via hacs.txt
 #-------------------------------------------
 # Temp files to be removed
 #-------------------------------------------
 *.old 
 *.disabled 
-
-
