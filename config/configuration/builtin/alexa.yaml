@@ -11,9 +11,9 @@
 
 smart_home:
   locale: en-GB
-  endpoint: !secret integrations_alexa_smarthome_endpoint
-  client_id: !secret integrations_alexa_smarthome_clientid
-  client_secret: !secret integrations_alexa_smarthome_clientsecret
+  # endpoint: !secret integrations_alexa_smarthome_endpoint
+  # client_id: !secret integrations_alexa_smarthome_clientid
+  # client_secret: !secret integrations_alexa_smarthome_clientsecret
   filter:
     include_entities:
     # climate
