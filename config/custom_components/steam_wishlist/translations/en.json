@@ -1,0 +1,17 @@
+{
+  "config": {
+    "error": {
+      "invalid_user": "Could not find a steam account associated with the provided name."
+    },
+    "step": {
+      "user": {
+        "data": {
+          "steam_account_name": "Steam account name"
+        },
+        "description": "Ente your Steam account name.",
+        "title": "Setup"
+      }
+    },
+    "title":"Steam Wishlist"
+  }
+}

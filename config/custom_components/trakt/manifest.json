@@ -1,0 +1,8 @@
+{
+  "domain": "trakt",
+  "name": "Trakt",
+  "documentation": "https://github.com/custom-components/sensor.trakt/blob/master/README.md",
+  "config_flow": true,
+  "codeowners": ["@iantrich", "@engrbm"],
+  "requirements": ["trakt==2.12.0"]
+}

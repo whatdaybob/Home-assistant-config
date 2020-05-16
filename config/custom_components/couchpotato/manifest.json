@@ -1,0 +1,8 @@
+{
+  "domain": "couchpotato",
+  "name": "couchpotato",
+  "documentation": "https://github.com/youdroid/home-assistant-couchpotato",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": ["@youdroid"]
+}
