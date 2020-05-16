@@ -8,3 +8,9 @@
 # Documentation:
 # https://www.home-assistant.io/docs/configuration/customizing-devices/
 #-------------------------------------------
+
+calendar.family_bills:
+  friendly_name: "Bills"
+
+calendar.family_birthdays:
+  friendly_name: "Birthdays"

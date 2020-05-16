@@ -10,131 +10,242 @@
 #-------------------------------------------
 
 switch.adguard_filtering:
-  friendly_name: Adguard Filtering
+  friendly_name: "Adguard Filtering"
   icon: mdi:shield-check
 
 switch.adguard_parental_control:
-  friendly_name: Adguard Parental Control
+  friendly_name: "Adguard Parental Control"
   icon: mdi:shield-check
 
 switch.adguard_protection:
-  friendly_name: Adguard Protection
+  friendly_name: "Adguard Protection"
   icon: mdi:shield-check
 
 switch.adguard_query_log:
-  friendly_name: Adguard Query Log
+  friendly_name: "Adguard Query Log"
   icon: mdi:shield-check
 
 switch.adguard_safe_browsing:
-  friendly_name: Adguard Safe Browsing
+  friendly_name: "Adguard Safe Browsing"
   icon: mdi:shield-check
 
 switch.adguard_safe_search:
-  friendly_name: Adguard Safe Search
+  friendly_name: "Adguard Safe Search"
   icon: mdi:shield-check
 
+switch.adguardhome:
+  friendly_name: "Adguardhome"
+  icon: mdi:docker
+
+switch.adminer:
+  friendly_name: "Adminer"
+  icon: mdi:docker
+
+switch.alertmanager:
+  friendly_name: "Alertmanager"
+  icon: mdi:docker
+
+switch.caddy:
+  friendly_name: "Caddy"
+  icon: mdi:docker
+
+switch.cadvisor:
+  friendly_name: "Cadvisor"
+  icon: mdi:docker
+
+switch.dozzle:
+  friendly_name: "Dozzle"
+  icon: mdi:docker
+
 switch.everywhere_do_not_disturb_switch:
-  friendly_name: Everywhere Do Not Disturb Switch
+  friendly_name: "Everywhere Do Not Disturb Switch"
   icon: mdi:do-not-disturb-off
   device_class: switch
 
 switch.everywhere_repeat_switch:
-  friendly_name: Everywhere Repeat Switch
+  friendly_name: "Everywhere Repeat Switch"
   hidden: True
   icon: mdi:repeat-off
   device_class: switch
 
 switch.everywhere_shuffle_switch:
-  friendly_name: Everywhere Shuffle Switch
+  friendly_name: "Everywhere Shuffle Switch"
   hidden: True
   icon: mdi:shuffle-disabled
   device_class: switch
 
+switch.godaddyddns:
+  friendly_name: "Godaddyddns"
+  icon: mdi:docker
+
+switch.grafana:
+  friendly_name: "Grafana"
+  icon: mdi:docker
+
+switch.ha_dockermon:
+  friendly_name: "Ha Dockermon"
+  icon: mdi:docker
+
+switch.ha_monitor_api:
+  friendly_name: "Ha-Monitor-Api"
+  icon: mdi:docker
+
 switch.hallway_echo_do_not_disturb_switch:
-  friendly_name: Hallway Echo Do Not Disturb Switch
+  friendly_name: "Hallway Echo Do Not Disturb Switch"
   icon: mdi:do-not-disturb
   device_class: switch
 
 switch.hallway_echo_repeat_switch:
-  friendly_name: Hallway Echo Repeat Switch
+  friendly_name: "Hallway Echo Repeat Switch"
   hidden: True
   icon: mdi:repeat-off
   device_class: switch
 
 switch.hallway_echo_shuffle_switch:
-  friendly_name: Hallway Echo Shuffle Switch
+  friendly_name: "Hallway Echo Shuffle Switch"
   hidden: True
   icon: mdi:shuffle-disabled
   device_class: switch
 
+switch.homeassistant:
+  friendly_name: "Homeassistant"
+  icon: mdi:home-assistant
+
 switch.kitchen_dot_do_not_disturb_switch:
-  friendly_name: Kitchen Dot Do Not Disturb Switch
+  friendly_name: "Kitchen Dot Do Not Disturb Switch"
   icon: mdi:do-not-disturb-off
   device_class: switch
 
 switch.kitchen_dot_repeat_switch:
-  friendly_name: Kitchen Dot Repeat Switch
+  friendly_name: "Kitchen Dot Repeat Switch"
   hidden: True
   icon: mdi:repeat-off
   device_class: switch
 
 switch.kitchen_dot_shuffle_switch:
-  friendly_name: Kitchen Dot Shuffle Switch
+  friendly_name: "Kitchen Dot Shuffle Switch"
   hidden: True
   icon: mdi:shuffle-disabled
   device_class: switch
 
+switch.living_room_sonos_night_sound:
+  friendly_name: "Night Sound"
+
+switch.living_room_sonos_speech_enhance:
+  friendly_name: "Speech Enhance"
+
+switch.mariadb:
+  friendly_name: "Mariadb"
+  icon: mdi:database
+
 switch.master_bedroom_dot_do_not_disturb_switch:
-  friendly_name: Master Bedroom Dot Do Not Disturb Switch
+  friendly_name: "Master Bedroom Dot Do Not Disturb Switch"
   icon: mdi:do-not-disturb-off
   device_class: switch
 
 switch.master_bedroom_dot_repeat_switch:
-  friendly_name: Master Bedroom Dot Repeat Switch
+  friendly_name: "Master Bedroom Dot Repeat Switch"
   hidden: True
   icon: mdi:repeat-off
   device_class: switch
 
 switch.master_bedroom_dot_shuffle_switch:
-  friendly_name: Master Bedroom Dot Shuffle Switch
+  friendly_name: "Master Bedroom Dot Shuffle Switch"
   hidden: True
   icon: mdi:shuffle-disabled
   device_class: switch
 
+switch.mqtt:
+  friendly_name: "Mqtt"
+  icon: mdi:docker
+
+switch.nodeexporter:
+  friendly_name: "Nodeexporter"
+  icon: mdi:docker
+
+switch.nodered:
+  friendly_name: "Nodered"
+  icon: mdi:nodejs
+
+switch.nzbget:
+  friendly_name: "Nzbget"
+  icon: mdi:download-multiple
+
 switch.office_dot_do_not_disturb_switch:
-  friendly_name: Office Dot Do Not Disturb Switch
+  friendly_name: "Office Dot Do Not Disturb Switch"
   icon: mdi:do-not-disturb-off
   device_class: switch
 
 switch.office_dot_repeat_switch:
-  friendly_name: Office Dot Repeat Switch
+  friendly_name: "Office Dot Repeat Switch"
   hidden: True
   icon: mdi:repeat-off
   device_class: switch
 
 switch.office_dot_shuffle_switch:
-  friendly_name: Office Dot Shuffle Switch
+  friendly_name: "Office Dot Shuffle Switch"
   hidden: True
   icon: mdi:shuffle-disabled
   device_class: switch
 
+switch.office_pc:
+  friendly_name: "Office Pc"
+  icon: mdi:laptop
+
+switch.prometheus:
+  friendly_name: "Prometheus"
+  icon: mdi:docker
+
+switch.radarr:
+  friendly_name: "Radarr"
+  icon: mdi:radar
+
 switch.remote_living_room_shield:
-  friendly_name: Shield Tv
+  friendly_name: "Shield Tv"
   icon: mdi:cast-off
 
 switch.remote_living_room_skyq:
-  friendly_name: Skyq
+  friendly_name: "Skyq"
   icon: mdi:television
 
 switch.remote_living_room_xbox:
-  friendly_name: Xbox
+  friendly_name: "Xbox"
   icon: mdi:xbox-controller-off
 
-switch.smartpower_outlet:
-  friendly_name: Smartpower Outlet
-
 switch.smartthings_outlet_switch:
-  friendly_name: Smartthings Outlet Switch
+  friendly_name: "Smartthings Outlet Switch"
+
+switch.sonarr:
+  friendly_name: "Sonarr"
+  icon: mdi:radar
+
+switch.surface_book:
+  friendly_name: "Surface Book"
+  icon: mdi:laptop
+
+switch.tautulli:
+  friendly_name: "Tautulli"
+  icon: mdi:plex
+
+switch.unifi_controller:
+  friendly_name: "Unifi Controller"
+  icon: mdi:docker
+
+switch.unifi_mongo:
+  friendly_name: "Unifi Mongo"
+  icon: mdi:docker
+
+switch.unifi_poller:
+  friendly_name: "Unifi Poller"
+  icon: mdi:docker
+
+switch.xboxrestapi:
+  friendly_name: "Xboxrestapi"
+  icon: mdi:docker
+
+switch.zigbee2mqtt:
+  friendly_name: "Zigbee2mqtt"
+  icon: mdi:zigbee
 
 switch.zigbee2mqtt_main_join:
-  friendly_name: Zigbee2mqtt Main Join
+  friendly_name: "Zigbee2mqtt Main Join"

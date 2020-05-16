@@ -1,5 +1,5 @@
 #-------------------------------------------
-#  Binary Sensor Customisation
+#  Binary_sensor Customisation
 #  @Whatdaybob
 #  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
 #-------------------------------------------
@@ -9,78 +9,157 @@
 # https://www.home-assistant.io/docs/configuration/customizing-devices/
 #-------------------------------------------
 
-binary_sensor.desktop_5ept5hq_battery_status:
-  friendly_name: Desktop-5ept5hq Battery Status
-  device_class: plug
-
-binary_sensor.desktop_5ept5hq_media_playing:
-  friendly_name: Desktop-5ept5hq Media Playing
-
-binary_sensor.desktop_5ept5hq_network_0_wired:
-  friendly_name: Desktop-5ept5hq Network
-
-binary_sensor.desktop_5ept5hq_power_status:
-  friendly_name: Desktop-5ept5hq Power Status
-  device_class: plug
-
-binary_sensor.desktop_5ept5hq_volume_muted:
-  friendly_name: Desktop-5ept5hq Volume Muted
-
 binary_sensor.hallway_open_window:
-  friendly_name: Hallway Open Window
+  friendly_name: "Hallway Open Window"
   device_class: window
 
 binary_sensor.hue_motion_sensor_occupancy:
-  friendly_name: Hue Motion Sensor Occupancy
+  friendly_name: "Hue Motion Sensor Occupancy"
   device_class: motion
 
 binary_sensor.hue_motion_sensor_update_available:
-  friendly_name: Hue Motion Sensor Update Available
+  friendly_name: "Hue Motion Sensor Update Available"
 
 binary_sensor.iss:
-  friendly_name: International Space Station
+  friendly_name: "International Space Station"
   device_class: visible
 
 binary_sensor.kids_bedroom_open_window:
-  friendly_name: Kids Bedroom Open Window
+  friendly_name: "Kids Bedroom Open Window"
   device_class: window
 
 binary_sensor.kitchen_open_window:
-  friendly_name: Kitchen Open Window
+  friendly_name: "Kitchen Open Window"
   device_class: window
 
 binary_sensor.landing_boiler:
-  friendly_name: Boiler
+  friendly_name: "Boiler"
   icon: mdi:thermometer-chevron-down
   device_class: heat
 
 binary_sensor.landing_open_window:
-  friendly_name: Landing Open Window
+  friendly_name: "Landing Open Window"
   device_class: window
 
 binary_sensor.living_room_open_window:
-  friendly_name: Living Room Open Window
+  friendly_name: "Living Room Open Window"
   device_class: window
 
 binary_sensor.master_bedroom_open_window:
-  friendly_name: Master Bedroom Open Window
+  friendly_name: "Master Bedroom Open Window"
   device_class: window
 
+binary_sensor.office_pc_connected:
+  friendly_name: "Office Pc - Connected"
+  device_class: connectivity
+
 binary_sensor.office_smartthing_motion_sensor_motion:
-  friendly_name: Office Smartthing Motion Sensor Motion
+  friendly_name: "Office Smartthing Motion Sensor Motion"
   device_class: motion
 
 binary_sensor.office_smartthing_motion_sensor_tamper:
-  friendly_name: Office Smartthing Motion Sensor Tamper
+  friendly_name: "Office Smartthing Motion Sensor Tamper"
   device_class: problem
 
 binary_sensor.smartthings_multi_sensor_2015_model_contact:
-  friendly_name: Smartthings Multi Sensor (2015 Model) Contact
+  friendly_name: "Smartthings Multi Sensor (2015 Model) Contact"
   device_class: door
 
+binary_sensor.steam_wishlist_ace_of_spades_battle_builder:
+  friendly_name: "Ace Of Spades: Battle Builder"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_ark_survival_evolved:
+  friendly_name: "Ark: Survival Evolved"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_cities_skylines_after_dark:
+  friendly_name: "Cities: Skylines - After Dark"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_cities_skylines_snowfall:
+  friendly_name: "Cities: Skylines - Snowfall"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_elite_dangerous:
+  friendly_name: "Elite Dangerous"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_far_cry_r_3_deluxe_bundle_dlc:
+  friendly_name: "Far Cry® 3 Deluxe Bundle Dlc"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_game_dev_tycoon:
+  friendly_name: "Game Dev Tycoon"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_playerunknown_s_battlegrounds:
+  friendly_name: "Playerunknown's Battlegrounds"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_rapture_rejects:
+  friendly_name: "Rapture Rejects"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_rocket_league_r:
+  friendly_name: "Rocket League®"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_rust:
+  friendly_name: "Rust"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_the_witcher_r_3_wild_hunt:
+  friendly_name: "The Witcher® 3: Wild Hunt"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_this_war_of_mine:
+  friendly_name: "This War Of Mine"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_tropico_4_modern_times:
+  friendly_name: "Tropico 4: Modern Times"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_two_point_hospital_bigfoot:
+  friendly_name: "Two Point Hospital: Bigfoot"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.steam_wishlist_two_point_hospital_pebberley_island:
+  friendly_name: "Two Point Hospital: Pebberley Island"
+  icon: mdi:steam
+  unit_of_measurement: "on sale"
+
+binary_sensor.surface_book_battery_status:
+  friendly_name: "Surface Book - Battery Status"
+  device_class: plug
+
+binary_sensor.surface_book_charging:
+  friendly_name: "Surface Book - Charging"
+  device_class: plug
+
+binary_sensor.surface_book_connected:
+  friendly_name: "Surface Book - Connected"
+  device_class: connectivity
+
 binary_sensor.updater:
-  friendly_name: Updater
+  friendly_name: "Updater"
 
 binary_sensor.workday_sensor:
-  friendly_name: Workday Sensor
+  friendly_name: "Workday Sensor"
   device_class: None

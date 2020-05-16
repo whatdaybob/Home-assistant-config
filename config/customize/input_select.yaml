@@ -1,5 +1,5 @@
 #-------------------------------------------
-#  Input Select Customisation
+#  Input_select Customisation
 #  @Whatdaybob
 #  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
 #-------------------------------------------
@@ -10,48 +10,48 @@
 #-------------------------------------------
 
 input_select.bob_tado:
-  friendly_name: Bob Tado
+  friendly_name: "Bob Tado"
 
 input_select.icloud_commands:
-  friendly_name: Icloud Commands
+  friendly_name: "Icloud Commands"
   icon: mdi:apple-keyboard-command
 
 input_select.icloud_debug_commands:
-  friendly_name: Icloud Debug Command
+  friendly_name: "Icloud Debug Command"
   icon: mdi:android-debug-bridge
 
 input_select.icloud_set_interval:
-  friendly_name: Icloud Set Interval
+  friendly_name: "Icloud Set Interval"
   icon: mdi:clock
 
 input_select.kay_tado:
-  friendly_name: Kays Phone Tado
+  friendly_name: "Kays Phone Tado"
 
 input_select.lightpack_brightness:
-  friendly_name: Lightpack Brightness
+  friendly_name: "Lightpack Brightness"
 
 input_select.lightpack_input:
-  friendly_name: Lightpack Input
+  friendly_name: "Lightpack Input"
 
 input_select.lightpack_mode:
-  friendly_name: Lightpack Mode
+  friendly_name: "Lightpack Mode"
 
 input_select.lightpack_mood:
-  friendly_name: Lightpack Mood Setting
+  friendly_name: "Lightpack Mood Setting"
 
 input_select.log_integration:
-  friendly_name: Log Integration
+  friendly_name: "Log Integration"
 
 input_select.log_level:
-  friendly_name: Log Level
+  friendly_name: "Log Level"
 
 input_select.sonosplaylist:
-  friendly_name: Playlist Selection
+  friendly_name: "Playlist Selection"
   icon: mdi:music-box-outline
 
 input_select.theme_selector:
-  friendly_name: Theme Selector
+  friendly_name: "Theme Selector"
 
 input_select.zigbee2mqtt_log_level:
-  friendly_name: Zigbee2mqtt Log Level
+  friendly_name: "Zigbee2mqtt Log Level"
   icon: mdi:format-list-bulleted

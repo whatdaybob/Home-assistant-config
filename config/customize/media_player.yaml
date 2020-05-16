@@ -1,5 +1,5 @@
 #-------------------------------------------
-#  Media Player Customisation
+#  Media_player Customisation
 #  @Whatdaybob
 #  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
 #-------------------------------------------
@@ -10,46 +10,73 @@
 #-------------------------------------------
 
 media_player.everywhere:
-  friendly_name: Alexa Group (Everywhere)
+  friendly_name: "Alexa Group (Everywhere)"
 
 media_player.hallway_echo:
-  friendly_name: Hallway Echo
+  friendly_name: "Hallway Echo"
 
 media_player.kitchen_dot:
-  friendly_name: Kitchen Dot
+  friendly_name: "Kitchen Dot"
 
 media_player.kitchen_sonos:
-  friendly_name: Kitchen Sonos
+  friendly_name: "Kitchen Sonos"
+
+media_player.living_room_androidtv:
+  friendly_name: "Living Room Androidtv"
+  device_class: tv
 
 media_player.living_room_kodi:
-  friendly_name: Living Room Kodi
+  friendly_name: "Living Room Kodi"
 
 media_player.living_room_lg_netcast:
-  friendly_name: Living Room Lg Netcast
+  friendly_name: "Living Room Lg Netcast"
 
 media_player.living_room_plexapp:
-  friendly_name: Living Room Plexapp
+  friendly_name: "Living Room Plexapp"
 
 media_player.living_room_shield_cast:
-  friendly_name: Living Room Cast
+  friendly_name: "Living Room Cast"
+
+media_player.living_room_skyq:
+  friendly_name: "Living Room Skyq"
+  device_class: tv
 
 media_player.living_room_sonos:
-  friendly_name: Living Room Sonos
+  friendly_name: "Living Room Sonos"
+
+media_player.living_room_universal:
+  friendly_name: "Living Room Universal"
+  device_class: tv
 
 media_player.living_room_xboxone:
-  friendly_name: Living Room Xboxone
+  friendly_name: "Living Room Xboxone"
 
 media_player.master_bedroom_dot:
-  friendly_name: Master Bedroom Dot
+  friendly_name: "Master Bedroom Dot"
 
 media_player.office_dot:
-  friendly_name: Office Dot
+  friendly_name: "Office Dot"
 
-media_player.phone_bob_plexamp:
-  friendly_name: Phone Bob Plexamp
+media_player.office_pc_plexapp:
+  friendly_name: "Office Pc Plexapp"
 
 media_player.phone_bob_plexapp:
-  friendly_name: Phone Bob Plexapp
+  friendly_name: "Phone Bob Plexapp"
+
+media_player.plex_plex_cast_chromecast:
+  friendly_name: "Plex (Plex Cast - Chromecast)"
+
+media_player.plex_plex_for_windows_desktop_5ept5hq:
+  friendly_name: "Plex (Plex For Windows - Desktop-5ept5hq)"
+
+media_player.plex_plex_for_xbox_one_xboxonex:
+  friendly_name: "Plex (Plex For Xbox One - Xboxonex)"
+
+media_player.plex_plex_media_player_desktop_5ept5hq:
+  friendly_name: "Plex (Plex Media Player - Desktop-5ept5hq)"
+
+media_player.plex_plex_web_microsoft_edge:
+  friendly_name: "Plex (Plex Web - Microsoft Edge - Windows)"
 
 media_player.xbox_one:
-  friendly_name: Xbox One
+  friendly_name: "Xbox One"

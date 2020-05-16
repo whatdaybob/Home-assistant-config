@@ -10,19 +10,118 @@
 #-------------------------------------------
 
 script.lightpack_brightness_change:
-  friendly_name: Change Lightpack Brightness
+  friendly_name: "Change Lightpack Brightness"
 
 script.lightpack_input_change:
-  friendly_name: Change Lightpack Input
+  friendly_name: "Change Lightpack Input"
 
 script.lightpack_mode_change:
-  friendly_name: Change Lightpack Mode
+  friendly_name: "Change Lightpack Mode"
 
 script.lightpack_mood_change:
-  friendly_name: Change Lightpack Mood
+  friendly_name: "Change Lightpack Mood"
+
+script.lightpack_turn_off:
+  friendly_name: "Turn Off Lightpack"
+
+script.lightpack_turn_on:
+  friendly_name: "Turn On Lightpack"
+
+script.living_room_universal_hdmi1:
+  friendly_name: "Living Room Universal Hdmi1"
+
+script.living_room_universal_hdmi2:
+  friendly_name: "Living Room Universal Hdmi2"
+
+script.living_room_universal_hdmi3:
+  friendly_name: "Living Room Universal Hdmi3"
+
+script.living_room_universal_off:
+  friendly_name: "Living Room Universal Off"
+
+script.living_room_universal_on:
+  friendly_name: "Living Room Universal On"
+
+script.office_pc_displays_off:
+  friendly_name: "Office Pc - Displays Off"
+
+script.office_pc_displays_on:
+  friendly_name: "Office Pc - Displays On"
+
+script.office_pc_hibernate:
+  friendly_name: "Office Pc - Hibernate"
+
+script.office_pc_lock:
+  friendly_name: "Office Pc - Lock"
+
+script.office_pc_logoff:
+  friendly_name: "Office Pc - Logoff"
+
+script.office_pc_notify:
+  friendly_name: "Office Pc - Notify"
+
+script.office_pc_reboot:
+  friendly_name: "Office Pc - Reboot"
+
+script.office_pc_refresh:
+  friendly_name: "Office Pc - Refresh"
+
+script.office_pc_shutdown:
+  friendly_name: "Office Pc - Shutdown"
+
+script.office_pc_suspend:
+  friendly_name: "Office Pc - Suspend"
+
+script.office_pc_vol_max:
+  friendly_name: "Office Pc - Vol Max"
+
+script.office_pc_vol_mute:
+  friendly_name: "Office Pc - Toggle Mute"
+
+script.office_pc_wake:
+  friendly_name: "Office Pc - Wake"
+
+script.surface_book_displays_off:
+  friendly_name: "Surface Book - Displays Off"
+
+script.surface_book_displays_on:
+  friendly_name: "Surface Book - Displays On"
+
+script.surface_book_hibernate:
+  friendly_name: "Surface Book - Hibernate"
+
+script.surface_book_lock:
+  friendly_name: "Surface Book - Lock"
+
+script.surface_book_logoff:
+  friendly_name: "Surface Book - Logoff"
+
+script.surface_book_notify:
+  friendly_name: "Surface Book - Notify"
+
+script.surface_book_reboot:
+  friendly_name: "Surface Book - Reboot"
+
+script.surface_book_refresh:
+  friendly_name: "Surface Book - Refresh"
+
+script.surface_book_shutdown:
+  friendly_name: "Surface Book - Shutdown"
+
+script.surface_book_suspend:
+  friendly_name: "Surface Book - Suspend"
+
+script.surface_book_vol_max:
+  friendly_name: "Surface Book - Vol Max"
+
+script.surface_book_vol_mute:
+  friendly_name: "Surface Book - Toggle Mute"
+
+script.surface_book_wake:
+  friendly_name: "Surface Book - Wake"
 
 script.zigbee2mqtt_remove:
-  friendly_name: Zigbee2mqtt Remove
+  friendly_name: "Zigbee2mqtt Remove"
 
 script.zigbee2mqtt_rename:
-  friendly_name: Zigbee2mqtt Rename
+  friendly_name: "Zigbee2mqtt Rename"

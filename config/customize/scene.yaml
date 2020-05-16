@@ -10,7 +10,7 @@
 #-------------------------------------------
 
 scene.lights_movie:
-  friendly_name: Lights Movie
+  friendly_name: "Lights Movie"
 
 scene.lights_normal:
-  friendly_name: Lights Normal
+  friendly_name: "Lights Normal"
