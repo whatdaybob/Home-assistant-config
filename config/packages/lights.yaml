@@ -1,0 +1,77 @@
+#-------------------------------------------
+#  Light Integration Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Light:
+#     Groups together lights for some rooms
+#   Sensor:
+#     Creates percentage sensors for all dimmable lights
+#-------------------------------------------
+
+#-------------------------------------------
+# Light - https://www.home-assistant.io/integrations/light/
+#-------------------------------------------
+light:
+
+#-------------------------------------------
+# Light Group - https://www.home-assistant.io/integrations/light.group/
+#-------------------------------------------
+
+#-- Living Room
+  - platform: group
+    name: Living_Room_Lamps
+    entities:
+      - light.living_room_table_lamp
+      - light.living_room_floor_lamp
+
+#-- Landing
+  - platform: group
+    name: Landing_Group
+    entities:
+      - light.landing_1
+      - light.landing_2
+
+#-------------------------------------------
+# Sensor - https://www.home-assistant.io/integrations/sensor/
+#-------------------------------------------
+
+sensor:
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+  - platform: template
+    sensors:
+
+      hallway_lightpercent:
+        value_template: >-
+          {% if is_state('light.hallway_light', 'on') %} {{ (state_attr('light.hallway_light', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
+
+      landing1_lightpercent:
+        value_template: >-
+          {% if is_state('light.landing_1', 'on') %} {{ (state_attr('light.landing_1', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
+
+      landing2_lightpercent:
+        value_template: >-
+          {% if is_state('light.landing_2', 'on') %} {{ (state_attr('light.landing_2', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
+
+      kids_bedroom_lightpercent:
+        value_template: >-
+          {% if is_state('light.kids_bedroom', 'on') %} {{ (state_attr('light.kids_bedroom', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
+
+      master_bedroom_lightpercent:
+        value_template: >-
+          {% if is_state('light.master_bedroom_main', 'on') %} {{ (state_attr('light.master_bedroom_main', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
+
+      living_room_lightpercent_floor:
+        value_template: >-
+          {% if is_state('light.living_room_floor_lamp', 'on') %} {{ (state_attr('light.living_room_floor_lamp', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
+
+      living_room_lightpercent_table:
+        value_template: >-
+          {% if is_state('light.living_room_table_lamp', 'on') %} {{ (state_attr('light.living_room_table_lamp', 'brightness') / 2.54) | round }}{% else %}0{% endif %}

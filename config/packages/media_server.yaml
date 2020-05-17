@@ -1,0 +1,92 @@
+#-------------------------------------------
+#  Media Integration Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Sensors:
+#     Trakt, Plex, Sonarr, YouTube and NZBGet sensors
+#-------------------------------------------
+
+#-------------------------------------------
+# Trakt Custom Sensors - https://github.com/custom-components/sensor.trakt/
+#-------------------------------------------
+
+trakt:
+  client_id: !secret  custom_integrations_trakt_client_id
+  client_secret: !secret custom_integrations_trakt_client_secret
+
+#-------------------------------------------
+# NZBGet - https://www.home-assistant.io/integrations/nzbget/
+#-------------------------------------------
+
+nzbget:
+  host: !secret ipaddr_Comp_IntelNuc
+  port: !secret NZBGetPort
+  ssl: false
+  name: NZBGet
+  username: !secret NZBGetUsername
+  password: !secret NZBGetPassword
+
+sensor:
+
+#-------------------------------------------
+# Sonarr Upcoming Media Custom Sensors - https://github.com/custom-components/sensor.sonarr_upcoming_media/
+#-------------------------------------------
+
+  - platform: sonarr_upcoming_media
+    api_key: !secret custom_integrations_sonarr_api
+    host: !secret custom_integrations_sonarr_host
+    port: !secret custom_integrations_sonarr_port
+    days: 2
+    ssl: false
+    max: 10
+
+#-------------------------------------------
+# Plex Recently Added Custom Sensors - https://github.com/custom-components/sensor.plex_recently_added/
+#-------------------------------------------
+
+  - platform: plex_recently_added
+    name: plex_recently_added_movies
+    entity_namespace: server
+    token: !secret plex_x_token
+    host: !secret ipaddr_Comp_Shield
+    port: 32400
+    download_images: false
+    img_dir: '/plex/movie/'
+    section_types:
+    - movie
+
+  - platform: plex_recently_added
+    name: plex_recently_added_tv
+    entity_namespace: server
+    token: !secret plex_x_token
+    host: !secret ipaddr_Comp_Shield
+    port: 32400
+    download_images: false
+    img_dir: '/plex/shows/'
+    section_types:
+    - show
+
+#-------------------------------------------
+# Youtube Custom Sensors - https://github.com/custom-components/youtube
+#-------------------------------------------
+  
+#-- Direwolf
+  - platform: youtube
+    channel_id: UC_ViSsVg_3JUDyLS3E2Un5g
+    entity_namespace: youtube
+#-- Funhaus 
+  - platform: youtube
+    channel_id: UCboMX_UNgaPBsUOIgasn3-Q
+    entity_namespace: youtube
+#-- LetsPlay  
+  - platform: youtube
+    channel_id: UCkxctb0jr8vwa4Do6c6su0Q
+    entity_namespace: youtube
+#-- Inside Gaming 
+  - platform: youtube
+    channel_id: UC4w_tMnHl6sw5VD93tVymGw
+    entity_namespace: youtube

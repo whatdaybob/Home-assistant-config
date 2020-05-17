@@ -9,9 +9,23 @@
 #   Usage:
 #     Handles simple sensors and extracts more information
 #   Sensors:
+#     Sun
 #     Moon
+#     Breaking Changes
 #     Time and Date with extras (Friendly Date and Time,AM/PM,Day etc)
 #-------------------------------------------
+
+#-------------------------------------------
+# Sun Sensor - https://www.home-assistant.io/integrations/sun/
+#-------------------------------------------
+
+sun:
+
+#-------------------------------------------
+# breaking_changes Custom Integration - https://github.com/custom-components/breaking_changes/
+#-------------------------------------------
+
+breaking_changes:
 
 sensor:
 

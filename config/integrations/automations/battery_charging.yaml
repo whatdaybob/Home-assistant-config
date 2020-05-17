@@ -1,0 +1,53 @@
+#-------------------------------------------
+#  Battery Charger Automations
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Description:
+#   Send a notification when a battery is charging so I know its OK
+#   Notify me once its finished charging so I can swap them out
+#-------------------------------------------
+
+- id: battery_charged
+  alias: battery_charged
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.smartthings_outlet_power
+      below: "10"
+      for: 
+        minutes: 3
+  condition:
+  # Only fire if homeassistant hasn't just restarted
+  - condition: template
+    value_template: "{{ (states.sensor.hass_uptime.state|float)*60 > 5 }}"
+  action:
+  - service: persistent_notification.create
+    data_template:
+      title: Battery Finished Charging
+      message: "Maybe charge some other battery!"
+  - service: notify.mobile_app_phone_bob
+    data_template:
+      message: Battery Finished Charging
+
+- id: battery_charging
+  alias: battery_charging
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.smartthings_outlet_power
+      above: "10"
+      for: 
+        minutes: 3
+  condition:
+  # Only fire if homeassistant hasn't just restarted
+  - condition: template
+    value_template: "{{ (states.sensor.hass_uptime.state|float)*60 > 5 }}"
+  action:
+  - service: persistent_notification.create
+    data_template:
+      title: Battery Charging Started
+      message: "I will let you know when completed!"
+  - service: notify.mobile_app_phone_bob
+    data_template:
+      message: Battery Charging Started

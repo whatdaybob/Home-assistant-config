@@ -1,0 +1,182 @@
+#-------------------------------------------
+#  Presence HA Automations
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Description:
+#   Make sure that the input_select presence matches the state on start
+#-------------------------------------------
+
+device_tracker:
+
+#-------------------------------------------
+# iCloud3 - https://github.com/gcobb321/icloud3
+#-------------------------------------------
+
+  - platform: icloud3
+    username: !secret icloud_username
+    password: !secret icloud_password
+    track_devices:
+      - !secret icloud_track_bob
+      - !secret icloud_track_kay
+    entity_namespace: icloud3
+    consider_home: 180
+
+#-------------------------------------------
+# Tado - https://www.home-assistant.io/integrations/tado
+#-------------------------------------------
+
+  - platform: tado
+    username: !secret tadoUsername
+    password: !secret tadoPassword
+    home_id: !secret tadoHomeId
+    consider_home: 180
+
+#-------------------------------------------
+# Input Select - https://www.home-assistant.io/integrations/input_select/
+#-------------------------------------------
+
+input_select:
+
+  bob_tado:
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+
+  kay_tado:
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+
+sensor:
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+  - platform: template
+    sensors:
+    #-- friendly time last changed
+      presence_bob_last_changed:
+        entity_id: sensor.time
+        value_template: >-
+          {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.bob_tado.last_changed)) | int %}
+          {%- set minutes = ((time % 3600) // 60) %}
+          {%- set hours = ((time % 86400) // 3600) %}
+          {%- set days = (time // 86400) %}
+          {% if time <= 60 %}
+          {# smaller or less or = 59 Seconds #}
+            0m
+          {% elif time <= 3600 %}
+          {# smaller or less or = 59 Minutes #}
+          {{ minutes }}m
+          {% elif time <= 86400 %}
+          {# smaller or less or = 23h And 59 Minutes #}
+          {{ hours }}h
+          {% elif time > 86400 %}
+          {# more or more = 1 Day #}
+          {{ days }}d 
+          {% else %}
+          {% endif %}
+    #-- friendly time last changed
+      presence_kay_last_changed:
+        entity_id: sensor.time
+        value_template: >-
+          {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.kay_tado.last_changed)) | int %}
+          {%- set minutes = ((time % 3600) // 60) %}
+          {%- set hours = ((time % 86400) // 3600) %}
+          {%- set days = (time // 86400) %}
+          {% if time <= 60 %}
+          {# smaller or less or = 60 Seconds #}
+            0m
+          {% elif time <= 3600 %}
+          {# smaller or less or = 60 Minutes #}
+          {{ minutes }}m
+          {% elif time <= 86400 %}
+          {# smaller or less or = 24h #}
+          {{ hours }}h
+          {% elif time > 86400 %}
+          {# more or more = 1 Day #}
+          {{ days }}d 
+          {% else %}
+          {% endif %}
+
+#-------------------------------------------
+# Automation - https://www.home-assistant.io/integrations/automation/
+#-------------------------------------------
+
+automation:
+
+#-- Set Kay to away on HA start to sync nodered
+  - id: kay_away_homeassistant_start
+    alias: kay_away_homeassistant_start
+    initial_state: 'on'
+    trigger:
+      - platform: homeassistant
+        event: start
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.kay_tado
+          state: 'not_home'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.kay_tado
+          option: Away
+
+#-- Set Bob to away on HA start to sync nodered
+  - id: bob_away_homeassistant_start
+    alias: bob_away_homeassistant_start
+    initial_state: 'on'
+    trigger:
+      - platform: homeassistant
+        event: start
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.bob_tado
+          state: 'not_home'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.bob_tado
+          option: Away
+
+#-- Publish MQTT when Bob enters a zone
+  - id: bob_zone_entered
+    alias: bob_zone_entered
+    trigger:
+      - platform: state
+        entity_id: device_tracker.phone_bob
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: >
+            {{ trigger.to_state.state is not none and
+              trigger.from_state.state is not none and
+              trigger.to_state.state != trigger.from_state.state }}
+        - condition: template
+          value_template: >
+            {% set zones = states.zone | map(attribute='name')|list %}
+            {{trigger.to_state.state in ['home','not_home'] or
+              trigger.from_state.state in ['home','not_home'] or
+              trigger.to_state.state in zones or 
+              trigger.from_state.state in zones}}
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "homeassistant/location/{{ states('device_tracker.phone_bob') }}"
+          retain: "true"
+          payload: "{{ now() }}"

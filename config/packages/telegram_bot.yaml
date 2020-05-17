@@ -1,0 +1,24 @@
+#-------------------------------------------
+#  Telegram Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Telegram bot - https://www.home-assistant.io/integrations/telegram_polling/
+#-------------------------------------------
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_wdbloggingbot
+    allowed_chat_ids:
+      - !secret telegram_userid
+
+#-------------------------------------------
+# Telegram bot - https://www.home-assistant.io/integrations/telegram_bot/
+#-------------------------------------------
+
+notify:
+  - name: telegram_logbot
+    platform: telegram
+    chat_id: !secret telegram_userid

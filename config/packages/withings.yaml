@@ -1,0 +1,44 @@
+#-------------------------------------------
+#  Package to manage all the Withings Sensors
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Sensors:
+#     All withings sensors
+#     Weight in StLb
+#-------------------------------------------
+
+#-------------------------------------------
+# Withings - https://www.home-assistant.io/integrations/withings/
+#-------------------------------------------
+
+withings:
+  client_id: !secret withings_client_id
+  client_secret: !secret withings_client_secret
+  profiles:
+    - !secret withings_profile_1
+    - !secret withings_profile_2
+    - !secret withings_profile_3
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+sensor:
+  - platform: template
+    sensors:
+    #-- Conver KG to StLb
+      withings_weight_stlb_bob:
+        value_template: >-
+          {% set kg = states('sensor.withings_weight_kg_bob') | float %}
+          {%- if kg != 0.0 %}
+            {% set kg2lb = 2.205 | float  %}
+            {% set mathst = (kg*kg2lb)/14 %}
+            {% set mathlb = (kg*kg2lb)%14 %}
+            {{ mathst | round(0,'floor') | int }}:{{ mathlb | round(0,'floor') | int }} StLb
+          {% else %}
+              Initializing...
+          {%- endif %}

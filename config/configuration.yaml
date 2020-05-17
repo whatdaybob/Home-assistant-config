@@ -8,7 +8,6 @@
 # CONFIGURATION - BUILTIN
 #-------------------------------------------
 api:
-alexa: !include configuration/builtin/alexa.yaml
 config:
 history: !include configuration/builtin/history.yaml
 http: !include configuration/builtin/http.yaml
@@ -18,26 +17,20 @@ logbook: !include configuration/builtin/logbook.yaml
 logger: !include configuration/builtin/logger.yaml
 map:
 mobile_app:
-nzbget: !include configuration/builtin/nzbget.yaml
 prometheus: !include configuration/builtin/prometheus.yaml
 python_script:
 recorder: !include configuration/builtin/recorder.yaml
 ssdp:
-sun:
 system_health:
 system_log: !include configuration/builtin/system_log.yaml
-telegram_bot: !include configuration/builtin/telegram_bot.yaml
 tts: !include configuration/builtin/tts.yaml
 utility_meter: !include configuration/builtin/utility_meter.yaml
 wake_on_lan:
-withings: !include configuration/builtin/withings.yaml
 zeroconf:
 #-------------------------------------------
 # CONFIGURATION - CUSTOM
 #-------------------------------------------
 browser_mod: !include configuration/custom/browser_mod.yaml
-breaking_changes:
-trakt: !include configuration/custom/trakt.yaml
 #-------------------------------------------
 # INTEGRATIONS
 #-------------------------------------------
