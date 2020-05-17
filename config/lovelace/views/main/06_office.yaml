@@ -1,0 +1,26 @@
+# lovelace_gen
+---
+##########
+# Office #
+##########
+- title: Office
+  icon: mdi:office
+  id: office
+  theme: midnight
+  cards:
+    - type: entities
+      entities:
+        - entity: sensor.office_dot_next_alarm
+        - entity: sensor.office_dot_next_reminder
+        - entity: sensor.office_dot_next_timer
+        - entity: sensor.office_smartthing_motion_sensor_battery
+        - entity: sensor.office_smartthing_motion_sensor_illuminance
+        - entity: sensor.office_smartthing_motion_sensor_temperature
+        - entity: sensor.office_smartthing_motion_sensor_x_coordinate
+        - entity: sensor.office_smartthing_motion_sensor_y_coordinate
+        - entity: sensor.office_smartthing_motion_sensor_z_coordinate
+        - entity: binary_sensor.office_smartthing_motion_sensor_motion
+        - entity: binary_sensor.office_smartthing_motion_sensor_tamper
+        - entity: device_tracker.office_switch
+    - type: media-control
+      entity: media_player.office_dot

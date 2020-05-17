@@ -1,0 +1,81 @@
+steam:
+  show_name: false
+  show_state: false
+  aspect_ratio: 1.5/1
+  show_entity_picture: false
+  show_icon: false
+  color_type: label-card
+  styles:
+    card:
+      - background-color: white
+      - font-family: 'Segoe UI,SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif'
+      - background-image: |
+          [[[ 
+              return `url("${entity.attributes.box_art_url.toLowerCase()}")`;
+          ]]]
+      - background-size: 100%
+      - background-color: black
+      - background-repeat: no-repeat
+    grid:
+      - grid-template-areas: '"bg bg" "title title" "sale sale" '
+      - grid-template-columns: 100%
+      - grid-template-rows: 78% 10% 10%
+    state:
+      - padding-left: 5%
+      - font-weight: 700
+    custom_fields:
+      title:
+        - justify-self: start
+        - text-align: left
+        - padding-left: 3%
+        - width: 90%
+        - font-size: 18px
+        - font-weight: 800
+
+      sale:
+        - text-align: left
+        - padding-left: 3%
+        - width: 90%
+        - font-size: 18px
+        - font-weight: 800
+      per:
+        - position: absolute
+        - font-size: 2em
+        - line-height: 2em
+        - left: 70%
+        - top: 72%
+      saleicon:
+        - position: absolute
+        - left: 85%
+        - top: 75%
+  state:
+    - value: 'False'
+      styles:
+        card:
+          - filter: opacity(50%)
+        icon:
+          - filter: grayscale(100%)
+  custom_fields:
+    bg: ''
+    title: '[[[ return entity.attributes.title ]]]'
+    per: >
+      [[[
+        if (entity.state === "True")
+          return entity.attributes.percent_off +"%"
+        else
+          return
+      ]]]
+    sale: >
+      [[[
+        if (entity.state === "True")
+          return "£"+entity.attributes.normal_price+" down to £"+entity.attributes.sale_price 
+        else
+          return "£"+entity.attributes.normal_price
+      ]]]
+    saleicon: >
+      [[[
+        if (entity.state === "True")
+          return `<ha-icon icon="mdi:sale" style="width: 50px; height: 50px; color: white;"></ha-icon>`
+        else
+          return
+      ]]]

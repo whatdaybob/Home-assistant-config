@@ -1,0 +1,71 @@
+xbox:
+  show_name: false
+  show_state: false
+  aspect_ratio: 2/1
+  show_entity_picture: false
+  show_icon: false
+  entity_picture: '[[[ return entity.attributes.image ]]]'
+  styles:
+    grid:
+      - grid-template-areas: '"bg name" "bg game" "bg acti" "bg device"'
+      - grid-template-columns: 50%
+      - grid-template-rows: 20% 5% 15%
+    card:
+      - border-radius: 10px
+      - background-image: |
+          [[[ 
+            if(entity.attributes.game === "Home"||entity.attributes.game === "Offline")
+              return `url("http://store-images.s-microsoft.com/image/apps.245.13798539581762600.f646b2b5-5377-442e-a76b-9381d0a2195f.6c30ef3e-803a-4e0c-9377-0f4e0c79cf8f")`; 
+            else
+              return `url("${entity.attributes.image.toLowerCase()}")`;
+          ]]]
+      - background-size: 50%
+      - background-color: black
+      - background-repeat: no-repeat
+      - margin: 0
+      - padding: 0
+      - position: absolute
+    custom_fields:
+      game:
+        - text-align: left
+        - padding-left: 5%
+        - width: 90%
+        - font-size: 15px
+        - font-weight: 600
+        - color: white
+      acti:
+        - text-align: left
+        - padding-left: 5%
+        - width: 90%
+        - font-weight: 400
+        - font-size: 15px
+        - color: white
+      name:
+        - justify-self: start
+        - padding-left: 5%
+        - font-size: 20px
+        - font-weight: 800
+        - color: white
+      device:
+        - position: absolute
+        - left: 90%
+        - top: 80%
+  custom_fields:
+    bg: ''
+    game: '[[[ return entity.attributes.game ]]]'
+    acti: '[[[ return entity.attributes.activity ]]]'
+    name: '[[[ return entity.attributes.gamertag ]]]'
+    device: |
+      [[[
+        if (entity.attributes.device === "WindowsOneCore")
+          return `<ha-icon icon="mdi:monitor" style="width: 35px; height: 35px; color: white;"></ha-icon>`
+        else
+          return `<ha-icon icon="mdi:xbox" style="width: 35px; height: 35px; color: white;"></ha-icon>`
+      ]]]
+  state:
+    - value: Offline
+      styles:
+        card:
+          - filter: opacity(50%)
+        icon:
+          - filter: grayscale(100%)

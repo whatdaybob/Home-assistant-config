@@ -1,0 +1,167 @@
+# lovelace_gen
+--- 
+########
+# Home #
+########
+- title: Media
+  icon: mdi:play
+  id: Media
+  theme: midnight
+  cards:
+  - type: 'custom:auto-entities'
+    show_empty: false
+    unique: true
+    sort:
+      method: name
+      ignore_case: true
+    card:
+      type: entities
+      title: Playing Media Players
+    filter:
+      include:
+        - domain: media_player
+          options:
+            secondary_info: last-changed
+            type: 'custom:mini-media-player'
+            info: scroll
+            artwork: full-cover
+            hide:
+              icon: true
+              progress: true
+              source: true
+              volume: true
+          not:
+            entity_id: media_player.living_room_universal
+
+      exclude:
+        - state: standby
+          not:
+            entity_id: media_player.android_tv
+        - state: 'off'
+        - state: unavailable
+        - state: idle
+          not:
+            entity_id: media_player.living_room_shield_cast
+        - state: paused
+
+
+
+  - type: 'custom:auto-entities'
+    show_empty: true
+    card:
+      type: entities
+      title: Media Players Turned off
+    filter:
+      include:
+        - domain: media_player
+          options:
+            secondary_info: last-changed
+            type: 'custom:mini-media-player'
+          state: 'off'
+        # - domain: media_player
+        #   options:
+        #     secondary_info: last-changed
+        #     type: 'custom:mini-media-player'
+        #   state: unavailable
+        - domain: media_player
+          options:
+            secondary_info: last-changed
+            type: 'custom:mini-media-player'
+          state: standby
+        - domain: media_player
+          options:
+            secondary_info: last-changed
+            type: 'custom:mini-media-player'
+          state: idle
+        - domain: media_player
+          options:
+            secondary_info: last-changed
+            type: 'custom:mini-media-player'
+          state: paused
+
+
+  - type: custom:upcoming-media-card
+    entity: sensor.trakt_upcoming_calendar
+    title: Trakt Upcoming
+    date: ddmm
+    clock: 24
+    max: 3
+    image_style: fanart
+    hide_empty: true
+    hide_flagged: false
+    hide_unflagged: false
+    flag: true
+    text_shadows: false
+    box_shadows: false
+
+  - type: custom:upcoming-media-card
+    entity: sensor.server_plex_recently_added_movies
+    title: Recently Downloaded Movies
+    date: ddmm
+    clock: 24
+    max: 3
+    image_style: fanart
+    hide_empty: true
+    hide_flagged: false
+    hide_unflagged: true
+    flag: false
+    text_shadows: false
+    box_shadows: false
+
+  - type: custom:upcoming-media-card
+    entity: sensor.server_plex_recently_added_tv
+    title: Recently Downloaded TV
+    date: ddmm
+    clock: 24
+    max: 3
+    image_style: fanart
+    hide_empty: true
+    hide_flagged: false
+    hide_unflagged: true
+    flag: false
+    text_shadows: false
+    box_shadows: false
+
+  - type: custom:upcoming-media-card
+    entity: sensor.radarr_upcoming_media
+    title: Radarr Upcoming
+    date: ddmm
+    clock: 24
+    max: 3
+    image_style: fanart
+    hide_empty: true
+    hide_flagged: false
+    hide_unflagged: false
+    flag: true
+    text_shadows: false
+    box_shadows: false
+
+  - type: custom:upcoming-media-card
+    entity: sensor.sonarr_upcoming_media
+    title: Sonarr Upcoming
+    date: ddmm
+    clock: 24
+    max: 3
+    image_style: fanart
+    hide_empty: true
+    hide_flagged: false
+    hide_unflagged: false
+    flag: true
+    text_shadows: false
+    box_shadows: false
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: "## Latest YT Channel Videos"
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: sensor.youtube_direwolf20
+            name: Direwolf20
+          - entity: sensor.youtube_funhaus
+            name: Funhaus
+          - entity: sensor.youtube_letsplay
+            name: Letsplay
+          - entity: sensor.youtube_inside_gaming
+            name: Inside Gaming

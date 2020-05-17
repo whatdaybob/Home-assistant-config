@@ -1,0 +1,54 @@
+# lovelace_gen
+---
+##################
+# Master Bedroom #
+##################
+- title: Master Bedroom
+  icon: mdi:bed-double
+  id: MasterBedroom
+  theme: midnight
+  cards:
+    - type: custom:thermostat-card
+      entity: climate.master_bedroom
+      hvac:
+        states:
+          'off': 'off'
+          'heating': 'heat'
+          'idle': 'auto'
+        attribute: hvac_action
+
+    - type: entities
+      entities:
+        # - entity: sensor.master_bedroom_temperature_target
+        - entity: sensor.master_bedroom_temperature
+        - entity: sensor.master_bedroom_humidity
+        - entity: light.master_bedroom_main
+          name: Ceiling Light
+          secondary_info: last-changed
+        # - entity: binary_sensor.master_bedroom_sensor_motion
+        #   name: Door Sensor
+          # secondary_info: battery
+    - type: light
+      entity: light.master_bedroom_main
+    - type: entities
+      entities:
+        - entity: sensor.master_bedroom_heating
+        - entity: sensor.master_bedroom_link
+        - entity: sensor.master_bedroom_overlay
+        - entity: sensor.master_bedroom_power
+        - entity: sensor.master_bedroom_tado_mode
+        - entity: sensor.master_bedroom_mold
+        - entity: sensor.master_bedroom_early_start
+        - entity: sensor.master_bedroom_open_window
+        - entity: binary_sensor.master_bedroom_open_window
+        - entity: sensor.master_bedroom_lightpercent
+
+    - type: media-control
+      entity: media_player.master_bedroom_dot
+    - type: entities
+      entities:
+        - entity: sensor.master_bedroom_dot_next_alarm
+        - entity: sensor.master_bedroom_dot_next_reminder
+        - entity: sensor.master_bedroom_dot_next_timer
+
+      

@@ -1,0 +1,53 @@
+# lovelace_gen
+
+type: 'custom:button-card'
+color_type: icon
+aspect_ratio: 16 / 9
+gridcol: {{grid_x|default('1/1')}}
+gridrow: {{grid_y|default('1/1')}}
+label: |
+  [[[ return states['{{entity_primary}}'].state ]]]
+layout: icon_name_state2nd
+name: |
+  [[[ return states['{{entity_primary}}'].attributes.friendly_name ]]]
+show_entity_picture: false
+show_label: true
+show_name: false
+show_icon: false
+entity: {{entity_primary}}
+custom_fields:
+  channel_icon: 'test'
+styles:
+  grid:
+    - grid-template-areas: '"n" "l"'
+    - grid-template-rows: 8fr 1fr
+    - grid-template-columns: 1fr
+    - position: relative
+  card:
+    - height: 172px
+    - width: 305.78px
+    - border-radius: 10px
+    - background-image: >
+        [[[ return `url(${entity.attributes.entity_picture})`; ]]]
+    - background-position: center
+    - background-size: cover
+    - background-color: black
+  name:
+    - background-color: white
+  label:
+    - background-color: white
+  custom_fields:
+    channel_icon: 
+      - position: absolute
+      - background-image: url('{{channel_icon}}')
+      - color: transparent
+      - height: 60px
+      - width: 60px
+      - background-size: cover
+      - border-radius: 50%
+      - left: 75%
+      - top: 10%
+tap_action: 
+  action: url
+  url_path: |
+    [[[return states['{{entity_primary}}'].attributes.url]]]

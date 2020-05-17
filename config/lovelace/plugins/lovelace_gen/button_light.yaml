@@ -1,0 +1,166 @@
+# lovelace_gen
+
+type: custom:button-card
+aspect_ratio: {{ aspect_ratio|default('1/1') }}
+gridrow: {{grid_y|default('1/1')}}
+gridcol: {{grid_x|default('1/1')}}
+style: |
+  ha-card {
+    border-radius: 10px;
+  }
+show_icon: true
+show_name: true
+show_label: true
+show_state: false
+icon: mdi:lightbulb
+name: {{name}}
+styles:
+  card:
+    - width: 172px
+    - height: 172px
+    - background-color: 
+    - color: '#9a9d9e'
+    - background-color: >
+        [[[
+          if (states['{{entity_primary}}'].state == "off")
+            return '#363c3e';
+          return "white";
+        ]]]
+  grid:
+    - grid-template-areas: '"i" "n" "l"'
+    - grid-template-columns: 1fr
+    - grid-template-rows: 1fr min-content min-content
+    - position: relative
+  name:
+    - justify-self: start
+    - font-size: 23px
+    - font-weight: 800
+    - margin: 0 0 0 15px
+    - font-family: Helvetica Neue,Arial,sans-serif
+    # - color: '#9a9d9e'
+  label:
+    - justify-self: start
+    - font-size: 23px
+    - margin: 0 0 10px 15px
+    - font-weight: 800
+    - font-family: Helvetica Neue,Arial,sans-serif
+    # - color: '#9a9d9e'
+  icon:
+    - position: absolute
+    - width: 30%
+    - top: 20%
+    - left: 10%
+    - height: auto
+    - color: '#9a9d9e'
+entity: {{entity_primary}}
+label: >
+        [[[
+          if (states['{{entity_primary}}'].state == "off")
+            return 'Off';
+          return 'On';
+        ]]]
+hold_action:
+  action: call-service
+  service: browser_mod.popup
+  service_data:
+    card:
+      cards:
+        - entities:
+            - entity: {{entity_primary}}
+              secondary_info: last-changed
+          style: |
+            ha-card {
+              z-index: 5
+            }
+          type: entities
+        - entities:
+            - color_temp: true
+              entity: {{entity_primary}}
+              header: false
+              persist_features: true
+              type: 'custom:light-slider-card'
+          show_header_toggle: false
+          style: |
+            ha-card {
+              z-index: 0;
+            }
+          type: entities
+        - brightness: false
+          color_picker: false
+          color_temp: true
+          effects_list: false
+          entity: {{entity_primary}}
+          full_width_sliders: false
+          header: false
+          persist_features: true
+          show_slider_percent: false
+          style: |
+            ha-card {
+              padding-bottom: 3em;
+              margin-top: -1.5em;
+              margin-left: -1.8em;
+              opacity: 0.7;
+              z-index: 5;
+            }
+          type: 'custom:light-entity-card'
+        - entities:
+            - buttons:
+                - icon: 'mdi:'
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - entities:
+                            - entity: {{entity_primary}}
+                              secondary_info: last-changed
+                          type: entities
+                        - brightness: false
+                          color_temp: false
+                          entity: {{entity_primary}}
+                          full_width_sliders: true
+                          header: false
+                          persist_features: true
+                          show_slider_percent: true
+                          smooth_color_wheel: true
+                          type: 'custom:light-entity-card'
+                      type: 'custom:vertical-stack-in-card'
+                    deviceID:
+                      - this
+                    style:
+                      '--ha-card-border-radius': 0vw 0vw 0.8vw 0.8vw
+                      border-radius: 0.8vw
+                      opacity: 0.9
+                    title: Table Lamp
+                  style:
+                    background: >-
+                      radial-gradient(circle at 50% 0,
+                      rgba(255,0,0,.5), rgba(255,0,0,0) 70.71%),
+                      radial-gradient(circle at 6.7% 75%,
+                      rgba(0,0,255,.5), rgba(0,0,255,0) 70.71%),
+                      radial-gradient(circle at 93.3% 75%,
+                      rgba(0,255,0,.5), rgba(0,255,0,0) 70.71%)
+                      beige
+                    border-radius: 50%
+                    font-weight: 500
+                    margin-bottom: 0.5em
+                    margin-top: 0.8em
+                    padding: 1.8em
+              type: 'custom:button-entity-row'
+          style: |
+            ha-card {
+              margin-top: -2.3em;
+            }
+          type: entities
+      type: 'custom:vertical-stack-in-card'
+    deviceID:
+      - this
+    style:
+      '--ha-card-border-radius': 0vw 0vw 0.8vw 0.8vw
+      border-radius: 0.8vw
+      opacity: 0.9
+    title: {{name}}
+tap_action:
+  action: call-service
+  service: light.toggle
+  service_data:
+    entity_id: {{entity_primary}}

@@ -1,0 +1,355 @@
+# lovelace_gen
+---
+
+##############
+# Server Tab #
+##############
+- title: Test
+  icon: mdi:server
+  id: Test
+  theme: midnight
+  cards:
+    - type: custom:gui-sandbox
+    - type: custom:unused-card
+    - type: entities
+    # background: "#EDE7B0"
+      # link: /lovelace/3
+      entities:
+        - entity: input_select.log_integration
+        - entity: input_select.log_level
+
+
+    - type: entities
+      entities:
+        - entity: device_tracker.tado_hub
+        - entity: sensor.tado_hub_rx
+        - entity: sensor.tado_hub_tx
+
+    - type: entities
+      entities:
+        - entity: device_tracker.smartthings_hub
+        - entity: sensor.smartthings_hub_rx
+        - entity: sensor.smartthings_hub_tx
+
+
+    - type: entities
+      entities:
+        - entity: device_tracker.office_pc
+        - entity: sensor.office_pc_rx
+        - entity: sensor.office_pc_tx
+
+    - type: entities
+      entities:
+        - entity: device_tracker.hue_hub
+        - entity: sensor.hue_hub_rx
+        - entity: sensor.hue_hub_tx
+
+    - type: entities
+      entities:
+        - entity: device_tracker.bathroom_scales
+        - entity: sensor.bathroom_scales_rx
+        - entity: sensor.bathroom_scales_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.bedroom_alexa
+        - entity: sensor.master_bedroom_alexa_rx
+        - entity: sensor.master_bedroom_alexa_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.hallway_alexa
+        - entity: sensor.hallway_alexa_rx
+        - entity: sensor.hallway_alexa_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.hallway_camera
+        - entity: sensor.hallway_camera_rx
+        - entity: sensor.hallway_camera_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.hallway_energymonitor
+        - entity: sensor.hallway_energymonitor_rx
+        - entity: sensor.hallway_energymonitor_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.home_phone
+        - entity: sensor.home_phone_rx
+        - entity: sensor.home_phone_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.kitchen_alexa
+        - entity: sensor.kitchen_alexa_rx
+        - entity: sensor.kitchen_alexa_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.kitchen_sonos
+        - entity: sensor.kitchen_sonos_rx
+        - entity: sensor.kitchen_sonos_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_harmony
+        - entity: sensor.living_room_harmony_rx
+        - entity: sensor.living_room_harmony_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_lightpack
+        - entity: sensor.living_room_lightpack_rx
+        - entity: sensor.living_room_lightpack_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_shield_wired
+        - entity: sensor.living_room_shield_wired_rx
+        - entity: sensor.living_room_shield_wired_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_skq_ethernet
+        - entity: sensor.living_room_skq_ethernet_rx
+        - entity: sensor.living_room_skq_ethernet_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_skq_unknown
+        - entity: sensor.living_room_skq_unknown_rx
+        - entity: sensor.living_room_skq_unknown_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_sonos
+        - entity: sensor.living_room_sonos_rx
+        - entity: sensor.living_room_sonos_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_tv
+        - entity: sensor.living_room_tv_rx
+        - entity: sensor.living_room_tv_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.nuc_server
+        - entity: sensor.nuc_server_rx
+        - entity: sensor.nuc_server_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.office_wlanbridge
+        - entity: sensor.office_wlanbridge_rx
+        - entity: sensor.office_wlanbridge_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.phone_bob
+        - entity: sensor.phone_bob_rx
+        - entity: sensor.phone_bob_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.phone_kay
+        - entity: sensor.phone_kay_rx
+        - entity: sensor.phone_kay_tx
+        
+    - type: entities
+      entities:
+        - entity: device_tracker.tablet_ipad
+        - entity: sensor.tablet_ipad_rx
+        - entity: sensor.tablet_ipad_tx
+
+    - type: entities
+      entities:
+        - entity: device_tracker.galaxy_s8
+        - entity: sensor.galaxy_s8_rx
+        - entity: sensor.galaxy_s8_tx
+    - type: entities
+      entities:
+        - entity: device_tracker.laptop_bob_personal
+        - entity: sensor.laptop_bob_personal_rx
+        - entity: sensor.laptop_bob_personal_tx
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_pi
+        - entity: sensor.living_room_pi_rx
+        - entity: sensor.living_room_pi_tx
+    - type: entities
+      entities:
+        - entity: device_tracker.living_room_xbox
+        - entity: sensor.living_room_xbox_rx
+        - entity: sensor.living_room_xbox_tx
+    - type: entities
+      entities:
+        - entity: device_tracker.phone_louise
+        - entity: sensor.phone_louise_rx
+        - entity: sensor.phone_louise_tx
+
+    - type: entities
+      entities:
+        - entity: sensor.withings_body_temperature_c_bob
+        - entity: sensor.withings_bone_mass_kg_bob
+        - entity: sensor.withings_diastolic_blood_pressure_mmhg_bob
+        - entity: sensor.withings_fat_free_mass_kg_bob
+        - entity: sensor.withings_fat_mass_kg_bob
+        - entity: sensor.withings_fat_ratio_pct_bob
+        - entity: sensor.withings_heart_pulse_bpm_bob
+        - entity: sensor.withings_height_m_bob
+        - entity: sensor.withings_hydration_bob
+        - entity: sensor.withings_muscle_mass_kg_bob
+        - entity: sensor.withings_pulse_wave_velocity_bob
+        - entity: sensor.withings_skin_temperature_c_bob
+        - entity: sensor.withings_sleep_deep_duration_seconds_bob
+        - entity: sensor.withings_sleep_heart_rate_average_bpm_bob
+        - entity: sensor.withings_sleep_heart_rate_max_bpm_bob
+        - entity: sensor.withings_sleep_heart_rate_min_bpm_bob
+        - entity: sensor.withings_sleep_light_duration_seconds_bob
+        - entity: sensor.withings_sleep_rem_duration_seconds_bob
+        - entity: sensor.withings_sleep_respiratory_average_bpm_bob
+        - entity: sensor.withings_sleep_respiratory_max_bpm_bob
+        - entity: sensor.withings_sleep_respiratory_min_bpm_bob
+        - entity: sensor.withings_sleep_state_bob
+        - entity: sensor.withings_sleep_tosleep_duration_seconds_bob
+        - entity: sensor.withings_sleep_towakeup_duration_seconds_bob
+        - entity: sensor.withings_sleep_wakeup_count_bob
+        - entity: sensor.withings_sleep_wakeup_duration_seconds_bob
+        - entity: sensor.withings_spo2_pct_bob
+        - entity: sensor.withings_systolic_blood_pressure_mmhg_bob
+        - entity: sensor.withings_temperature_c_bob
+        - entity: sensor.withings_weight_kg_bob
+        - entity: sensor.withings_weight_stlb_bob
+
+
+    - type: entities
+      entities:
+        - entity: input_select.kay_tado
+        - entity: input_select.lightpack_brightness
+        - entity: input_select.lightpack_input
+        - entity: input_select.lightpack_mode
+        - entity: input_select.lightpack_mood
+        - entity: script.lightpack_brightness_change
+        - entity: script.lightpack_input_change
+        - entity: script.lightpack_mode_change
+        - entity: script.lightpack_mood_change
+
+    - type: entities
+      entities:
+        - entity: sensor.phone_bob_battery
+        - entity: sensor.phone_bob_battery_status
+        - entity: sensor.phone_bob_gps_accuracy
+        - entity: sensor.phone_bob_last_zone
+        - entity: sensor.phone_bob_last_zone_name1
+        - entity: sensor.phone_bob_last_zone_name2
+        - entity: sensor.phone_bob_last_zone_name3
+        - entity: sensor.phone_bob_name
+        - entity: sensor.phone_bob_travel_distance
+        - entity: sensor.phone_bob_trigger
+        - entity: sensor.phone_bob_zone
+        - entity: sensor.phone_bob_zone_distance
+        - entity: sensor.phone_bob_zone_name1
+        - entity: sensor.phone_bob_zone_name2
+        - entity: sensor.phone_bob_zone_name3
+        - entity: sensor.phone_bob_zone_timestamp
+        - entity: sensor.phone_bob_activity
+        - entity: sensor.phone_bob_average_active_pace
+        - entity: sensor.phone_bob_battery_level
+        - entity: sensor.phone_bob_battery_state
+        - entity: sensor.phone_bob_bssid
+        - entity: sensor.phone_bob_connection_type
+        - entity: sensor.phone_bob_floors_ascended
+        - entity: sensor.phone_bob_floors_descended
+        - entity: sensor.phone_bob_geocoded_location
+        - entity: sensor.phone_bob_last_update_trigger
+        - entity: sensor.phone_bob_sim_1
+        - entity: sensor.phone_bob_ssid
+        - entity: sensor.phone_bob_steps
+        - entity: sensor.phone_bob_badge
+        - entity: sensor.phone_bob_calc_distance
+        - entity: sensor.phone_bob_dir_of_travel
+        - entity: sensor.phone_bob_distance
+        - entity: sensor.phone_bob_info
+        - entity: sensor.phone_bob_interval
+        - entity: sensor.phone_bob_last_located
+        - entity: sensor.phone_bob_last_update
+        - entity: sensor.phone_bob_next_update
+        - entity: sensor.phone_bob_poll_count
+        - entity: sensor.phone_bob_travel_time
+        - entity: sensor.phone_bob_waze_distance
+        - entity: device_tracker.phone_bob_gps
+        - entity: device_tracker.phone_bob_unifi
+        - entity: media_player.phone_bob_plexamp
+        - entity: media_player.phone_bob_plexapp
+    - type: entities
+      entities:
+        - entity: sensor.phone_kay_activity
+        - entity: sensor.phone_kay_average_active_pace
+        - entity: sensor.phone_kay_badge
+        - entity: sensor.phone_kay_battery
+        - entity: sensor.phone_kay_battery_level
+        - entity: sensor.phone_kay_battery_state
+        - entity: sensor.phone_kay_battery_status
+        - entity: sensor.phone_kay_bssid
+        - entity: sensor.phone_kay_calc_distance
+        - entity: sensor.phone_kay_connection_type
+        - entity: sensor.phone_kay_dir_of_travel
+        - entity: sensor.phone_kay_distance
+        - entity: sensor.phone_kay_floors_ascended
+        - entity: sensor.phone_kay_floors_descended
+        - entity: sensor.phone_kay_geocoded_location
+        - entity: sensor.phone_kay_gps_accuracy
+        - entity: sensor.phone_kay_info
+        - entity: sensor.phone_kay_interval
+        - entity: sensor.phone_kay_last_located
+        - entity: sensor.phone_kay_last_update
+        - entity: sensor.phone_kay_last_update_trigger
+        - entity: sensor.phone_kay_last_zone
+        - entity: sensor.phone_kay_last_zone_name1
+        - entity: sensor.phone_kay_last_zone_name2
+        - entity: sensor.phone_kay_last_zone_name3
+        - entity: sensor.phone_kay_name
+        - entity: sensor.phone_kay_next_update
+        - entity: sensor.phone_kay_poll_count
+        - entity: sensor.phone_kay_sim_1
+        - entity: sensor.phone_kay_ssid
+        - entity: sensor.phone_kay_steps
+        - entity: sensor.phone_kay_travel_distance
+        - entity: sensor.phone_kay_travel_time
+        - entity: sensor.phone_kay_trigger
+        - entity: sensor.phone_kay_waze_distance
+        - entity: sensor.phone_kay_zone
+        - entity: sensor.phone_kay_zone_distance
+        - entity: sensor.phone_kay_zone_name1
+        - entity: sensor.phone_kay_zone_name2
+        - entity: sensor.phone_kay_zone_name3
+        - entity: sensor.phone_kay_zone_timestamp
+        - entity: device_tracker.phone_kay_gps
+        - entity: device_tracker.phone_kay_unifi
+    - type: entities
+      entities:
+        # - entity: input_boolean.bob_at_barnsley
+        # - entity: input_boolean.bob_at_middlesborough
+        # - entity: input_boolean.bob_at_qpr
+        # - entity: input_boolean.bob_at_sussex_cricket
+        # - entity: input_boolean.bob_at_work
+        # - entity: input_datetime.lastvisit_barnsleyfc
+        - entity: input_datetime.lastvisit_crewealexandrafc
+        # - entity: input_datetime.lastvisit_middlesbroughfc
+        - entity: input_datetime.lastvisit_qprfc
+        - entity: input_datetime.lastvisit_shrewsburytownfc
+        - entity: input_datetime.lastvisit_sussexccc
+        - entity: input_boolean.wfh_notify
+
+    # - type: entities
+    #   entities:
+    #     - entity: binary_sensor.hallway_multipurpose_sensor_acceleration
+    #     - entity: binary_sensor.hallway_multipurpose_sensor_contact
+    #     - entity: sensor.hallway_multipurpose_sensor_battery
+    #     - entity: sensor.hallway_multipurpose_sensor_temperature_measurement
+    #     - entity: sensor.hallway_multipurpose_sensor_x_coordinate
+    #     - entity: sensor.hallway_multipurpose_sensor_y_coordinate
+    #     - entity: sensor.hallway_multipurpose_sensor_z_coordinate

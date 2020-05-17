@@ -1,0 +1,89 @@
+# lovelace_gen
+type: custom:button-card
+gridcol: {{grid_x|default('1/1')}}
+gridrow: {{grid_y|default('1/1')}}
+style: |
+  ha-card {
+    border-radius: 10px;
+  }
+aspect_ratio: 1/1
+show_icon: false
+show_name: true
+show_label: true
+show_state: false
+icon: mdi:door-closed
+
+
+custom_fields:
+  current_temperature: >
+    [[[
+      return states['{{entity_primary}}'].attributes.current_temperature + '°';
+    ]]]
+styles:
+  grid:
+    - position: relative
+  card:
+    - width: 172px
+    - height: 172px
+    - background: >
+        [[[
+          if (states['{{entity_primary}}'].state == "off")
+            return "radial-gradient(circle farthest-side at left top, rgba(159, 179, 194, 0.8), rgba(159, 179, 194, 0.5)), rgb(104, 131, 150)";
+          if (states['{{entity_primary}}'].attributes.temperature < states['{{entity_primary}}'].attributes.current_temperature)
+            return "radial-gradient(circle farthest-side at left top, rgba(68, 198, 120, 0.8), rgba(68, 198, 120, 0.5)), rgb(23, 171, 105)";
+          return "radial-gradient(circle farthest-side at left top, rgba(255, 186, 0, 0.8), rgba(255, 186, 0, 0.5)), rgb(255, 153, 0)";
+        ]]]
+  name:
+    - justify-self: start
+    - font-size: 14px
+    - font-weight: bold
+    - padding: 135px 0px 0px 15px
+    - color: white
+    - font-family: Helvetica Neue,Arial,sans-serif
+    - font-weight: 700
+    
+  label:
+    - justify-self: start
+    - font-size: 12px
+    - padding: 1px 0px 3px 15px
+    - color: white
+    - font-weight: 500
+
+    - font-family: Helvetica Neue,Arial,sans-serif
+
+  custom_fields:
+    current_temperature:
+      - position: absolute
+      - left: 15px
+      - top: 28%
+      - font-size: 45px
+      - font-weight: 800
+      - color: white
+      - font-family: Helvetica Neue,Arial,sans-serif
+entity: {{entity_primary}}
+tap_action:
+  action: toggle
+state:
+  - operator: template
+    value: states.climate.clim_salon.attributes.fan_mode == '5'
+    styles:
+      icon:
+        - color: green
+  - value: "on"
+    color: rgb(110,235,15)
+  - value: "off"
+    color: var(--button-off-color)
+  - value: "unavailable"
+    color: rgba(0,0,0,1)
+label: >
+        [[[
+          if (states['{{entity_primary}}'].state == "heat" && (states['{{entity_primary}}'].attributes.temperature < states['{{entity_primary}}'].attributes.current_temperature))
+            return 'Set to ' + states['{{entity_primary}}'].attributes.temperature;
+          if (states['{{entity_primary}}'].state == "heat" && (states['{{entity_primary}}'].attributes.temperature > states['{{entity_primary}}'].attributes.current_temperature))
+            return 'Heating to ' + states['{{entity_primary}}'].attributes.temperature;
+          if (states['{{entity_primary}}'].state == "auto" && (states['{{entity_primary}}'].attributes.temperature < states['{{entity_primary}}'].attributes.current_temperature))
+            return 'Set to ' + states['{{entity_primary}}'].attributes.temperature;
+          if (states['{{entity_primary}}'].state == "auto" && (states['{{entity_primary}}'].attributes.temperature > states['{{entity_primary}}'].attributes.current_temperature))
+            return 'Heating to ' + states['{{entity_primary}}'].attributes.temperature;
+          return "Frost Protection";
+        ]]]

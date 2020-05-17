@@ -1,0 +1,1259 @@
+# lovelace_gen
+
+type: custom:button-card
+aspect_ratio: {{ aspect_ratio|default('1/1') }}
+gridrow: {{grid_y|default('1/1')}}
+gridcol: {{grid_x|default('1/1')}}
+style: |
+  ha-card {
+    border-radius: 10px;
+  }
+show_icon: true
+show_name: true
+show_label: true
+show_state: false
+icon: mdi:security
+name: Adguard
+styles:
+  card:
+    - width: 352px
+    - height: 352px
+    - background-color: 
+    - color: '#9a9d9e'
+    - background-color: >
+        [[[
+          if (states['{{adguard_filtering}}'].state == "off")
+            return '#363c3e';
+          return "white";
+        ]]]
+  grid:
+    - grid-template-areas: '"i" "n" "l"'
+    - grid-template-columns: 1fr
+    - grid-template-rows: 1fr min-content min-content
+    - position: relative
+  name:
+    - justify-self: start
+    - font-size: 23px
+    - font-weight: 800
+    - margin: 0 0 0 15px
+    - font-family: Helvetica Neue,Arial,sans-serif
+    # - color: '#9a9d9e'
+  label:
+    - justify-self: start
+    - font-size: 23px
+    - margin: 0 0 10px 15px
+    - font-weight: 800
+    - font-family: Helvetica Neue,Arial,sans-serif
+    # - color: '#9a9d9e'
+  icon:
+    - position: absolute
+    - width: 30%
+    - top: 20%
+    - left: 10%
+    - height: auto
+    - color: '#9a9d9e'
+entity: {{adguard_filtering}}
+label: >
+        [[[
+          if (states['{{adguard_filtering}}'].state == "off")
+            return 'Off';
+          return 'On';
+        ]]]
+hold_action:
+  action: call-service
+  service: browser_mod.popup
+  service_data:
+    title: Popup example
+    card:
+      type: 'custom:vertical-stack-in-card'
+      cards:
+      - type: 'custom:vertical-stack-in-card'
+        title: AdGuard
+        cards:
+        - type: 'custom:vertical-stack-in-card'
+          cards:
+          - type: horizontal-stack
+            cards:
+            - type: custom:button-card
+              entity: {{adguard_filtering}}
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              entity: {{adguard_parental_control}}
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              entity: {{adguard_protection}}
+              aspect_ratio: 1/1
+          - type: horizontal-stack
+            cards:
+            - type: custom:button-card
+              entity: {{adguard_query_log}}
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              entity: {{adguard_safe_browsing}}
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              entity: {{adguard_safe_search}}
+              aspect_ratio: 1/1
+        - type: 'custom:mini-graph-card'
+          name: Queries hourly (last 24)
+          points_per_hour: 1
+          line_width: 1
+          animate: true
+          hours_to_show: 24
+          group_by: hour
+          show:
+            icon: true
+            state: true
+          entities:
+            - entity: sensor.adguard_dns_queries
+              color: grey
+              name: Queries
+            - entity: sensor.adguard_dns_queries_blocked
+              color: red
+              name: Blocked
+              show_legend: true
+
+    deviceID:
+      - this
+      - dashboard
+
+#########################################
+
+          # - image: /local/overlay.svg
+          #   style:
+          #     left: 27%
+          #     top: 54%
+          #     width: 3.5%
+          #   tap_action:
+          #     action: toggle
+          #   title: null
+          #   type: image
+          # - cards:
+          #     - type: picture-elements
+          #       image: /local/overlay.svg
+          #       style: |
+          #         ha-card {
+          #           {% set text_off = '#6a6d6e' %}
+          #           {% set text_on = '#e1e1e1' %}
+          #           {% set shadow_off = '1px 1px 1px rgba(0,0,0,0.05)' %}
+          #           {% set shadow_on = '1px 1px 5px rgba(18,22,23,0.9)' %}
+          #           {% set overlay_off = '0' %}
+          #           {% set overlay_on = '1.0' %}
+          #           {% set icon_off = '0.1' %}
+          #           {% set icon_on = '1.0' %}
+          #           --plexrecent-active-text: {{text_on}};
+          #           --plexrecent-active-shadow: {{shadow_on}};
+          #           --plexrecent-text-overlay: {{overlay_on}};
+          #           --plexrecent-icon-opacity: {{icon_on}};
+          #           --vardagsrum-active-text: {% if is_state('sensor.apple_tv_vardagsrum_status', 'Av') %}{{text_off}}{% else %}{{text_on}}{% endif %};
+          #           --vardagsrum-active-shadow: {% if is_state('sensor.apple_tv_vardagsrum_status', 'Av') %}{{shadow_off}}{% else %}{{shadow_on}}{% endif %};
+          #           --vardagsrum-text-overlay: {% if is_state('sensor.apple_tv_vardagsrum_status', 'Av') %}{{overlay_off}}{% else %}{{overlay_on}}{% endif %};
+          #           --vardagsrum-icon-opacity: {% if is_state('sensor.apple_tv_vardagsrum_status', 'Av') %}{{icon_off}}{% else %}{{icon_on}}{% endif %};
+          #           --sovrum-active-text: {% if is_state('sensor.apple_tv_sovrum_status', 'Av') %}{{text_off}}{% else %}{{text_on}}{% endif %};
+          #           --sovrum-active-shadow: {% if is_state('sensor.apple_tv_sovrum_status', 'Av') %}{{shadow_off}}{% else %}{{shadow_on}}{% endif %};
+          #           --sovrum-text-overlay: {% if is_state('sensor.apple_tv_sovrum_status', 'Av') %}{{overlay_off}}{% else %}{{overlay_on}}{% endif %};
+          #           --sovrum-icon-opacity: {% if is_state('sensor.apple_tv_sovrum_status', 'Av') %}{{icon_off}}{% else %}{{icon_on}}{% endif %};
+          #           --playstation-active-text: {% if is_state('media_player.playstation_4', 'standby') %}{{text_off}}{% else %}{{text_on}}{% endif %};
+          #           --playstation-active-shadow: {% if is_state('media_player.playstation_4', 'standby') %}{{shadow_off}}{% else %}{{shadow_on}}{% endif %};
+          #           --playstation-text-overlay: {% if is_state('media_player.playstation_4', 'standby') %}{{overlay_off}}{% else %}{{overlay_on}}{% endif %};
+          #           --playstation-icon-opacity: {% if is_state('media_player.playstation_4', 'standby') %}{{icon_off}}{% else %}{{icon_on}}{% endif %};
+          #           --googlenest-active-text: {% if is_state('media_player.google_nest_mini', 'off') %}{{text_off}}{% else %}{{text_on}}{% endif %};
+          #           --googlenest-active-shadow: {% if is_state('media_player.google_nest_mini', 'off') %}{{shadow_off}}{% else %}{{shadow_on}}{% endif %};
+          #           --googlenest-text-overlay: {% if is_state('media_player.google_nest_mini', 'off') %}{{overlay_off}}{% else %}{{overlay_on}}{% endif %};
+          #           --googlenest-icon-opacity: {% if is_state('media_player.google_nest_mini', 'off') %}{{icon_off}}{% else %}{{icon_on}}{% endif %};
+          #         }
+          #       elements:
+
+          #         #################################################################
+          #         #                                                               #
+          #         #                   RECENTLY DOWNLOADED PLEX                    #
+          #         #                                                               #
+          #         #################################################################
+
+          #         - conditions:
+          #             - entity: group.active_media_plex_recent
+          #               state: 'off'
+          #           elements:
+                      # - accent_color: none
+                      #   all_shadows: false
+                      #   border_color: none
+                      #   entity: sensor.plex_recently_added
+                      #   image_style: fanart
+                      #   flag: false
+                      #   line1_text: $empty
+                      #   line2_text: $empty
+                      #   line3_text: $empty
+                      #   line4_text: $empty
+                      #   max: 1
+                      #   title_text: $empty
+                      #   style:
+                      #     '--ha-card-background': none
+                      #     '--ha-card-box-shadow': none
+                      #     height: 1px
+                      #     left: -36%
+                      #     padding: 0
+                      #     top: -3%
+                      #     width: 360%
+                      #   type: 'custom:upcoming-media-card'
+          #             - image: /local/media_plex.svg
+          #               style:
+          #                 left: 13.3%
+          #                 top: 12.85%
+          #                 width: 15%
+          #                 shape-rendering: optimizeSpeed
+          #                 opacity: 'var(--plexrecent-icon-opacity)'
+          #               tap_action:
+          #                 action: none
+          #               hold_action:
+          #                 action: none
+          #               title: null
+          #               type: image
+          #             - image: /local/media_overlay_large.svg
+          #               style:
+          #                 left: 50%
+          #                 top: 50%
+          #                 width: 100%
+          #                 opacity: 'var(--plexrecent-text-overlay)'
+          #               tap_action:
+          #                 action: none
+          #               type: image
+          #             - entity: sensor.placeholder
+          #               hold_action:
+          #                 action: none
+          #               prefix: Senast Nedladdat
+          #               style:
+          #                 color: 'var(--plexrecent-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 letter-spacing: 0.031vw
+          #                 top: 84.8%
+          #                 text-shadow: 'var(--plexrecent-active-shadow)'
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - entity: sensor.plex_title_truncate
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 color: 'var(--plexrecent-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 top: 92.5%
+          #                 letter-spacing: 0.031vw
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #                 text-shadow: 'var(--plexrecent-active-shadow)'
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #           type: conditional
+          #         - conditions:
+          #             - entity: group.active_media_plex_recent
+          #               state_not: 'off'
+          #           elements:
+          #             - image: /local/media_background_large.svg
+          #               style:
+          #                 top: 50%
+          #                 left: 50%
+          #                 width: 100%
+          #                 z-index: -3
+          #               tap_action:
+          #                 action: none
+          #               hold_action:
+          #                 action: none
+          #               title: null
+          #               type: image
+          #           type: conditional
+
+          #         #################################################################
+          #         #                                                               #
+          #         #              MEDIA PLAYER // APPLE TV VARDAGSRUM              #
+          #         #                                                               #
+          #         #################################################################
+          #         - conditions:
+          #             - entity: input_boolean.active_media_appletv_var
+          #               state: 'on'
+          #           elements:
+          #             - artwork: full-cover-fit
+          #               entity: media_player.vardagsrum
+          #               hide:
+          #                 controls: true
+          #                 power: true
+          #                 volume: true
+          #                 icon: true
+          #                 name: true
+          #                 info: true
+          #                 progress: true
+          #               tap_action: none
+          #               style:
+          #                 '--ha-card-background': none
+          #                 '--ha-card-border-radius': 0.75vw
+          #                 '--ha-card-box-shadow': none
+          #                 height: 1px
+          #                 left: 50%
+          #                 padding: 0
+          #                 top: 0%
+          #                 width: 100%
+          #                 z-index: -2
+          #               type: 'custom:mini-media-player'
+          #             - image: /local/media_appletv1.svg
+          #               style:
+          #                 left: 13.3%
+          #                 top: 12.85%
+          #                 width: 15%
+          #                 shape-rendering: optimizeSpeed
+          #                 opacity: 'var(--vardagsrum-icon-opacity)'
+          #               tap_action:
+          #                 action: none
+          #               hold_action:
+          #                 action: none
+          #               title: null
+          #               type: image
+          #             - image: /local/media_overlay_large.svg
+          #               style:
+          #                 left: 50%
+          #                 top: 50%
+          #                 width: 100%
+          #                 opacity: 'var(--vardagsrum-text-overlay)'
+          #               tap_action:
+          #                 action: none
+          #               type: image
+          #             - entity: sensor.placeholder
+          #               hold_action:
+          #                 action: none
+          #               prefix: Apple Tv - Vardagsrum
+          #               style:
+          #                 color: 'var(--vardagsrum-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 letter-spacing: 0.031vw
+          #                 top: 84.8%
+          #                 text-shadow: 'var(--vardagsrum-active-shadow)'
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - entity: sensor.apple_tv_vardagsrum_title_truncate
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 color: 'var(--vardagsrum-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 top: 92.5%
+          #                 letter-spacing: 0.031vw
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #                 text-shadow: 'var(--vardagsrum-active-shadow)'
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - conditions:
+          #                 - entity: sensor.apple_tv_vardagsrum_status
+          #                   state_not: 'Av'
+          #               elements:
+          #                 - entity: switch.media_play_pause_vardagsrum
+          #                   hold_action:
+          #                     action: none
+          #                   state_image:
+          #                     'off': /local/mediaplay.gif
+          #                     'on': /local/mediapause.gif
+          #                   style:
+          #                     left: 50%
+          #                     top: 50%
+          #                     width: 20%
+          #                     filter: 'drop-shadow(0px 0px 10px #11151790)'
+          #                   tap_action:
+          #                     action: toggle
+          #                   title: null
+          #                   type: image
+          #               type: conditional
+          #           type: conditional
+
+          #         #################################################################
+          #         #                                                               #
+          #         #                MEDIA PLAYER // APPLE TV SOVRUM                #
+          #         #                                                               #
+          #         #################################################################
+
+          #         - conditions:
+          #             - entity: input_boolean.active_media_appletv_sov
+          #               state: 'on'
+          #           elements:
+          #             - artwork: full-cover-fit
+          #               entity: media_player.sovrum
+          #               hide:
+          #                 controls: true
+          #                 power: true
+          #                 volume: true
+          #                 icon: true
+          #                 name: true
+          #                 info: true
+          #                 progress: true
+          #               tap_action: none
+          #               style:
+          #                 '--ha-card-background': none
+          #                 '--ha-card-border-radius': 0.75vw
+          #                 '--ha-card-box-shadow': none
+          #                 height: 1px
+          #                 left: 50%
+          #                 padding: 0
+          #                 top: 0%
+          #                 width: 100%
+          #                 z-index: -2
+          #               type: 'custom:mini-media-player'
+          #             - image: /local/media_appletv1.svg
+          #               style:
+          #                 left: 13.3%
+          #                 top: 12.85%
+          #                 width: 15%
+          #                 shape-rendering: optimizeSpeed
+          #                 opacity: 'var(--sovrum-icon-opacity)'
+          #               tap_action:
+          #                 action: none
+          #               hold_action:
+          #                 action: none
+          #               title: null
+          #               type: image
+          #             - image: /local/media_overlay_large.svg
+          #               style:
+          #                 left: 50%
+          #                 top: 50%
+          #                 width: 100%
+          #                 opacity: 'var(--sovrum-text-overlay)'
+          #               tap_action:
+          #                 action: none
+          #               type: image
+          #             - entity: sensor.placeholder
+          #               hold_action:
+          #                 action: none
+          #               prefix: Apple Tv - Sovrum
+          #               style:
+          #                 color: 'var(--sovrum-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 letter-spacing: 0.031vw
+          #                 top: 84.8%
+          #                 text-shadow: 'var(--sovrum-active-shadow)'
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - entity: sensor.apple_tv_sovrum_title_truncate
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 color: 'var(--sovrum-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 top: 92.5%
+          #                 letter-spacing: 0.031vw
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #                 text-shadow: 'var(--sovrum-active-shadow)'
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - conditions:
+          #                 - entity: sensor.apple_tv_sovrum_status
+          #                   state_not: 'Av'
+          #               elements:
+          #                 - entity: switch.media_play_pause_sovrum
+          #                   hold_action:
+          #                     action: none
+          #                   state_image:
+          #                     'off': /local/mediaplay.gif
+          #                     'on': /local/mediapause.gif
+          #                   style:
+          #                     left: 50%
+          #                     top: 50%
+          #                     width: 20%
+          #                     filter: 'drop-shadow(0px 0px 10px #11151790)'
+          #                   tap_action:
+          #                     action: toggle
+          #                   title: null
+          #                   type: image
+          #               type: conditional
+          #           type: conditional
+
+          #         #################################################################
+          #         #                                                               #
+          #         #                 MEDIA PLAYER // PLAYSTATION 4                 #
+          #         #                                                               #
+          #         #################################################################
+
+          #         - conditions:
+          #             - entity: input_boolean.active_media_playstation
+          #               state: 'on'
+          #           elements:
+          #             - artwork: full-cover-fit
+          #               entity: media_player.playstation_4
+          #               hide:
+          #                 controls: true
+          #                 power: true
+          #                 volume: true
+          #                 icon: true
+          #                 name: true
+          #                 info: true
+          #                 progress: true
+          #                 source: true
+          #               tap_action: none
+          #               style:
+          #                 '--ha-card-background': none
+          #                 '--ha-card-border-radius': 0.75vw
+          #                 '--ha-card-box-shadow': none
+          #                 height: 1px
+          #                 left: 50%
+          #                 padding: 0
+          #                 top: 0%
+          #                 width: 100%
+          #                 z-index: -2
+          #               type: 'custom:mini-media-player'
+          #             - image: /local/media_playstation.svg
+          #               style:
+          #                 left: 13.3%
+          #                 top: 12.85%
+          #                 width: 15%
+          #                 shape-rendering: optimizeSpeed
+          #                 opacity: 'var(--playstation-icon-opacity)'
+          #               tap_action:
+          #                 action: none
+          #               hold_action:
+          #                 action: none
+          #               title: null
+          #               type: image
+          #             - image: /local/media_overlay_large.svg
+          #               style:
+          #                 left: 50%
+          #                 top: 50%
+          #                 width: 100%
+          #                 opacity: 'var(--playstation-text-overlay)'
+          #               tap_action:
+          #                 action: none
+          #               type: image
+          #             - entity: sensor.placeholder
+          #               hold_action:
+          #                 action: none
+          #               prefix: Playstation 4
+          #               style:
+          #                 color: 'var(--playstation-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 letter-spacing: 0.031vw
+          #                 top: 84.8%
+          #                 text-shadow: 'var(--playstation-active-shadow)'
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - entity: sensor.playstation_title_truncate
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 color: 'var(--playstation-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 top: 92.5%
+          #                 letter-spacing: 0.031vw
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #                 text-shadow: 'var(--playstation-active-shadow)'
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - conditions:
+          #                 - entity: media_player.playstation_4
+          #                   state_not: 'standby'
+          #               elements:
+          #                 - entity: switch.media_play_pause_playstation_4
+          #                   hold_action:
+          #                     action: none
+          #                   state_image:
+          #                     'off': /local/mediaplay.gif
+          #                     'on': /local/mediapause.gif
+          #                   style:
+          #                     left: 50%
+          #                     top: 50%
+          #                     width: 20%
+          #                     filter: 'drop-shadow(0px 0px 10px #11151790)'
+          #                   tap_action:
+          #                     action: toggle
+          #                   title: null
+          #                   type: image
+          #               type: conditional
+          #           type: conditional
+
+          #         #################################################################
+          #         #                                                               #
+          #         #               MEDIA PLAYER // GOOGLE NEST MINI                #
+          #         #                                                               #
+          #         #################################################################
+
+          #         - conditions:
+          #             - entity: input_boolean.active_media_google_nest
+          #               state: 'on'
+          #           elements:
+          #             - artwork: full-cover-fit
+          #               entity: media_player.google_nest_mini
+          #               hide:
+          #                 controls: true
+          #                 power: true
+          #                 volume: true
+          #                 icon: true
+          #                 name: true
+          #                 info: true
+          #                 progress: true
+          #               tap_action: none
+          #               style:
+          #                 '--ha-card-background': none
+          #                 '--ha-card-border-radius': 0.75vw
+          #                 '--ha-card-box-shadow': none
+          #                 height: 1px
+          #                 left: 50%
+          #                 padding: 0
+          #                 top: 0%
+          #                 width: 100%
+          #                 z-index: -2
+          #               type: 'custom:mini-media-player'
+          #             - image: /local/media_googlenest.svg
+          #               style:
+          #                 left: 13.3%
+          #                 top: 12.85%
+          #                 width: 15%
+          #                 shape-rendering: optimizeSpeed
+          #                 opacity: 'var(--googlenest-icon-opacity)'
+          #               tap_action:
+          #                 action: none
+          #               hold_action:
+          #                 action: none
+          #               title: null
+          #               type: image
+          #             - image: /local/media_overlay_large.svg
+          #               style:
+          #                 left: 50%
+          #                 top: 50%
+          #                 width: 100%
+          #                 opacity: 'var(--googlenest-text-overlay)'
+          #               tap_action:
+          #                 action: none
+          #               type: image
+          #             - entity: sensor.placeholder
+          #               hold_action:
+          #                 action: none
+          #               prefix: Google Nest Mini
+          #               style:
+          #                 color: 'var(--googlenest-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 letter-spacing: 0.031vw
+          #                 top: 84.8%
+          #                 text-shadow: 'var(--googlenest-active-shadow)'
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - entity: sensor.google_nest_mini_title_truncate
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 color: 'var(--googlenest-active-text)'
+          #                 font-family: Roboto
+          #                 font-size: 1.29vw
+          #                 font-weight: 400
+          #                 left: 2%
+          #                 max-width: 1px
+          #                 top: 92.5%
+          #                 letter-spacing: 0.031vw
+          #                 text-rendering: optimizeLegibility
+          #                 font-smoothing: none
+          #                 pointer-events: none
+          #                 text-shadow: 'var(--googlenest-active-shadow)'
+          #               tap_action:
+          #                 action: none
+          #               type: state-label
+          #             - conditions:
+          #                 - entity: media_player.google_nest_mini
+          #                   state_not: 'off'
+          #               elements:
+          #                 - entity: switch.media_play_pause_google_nest_mini
+          #                   hold_action:
+          #                     action: none
+          #                   state_image:
+          #                     'off': /local/mediaplay.gif
+          #                     'on': /local/mediapause.gif
+          #                   style:
+          #                     left: 50%
+          #                     top: 50%
+          #                     width: 20%
+          #                     filter: 'drop-shadow(0px 0px 10px #11151790)'
+          #                   tap_action:
+          #                     action: toggle
+          #                   title: null
+          #                   type: image
+          #               type: conditional
+          #           type: conditional
+
+          # #################################################################
+          # #                                                               #
+          # #                      SMALL MEDIA CONTROLS                     #
+          # #                                                               #
+          # #################################################################
+
+          #     - type: picture-elements
+          #       image: /local/overlay.svg
+          #       style: |
+          #         ha-card {
+          #           {% set text_off = '#6a6d6e' %}
+          #           {% set text_on = '#e1e1e1' %}
+          #           {% set shadow_off = '1px 1px 1px rgba(0,0,0,0.05)' %}
+          #           {% set shadow_on = '1px 1px 5px rgba(18,22,23,0.9)' %}
+          #           {% set overlay_off = '0' %}
+          #           {% set overlay_on = '1.0' %}
+          #           {% set icon_off = '0.1' %}
+          #           {% set icon_on = '1.0' %}
+          #           --vardagsrum-active-text: {% if is_state('sensor.apple_tv_vardagsrum_status', 'Av') %}{{text_off}}{% else %}{{text_on}}{% endif %};
+          #           --vardagsrum-active-shadow: {% if is_state('sensor.apple_tv_vardagsrum_status', 'Av') %}{{shadow_off}}{% else %}{{shadow_on}}{% endif %};
+          #           --vardagsrum-text-overlay: {% if is_state('sensor.apple_tv_vardagsrum_status', 'Av') %}{{overlay_off}}{% else %}{{overlay_on}}{% endif %};
+          #           --vardagsrum-icon-opacity: {% if is_state('sensor.apple_tv_vardagsrum_status', 'Av') %}{{icon_off}}{% else %}{{icon_on}}{% endif %};
+          #           --sovrum-active-text: {% if is_state('sensor.apple_tv_sovrum_status', 'Av') %}{{text_off}}{% else %}{{text_on}}{% endif %};
+          #           --sovrum-active-shadow: {% if is_state('sensor.apple_tv_sovrum_status', 'Av') %}{{shadow_off}}{% else %}{{shadow_on}}{% endif %};
+          #           --sovrum-text-overlay: {% if is_state('sensor.apple_tv_sovrum_status', 'Av') %}{{overlay_off}}{% else %}{{overlay_on}}{% endif %};
+          #           --sovrum-icon-opacity: {% if is_state('sensor.apple_tv_sovrum_status', 'Av') %}{{icon_off}}{% else %}{{icon_on}}{% endif %};
+          #           --playstation-active-text: {% if is_state('media_player.playstation_4', 'standby') %}{{text_off}}{% else %}{{text_on}}{% endif %};
+          #           --playstation-active-shadow: {% if is_state('media_player.playstation_4', 'standby') %}{{shadow_off}}{% else %}{{shadow_on}}{% endif %};
+          #           --playstation-text-overlay: {% if is_state('media_player.playstation_4', 'standby') %}{{overlay_off}}{% else %}{{overlay_on}}{% endif %};
+          #           --playstation-icon-opacity: {% if is_state('media_player.playstation_4', 'standby') %}{{icon_off}}{% else %}{{icon_on}}{% endif %};
+          #           --googlenest-active-text: {% if is_state('media_player.google_nest_mini', 'off') %}{{text_off}}{% else %}{{text_on}}{% endif %};
+          #           --googlenest-active-shadow: {% if is_state('media_player.google_nest_mini', 'off') %}{{shadow_off}}{% else %}{{shadow_on}}{% endif %};
+          #           --googlenest-text-overlay: {% if is_state('media_player.google_nest_mini', 'off') %}{{overlay_off}}{% else %}{{overlay_on}}{% endif %};
+          #           --googlenest-icon-opacity: {% if is_state('media_player.google_nest_mini', 'off') %}{{icon_off}}{% else %}{{icon_on}}{% endif %};
+          #         }
+          #       elements:
+          #         - image: /local/media_background_s.svg
+          #           style:
+          #             top: 50%
+          #             left: 50%
+          #             width: 100%
+          #             z-index: -3
+          #           tap_action:
+          #             action: none
+          #           hold_action:
+          #             action: none
+          #           title: null
+          #           type: image
+
+          # #################################################################
+          # #                                                               #
+          # #                   SMALL APPLE TV VARDAGSRUM                   #
+          # #                                                               #
+          # #################################################################
+
+          #         - image: /local/media_appletv1.svg
+          #           style:
+          #             left: 11%
+          #             top: 11%
+          #             width: 12.5%
+          #             shape-rendering: optimizeSpeed
+          #             opacity: 'var(--vardagsrum-icon-opacity)'
+          #             z-index: -2
+          #           tap_action:
+          #             action: none
+          #           hold_action:
+          #             action: none
+          #           title: null
+          #           type: image
+          #         - artwork: full-cover-fit
+          #           entity: media_player.vardagsrum
+          #           hide:
+          #             controls: true
+          #             power: true
+          #             volume: true
+          #             icon: true
+          #             name: true
+          #             info: true
+          #             progress: true
+          #           tap_action: none
+          #           style:
+          #             '--ha-card-background': none
+          #             '--ha-card-border-radius': 0.75vw
+          #             '--ha-card-box-shadow': none
+          #             height: 1px
+          #             left: 23.85%
+          #             padding: 0
+          #             top: 0%
+          #             width: 47.4%
+          #             z-index: -1
+          #           type: 'custom:mini-media-player'
+          #         - image: /local/media_overlay_small.svg
+          #           hold_action:
+          #             action: none
+          #           style:
+          #             left: 23.7%
+          #             top: 23.7%
+          #             width: 100%
+          #             opacity: 'var(--vardagsrum-text-overlay)'
+          #           tap_action:
+          #             action: none
+          #           type: image
+          #         - entity: sensor.placeholder
+          #           hold_action:
+          #             action: none
+          #           prefix: Vardagsrum
+          #           style:
+          #             color: 'var(--vardagsrum-active-text)'
+          #             font-family: Roboto
+          #             font-size: 1.29vw
+          #             font-weight: 400
+          #             left: 2%
+          #             max-width: 1px
+          #             top: 31.95%
+          #             letter-spacing: 0.031vw
+          #             text-shadow: 'var(--vardagsrum-active-shadow)'
+          #             text-rendering: optimizeLegibility
+          #             font-smoothing: none
+          #             pointer-events: none
+          #           tap_action:
+          #             action: none
+          #           type: state-label
+          #         - entity: sensor.apple_tv_vardagsrum_status
+          #           hold_action:
+          #             action: none
+          #           style:
+          #             color: 'var(--vardagsrum-active-text)'
+          #             font-family: Roboto
+          #             font-size: 1.29vw
+          #             font-weight: 400
+          #             left: 2%
+          #             max-width: 1px
+          #             top: 39.8%
+          #             letter-spacing: 0.031vw
+          #             text-shadow: 'var(--vardagsrum-active-shadow)'
+          #             text-rendering: optimizeLegibility
+          #             font-smoothing: none
+          #             pointer-events: none
+          #           tap_action:
+          #             action: none
+          #           type: state-label
+
+          # #################################################################
+          # #                                                               #
+          # #                     SMALL APPLE TV SOVRUM                     #
+          # #                                                               #
+          # #################################################################
+
+          #         - image: /local/media_appletv1.svg
+          #           style:
+          #             left: 63%
+          #             top: 11%
+          #             width: 12.5%
+          #             shape-rendering: optimizeSpeed
+          #             opacity: 'var(--sovrum-icon-opacity)'
+          #             z-index: -2
+          #           tap_action:
+          #             action: none
+          #           hold_action:
+          #             action: none
+          #           title: null
+          #           type: image
+          #         - artwork: full-cover-fit
+          #           entity: media_player.sovrum
+          #           hide:
+          #             controls: true
+          #             power: true
+          #             volume: true
+          #             icon: true
+          #             name: true
+          #             info: true
+          #             progress: true
+          #           tap_action: none
+          #           style:
+          #             '--ha-card-background': none
+          #             '--ha-card-border-radius': 0.75vw
+          #             '--ha-card-box-shadow': none
+          #             height: 1px
+          #             left: 76.3%
+          #             padding: 0
+          #             top: 0%
+          #             width: 47.4%
+          #             z-index: -1
+          #           type: 'custom:mini-media-player'
+          #         - image: /local/media_overlay_small.svg
+          #           hold_action:
+          #             action: none
+          #           style:
+          #             left: 76.2%
+          #             top: 23.7%
+          #             width: 100%
+          #             opacity: 'var(--sovrum-text-overlay)'
+          #           tap_action:
+          #             action: none
+          #           type: image
+          #         - entity: sensor.placeholder
+          #           hold_action:
+          #             action: none
+          #           prefix: Sovrum
+          #           style:
+          #             color: 'var(--sovrum-active-text)'
+          #             font-family: Roboto
+          #             font-size: 1.29vw
+          #             font-weight: 400
+          #             left: 54.5%
+          #             max-width: 1px
+          #             top: 31.95%
+          #             letter-spacing: 0.031vw
+          #             text-shadow: 'var(--sovrum-active-shadow)'
+          #             text-rendering: optimizeLegibility
+          #             font-smoothing: none
+          #             pointer-events: none
+          #           tap_action:
+          #             action: none
+          #           type: state-label
+          #         - entity: sensor.apple_tv_sovrum_status
+          #           hold_action:
+          #             action: none
+          #           style:
+          #             color: 'var(--sovrum-active-text)'
+          #             font-family: Roboto
+          #             font-size: 1.29vw
+          #             font-weight: 400
+          #             left: 54.5%
+          #             max-width: 1px
+          #             top: 39.8%
+          #             letter-spacing: 0.031vw
+          #             text-shadow: 'var(--sovrum-active-shadow)'
+          #             text-rendering: optimizeLegibility
+          #             font-smoothing: none
+          #             pointer-events: none
+          #           tap_action:
+          #             action: none
+          #           type: state-label
+
+          # #################################################################
+          # #                                                               #
+          # #                     SMALL PLAYSTATION 4                       #
+          # #                                                               #
+          # #################################################################
+
+          #         - image: /local/media_playstation.svg
+          #           style:
+          #             left: 11%
+          #             top: 64%
+          #             width: 12.5%
+          #             shape-rendering: optimizeSpeed
+          #             opacity: 'var(--playstation-icon-opacity)'
+          #             z-index: -2
+          #           tap_action:
+          #             action: none
+          #           hold_action:
+          #             action: none
+          #           title: null
+          #           type: image
+          #         - artwork: full-cover-fit
+          #           entity: media_player.playstation_4
+          #           hide:
+          #             controls: true
+          #             power: true
+          #             volume: true
+          #             icon: true
+          #             name: true
+          #             info: true
+          #             source: true
+          #             progress: true
+          #           tap_action: none
+          #           style:
+          #             '--ha-card-background': none
+          #             '--ha-card-border-radius': 0.75vw
+          #             '--ha-card-box-shadow': none
+          #             height: 1px
+          #             left: 23.85%
+          #             padding: 0
+          #             top: 52.8%
+          #             width: 47.4%
+          #             z-index: -1
+          #           type: 'custom:mini-media-player'
+          #         - image: /local/media_overlay_small.svg
+          #           hold_action:
+          #             action: none
+          #           style:
+          #             left: 23.7%
+          #             top: 76.5%
+          #             width: 100%
+          #             opacity: 'var(--playstation-text-overlay)'
+          #           tap_action:
+          #             action: none
+          #           type: image
+          #         - entity: sensor.placeholder
+          #           hold_action:
+          #             action: none
+          #           prefix: Playstation
+          #           style:
+          #             color: 'var(--playstation-active-text)'
+          #             font-family: Roboto
+          #             font-size: 1.29vw
+          #             font-weight: 400
+          #             left: 2%
+          #             max-width: 1px
+          #             top: 84.8%
+          #             letter-spacing: 0.031vw
+          #             text-shadow: 'var(--playstation-active-shadow)'
+          #             text-rendering: optimizeLegibility
+          #             font-smoothing: none
+          #             pointer-events: none
+          #           tap_action:
+          #             action: none
+          #           type: state-label
+          #         - entity: sensor.playstation_status
+          #           hold_action:
+          #             action: none
+          #           style:
+          #             color: 'var(--playstation-active-text)'
+          #             font-family: Roboto
+          #             font-size: 1.29vw
+          #             font-weight: 400
+          #             left: 2%
+          #             max-width: 1px
+          #             top: 92.5%
+          #             letter-spacing: 0.031vw
+          #             text-shadow: 'var(--playstation-active-shadow)'
+          #             text-rendering: optimizeLegibility
+          #             font-smoothing: none
+          #             pointer-events: none
+          #           tap_action:
+          #             action: none
+          #           type: state-label
+
+          # #################################################################
+          # #                                                               #
+          # #                     SMALL GOOGLE NEST MINI                    #
+          # #                                                               #
+          # #################################################################
+
+          #         - image: /local/media_googlenest.svg
+          #           style:
+          #             left: 63%
+          #             top: 64%
+          #             width: 12.5%
+          #             shape-rendering: optimizeSpeed
+          #             opacity: 'var(--googlenest-icon-opacity)'
+          #             z-index: -2
+          #           tap_action:
+          #             action: none
+          #           hold_action:
+          #             action: none
+          #           title: null
+          #           type: image
+          #         - artwork: full-cover-fit
+          #           entity: media_player.google_nest_mini
+          #           hide:
+          #             controls: true
+          #             power: true
+          #             volume: true
+          #             icon: true
+          #             name: true
+          #             info: true
+          #             progress: true
+          #           tap_action: none
+          #           style:
+          #             '--ha-card-background': none
+          #             '--ha-card-border-radius': 0.75vw
+          #             '--ha-card-box-shadow': none
+          #             height: 1px
+          #             left: 76.3%
+          #             padding: 0
+          #             top: 52.8%
+          #             width: 47.4%
+          #             z-index: -1
+          #           type: 'custom:mini-media-player'
+          #         - image: /local/media_overlay_small.svg
+          #           hold_action:
+          #             action: none
+          #           style:
+          #             left: 76.2%
+          #             top: 76.5%
+          #             width: 100%
+          #             opacity: 'var(--googlenest-text-overlay)'
+          #           tap_action:
+          #             action: none
+          #           type: image
+          #         - entity: sensor.placeholder
+          #           hold_action:
+          #             action: none
+          #           prefix: Google Nest
+          #           style:
+          #             color: 'var(--googlenest-active-text)'
+          #             font-family: Roboto
+          #             font-size: 1.29vw
+          #             font-weight: 400
+          #             left: 54.5%
+          #             max-width: 1px
+          #             top: 84.8%
+          #             letter-spacing: 0.031vw
+          #             text-shadow: 'var(--googlenest-active-shadow)'
+          #             text-rendering: optimizeLegibility
+          #             font-smoothing: none
+          #             pointer-events: none
+          #           tap_action:
+          #             action: none
+          #           type: state-label
+          #         - entity: sensor.google_nest_mini_status
+          #           hold_action:
+          #             action: none
+          #           style:
+          #             color: 'var(--googlenest-active-text)'
+          #             font-family: Roboto
+          #             font-size: 1.29vw
+          #             font-weight: 400
+          #             left: 54.5%
+          #             max-width: 1px
+          #             top: 92.5%
+          #             letter-spacing: 0.031vw
+          #             text-shadow: 'var(--googlenest-active-shadow)'
+          #             text-rendering: optimizeLegibility
+          #             font-smoothing: none
+          #             pointer-events: none
+          #           tap_action:
+          #             action: none
+          #           type: state-label
+          #         - conditions:
+          #             - entity: sensor.apple_tv_vardagsrum_status
+          #               state_not: 'Av'
+          #           elements:
+          #             - image: /local/overlay.svg
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 left: 23.7%
+          #                 top: 23.8%
+          #                 width: 47.5%
+          #               tap_action:
+          #                 action: call-service
+          #                 service: media_player.media_play_pause
+          #                 service_data:
+          #                   entity_id: media_player.vardagsrum
+          #               title: null
+          #               type: image
+          #           type: conditional
+          #         - conditions:
+          #             - entity: sensor.apple_tv_sovrum_status
+          #               state_not: 'Av'
+          #           elements:
+          #             - image: /local/overlay.svg
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 left: 76.3%
+          #                 top: 23.8%
+          #                 width: 47.5%
+          #               tap_action:
+          #                 action: call-service
+          #                 service: media_player.media_play_pause
+          #                 service_data:
+          #                   entity_id: media_player.sovrum
+          #               title: null
+          #               type: image
+          #           type: conditional
+          #         - conditions:
+          #             - entity: media_player.playstation_4
+          #               state_not: 'standby'
+          #           elements:
+          #             - image: /local/overlay.svg
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 left: 23.7%
+          #                 top: 76.5%
+          #                 width: 47.5%
+          #               tap_action:
+          #                 action: call-service
+          #                 service: script.turn_on
+          #                 service_data:
+          #                   entity_id: script.media_ps4_ps_button
+          #               title: null
+          #               type: image
+          #           type: conditional
+          #         - conditions:
+          #             - entity: media_player.google_nest_mini
+          #               state_not: 'off'
+          #           elements:
+          #             - image: /local/overlay.svg
+          #               hold_action:
+          #                 action: none
+          #               style:
+          #                 left: 76.2%
+          #                 top: 76.5%
+          #                 width: 47.5%
+          #               tap_action:
+          #                 action: call-service
+          #                 service: media_player.media_play_pause
+          #                 service_data:
+          #                   entity_id: media_player.google_nest_mini
+          #               title: null
+          #               type: image
+          #           type: conditional
+
+          #   start_card: 1
+          #   parameters:
+          #     effect: 'coverflow'
+          #     speed: 450
+          #     spaceBetween: 10
+          #     threshold: 30
+          #     coverflowEffect:
+          #       rotate: 70
+          #       stretch: 0
+          #       depth: 300
+          #       modifier: 1
+          #       slideShadows : true
+          #   style:
+          #     '--ha-card-background': none
+          #     '--ha-card-border-radius': 0.75vw
+          #     '--ha-card-box-shadow': none
+          #     height: 1px
+          #     left: 35.8%
+          #     padding: 0
+          #     top: 56.6%
+          #     width: 20.95%
+          #     text-rendering: optimizeLegibility
+          #     font-smoothing: none
+          #   type: 'custom:swipe-card'

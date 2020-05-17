@@ -1,0 +1,50 @@
+# lovelace_gen
+---
+###########
+# Kitchen #
+###########
+- title: Kitchen
+  icon: mdi:fridge-outline
+  id: Kitchen
+  theme: midnight
+  cards:
+    # - type: custom:thermostat-card
+    - type: custom:thermostat-card
+      entity: climate.kitchen
+      hvac:
+        states:
+          'off': 'off'
+          'heating': 'heat'
+          'idle': 'auto'
+        attribute: hvac_action
+
+    - type: media-control
+      entity: media_player.kitchen_sonos
+      
+    - type: entities
+      entities:
+        - entity: input_select.sonosplaylist
+          name: Sonos Playlist
+    - type: entities
+      entities:
+        - entity: sensor.kitchen_heating
+        - entity: sensor.kitchen_link
+        - entity: sensor.kitchen_overlay
+        - entity: sensor.kitchen_power
+        - entity: sensor.kitchen_tado_mode
+        - entity: sensor.kitchen_humidity
+        - entity: sensor.kitchen_mold
+        - entity: sensor.kitchen_open_window
+        - entity: sensor.kitchen_early_start
+
+    - type: entities
+      entities:
+        - entity: sensor.kitchen_dot_next_alarm
+        - entity: sensor.kitchen_dot_next_reminder
+        - entity: sensor.kitchen_dot_next_timer
+
+    - type: media-control
+      entity: media_player.kitchen_dot
+    - type: entities
+      entities:
+        - entity: binary_sensor.kitchen_open_window

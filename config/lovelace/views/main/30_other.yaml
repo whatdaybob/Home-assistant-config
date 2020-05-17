@@ -1,0 +1,305 @@
+# lovelace_gen
+---
+###############
+# Automations #
+###############
+- title: bugs
+  icon: mdi:bug
+  theme: midnight
+  cards:
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## Things that are probably broken"
+        - type: custom:auto-entities
+          card:
+            type: entities
+            # title: Things that are probably broken
+          filter:
+            include:
+              - state: "unknown"
+            exclude:
+              - domain: "group"
+          show_empty: false
+          unique: false
+
+    - type: entities
+      show_header_toggle: false
+      title: Automations
+      entities:
+
+          ### Logs
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Logs"
+        - automation.logs_critical_counter
+        - automation.logs_error_counter
+        - automation.logs_warning_counter
+        - automation.logs_counters_reset_on_start
+
+          ### Presence
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Presence"
+        - automation.kay_away_homeassistant_start
+        - automation.bob_away_homeassistant_start
+        - automation.bob_zone_entered
+          ### Misc
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Misc"
+        - automation.logger_setdefault_component
+        - automation.logger_setdefaultlevel
+        - automation.python_script_date_countdown
+
+    - type: entities
+      title: Ignored Sensors
+      entities:
+        - sensor.time
+        - sensor.outdoor_moon
+        - sensor.date
+        - sun.sun
+        - binary_sensor.iss
+        - binary_sensor.workday_sensor
+
+    - type: entities
+      show_header_toggle: false
+      title: Desktop
+      entities:
+          ### IOTLINK
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### IOTLINK"
+        - automation.iotlink_startup
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### binary_sensor"
+        - binary_sensor.office_pc_connected
+          ### Presence
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Camera"
+        - camera.office_pc_screen_0
+        - camera.office_pc_screen_1
+          ### Misc
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Sensors"
+        - sensor.office_pc_boot_time
+        - sensor.office_pc_cpu_usage
+        - sensor.office_pc_current_user
+        - sensor.office_pc_hdd_format_c
+        - sensor.office_pc_hdd_format_d
+        - sensor.office_pc_hdd_free_space_c
+        - sensor.office_pc_hdd_free_space_d
+        - sensor.office_pc_hdd_label_c
+        - sensor.office_pc_hdd_label_d
+        - sensor.office_pc_hdd_total_free_space_c
+        - sensor.office_pc_hdd_total_free_space_d
+        - sensor.office_pc_hdd_total_size_c
+        - sensor.office_pc_hdd_total_size_d
+        - sensor.office_pc_hdd_usage_c
+        - sensor.office_pc_hdd_usage_d
+        - sensor.office_pc_hdd_used_space_c
+        - sensor.office_pc_hdd_used_space_d
+        - sensor.office_pc_idle_time
+        - sensor.office_pc_ram_available
+        - sensor.office_pc_ram_total
+        - sensor.office_pc_ram_usage
+        - sensor.office_pc_ram_used
+        - sensor.office_pc_uptime
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Scripts"
+        - script.office_pc_displays_off
+        - script.office_pc_displays_on
+        - script.office_pc_hibernate
+        - script.office_pc_lock
+        - script.office_pc_logoff
+        - script.office_pc_notify
+        - script.office_pc_reboot
+        - script.office_pc_refresh
+        - script.office_pc_shutdown
+        - script.office_pc_suspend
+        - script.office_pc_vol_max
+        - script.office_pc_vol_mute
+        - script.office_pc_wake
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Switch"
+        - switch.office_pc
+
+
+    - type: entities
+      show_header_toggle: false
+      title: Alexas
+      entities:
+        - media_player.everywhere
+        - media_player.master_bedroom_dot
+        - media_player.hallway_echo
+        - media_player.kitchen_dot
+        - media_player.office_dot
+        - switch.master_bedroom_dot_do_not_disturb_switch
+        - switch.master_bedroom_dot_repeat_switch
+        - switch.master_bedroom_dot_shuffle_switch
+        - switch.everywhere_do_not_disturb_switch
+        - switch.everywhere_repeat_switch
+        - switch.everywhere_shuffle_switch
+        - switch.hallway_echo_do_not_disturb_switch
+        - switch.hallway_echo_repeat_switch
+        - switch.hallway_echo_shuffle_switch
+        - switch.kitchen_dot_do_not_disturb_switch
+        - switch.kitchen_dot_repeat_switch
+        - switch.kitchen_dot_shuffle_switch
+        - switch.office_dot_do_not_disturb_switch
+        - switch.office_dot_repeat_switch
+        - switch.office_dot_shuffle_switch
+    - type: custom:vertical-stack-in-card
+      cards:
+      - type: 'custom:button-card'
+        entity: sensor.youtube_direwolf20
+        show_name: true
+        show_state: true
+        aspect_ratio: 1.7
+        show_entity_picture: true
+        show_icon: false
+        styles:
+          grid:
+            - grid-template-areas: '"i i" "n n" "s s"'
+            - grid-template-columns: 30% 70%
+            - grid-template-rows: 1fr
+          card:
+            - margin: 0
+            - padding: 0
+          img_cell:
+            - justify-content: start
+            - align-items: center
+            - background: black
+          icon:
+            - width: 100%
+            - height: auto
+          name:
+            - padding: 5px
+          state:
+            - padding: 5px
+
+        tap_action:
+          action: url
+          url_path: '[[[ return entity.attributes.url ]]]'
+          haptic: light
+        hold_action:
+          action: more-info
+          haptic: success
+
+      - type: 'custom:button-card'
+        entity: sensor.youtube_letsplay
+        show_name: true
+        show_state: true
+        aspect_ratio: 1.7
+        show_entity_picture: true
+        show_icon: false
+        styles:
+          grid:
+            - grid-template-areas: '"i i" "n n" "s s"'
+            - grid-template-columns: 30% 70%
+            - grid-template-rows: 1fr
+          card:
+            - margin: 0
+            - padding: 0
+          img_cell:
+            - justify-content: start
+            - align-items: center
+            - background: black
+          icon:
+            - width: 100%
+            - height: auto
+          name:
+            - padding: 5px
+          state:
+            - padding: 5px
+
+        tap_action:
+          action: url
+          url_path: '[[[ return entity.attributes.url ]]]'
+          haptic: light
+        hold_action:
+          action: more-info
+          haptic: success
+
+      - type: 'custom:button-card'
+        entity: sensor.youtube_funhaus
+        show_name: true
+        show_state: true
+        aspect_ratio: 1.7
+        show_entity_picture: true
+        show_icon: false
+        styles:
+          grid:
+            - grid-template-areas: '"i i" "n n" "s s"'
+            - grid-template-columns: 30% 70%
+            - grid-template-rows: 1fr
+          card:
+            - margin: 0
+            - padding: 0
+          img_cell:
+            - justify-content: start
+            - align-items: center
+            - background: black
+          icon:
+            - width: 100%
+            - height: auto
+          name:
+            - padding: 5px
+          state:
+            - padding: 5px
+
+        tap_action:
+          action: url
+          url_path: '[[[ return entity.attributes.url ]]]'
+          haptic: light
+        hold_action:
+          action: more-info
+          haptic: success
+      - type: 'custom:button-card'
+        entity: sensor.youtube_inside_gaming
+        show_name: true
+        show_state: true
+        aspect_ratio: 1.7
+        show_entity_picture: true
+        show_icon: false
+        styles:
+          grid:
+            - grid-template-areas: '"i i" "n n" "s s"'
+            - grid-template-columns: 30% 70%
+            - grid-template-rows: 1fr
+          card:
+            - margin: 0
+            - padding: 0
+          img_cell:
+            - justify-content: start
+            - align-items: center
+            - background: black
+          icon:
+            - width: 100%
+            - height: auto
+          name:
+            - padding: 5px
+          state:
+            - padding: 5px
+
+        tap_action:
+          action: url
+          url_path: '[[[ return entity.attributes.url ]]]'
+          haptic: light
+        hold_action:
+          action: more-info
+          haptic: success

@@ -1,0 +1,119 @@
+# lovelace_gen
+
+type: custom:button-card
+aspect_ratio: {{ aspect_ratio|default('1/1') }}
+gridrow: {{grid_y|default('1/1')}}
+gridcol: {{grid_x|default('1/1')}}
+style: |
+  ha-card {
+    border-radius: 10px;
+  }
+show_icon: true
+show_name: true
+show_label: true
+show_state: false
+icon: mdi:security
+name: Adguard
+styles:
+  card:
+    - width: 172px
+    - height: 172px
+    - background-color: 
+    - color: '#9a9d9e'
+    - background-color: >
+        [[[
+          if (states['{{adguard_filtering}}'].state == "off")
+            return '#363c3e';
+          return "white";
+        ]]]
+  grid:
+    - grid-template-areas: '"i" "n" "l"'
+    - grid-template-columns: 1fr
+    - grid-template-rows: 1fr min-content min-content
+    - position: relative
+  name:
+    - justify-self: start
+    - font-size: 23px
+    - font-weight: 800
+    - margin: 0 0 0 15px
+    - font-family: Helvetica Neue,Arial,sans-serif
+    # - color: '#9a9d9e'
+  label:
+    - justify-self: start
+    - font-size: 23px
+    - margin: 0 0 10px 15px
+    - font-weight: 800
+    - font-family: Helvetica Neue,Arial,sans-serif
+    # - color: '#9a9d9e'
+  icon:
+    - position: absolute
+    - width: 30%
+    - top: 20%
+    - left: 10%
+    - height: auto
+    - color: '#9a9d9e'
+entity: {{adguard_filtering}}
+label: >
+        [[[
+          if (states['{{adguard_filtering}}'].state == "off")
+            return 'Off';
+          return 'On';
+        ]]]
+hold_action:
+  action: call-service
+  service: browser_mod.popup
+  service_data:
+    title: Popup example
+    card:
+      type: 'custom:vertical-stack-in-card'
+      cards:
+      - type: 'custom:vertical-stack-in-card'
+        title: AdGuard
+        cards:
+        - type: 'custom:vertical-stack-in-card'
+          cards:
+          - type: horizontal-stack
+            cards:
+            - type: custom:button-card
+              entity: {{adguard_filtering}}
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              entity: {{adguard_parental_control}}
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              entity: {{adguard_protection}}
+              aspect_ratio: 1/1
+          - type: horizontal-stack
+            cards:
+            - type: custom:button-card
+              entity: {{adguard_query_log}}
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              entity: {{adguard_safe_browsing}}
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              entity: {{adguard_safe_search}}
+              aspect_ratio: 1/1
+        - type: 'custom:mini-graph-card'
+          name: Queries hourly (last 24)
+          points_per_hour: 1
+          line_width: 1
+          animate: true
+          hours_to_show: 24
+          group_by: hour
+          show:
+            icon: true
+            state: true
+          entities:
+            - entity: sensor.adguard_dns_queries
+              color: grey
+              name: Queries
+            - entity: sensor.adguard_dns_queries_blocked
+              color: red
+              name: Blocked
+              show_legend: true
+
+    deviceID:
+      - this
+      - dashboard
+

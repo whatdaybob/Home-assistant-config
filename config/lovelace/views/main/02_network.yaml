@@ -1,0 +1,128 @@
+# lovelace_gen
+---
+
+##############
+# Network #
+##############
+- title: Network
+  icon: mdi:lan
+  id: network
+  theme: midnight
+  cards:
+
+  ###################
+  # Network Clients #
+  ###################
+    - type: entities
+      show_header_toggle: false
+      title: Network Clients
+      entities:
+      - type: custom:vertical-stack-in-card
+        cards:
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Wired Clients"
+        - type: custom:auto-entities
+          card:
+            type: entities
+            # title: Wired Clients
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: device_tracker
+                options:
+                  secondary_info: last-changed
+                attributes:
+                  is_wired: true
+          show_empty: false
+          unique: true
+      - type: custom:vertical-stack-in-card
+        cards:
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Wireless Clients"
+        - type: custom:auto-entities
+          card:
+            type: entities
+            # title: Wireless Clients
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: device_tracker
+                options:
+                  secondary_info: last-changed
+                attributes:
+                  is_wired: false
+          show_empty: false
+          unique: true
+  ###########
+  # Adguard #
+  ###########
+    - type: entities
+      title: Adguard Home
+      show_header_toggle: false
+      entities:
+        # - entity: switch.docker_adguardhome
+        #   secondary_info: last-changed
+        # - entity: sensor.docker_adguardhome_cpu_use
+        # - entity: sensor.docker_adguardhome_image
+        #   secondary_info: last-changed
+        # - entity: sensor.docker_adguardhome_memory_use
+        # - entity: sensor.docker_adguardhome_memory_use_percent
+        # # - entity: sensor.docker_adguardhome_network_speed_down
+        # # - entity: sensor.docker_adguardhome_network_speed_up
+        # # - entity: sensor.docker_adguardhome_network_total_down
+        # # - entity: sensor.docker_adguardhome_network_total_up
+        # - entity: sensor.docker_adguardhome_status
+        # - entity: sensor.docker_adguardhome_up_time
+
+        # - type: divider
+        - entity: switch.adguard_filtering
+        - entity: switch.adguard_parental_control
+        - entity: switch.adguard_protection
+        - entity: switch.adguard_query_log
+        - entity: switch.adguard_safe_browsing
+        - entity: switch.adguard_safe_search
+        - type: divider
+        - entity: sensor.adguard_average_processing_speed
+        - entity: sensor.adguard_dns_queries
+        - entity: sensor.adguard_dns_queries_blocked
+        - entity: sensor.adguard_dns_queries_blocked_ratio
+        - entity: sensor.adguard_parental_control_blocked
+        - entity: sensor.adguard_rules_count
+        - entity: sensor.adguard_safe_browsing_blocked
+        - entity: sensor.adguard_safe_searches_enforced
+        
+        - type: divider
+        - type: weblink
+          name: Adguard Home
+          url: https://whatdaybob.com/
+          icon: mdi:block-helper
+  #########
+  # Unifi #
+  #########
+    - type: custom:vertical-stack-in-card
+      cards:
+      - type: entities
+        title: Unifi
+        show_header_toggle: false
+        entities:
+        - entity: sensor.unifi_gateway_alerts
+        - entity: sensor.unifi_gateway_firmware_upgradable
+        - entity: sensor.unifi_gateway_lan
+        - entity: sensor.unifi_gateway_vpn
+        - entity: sensor.unifi_gateway_wan
+        - entity: sensor.unifi_gateway_wlan
+        - entity: sensor.unifi_gateway_www
+      - type: entities
+        title: Custom Unifi
+        show_header_toggle: false
+        entities:
+        - entity: sensor.unifi_gateway_cpu
+        - entity: sensor.unifi_gateway_memory
+        - entity: sensor.unifi_gateway_uptime
+        - entity: sensor.unifi_gateway_wan_ip
+        - entity: sensor.unifi_lan_clients
+        - entity: sensor.unifi_wlan_clients

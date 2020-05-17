@@ -1,0 +1,437 @@
+# lovelace_gen
+--- 
+  ########
+  # Home #
+  ########
+- title: Home
+  icon: mdi:home
+  id: Home
+  theme: midnight
+  cards:
+
+
+
+    #################
+    # Update Status #
+    #################
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## Update Status"
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: sensor.hacs
+              name: HCAS
+            - entity: sensor.potential_breaking_changes
+
+        - type: conditional
+          conditions:
+            - entity: sensor.potential_breaking_changes
+              state_not: "0"
+          card:
+            type: custom:list-card
+            entity: sensor.potential_breaking_changes
+            columns:
+              - title: Component
+                add_link: doclink
+                field: component
+              - title: Description
+                add_link: prlink
+                field: description
+
+    ##########
+    # People #
+    ##########
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## People"
+        - type: horizontal-stack
+          cards: 
+            - type: picture-glance
+              entity: person.martin_jones
+              entities:
+                - entity: device_tracker.bob_tado
+                  icon: mdi:cellphone-wireless
+                - entity: input_select.bob_tado
+                  icon: mdi:bluetooth
+                # - entity: device_tracker.smartphone_david_bt
+                #   icon: mdi:bluetooth
+              state_image:
+                "home": /local/images/people/martin-square.jpg
+                "not_home": /local/images/people/martin-square-grey.jpg
+              title: "Martin"
+
+            - type: picture-glance
+              entity: person.kayleigh_johnson
+              entities:
+                - entity: device_tracker.kay_tado
+                  icon: mdi:cellphone-wireless
+                # - entity: device_tracker.smartphone_david_bt
+                #   icon: mdi:bluetooth
+              state_image:
+                "home": /local/images/people/kay-square.jpg
+                "not_home": /local/images/people/kay-square-grey.jpg
+              title: "Kay"
+
+    #########
+    # Rooms #
+    #########
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## Rooms"
+        - type: custom:banner-card
+          # background: "#EDE7B0"
+          heading: "\U0001F6CB Living room"
+          link: /lovelace/3
+          entities:
+            - entity: light.living_room_lamps
+              name: Light
+            - entity: climate.living_room
+              name: Thermostat
+            - entity: remote.harmony_hub
+              name: Remote
+              # map_state: { "off": mdi:home-account, "on": mdi:walk }
+
+        - type: custom:banner-card
+          # background: "#B0C2ED"
+          heading: "Hallway"
+          link: /lovelace/6
+          entities:
+            - entity: light.hallway_light
+              name: Light
+            - entity: sensor.hallway_temperature
+              name: Temperature
+            - entity: sensor.hallway_humidity
+              name: Humidity
+
+        - type: custom:banner-card
+          # background: "#EDE7B0"
+          heading: "Office"
+          link: /lovelace/1
+          entities:
+            - entity: media_player.xbox_one
+              name: xbox
+              size: 3
+
+        - type: custom:banner-card
+          # background: "#EDE7B0"
+          heading: "Kitchen"
+          link: /lovelace/4
+          entities:
+            - entity: climate.kitchen
+              name: Thermostat
+
+    ########
+    # Bins #
+    ########
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## Bins"
+        - type: entities
+          # title: Bins
+          show_header_toggle: false
+          entities:
+            - entity: sensor.bin_week
+              name: Bin Week
+            - type: divider
+            - entity: sensor.nodered_blue_bin_collection
+              name: Waste
+            - entity: sensor.nodered_brown_bin_collection
+              name: Garden
+            - entity: sensor.nodered_grey_bin_collection
+              name: Recycle
+        - type: entities
+          # title: Bins
+          show_header_toggle: false
+          entities:
+            - entity: sensor.blue_bin
+            - entity: sensor.brown_bin
+            - entity: sensor.grey_bin
+    ##########
+    # Energy #
+    ##########
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## Energy"
+        - type: entities
+          # title: Energy
+          show_header_toggle: false
+          entities:
+            - sensor.aeotec_power_monitor_energy_meter
+            - sensor.aeotec_power_monitor_power_meter
+            - sensor.aeotec_power_monitor_voltage_measurement
+            - type: divider
+            - sensor.daily_energy
+            - sensor.monthly_energy
+            # - type: divider
+            # - sensor.daily_electricity_spend
+            # - sensor.monthly_electricity_spend
+
+    ################
+    # Integrations #
+    ################
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## Integrations"
+        - type: entities
+          show_header_toggle: false
+          # title: Domain Counts
+          entities:
+            - entity: sensor.total_automations
+              name: Automations
+            - entity: sensor.total_binary_sensors
+              name: Binary Sensors
+            - entity: sensor.total_devicetrackers
+              name: Device Trackers
+            - entity: sensor.total_lights
+              name: Lights
+            - entity: sensor.total_sensors
+              name: Sensors
+            - entity: sensor.total_switches
+              name: Switches
+            - entity: sensor.total_zones
+              name: Zones
+
+    ########
+    # Maps #
+    ########
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## Bob's Location"
+        - type: map
+          aspect_ratio: 16:9
+          default_zoom: 15
+          entities:
+            - device_tracker.phone_bob
+        
+    ################
+    # Temperatures #
+    ################
+      
+    - type: vertical-stack
+      cards:
+
+        - type: horizontal-stack
+          cards:
+
+            - type: custom:mini-graph-card
+              name: Hallway
+              icon: mdi:thermometer
+              entities:
+                - entity: sensor.hallway_temperature
+                  name: Actual
+                # - entity: sensor.hallway_temperature_target
+                #   name: Target
+              hours_to_show: 24
+              points_per_hour: 0.5
+              animate: true
+
+            - type: custom:mini-graph-card
+              name: Kids Room
+              icon: mdi:thermometer
+              entities:
+                - entity: sensor.kids_bedroom_temperature
+                  name: Actual
+                # - entity: sensor.kids_bedroom_temperature_target
+                #   name: Target
+              hours_to_show: 24
+              points_per_hour: 0.5
+              animate: true
+
+        - type: horizontal-stack
+          cards:
+
+            - type: custom:mini-graph-card
+              name: Living Room
+              icon: mdi:thermometer
+              entities:
+                - entity: sensor.living_room_temperature
+                  name: Actual
+                # - entity: sensor.living_room_temperature_target
+                #   name: Target
+              hours_to_show: 24
+              points_per_hour: 0.5
+              animate: true
+
+            - type: custom:mini-graph-card
+              name: Master Bedroom
+              icon: mdi:thermometer
+              entities:
+                - entity: sensor.master_bedroom_temperature
+                  name: Actual
+                # - entity: sensor.master_bedroom_temperature_target
+                #   name: Target
+              hours_to_show: 24
+              points_per_hour: 0.5
+              animate: true
+        - type: horizontal-stack
+          cards:
+            - type: custom:mini-graph-card
+              name: Kitchen
+              icon: mdi:thermometer
+              entities:
+                - entity: sensor.kitchen_temperature
+                  name: Actual
+                # - entity: sensor.kitchen_temperature_target
+                #   name: Target
+              hours_to_show: 24
+              points_per_hour: 0.5
+              animate: true
+
+            - type: custom:mini-graph-card
+              name: Landing
+              icon: mdi:thermometer
+              entities:
+                - entity: sensor.landing_temperature
+                  name: Actual
+                # - entity: sensor.landing_temperature_target
+                #   name: Target
+              hours_to_show: 24
+              points_per_hour: 0.5
+              animate: true
+
+    ##########
+    # System #
+    ##########
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: "## System"
+        - type: entities
+          # title: Hassio System
+          show_header_toggle: false
+          entities:
+            - sensor.hass_uptime
+            - type: divider
+            - entity: counter.logs_critical_counter
+              secondary_info: last-changed
+            - entity: counter.logs_error_counter
+              secondary_info: last-changed
+            - entity: counter.logs_warning_counter
+              secondary_info: last-changed
+            - type: divider
+            - type: weblink
+              name: Home Assistant Logs
+              url: https://logs.whatdaybob.com/container/bd49a0afe100
+              icon: mdi:home-assistant
+    - type: weather-forecast
+      entity: weather.home
+    - type: entities
+      entities:
+        - entity: sensor.outdoor_temperature
+      footer:
+        type: graph
+        entity: sensor.outdoor_temperature
+        hours_to_show: 24
+        detail: 1
+
+    - type: entities
+      show_header_toggle: false
+      title: Special Dates
+      entities:
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Birthdays"
+        - entity: sensor.birthday_ava
+          secondary_info: '[[ {entity}.attributes.nextoccur ]]  ( [[ {entity}.attributes.years ]] Years )'
+          type: 'custom:secondaryinfo-entity-row'
+        - entity: sensor.birthday_leah
+          secondary_info: '[[ {entity}.attributes.nextoccur ]]  ( [[ {entity}.attributes.years ]] Years )'
+          type: 'custom:secondaryinfo-entity-row'
+        - entity: sensor.birthday_kayleigh
+          secondary_info: '[[ {entity}.attributes.nextoccur ]]  ( [[ {entity}.attributes.years ]] Years )'
+          type: 'custom:secondaryinfo-entity-row'
+        - entity: sensor.birthday_martin
+          secondary_info: '[[ {entity}.attributes.nextoccur ]]  ( [[ {entity}.attributes.years ]] Years )'
+          type: 'custom:secondaryinfo-entity-row'
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Holidays"
+        - entity: sensor.holiday_christmas_day
+        - entity: sensor.holiday_new_year
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: markdown
+              content: "### Holidays"
+        - entity: sensor.bankholiday_early_may_bank_holiday
+        - entity: sensor.bankholiday_easter_monday
+        - entity: sensor.bankholiday_good_friday
+        - entity: sensor.bankholiday_spring_bank_holiday
+        - entity: sensor.bankholiday_summer_bank_holiday
+
+    - type: conditional
+      conditions:
+        - entity: input_boolean.toggle_hidden_elements
+          state: "on"
+      card:
+        type: entities
+        title: Hidden Elements
+        entities:
+        - entity: sensor.presence_bob_last_changed
+        - entity: sensor.presence_kay_last_changed
+
+    - type: button
+      name: Toggle hidden
+      entity: input_boolean.toggle_hidden_elements
+      secondary_info: last-changed
+      tap_action:
+        action: toggle
+
+    - type: custom:battery-state-card
+      name: "Battery levels"
+      sort_by_level: desc
+      entities:
+        - entity: sensor.hue_motion_sensor_battery
+          name: "Hallway Motion"
+        - entity: sensor.living_room_switch_battery_level
+          name: "Living Room Switch"
+        - entity: sensor.office_smartthing_motion_sensor_battery
+          name: "Office Motion"
+        - entity: sensor.phone_bob_battery_level
+          name: "Bob's Phone"
+          charging_state:
+            entity_id: sensor.phone_bob_battery_state
+            state: "Charging"
+            icon: "mdi:flash"
+            color: "yellow"
+          tap_action:
+            confirmation:
+              text: Are you sure you want to force an update?
+            haptic: light
+            action: call-service
+            service: device_tracker.icloud3_update
+            service_data:
+              command: location
+
+        - entity: sensor.phone_kay_battery_level
+          name: "Kay's Phone"
+          charging_state:
+            entity_id: sensor.phone_kay_battery_state
+            state: "Charging"
+            icon: "mdi:flash"
+            color: "yellow"
+          tap_action:
+            confirmation:
+              text: Are you sure you want to force an update?
+            haptic: light
+            action: call-service
+            service: device_tracker.icloud3_update
+            service_data:
+              command: location

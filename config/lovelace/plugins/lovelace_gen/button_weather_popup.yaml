@@ -1,0 +1,23 @@
+# lovelace_gen
+
+type: custom:simple-weather-card
+gridcol: {{grid_x|default('1/1')}}
+gridrow: {{grid_y|default('1/1')}}
+entity: {{entity_primary}}
+# backdrop:
+#   day: "var(--primary-color)"
+#   night: "#40445a"
+name: Leek
+backdrop: false
+# tap_action:
+#   action: navigate
+#   navigation_path: /lovelace/weather
+style: |
+  ha-card {
+    border-radius: 10px;
+  }
+tap_action:
+  action: call-service
+  service: input_boolean.toggle
+  service_data:
+    entity_id: input_boolean.ch_kiosk_mode

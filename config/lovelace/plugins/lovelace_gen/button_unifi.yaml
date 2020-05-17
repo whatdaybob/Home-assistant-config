@@ -1,0 +1,113 @@
+# lovelace_gen
+
+type: 'custom:mini-graph-card'
+gridrow: {{grid_y|default('1/1')}}
+gridcol: {{grid_x|default('1/1')}}
+height: 158
+width: 172
+line_width: 5
+style: |
+  ha-card {
+    border-radius: 10px;
+    height: 158px;
+    width: 172px;
+    padding: 15px 0 0 0 !important;
+    position: relative;
+  }
+  .header {
+    font-size: 12px;
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    top: 5%;
+  }
+  .states.flex {
+    position: absolute;
+    top: 20%;
+    margin: 0 auto;
+    width: 100%;
+  }
+name: {{name}}
+unit: Bytes
+tap_action: none
+group: true
+hours_to_show: 8
+points_per_hour: 1
+# aggregate_func: avg
+group_by: hour
+animate: true
+bar_spacing: 0
+font_size_header: 12
+align_header: center
+align_state: center
+lower_bound: {{lower_bound|default('0')}} 
+upper_bound: {{upper_bound|default('1000')}}
+show:
+  fill: true
+  name: true
+  icon: false
+  state: true
+  points: true
+  legend: false
+  avergage: false
+  labels: false
+entities:
+  - entity: {{entity_graph_tx}}
+    name: transmit
+    aggregate_func: max
+  - entity: {{entity_graph_rx}}
+    name: receive
+    aggregate_func: max
+# type: 'custom:button-card'
+# aspect_ratio: {{ aspect_ratio|default('1/1') }}
+# gridrow: {{grid_y|default('1/1')}}
+# gridcol: {{grid_x|default('1/1')}}
+# style: |
+#   ha-card {
+#     border-radius: 10px;
+#   }
+# show_name: false
+# show_label: true
+# show_icon: false
+# show_state: false
+# custom_fields:
+#   graph:
+#     card:
+#       type: 'custom:mini-graph-card'
+#       height: 172
+#       width: 172
+#       line_width: 5
+#       show:
+#         fill: true
+#         name: false
+#         icon: false
+#         state: false
+#         points: false
+#         legend: false
+#         avergage: false
+#         labels: false
+#       entities:
+#         - entity: {{entity_graph_tx}}
+#         - entity: {{entity_graph_rx}}
+# styles:
+#   custom_fields:
+#     graph:
+#       - filter: opacity(100%)
+#       - position: absolute
+
+#   label:
+#     - font-size: 15px
+#     - padding: 1px 1px
+#     - padding-bottom: 0px
+#   card:
+#     - overflow: unset
+#     - height: 172px
+#     - width: 172px
+#     - position: relative
+#   grid:
+#     - grid-template-areas: '"l" "graph"'
+#     - grid-template-columns: 1fr
+#     - grid-template-rows: 1fr min-content min-content
+
+# entity: {{entity_device_tracker}}
+# label: '[[[ return entity.attributes.friendly_name ]]]'

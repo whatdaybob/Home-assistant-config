@@ -1,0 +1,35 @@
+# lovelace_gen
+type: custom:swipe-card
+gridrow: {{grid_y|default('1/1')}}
+gridcol: {{grid_x|default('1/1')}}
+parameters:
+  spaceBetween: 8
+  scrollbar:
+    hide: false
+    draggable: true
+    snapOnRelease: true
+cards:
+  - !include
+    - ../lovelace_gen/button_youtube.yaml
+    - entity_primary: sensor.direwolf20
+      channel_icon: https://yt3.ggpht.com/a/AGF-l7-jmMOhRobTHMBtuNIu8MBobYzo4vqYEOdZ1A=s288-c-k-c0xffffffff-no-rj-mo
+      grid_x: {{grid_y|default('1/1')}}
+      grid_y: {{grid_x|default('1/1')}}
+  - !include
+    - ../lovelace_gen/button_youtube.yaml
+    - entity_primary: sensor.funhaus
+      channel_icon: https://yt3.ggpht.com/a/AGF-l78mYEGXue8y5rJjnnHNmmBbT2VnK9iUEGnKTg=s288-c-k-c0xffffffff-no-rj-mo
+      grid_x: {{grid_y|default('1/1')}}
+      grid_y: {{grid_x|default('1/1')}}
+  - !include
+    - ../lovelace_gen/button_youtube.yaml
+    - entity_primary: sensor.inside_gaming
+      channel_icon: https://yt3.ggpht.com/a/AGF-l7-a2gppBS1YedwZGKzjMgA70aIkLFrXPML93w=s288-c-k-c0xffffffff-no-rj-mo
+      grid_x: {{grid_y|default('1/1')}}
+      grid_y: {{grid_x|default('1/1')}}
+  - !include
+    - ../lovelace_gen/button_youtube.yaml
+    - entity_primary: sensor.letsplay
+      channel_icon: https://yt3.ggpht.com/a/AGF-l79hPQ6dMwdzOLeGSHTvhpeFXftMDxjjGhPERg=s288-c-k-c0xffffffff-no-rj-mo
+      grid_x: {{grid_y|default('1/1')}}
+      grid_y: {{grid_x|default('1/1')}}

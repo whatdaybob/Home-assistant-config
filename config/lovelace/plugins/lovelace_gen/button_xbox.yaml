@@ -1,0 +1,106 @@
+# lovelace_gen
+type: custom:vertical-stack-in-card
+gridcol: {{grid_x|default('1/1')}}
+gridrow: {{grid_y|default('1/1')}}
+style: |
+  ha-card {
+    border-radius: 10px;
+  }
+cards:
+  - type: 'custom:button-card'
+    entity: {{entity_primary}}
+    show_name: false
+    show_state: false
+    aspect_ratio: 1/1
+    show_entity_picture: false
+    show_icon: false
+    entity_picture: '[[[ return entity.attributes.image ]]]'
+    styles:
+      card:
+        # - background-image: |
+        #     [[[ return `url("${entity.attributes.image.toLowerCase()}")`; ]]]
+        - background-image: |
+            [[[ 
+              if(entity.attributes.game === "Home"||entity.attributes.game === "Offline")
+                return `url("http://store-images.s-microsoft.com/image/apps.245.13798539581762600.f646b2b5-5377-442e-a76b-9381d0a2195f.6c30ef3e-803a-4e0c-9377-0f4e0c79cf8f")`; 
+
+              else
+                return `url("${entity.attributes.image.toLowerCase()}")`;
+            ]]]
+
+          
+
+
+        - background-size: cover
+        - background-color: black
+        - margin: 0
+        - padding: 0
+        - position: absolute
+    state:
+      - value: Offline
+        styles:
+          card:
+            - filter: opacity(50%)
+          icon:
+            - filter: grayscale(100%)
+
+  - type: 'custom:button-card'
+    entity: {{entity_primary}}
+    show_name: true
+    show_state: true
+    aspect_ratio: 2/1
+    show_entity_picture: false
+    show_icon: false
+    color_type: label-card
+    styles:
+      card:
+        - font-family: 'Segoe UI,SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif'
+      grid:
+        - grid-template-areas: '"game" "acti" "name" '
+        - grid-template-columns: 100%
+        - grid-template-rows: 30% 30% 40%
+      state:
+        - justify-self: start
+        - padding-left: 5%
+        - font-weight: 700
+      custom_fields:
+        game:
+          - justify-self: start
+          - text-align: left
+          - padding-left: 5%
+          - width: 90%
+          - font-size: 12px
+        acti:
+          - justify-self: start
+          - text-align: left
+          - padding-left: 5%
+          - width: 90%
+          - font-weight: 400
+          - font-size: 12px
+        name:
+          - justify-self: end
+          - padding-right: 5%
+          - font-size: 1.2em
+          - font-weight: 700
+        device:
+          - position: absolute
+          - left: 5%
+          - top: 68%
+    state:
+      - value: Offline
+        styles:
+          card:
+            - filter: opacity(50%)
+          icon:
+            - filter: grayscale(100%)
+    custom_fields:
+      game: '[[[ return entity.attributes.game ]]]'
+      acti: '[[[ return entity.attributes.activity ]]]'
+      name: '[[[ return entity.attributes.gamertag ]]]'
+      device: >
+        [[[
+          if (entity.attributes.device === "WindowsOneCore")
+            return `<ha-icon icon="mdi:monitor" style="width: 25px; height: 25px; color: white;"></ha-icon>`
+          else
+            return `<ha-icon icon="mdi:xbox" style="width: 25px; height: 25px; color: white;"></ha-icon>`
+        ]]]

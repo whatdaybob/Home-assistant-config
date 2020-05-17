@@ -1,0 +1,148 @@
+# lovelace_gen
+---
+###############
+# Living Room #
+###############
+- title: Living Room
+  icon: mdi:sofa
+  id: living_room
+  cards:
+
+    - type: vertical-stack
+      cards:
+        - type: picture-glance
+          title: Harmony
+          entities:
+            - switch.remote_living_room_shield
+            - switch.remote_living_room_xbox
+            - switch.remote_living_room_skyq
+          state_image:
+            "PowerOff": /local/images/misc/harmony_activity/power-off.png
+            "Xbox": /local/images/misc/harmony_activity/xbox.jpg
+            "ShieldTV": /local/images/misc/harmony_activity/shield-tv.jpg
+            "Sky": /local/images/misc/harmony_activity/sky-q.jpg
+          entity:  sensor.harmony_activity_living_room
+
+
+        # - type: entity-filter
+        #   entities:
+        #     - media_player.living_room_kodi
+        #     - media_player.living_room_androidtv
+        #     - media_player.living_room_lg_netcast
+        #     - media_player.living_room_xboxone
+        #     - media_player.living_room_plexapp
+        #     - media_player.living_room_skyq
+        #     - media_player.living_room_shield_cast
+        #     - media_player.living_room_sonos
+        #     - media_player.living_room_universal
+        #   state_filter:
+        #     - 'Online'
+        #     - 'Home'
+        #     - 'Netflix'
+        #     - 'playing'
+        #   show_empty: false
+
+        - type: custom:auto-entities
+          show_empty: false
+          card:
+            type: entities
+            title: Active Media Players
+          filter:
+            include:
+            - entity_id: "media_player.living_room_*"
+            # - domain: media_player
+              options:
+                secondary_info: last-changed
+                type: 'custom:mini-media-player'
+                info: scroll
+                artwork: full-cover
+                hide:
+                  icon: true
+                  progress: true
+                  source: true
+                  volume: true
+
+            exclude:
+            - entity_id: "media_player.living_room_*"
+              state: 'off'
+            - entity_id: "media_player.living_room_*"
+              state: 'idle'
+            - entity_id: "media_player.living_room_*"
+              state: 'unavailable'
+
+        - type: custom:auto-entities
+          show_empty: false
+          card:
+            type: entities
+            title: Idle Media Players
+          filter:
+            include:
+            - entity_id: "media_player.living_room_*"
+              state: 'off'
+            - entity_id: "media_player.living_room_*"
+              state: 'idle'
+
+        # - type: entity-filter
+        #   entities:
+        #     - media_player.living_room_kodi
+        #     - media_player.living_room_androidtv
+        #     - media_player.living_room_lg_netcast
+        #     - media_player.living_room_xboxone
+        #     - media_player.living_room_plexapp
+        #     - media_player.living_room_skyq
+        #     - media_player.living_room_shield_cast
+        #     - media_player.living_room_sonos
+        #     - media_player.living_room_universal
+        #   state_filter:
+        #     - 'off'
+        #     - 'idle'
+        #   show_empty: false
+
+    - type: entities
+      entities:
+        - type: custom:thermostat-card
+          entity: climate.living_room
+          no_card: true
+          hvac:
+            states:
+              'off': 'off'
+              'heating': 'heat'
+              'idle': 'auto'
+            attribute: hvac_action
+        - type: divider
+        - entity: sensor.living_room_heating
+        - entity: sensor.living_room_link
+        - entity: sensor.living_room_overlay
+        - entity: sensor.living_room_power
+        - entity: sensor.living_room_tado_mode
+        - entity: sensor.living_room_humidity
+        - entity: sensor.living_room_mold
+        - entity: sensor.living_room_open_window
+        - entity: sensor.living_room_early_start
+
+    - type: entities
+      entities:
+        - entity: sensor.living_room_lightpercent_floor
+        - entity: sensor.living_room_lightpercent_table
+        - entity: sensor.harmony_activity_living_room
+        - entity: device_tracker.living_room_switch
+        - entity: remote.living_room_harmony
+        - entity: sensor.living_room_switch_battery_level
+
+    - type: entities
+      entities:
+        - entity: light.living_room_floor_lamp
+        - entity: light.living_room_table_lamp
+        - entity: scene.lights_movie
+        - entity: scene.lights_normal
+        - entity: binary_sensor.living_room_open_window
+        - entity: group.living_room_media_player
+        - entity: media_player.living_room_androidtv
+        - entity: media_player.living_room_kodi
+        - entity: media_player.living_room_lg_netcast
+        - entity: media_player.living_room_plexapp
+        - entity: media_player.living_room_shield_cast
+        - entity: media_player.living_room_skyq
+        - entity: media_player.living_room_sonos
+        - entity: media_player.living_room_universal
+        - entity: media_player.living_room_xboxone

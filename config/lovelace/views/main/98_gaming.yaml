@@ -1,0 +1,74 @@
+# lovelace_gen
+--- 
+  ########
+  # Gaming #
+  ########
+- title: Gaming
+  icon: mdi:gamepad
+  id: Gaming
+  theme: midnight
+  panel: false # this renders the first card on full width, other cards in this view will not be rendered
+  cards:
+    - type: custom:button-card
+      entity: sensor.nodered_xbox_whatdaybob
+      template: xbox
+    - type: custom:button-card
+      entity: sensor.nodered_xbox_ashischarmed
+      template: xbox
+    - type: custom:button-card
+      entity: sensor.nodered_xbox_laidbacks
+      template: xbox
+    - type: custom:button-card
+      entity: sensor.nodered_xbox_iamaweapon
+      template: xbox
+    - type: custom:button-card
+      entity: sensor.nodered_xbox_gremo
+      template: xbox
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_ace_of_spades_battle_builder
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_ark_survival_evolved
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_cities_skylines_after_dark
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_cities_skylines_snowfall
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_elite_dangerous
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_far_cry_r_3_deluxe_bundle_dlc
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_game_dev_tycoon
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_playerunknown_s_battlegrounds
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_rapture_rejects
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_rocket_league_r
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_rust
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_the_witcher_r_3_wild_hunt
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_this_war_of_mine
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_tropico_4_modern_times
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_two_point_hospital_bigfoot
+      template: steam
+    - type: custom:button-card
+      entity: binary_sensor.steam_wishlist_two_point_hospital_pebberley_island
+      template: steam

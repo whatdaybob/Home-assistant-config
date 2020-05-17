@@ -1,0 +1,66 @@
+# lovelace_gen
+---
+###########
+# Hallway #
+###########
+- title: Hall
+  icon: mdi:door
+  id: hall
+  theme: midnight
+  cards:
+    - type: custom:thermostat-card
+      title: Hallway TRV
+      entity: climate.hallway
+      hvac:
+        states:
+          'off': 'off'
+          'heating': 'heat'
+          'idle': 'auto'
+        attribute: hvac_action
+
+    - type: custom:thermostat-card
+      title: Landing TRV
+      entity: climate.landing
+      hvac:
+        states:
+          'off': 'off'
+          'heating': 'heat'
+          'idle': 'auto'
+        attribute: hvac_action
+
+    - type: entities
+      entities:
+        - entity: sensor.hallway_heating
+        - entity: sensor.hallway_link
+        - entity: sensor.hallway_overlay
+        - entity: sensor.hallway_power
+        - entity: sensor.hallway_tado_mode
+        - entity: sensor.hallway_humidity
+        - entity: sensor.landing_heating
+        - entity: sensor.landing_link
+        - entity: sensor.landing_overlay
+        - entity: sensor.landing_power
+        - entity: sensor.landing_tado_mode
+        - entity: sensor.landing_humidity
+        - entity: sensor.hallway_mold
+        - entity: sensor.landing_mold
+        - entity: sensor.landing_early_start
+        - entity: sensor.hallway_early_start
+        - entity: sensor.hallway_open_window
+        - entity: binary_sensor.hallway_open_window
+        - entity: sensor.landing_open_window
+        - entity: binary_sensor.landing_open_window
+        - entity: sensor.hallway_echo_next_alarm
+        - entity: sensor.hallway_echo_next_reminder
+        - entity: sensor.hallway_echo_next_timer
+        - entity: sensor.hallway_lightpercent
+        - entity: sensor.landing1_lightpercent
+        - entity: sensor.landing2_lightpercent
+        - entity: light.hallway_light
+        - entity: light.landing_1
+        - entity: light.landing_2
+
+
+    - type: media-control
+      entity: media_player.hallway_echo
+      

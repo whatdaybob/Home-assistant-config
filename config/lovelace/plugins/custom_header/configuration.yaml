@@ -1,0 +1,15 @@
+# kiosk_mode: true
+# header_text: '{{ deviceID }}'
+kiosk_mode: >-
+  {{ is_state('input_boolean.ch_kiosk_mode','on') }}
+exceptions:
+  - conditions:
+      # user_agent: Mobile
+      # media_query: "(max-width: 600px)"
+      device_id: aef728ae-10078b15
+    config:
+      footer_mode: true
+      reverse_button_direction: true
+      reverse_tab_direction: true
+      default_tab: 'mobile_0'
+      hide_tabs: 'tablet_0'

@@ -1,0 +1,233 @@
+# lovelace_gen
+
+type: picture-elements
+style: |
+  ha-card {
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0px;
+  }
+  hui-picture-elements-card {
+    margin: 0 0 0 0;
+  }
+aspect_ratio: {{ aspect_ratio|default('1/1') }}
+gridrow: {{grid_y|default('1/1')}}
+gridcol: {{grid_x|default('1/1')}}
+image: /local/small-square-blank.png
+elements:
+- entity: {{entity_primary}}
+  state_image:
+    home: {{home_image}}
+    not_home: {{not_home_image}}
+  style:
+    left: 50%
+    top: 50%
+    width: 100%
+  type: image
+- conditions:
+    - entity: {{entity_primary}}
+      state: home
+  elements:
+    - entity: {{entity_secondary}}
+      fill: '#FFFFFF10'
+      font_style:
+        color: '#7d7e80'
+        font-size: 1.0vw
+        font-weight: 400
+        margin-left: '-0.8%'
+        margin-top: 1.9%
+      gradient: true
+      max: 100
+      min: 0
+      stroke_color: '#aaabad'
+      stroke_width: 6
+      style:
+        height: 30%
+        left: 75%
+        opacity: 0.7
+        top: 25%
+        width: 30%
+      type: 'custom:circle-sensor-card'
+  type: conditional
+- conditions:
+    - entity: {{entity_primary}}
+      state: not_home
+  elements:
+    - entity: {{entity_secondary}}
+      fill: '#FFFFFF08'
+      font_style:
+        color: '#7d7e80'
+        font-size: 1.0vw
+        font-weight: 400
+        margin-left: '-0.8%'
+        margin-top: 1.9%
+      gradient: true
+      max: 100
+      min: 0
+      stroke_color: '#313638'
+      stroke_width: 6
+      style:
+        height: 30%
+        left: 75%
+        opacity: 0.7
+        top: 25%
+        width: 30%
+      type: 'custom:circle-sensor-card'
+  type: conditional
+- hold_action:
+    action: call-service
+    service: browser_mod.popup
+    service_data:
+      card:
+        cards:
+          - entities:
+              - entity: {{entity_primary}}
+                secondary_info: last-changed
+              - entity: binary_sensor.iphone_xr
+                icon: 'mdi:cellphone'
+              - entity: binary_sensor.macbook_pro
+                icon: 'mdi:laptop'
+              - entity: sensor.printer_status_template
+                name: Skrivare
+                icon: 'mdi:printer'
+              - background_style:
+                  background: >-
+                    radial-gradient(circle, rgba(45,45,45,1) 0%,
+                    rgba(0,0,0,1) 100%)
+                card_style:
+                  background: '#FFFFFF00'
+                  box-shadow: none
+                entity: sensor.printer_black
+                height: 2.1em
+                icon: 'mdi:water-outline'
+                icon_position: left
+                unit_of_measurement: '%'
+                icon_style:
+                  color: '#9e9e9e'
+                  margin-left: '-0.45em'
+                  filter: none
+                max: 100
+                min: 0
+                rounding: 0.3em
+                severity:
+                  - color: '#303435'
+                    value: 90
+                  - color: '#6d2525'
+                    value: 100
+                style: |
+                  ha-card {
+                    background-color: #FFFFFF00;
+                    margin-left: -0.4em;
+                    margin-right: -0.5em;
+                    margin-top: 0.1em;
+                  }
+                title: Svart
+                title_style:
+                  color: '#e0e1e1'
+                  margin-left: 0.95em
+                type: 'custom:bar-card'
+                value_style:
+                  color: '#e0e1e1'
+                  font-size: 0.95em
+                  font-weight: 400
+                width: 50%
+                tap_action: service
+                service_options:
+                  domain: homeassistant
+                  service: update_entity
+                  data:
+                    entity_id: sensor.printer_black
+              - background_style:
+                  background: >-
+                    radial-gradient(circle, rgba(45,45,45,1) 0%,
+                    rgba(0,0,0,1) 100%)
+                card_style:
+                  background: '#FFFFFF00'
+                  box-shadow: none
+                entity: sensor.printer_color
+                height: 2.1em
+                icon: 'mdi:water'
+                icon_position: left
+                unit_of_measurement: '%'
+                icon_style:
+                  color: '#9e9e9e'
+                  margin-left: '-0.45em'
+                  filter: none
+                max: 100
+                min: 0
+                rounding: 0.3em
+                severity:
+                  - color: '#303435'
+                    value: 90
+                  - color: '#6d2525'
+                    value: 100
+                style: |
+                  ha-card {
+                    background-color: #FFFFFF00;
+                    margin-left: -0.4em;
+                    margin-right: -0.5em;
+                    margin-top: 0.1em;
+                  }
+                title: Färg
+                title_style:
+                  color: '#e0e1e1'
+                  margin-left: 0.95em
+                type: 'custom:bar-card'
+                value_style:
+                  color: '#e0e1e1'
+                  font-size: 0.95em
+                  font-weight: 400
+                width: 50%
+                tap_action: service
+                service_options:
+                  domain: homeassistant
+                  service: update_entity
+                  data:
+                    entity_id: sensor.printer_color
+            style: |
+              ha-card {
+                border-radius: 0px !important;
+                margin-bottom: -1vw;
+              }
+            type: entities
+          - entities:
+              - entity: sensor.placeholder
+                icon: 'mdi:'
+                name: Historik
+            style: |
+              ha-card {
+                margin-top: -9%;
+                margin-left: -12.2%;
+                background-color: #FFFFFF00;
+                opacity: 0.9;
+                font-weight: 500;
+              }
+            type: entities
+          - entities:
+              - entity: {{entity_primary}}
+            hours_to_show: 24
+            refresh_interval: 0
+            style: |
+              ha-card {
+                margin-top: -10.5%;
+                padding-left: 2.2%;
+              }
+            type: history-graph
+        type: 'custom:vertical-stack-in-card'
+      deviceID:
+        - this
+      style:
+        '--ha-card-border-radius': 0vw 0vw 0.8vw 0.8vw
+        border-radius: 0.8vw
+        opacity: 0.9
+      title: {{name}}
+  image: /local/overlay.svg
+  style:
+    left: 50%
+    opacity: 0
+    top: 50%
+    width: 100%
+  tap_action:
+    action: none
+  title: null
+  type: image

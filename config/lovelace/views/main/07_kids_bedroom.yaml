@@ -1,0 +1,37 @@
+# lovelace_gen
+---
+################
+# Kids Bedroom #
+################
+- title: Kids Room
+  icon: mdi:human-child
+  id: KidsRoom
+  theme: midnight
+  cards:
+    - type: custom:thermostat-card
+      title: Temp
+      entity: climate.kids_bedroom
+      no_card: true
+      hvac:
+        states:
+          'off': 'off'
+          'heating': 'heat'
+          'idle': 'auto'
+        attribute: hvac_action
+
+    - type: entities
+      entities:
+        - entity: light.kids_bedroom
+        - entity: sensor.kids_bedroom_heating
+        - entity: sensor.kids_bedroom_humidity
+        - entity: sensor.kids_bedroom_link
+        - entity: sensor.kids_bedroom_mold
+        - entity: sensor.kids_bedroom_overlay
+        - entity: sensor.kids_bedroom_power
+        - entity: sensor.kids_bedroom_tado_mode
+        - entity: sensor.kids_bedroom_temperature
+        - entity: sensor.kids_bedroom_early_start
+        - entity: sensor.kids_bedroom_open_window
+        - entity: binary_sensor.kids_bedroom_open_window
+
+        - entity: sensor.kids_bedroom_lightpercent
