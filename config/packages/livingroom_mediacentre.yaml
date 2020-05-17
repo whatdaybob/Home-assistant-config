@@ -1,0 +1,496 @@
+#-------------------------------------------
+#  Package to control Livingroom Mediacentre
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-assistant-config
+#-------------------------------------------
+
+#-------------------------------------------
+# Description:
+#   Handles majority of the living room media players and scenes
+#   Creates switches and scripts for Homekit and Alexa
+#-------------------------------------------
+
+#-------------------------------------------
+# Setup basic information - https://www.home-assistant.io/docs/configuration/basic/
+#-------------------------------------------
+
+homeassistant:
+
+#-------------------------------------------
+# Customizing entities - https://www.home-assistant.io/docs/configuration/customizing-devices/
+#-------------------------------------------
+
+  customize:
+
+    # make media players work with homekit
+    media_player.living_room_skyq:
+      friendly_name: Living Room Skyq
+      device_class: tv
+
+    # make media players work with homekit
+    media_player.living_room_universal:
+      friendly_name: Living Room Universal
+      device_class: tv
+
+    # make media players work with homekit
+    media_player.living_room_androidtv:
+      friendly_name: Living Room Androidtv
+      device_class: tv
+
+#-------------------------------------------
+# Media Player - https://www.home-assistant.io/integrations/media_player/
+#-------------------------------------------
+
+media_player:
+
+#-------------------------------------------
+# LG Netcast - https://www.home-assistant.io/integrations/lg_netcast/
+#-------------------------------------------
+
+- platform: lg_netcast
+  name: living_room_lg_netcast
+  host: !secret ipaddr_Tv_LG
+  access_token: !secret lg_netcast_access_token
+
+#-------------------------------------------
+# SkyQ Custom Integration - https://github.com/RogerSelwyn/Home_Assistant_SkyQ_MediaPlayer/
+#-------------------------------------------
+
+- platform:  skyq
+  name: living_room_skyq
+  host: !secret ipaddr_Sky_Lounge
+  sources: 
+    BBCOne: '1,1,5'
+    BBCTwo: '1,0,2'
+    SkyAtlantic: '1,0,8'
+    SkyOne: '1,0,6'
+    SkyNews: '5,0,1'
+    Cbeebies: '6,1,4'
+
+#-------------------------------------------
+# Android TV - https://www.home-assistant.io/integrations/androidtv/
+#-------------------------------------------
+
+- platform: androidtv
+  host: !secret ipaddr_Comp_Shield
+  name: living_room_androidtv
+  exclude_unnamed_apps: true
+  screencap: false
+  port: 5555
+  device_class: androidtv
+  adbkey: /config/.storage/androidtv_adbkey
+  apps:
+    com.google.android.tvlauncher: "Homescreen"
+    com.amazon.amazonvideo.livingroom: "Amazon Premium Video"
+    org.xbmc.kodi: "Kodi"
+    com.netflix.ninja: "Netflix"
+    com.spotify.tv.android: "Spotify"
+    com.google.android.youtube.tv: "Youtube"
+    com.plexapp.android: "Plex"
+    com.valvesoftware.steamlink: "Steam Link"
+    com.disney.disneyplus: "Disney+"
+    air.ITVMobilePlayer: "ITV Player"
+    com.neverthink: "neverthink"
+  state_detection_rules:
+    'com.neverthink':
+      - 'playing'
+    'com.android.tv.settings':
+      - 'standby'
+    'com.google.android.tvlauncher':
+      - 'standby'
+    'com.netflix.ninja':
+      - 'playing':
+          'wake_lock_size': 4
+      - 'paused':
+          'wake_lock_size': 3
+      - 'standby'
+    'com.plexapp.android':
+      - 'playing':
+          'media_session_state': 3
+      - 'paused':
+          'media_session_state': 2
+      - 'standby'
+    'com.amazon.amazonvideo.livingroom':
+      - 'playing':
+          'media_session_state': 4
+      - 'standby'
+    'com.nvidia.bbciplayer':
+      - 'playing':
+          'wake_lock_size': 4
+      - 'paused':
+          'wake_lock_size': 3
+      - 'standby'
+    'air.ITVMobilePlayer':
+      - 'playing':
+          'wake_lock_size': 4
+      - 'standby'
+    'com.channel5.my5':
+      - 'paused':
+          'media_session_state': 2 
+      - 'playing':
+          'media_session_state': 3
+      - 'standby'
+    'com.disney.disneyplus':
+      - 'paused':
+          'media_session_state': 2 
+      - 'playing':
+          'media_session_state': 3
+      - 'standby'
+
+#-------------------------------------------
+# Xbox Custom Integration - https://github.com/OpenXbox/xboxone-home-assistant
+#-------------------------------------------
+
+# - platform: xboxone
+#   device: FD00E2BDC217C0D8
+#   ip_address: !secret ipaddr_livingroom_xbox
+#   name: living_room_xboxone
+#   authentication: false
+#   scan_interval: 15
+
+#-------------------------------------------
+# Kodi - https://www.home-assistant.io/integrations/kodi/
+#-------------------------------------------
+
+- platform: kodi
+  host: !secret ipaddr_Comp_Shield
+  port: !secret kodi_port
+  name: living_room_kodi
+
+#-------------------------------------------
+# Universal Media Player - https://www.home-assistant.io/integrations/universal/
+#-------------------------------------------
+
+- platform: universal
+  name: living_room_universal
+  children:
+    - media_player.living_room_kodi
+    - media_player.living_room_plexapp
+    - media_player.living_room_shield_cast
+    - media_player.living_room_androidtv
+    - media_player.living_room_skyq
+    # - media_player.living_room_xboxone
+    - media_player.living_room_lg_netcast
+    - media_player.living_room_sonos
+  state_template: >
+    {# old state template
+    {% set allmediaplayers = [
+      states.media_player.living_room_androidtv,
+      states.media_player.living_room_kodi,
+      states.media_player.living_room_lg_netcast,
+      states.media_player.living_room_plexapp,
+      states.media_player.living_room_shield_cast,
+      states.media_player.living_room_skyq,
+      states.media_player.living_room_sonos,
+      states.media_player.living_room_xboxone
+      ] %}
+    {% for mediaplayer in allmediaplayers %}
+      {% if as_timestamp(mediaplayer.last_changed) == as_timestamp(allmediaplayers | map(attribute='last_changed') | max) %}
+        {{ mediaplayer.attributes.friendly_name  | replace('Living Room','')}}: {{ mediaplayer.state }}
+      {% endif %}
+    {% endfor %} 
+    #}
+    {% if is_state_attr('media_player.living_room_sonos','source','TV')%}
+      {% set allmediaplayers = [
+          states.media_player.living_room_androidtv,
+          states.media_player.living_room_kodi,
+          states.media_player.living_room_lg_netcast,
+          states.media_player.living_room_plexapp,
+          states.media_player.living_room_shield_cast,
+          states.media_player.living_room_skyq,
+      ] %}
+      {% for mediaplayer in allmediaplayers %}
+        {% if as_timestamp(mediaplayer.last_changed) == as_timestamp(allmediaplayers | map(attribute='last_changed') | max) %}
+          {{ mediaplayer.state }}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% if is_state('media_player.living_room_sonos','playing') %}
+        {{ states('media_player.living_room_sonos') }}
+      {% else %}
+        off
+      {% endif %}
+    {% endif %}
+  commands:
+    turn_on:
+      service: script.turn_on
+      entity_id: script.living_room_universal_on
+    turn_off:
+      service: script.turn_on
+      entity_id: script.living_room_universal_off
+    volume_up:
+      service: media_player.volume_up
+      data:
+        entity_id: media_player.living_room_sonos
+    volume_down:
+      service: media_player.volume_down
+      data:
+        entity_id: media_player.living_room_sonos
+    volume_mute:
+      service: media_player.volume_mute
+      data:
+        entity_id: media_player.living_room_sonos
+        is_volume_muted: true
+    select_source:
+      service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if source == 'hdmi1' %}
+            script.living_room_universal_hdmi1
+          {% elif source == 'hdmi2' %}
+            script.living_room_universal_hdmi2
+          {% elif source == 'hdmi3' %}
+            script.living_room_universal_hdmi3
+          {% else %}
+            Select Input
+          {% endif %}
+    volume_set:
+      service: media_player.volume_set
+      data_template:
+        entity_id: media_player.living_room_sonos
+        volume_level: '{{ volume_level }}'
+  attributes:
+    # state: switch.living_room_tv
+    is_volume_muted: media_player.living_room_sonos|is_volume_muted
+    volume_level: media_player.living_room_sonos|volume_level
+    source: input_select.lightpack_input
+    source_list: input_select.lightpack_input|options
+
+#-------------------------------------------
+# Sensor - https://www.home-assistant.io/integrations/sensor/
+#-------------------------------------------
+
+sensor:
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+  - platform: template
+    sensors:
+
+    #-- Harmony: Whats my current activity
+      harmony_activity_living_room:
+        friendly_name: 'Current Harmony Activity'
+        value_template: "{{ states.remote.living_room_harmony.attributes.current_activity }}"
+      living_room_universal_source:
+        friendly_name: 'Current Living Room Media Player'
+        value_template: >-
+          {% set umpc = state_attr('media_player.living_room_universal','active_child') %}
+          {% if umpc != None %}
+            {{state_attr(umpc,'friendly_name')}}
+          {% else %}
+            None
+          {% endif %}
+
+#-------------------------------------------
+# Switch - https://www.home-assistant.io/integrations/switch/
+#-------------------------------------------
+
+switch:
+
+#-------------------------------------------
+# Template Switch - https://www.home-assistant.io/integrations/switch.template/
+#-------------------------------------------
+
+  - platform: template
+    switches:
+
+    #-- Turn on Xbox and change input
+      remote_living_room_xbox:
+        friendly_name: Xbox
+        icon_template: >-
+          {% if is_state_attr('remote.living_room_harmony', 'current_activity', 'Xbox')  %}
+            mdi:xbox-controller
+          {% else %}
+            mdi:xbox-controller-off
+          {% endif %}
+        value_template: "{{ is_state_attr('remote.living_room_harmony', 'current_activity', 'Xbox') }}"
+        turn_on:
+          service: remote.turn_on
+          data:
+            entity_id: remote.living_room_harmony
+            activity: 'Xbox'
+        turn_off:
+          service: remote.turn_on
+          data:
+            entity_id: remote.living_room_harmony
+            activity: 'PowerOff'
+
+    #-- Turn on Sky Q and change input
+      remote_living_room_skyq:
+        friendly_name: SkyQ
+        icon_template: >-
+          {% if is_state_attr('remote.living_room_harmony', 'current_activity', 'Sky')  %}
+            mdi:television
+          {% else %}
+            mdi:television-off
+          {% endif %}
+        value_template: "{{ is_state_attr('remote.living_room_harmony', 'current_activity', 'Sky') }}"
+        turn_on:
+          service: remote.turn_on
+          data:
+            entity_id: remote.living_room_harmony
+            activity: 'Sky'
+        turn_off:
+          service: remote.turn_on
+          data:
+            entity_id: remote.living_room_harmony
+            activity: 'PowerOff'
+
+    #-- Turn on Nvidia Shield and change input
+      remote_living_room_shield:
+        friendly_name: Shield TV
+        icon_template: >-
+          {% if is_state_attr('remote.living_room_harmony', 'current_activity', 'ShieldTV')  %}
+            mdi:cast
+          {% else %}
+            mdi:cast-off
+          {% endif %}
+        value_template: "{{ is_state_attr('remote.living_room_harmony', 'current_activity', 'ShieldTV') }}"
+        turn_on:
+          service: remote.turn_on
+          data:
+            entity_id: remote.living_room_harmony
+            activity: 'ShieldTV'
+        turn_off:
+          service: remote.turn_on
+          data:
+            entity_id: remote.living_room_harmony
+            activity: 'PowerOff'
+
+    #-- Switch for Sonos Beam Night Sound mode
+      living_room_sonos_night_sound:
+        friendly_name: "Night Sound"
+        value_template: "{{ state_attr('media_player.living_room_sonos', 'night_sound') }}"
+        turn_on:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.living_room_sonos
+            night_sound: true
+        turn_off:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.living_room_sonos
+            night_sound: false
+
+    #-- Switch for Sonos Beam Speech Enhancement mode
+      living_room_sonos_speech_enhance:
+        friendly_name: "Speech Enhance"
+        value_template: "{{ state_attr('media_player.living_room_sonos', 'speech_enhance') }}"
+        turn_on:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.living_room_sonos
+            speech_enhance: true
+        turn_off:
+          service: sonos.set_option
+          data:
+            entity_id: media_player.living_room_sonos
+            speech_enhance: false
+
+#-------------------------------------------
+# Group - https://www.home-assistant.io/integrations/group/
+#-------------------------------------------
+
+group:
+
+#-- Group media players together
+  living_room_media_player:
+    name: Living Room Media Players
+    entities:
+      - media_player.living_room_androidtv
+      # - media_player.living_room_xboxone
+      - media_player.living_room_skyq
+      - media_player.living_room_kodi
+      - media_player.living_room_lg_netcast
+      - media_player.living_room_universal
+
+#-------------------------------------------
+# Scripts - https://www.home-assistant.io/integrations/script/
+#-------------------------------------------
+
+script:
+
+#-- Expose input select to Alexa 
+  living_room_universal_hdmi1:
+    alias: living_room_universal_hdmi1
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.lightpack_input
+      data:
+        option: hdmi1
+    - service: remote.turn_on
+      entity_id: remote.living_room_harmony
+      data:
+        activity: "Xbox"
+
+#-- Expose input select to Alexa 
+  living_room_universal_hdmi2:
+    alias: living_room_universal_hdmi2
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.lightpack_input
+      data:
+        option: hdmi2
+    - service: remote.turn_on
+      entity_id: remote.living_room_harmony
+      data:
+        activity: "Sky"
+
+#-- Expose input select to Alexa 
+  living_room_universal_hdmi3:
+    alias: living_room_universal_hdmi3
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.lightpack_input
+      data:
+        option: hdmi3
+    - service: remote.turn_on
+      entity_id: remote.living_room_harmony
+      data:
+        activity: "ShieldTV"
+
+#-- Expose input select to Alexa 
+  living_room_universal_off:
+    alias: living_room_universal_off
+    sequence:
+    - service: remote.turn_on
+      entity_id: remote.living_room_harmony
+      data:
+        activity: "PowerOff"
+
+#-- Expose input select to Alexa 
+  living_room_universal_on:
+    alias: living_room_universal_on
+    sequence:
+    - service: remote.turn_on
+      entity_id: remote.living_room_harmony
+
+#-------------------------------------------
+# Scenes - https://www.home-assistant.io/integrations/scene/
+#-------------------------------------------
+
+scene:
+
+#-- Set mood lighting when a movie starts
+  - name: Lights Movie
+    entities:
+      light.living_room_floor_lamp:
+        state: off
+      light.living_room_table_lamp:
+        state: on
+        brightness_pct: 20
+        transition: 1
+
+#-- Set normal lighting
+  - name: Lights Normal
+    entities:
+      light.living_room_floor_lamp:
+        state: on
+        brightness_pct: 75
+        transition: 1
+      light.living_room_table_lamp:
+        state: on
+        brightness_pct: 75
+        transition: 1

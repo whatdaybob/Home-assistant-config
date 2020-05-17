@@ -1,0 +1,82 @@
+#-------------------------------------------
+#  Realtime logging changes
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Description:
+#   Allow changing an input select to change log levels
+#-------------------------------------------
+
+#-------------------------------------------
+# Input Select - https://www.home-assistant.io/integrations/input_select/
+#-------------------------------------------
+
+input_select:
+
+  log_integration:
+    name: Log Integration
+    options:
+      - Default
+      - Automation
+      - Binary Sensor
+      - Climate
+      - Device Tracker
+      - Input Boolean
+      - Input Datetime
+      - Input Select
+      - Light
+      - Media Player
+      - MQTT
+      - Person
+      - Remote
+      - Scene
+      - Sensor
+      - Switch
+      - Zone
+    initial: Default
+
+  log_level:
+    name: Log Level
+    options:
+      - critical
+      - fatal
+      - error
+      - warning
+      - warn
+      - info
+      - debug
+      - notset
+    initial: warning
+
+#-------------------------------------------
+# Automation - https://www.home-assistant.io/integrations/automation/
+#-------------------------------------------
+
+automation:
+- id: logger_setdefaultlevel
+  alias: logger_setdefaultlevel
+  trigger:
+    - platform: state
+      entity_id: input_select.log_level
+  condition:
+    - condition: template
+      value_template: "{{ states('input_select.log_integration') == 'Default' }}"
+  action:
+    service: logger.set_default_level
+    data_template:
+      level: "{{ states('input_select.log_level') }}"
+
+- id: logger_setdefault_component
+  alias: logger_setdefault_component
+  trigger:
+    - platform: state
+      entity_id: input_select.log_level
+  condition:
+    - condition: template
+      value_template: "{{ states('input_select.log_integration') != 'Default' }}"
+  action:
+    service: logger.set_level
+    data_template:
+      "{{ 'homeassistant.components.'+states('input_select.log_integration').lower() | replace(' ','_') }}": "{{ states('input_select.log_level') }}"
