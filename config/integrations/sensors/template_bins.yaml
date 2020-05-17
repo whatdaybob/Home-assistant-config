@@ -1,0 +1,87 @@
+#-------------------------------------------
+#  Bin Day Template Sensor Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/components/template/
+#-------------------------------------------
+
+#-- Node red scapes data and this template presents it
+- platform: template
+  sensors:
+    blue_bin:
+      unit_of_measurement: 'days until collection'
+      value_template: >-
+        {%- if states('sensor.nodered_blue_bin_collection') != 'unknown' %}
+          {%- set bin1 = states('sensor.nodered_blue_bin_collection') -%}          
+          {%- set bin2 = state_attr('sensor.nodered_blue_bin_collection','second_collection') -%}
+          {%- set bin_1 = ((as_timestamp(bin1) - as_timestamp(now())) / 86400 ) | round(0) -%}
+          {%- set bin_2 = ((as_timestamp(bin2) - as_timestamp(now())) / 86400 ) | round(0) -%}
+          {%- if bin_1 > 0 %}
+            {{ bin_1 }}
+          {% else %}
+            {{ bin_2 }}
+          {%- endif %}
+        {% else %}
+            Initializing...
+        {%- endif %}
+    grey_bin:
+      unit_of_measurement: 'days until collection'
+      value_template: >-
+        {%- if states('sensor.nodered_grey_bin_collection') != 'unknown' %}
+          {%- set bin1 = states('sensor.nodered_grey_bin_collection') -%}          
+          {%- set bin2 = state_attr('sensor.nodered_grey_bin_collection','second_collection') -%}
+          {%- set bin_1 = ((as_timestamp(bin1) - as_timestamp(now())) / 86400 ) | round(0) -%}
+          {%- set bin_2 = ((as_timestamp(bin2) - as_timestamp(now())) / 86400 ) | round(0) -%}
+          {%- if bin_1 > 0 %}
+            {{ bin_1 }}
+          {% else %}
+            {{ bin_2 }}
+          {%- endif %}
+        {% else %}
+            Initializing...
+        {%- endif %}    
+    brown_bin:
+      unit_of_measurement: 'days until collection'
+      value_template:  >-
+        {%- if states('sensor.nodered_brown_bin_collection') != 'unknown' %}
+          {%- set bin1 = states('sensor.nodered_brown_bin_collection') -%}          
+          {%- set bin2 = state_attr('sensor.nodered_brown_bin_collection','second_collection') -%}
+          {%- set bin_1 = ((as_timestamp(bin1) - as_timestamp(now())) / 86400 ) | round(0) -%}
+          {%- set bin_2 = ((as_timestamp(bin2) - as_timestamp(now())) / 86400 ) | round(0) -%}
+          {%- if bin_1 > 0 %}
+            {{ bin_1 }}
+          {% else %}
+            {{ bin_2 }}
+          {%- endif %}
+        {% else %}
+            Initializing...
+        {%- endif %}
+    bin_week:
+      value_template: >-
+        {%- set bingrey = states('sensor.grey_bin') -%}
+        {%- set binblue = states('sensor.blue_bin') -%}
+        {%- if bingrey != 'unknown' and binblue != 'unknown' %}
+          {%- if bingrey > binblue %} 
+            Recycling
+          {%- else %}
+            General Waste
+          {%- endif %}
+        {% else %}
+          Initializing...
+        {%- endif %}
+      icon_template: >-
+        {%- set bingrey = states('sensor.grey_bin') -%}
+        {%- set binblue = states('sensor.blue_bin') -%}
+        {%- if bingrey != 'unknown' and binblue != 'unknown' %}
+          {%- if bingrey > binblue %} 
+            mdi:recycle
+          {%- else %}
+            mdi:delete-empty
+          {%- endif %}
+        {% else %}
+          mdi:alert-decagram
+        {%- endif %}

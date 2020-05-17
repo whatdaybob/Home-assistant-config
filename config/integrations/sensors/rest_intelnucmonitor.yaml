@@ -1,0 +1,29 @@
+#-------------------------------------------
+#  Intel Nuc Sensors Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/rest/
+#-------------------------------------------
+
+#-- Depends on https://github.com/ned-kelly/ha-monitor-api/
+- platform: rest
+  name: intelnuc
+  entity_namespace: system
+  resource: http://192.168.1.159:8124/
+  timeout: 30
+  json_attributes:
+    - cpu_current
+    - cpu_free
+    - cpu_average
+    - cpu_temperature
+    - drive
+    - memory
+    - network
+  value_template: '{{ value_json.value}}'
+  headers:
+    Content-Type: application/json
+    User-Agent: Home Assistant Agent

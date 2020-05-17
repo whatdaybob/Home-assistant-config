@@ -1,0 +1,21 @@
+#-------------------------------------------
+#  General Input Booleans Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/input_boolean/
+#-------------------------------------------
+
+#-- Used to toggle front end devices
+lovelace_toggle:
+  name: Show Lovelace entities
+  initial: off
+  icon: mdi:eye-off-outline
+
+#-- Used to ensure the node red instance can still comunicate with homeassistant
+node_red:
+  name: Node Red Watchdog
+  initial: on

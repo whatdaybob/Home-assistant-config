@@ -1,0 +1,20 @@
+#-------------------------------------------
+#  Steam Online Configuration
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Integration Details:
+# https://www.home-assistant.io/integrations/steam_online/
+#-------------------------------------------
+
+- platform: steam_online
+  api_key: !secret integrations_steam_online_api_key
+  accounts:
+    - !secret integrations_steam_online_user1
+    - !secret integrations_steam_online_user2
+    - !secret integrations_steam_online_user3
+    - !secret integrations_steam_online_user4
+    - !secret integrations_steam_online_user5
+    - !secret integrations_steam_online_user6
