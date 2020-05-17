@@ -32,6 +32,7 @@ secrets.yaml
 known_devices.yaml
 __pycache__/
 config/custom_components/installed via hacs.txt
+*nodered.json
 #-------------------------------------------
 # Temp files to be removed
 #-------------------------------------------
