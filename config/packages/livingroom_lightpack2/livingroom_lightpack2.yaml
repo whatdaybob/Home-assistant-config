@@ -1,0 +1,161 @@
+#-------------------------------------------
+#  Package to control LightPack2 via HomeAssistant
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-assistant-config
+#-------------------------------------------
+
+#-------------------------------------------
+# Package Details:
+#   Usage:
+#     A Raspberry PI (BLE compatible) has a script to control the lightpack via BLE packets
+#     Nodered takes the lightpack input select changes and executes the script correctly
+#     This also crates a custom light to control the lightpack
+#-------------------------------------------
+
+#-------------------------------------------
+# Input Select - https://www.home-assistant.io/integrations/input_select/
+#-------------------------------------------
+
+input_select:
+
+#-- allows changing the mode (off,media,mood)
+  lightpack_mode:
+    name: lightpack mode
+    options:
+      - 'off'
+      - media
+      - mood
+
+#-- allows changing the input (hdmi1,hdmi2,hdmi3,hdmi4)
+  lightpack_input:
+    name: lightpack input
+    options:
+      - Select Input
+      - hdmi1
+      - hdmi2
+      - hdmi3
+      - hdmi4
+
+#-- allows setting the brightness (0,25,50,75,100)
+  lightpack_brightness:
+    name: lightpack brightness
+    options:
+      - brightness0
+      - brightness25
+      - brightness50
+      - brightness75
+      - brightness100
+
+#-- allows setting to mood preselects
+  lightpack_mood:
+    name: lightpack mood setting
+    options:
+      - birchgrove
+      - fireplace
+      - starrynight
+      - cafe
+      - auroraborealis
+      - stilllightwhite
+
+#-------------------------------------------
+# Scripts - https://www.home-assistant.io/integrations/script/
+#-------------------------------------------
+
+script:
+
+#-- Call shell command with input select value
+  lightpack_mode_change:
+    alias: Change Lightpack Mode
+    sequence:
+      - service: shell_command.lightpack_mode
+
+#-- Call shell command with input select value
+  lightpack_input_change:
+    alias: Change Lightpack Input
+    sequence:
+      - service: shell_command.lightpack_input
+
+#-- Call shell command with input select value
+  lightpack_mood_change:
+    alias: Change Lightpack Mood
+    sequence:
+      - service: shell_command.lightpack_mood
+
+#-- Call shell command with input select value
+  lightpack_brightness_change:
+    alias: Change Lightpack Brightness
+    sequence:
+      - service: shell_command.lightpack_brightness
+
+#-- Change input select to correct status
+  lightpack_turn_on:
+    alias: Turn On Lightpack
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.lightpack_mode
+        option: media
+
+#-- Change input select to correct status
+  lightpack_turn_off:
+    alias: Turn Off Lightpack
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.lightpack_mode
+        option: 'off'
+
+#-------------------------------------------
+# Shell Command - https://www.home-assistant.io/integrations/shell_command/
+#-------------------------------------------
+
+shell_command:
+
+#-- send command via SSH
+  lightpack_power: ssh -i /config/.ssh/id_rsa pi@192.168.1.16 -o StrictHostKeyChecking=no power'
+
+#-- send command via SSH
+  lightpack_moodsingle: ssh -i /config/.ssh/id_rsa pi@192.168.1.16 -o StrictHostKeyChecking=no mood'
+
+#-- send command via SSH
+  lightpack_media: ssh -i /config/.ssh/id_rsa pi@192.168.1.16 -o StrictHostKeyChecking=no media'
+
+#-- send command via SSH
+  lightpack_mode: ssh -i /config/.ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.1.16 'exec ./lightpack.sh \"{{states.input_select.lightpack_mode.state}}\"'
+
+#-- send command via SSH
+  lightpack_input: ssh -i /config/.ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.1.16 'exec ./lightpack.sh \"{{states.input_select.lightpack_input.state}}\"'
+
+#-- send command via SSH
+  lightpack_mood: ssh -i /config/.ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.1.16 'exec ./lightpack.sh \"{{states.input_select.lightpack_mood.state}}\"'
+
+#-- send command via SSH
+  lightpack_brightness: ssh -i /config/.ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.1.16 'exec ./lightpack.sh \"{{states.input_select.lightpack_brightness.state}}\"'
+
+#-------------------------------------------
+# Light - https://www.home-assistant.io/integrations/light/
+#-------------------------------------------
+
+light:
+
+#-------------------------------------------
+# Template Light - https://www.home-assistant.io/integrations/light.template/
+#-------------------------------------------
+
+  - platform: template
+    lights:
+
+#-- combine all above into a light
+      lightpack2:
+        friendly_name: "lightpack2"
+        turn_on:
+          service: script.lightpack_turn_on
+        turn_off:
+          service: script.lightpack_turn_off
+        level_template: "{{(((states('input_select.lightpack_brightness') | regex_replace('brightness','')|float)*255)/100)|int}}"
+        value_template: "{{(((states('input_select.lightpack_brightness') | regex_replace('brightness','')|float)*255)/100)| int > 0 }}"
+        set_level:
+          service: input_select.select_option
+          data_template:
+            entity_id: input_select.lightpack_brightness
+            option: brightness{{ ((brightness / 255 * 100)| int / 25) | round(0)*25 }}
