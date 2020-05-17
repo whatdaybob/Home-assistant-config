@@ -21,6 +21,7 @@ config/configuration/themes/
 # Ensure these files are ignored
 #-------------------------------------------
 .vscode/settings.json
+hass.code-workspace
 .homekit.state
 .uuid
 config/*.conf
@@ -35,3 +36,4 @@ config/custom_components/installed via hacs.txt
 #-------------------------------------------
 *.old 
 *.disabled 
+
