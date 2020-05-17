@@ -18,6 +18,7 @@ config/Extras/
 disabled/
 tts/
 config/configuration/themes/
+backup/
 #-------------------------------------------
 # Ensure these files are ignored
 #-------------------------------------------
