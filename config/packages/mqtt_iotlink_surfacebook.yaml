@@ -1,0 +1,440 @@
+#-------------------------------------------
+#  Package to extract information about the Surface Book
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Binary Sensor - https://www.home-assistant.io/integrations/binary_sensor/
+#-------------------------------------------
+
+binary_sensor:
+
+#-------------------------------------------
+# MQTT Binary Sensor - https://www.home-assistant.io/integrations/binary_sensor.mqtt/
+#-------------------------------------------
+
+  - platform: mqtt
+    name: "Surface Book - Connected"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - Charging"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - Battery Status"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/battery/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-------------------------------------------
+# Sensor - https://www.home-assistant.io/integrations/sensor/
+#-------------------------------------------
+
+sensor:
+
+#-------------------------------------------
+# MQTT Sensor - https://www.home-assistant.io/integrations/sensor.mqtt/
+#-------------------------------------------
+
+#-- CPU Sensors
+  - platform: mqtt
+    name: "Surface Book - CPU Usage"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/cpu/usage"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-- Memory Sensors
+  - platform: mqtt
+    name: "Surface Book - RAM Usage"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - RAM Available"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/memory/available"
+    unit_of_measurement: 'MB'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - RAM Used"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/memory/used"
+    unit_of_measurement: 'MB'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - RAM Total"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/memory/total"
+    unit_of_measurement: 'MB'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-- System Sensors
+  - platform: mqtt
+    name: "Surface Book - Uptime"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/system/uptime"
+    unit_of_measurement: 'days'
+    icon: mdi:ethernet
+    value_template: >-
+      {% set num = value %}
+      {% set day = num[:2] | float %}
+      {% set hr = (num[3:-6] | float / 24) %}
+      {% set min = (num[6:-3] | float / 1440) %}
+      {% set sec = (num[9:] | float / 86400) %}
+      {{ (day + hr + min + sec) | round(2) }}
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - Current User"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/system/current-user"
+    unit_of_measurement: ''
+    icon: mdi:account
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - Idle Time"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/system/idle-time"
+    unit_of_measurement: 'seconds'
+    icon: mdi:timer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - Boot Time"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/system/boot-time"
+    unit_of_measurement: ''
+    icon: mdi:timer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - Remaining Battery"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - Remaining Battery Time"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutes'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - Predicted Lifetime"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/battery/full-lifetime"
+    unit_of_measurement: 'minutes'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-- HDD Sensors
+  - platform: mqtt
+    name: "Surface Book - HDD Usage (C)"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/hard-drive/c/drive-usage"
+    unit_of_measurement: '%'
+    icon: mdi:chart-donut
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - HDD Total Size (C)"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/hard-drive/c/total-size"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - HDD Total Free Space (C)"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/hard-drive/c/total-free-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - HDD Free Space (C)"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/hard-drive/c/available-free-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - HDD Used Space (C)"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/hard-drive/c/used-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - HDD Format (C)"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/hard-drive/c/drive-format"
+    unit_of_measurement: ''
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Surface Book - HDD Label (C)"
+    state_topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/hard-drive/c/volume-label"
+    unit_of_measurement: ''
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-nfd3lk9/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-------------------------------------------
+# Camera - https://www.home-assistant.io/integrations/camera/
+#-------------------------------------------
+
+camera:
+
+#-------------------------------------------
+# MQTT Camera - https://www.home-assistant.io/integrations/camera.mqtt/
+#-------------------------------------------
+
+  - platform: mqtt
+    name: "Surface Book - Screen 0"
+    topic: "iotlink/workgroup/desktop-nfd3lk9/windows-monitor/stats/display/0/screen"
+
+#-------------------------------------------
+# Switch - https://www.home-assistant.io/integrations/switch/
+#-------------------------------------------
+
+switch:
+
+#-------------------------------------------
+# Template Switch - https://www.home-assistant.io/integrations/switch.template/
+#-------------------------------------------
+
+  - platform: template
+    switches:
+      surface_book:
+        friendly_name: "Surface Book"
+        value_template: "{{ is_state('binary_sensor.surface_book_connected', 'on') }}"
+        turn_on:
+          service: script.surface_book_wake
+        turn_off:
+          service: script.surface_book_shutdown
+        icon_template: mdi:laptop
+
+#-------------------------------------------
+# Scripts - https://www.home-assistant.io/integrations/script/
+#-------------------------------------------
+
+script:
+
+  surface_book_wake:
+    # To enable see https://www.home-assistant.io/components/wake_on_lan/
+    alias: "Surface Book - Wake"
+    sequence:
+      - service: wake_on_lan.send_magic_packet
+        data:
+          mac: !secret mac_surfacebook
+
+  surface_book_shutdown:
+    alias: "Surface Book - Shutdown"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/shutdown"
+          payload: ""
+
+  surface_book_suspend:
+    alias: "Surface Book - Suspend"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/suspend"
+          payload: ""
+
+  surface_book_hibernate:
+    alias: "Surface Book - Hibernate"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/hibernate"
+          payload: ""
+
+  surface_book_reboot:
+    alias: "Surface Book - Reboot"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/reboot"
+          payload: ""
+
+  surface_book_lock:
+    alias: "Surface Book - Lock"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/lock"
+          payload: ""
+
+  surface_book_logoff:
+    alias: "Surface Book - Logoff"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/logoff"
+          payload: ""
+
+  surface_book_vol_mute:
+    alias: "Surface Book - Toggle Mute"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/volume/mute"
+          payload: ""
+
+  surface_book_vol_max:
+    alias: "Surface Book - Vol Max"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/volume/set"
+          payload: "100"
+
+  surface_book_displays_on:
+    alias: "Surface Book - Displays ON"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/displays/on"
+          payload: ""
+
+  surface_book_displays_off:
+    alias: "Surface Book - Displays OFF"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/displays/off"
+          payload: ""
+
+  surface_book_refresh:
+    alias: "Surface Book - Refresh"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/refresh"
+          payload: ""
+
+  surface_book_notify:
+    alias: "Surface Book - Notify"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/commands/notify"
+          payload: '{ "title": "My Notification Title", "message": "This is an example of notification using IOT Link", "launchParams": "toast://open/https://iotlink.gitlab.io" }'
+
+#-------------------------------------------
+# Automation - https://www.home-assistant.io/integrations/automation/
+#-------------------------------------------
+
+automation:
+
+#-- Refresh stats on HA restart
+  - id: IOTLink_Startup
+    alias: IOTLink Startup
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-nfd3lk9/refresh"
+          payload: ""

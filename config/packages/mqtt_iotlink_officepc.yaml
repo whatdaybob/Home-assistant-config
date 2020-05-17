@@ -1,0 +1,463 @@
+#-------------------------------------------
+#  Package to extract information about the Office PC
+#  @Whatdaybob
+#  Original Repo : https://github.com/whatdaybob/Home-AssistantConfig
+#-------------------------------------------
+
+#-------------------------------------------
+# Binary Sensor - https://www.home-assistant.io/integrations/binary_sensor/
+#-------------------------------------------
+
+binary_sensor:
+
+#-------------------------------------------
+# MQTT Binary Sensor - https://www.home-assistant.io/integrations/binary_sensor.mqtt/
+#-------------------------------------------
+
+  - platform: mqtt
+    name: "Office PC - Connected"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+#-------------------------------------------
+# Sensor - https://www.home-assistant.io/integrations/sensor/
+#-------------------------------------------
+
+sensor:
+
+#-------------------------------------------
+# MQTT Sensor - https://www.home-assistant.io/integrations/sensor.mqtt/
+#-------------------------------------------
+
+#-- CPU Sensors
+  - platform: mqtt
+    name: "Office PC - CPU Usage"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/cpu/usage"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-- Memory Sensors
+  - platform: mqtt
+    name: "Office PC - RAM Usage"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - RAM Available"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/memory/available"
+    unit_of_measurement: 'MB'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - RAM Used"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/memory/used"
+    unit_of_measurement: 'MB'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - RAM Total"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/memory/total"
+    unit_of_measurement: 'MB'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-- System Sensors
+  - platform: mqtt
+    name: "Office PC - Uptime"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/system/uptime"
+    unit_of_measurement: 'days'
+    icon: mdi:ethernet
+    value_template: >-
+      {% set num = value %}
+      {% set day = num[:2] | float %}
+      {% set hr = (num[3:-6] | float / 24) %}
+      {% set min = (num[6:-3] | float / 1440) %}
+      {% set sec = (num[9:] | float / 86400) %}
+      {{ (day + hr + min + sec) | round(2) }}
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - Current User"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/system/current-user"
+    unit_of_measurement: ''
+    icon: mdi:account
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - Idle Time"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/system/idle-time"
+    unit_of_measurement: 'seconds'
+    icon: mdi:timer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - Boot Time"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/system/boot-time"
+    unit_of_measurement: ''
+    icon: mdi:timer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-- HDD Sensors
+  - platform: mqtt
+    name: "Office PC - HDD Usage (C)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/c/drive-usage"
+    unit_of_measurement: '%'
+    icon: mdi:chart-donut
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Total Size (C)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/c/total-size"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Total Free Space (C)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/c/total-free-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Free Space (C)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/c/available-free-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Used Space (C)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/c/used-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Format (C)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/c/drive-format"
+    unit_of_measurement: ''
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Label (C)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/c/volume-label"
+    unit_of_measurement: ''
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Usage (D)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/d/drive-usage"
+    unit_of_measurement: '%'
+    icon: mdi:chart-donut
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Total Size (D)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/d/total-size"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Total Free Space (D)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/d/total-free-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Free Space (D)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/d/available-free-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Used Space (D)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/d/used-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Format (D)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/d/drive-format"
+    unit_of_measurement: ''
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Office PC - HDD Label (D)"
+    state_topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/hard-drive/d/volume-label"
+    unit_of_measurement: ''
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-5ept5hq/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+#-------------------------------------------
+# Camera - https://www.home-assistant.io/integrations/camera/
+#-------------------------------------------
+
+camera:
+
+#-------------------------------------------
+# MQTT Camera - https://www.home-assistant.io/integrations/camera.mqtt/
+#-------------------------------------------
+  
+  - platform: mqtt
+    name: "Office PC - Screen 0"
+    topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/display/0/screen"
+
+  - platform: mqtt
+    name: "Office PC - Screen 1"
+    topic: "iotlink/workgroup/desktop-5ept5hq/windows-monitor/stats/display/1/screen"
+
+#-------------------------------------------
+# Switch - https://www.home-assistant.io/integrations/switch/
+#-------------------------------------------
+
+switch:
+
+#-------------------------------------------
+# Template Switch - https://www.home-assistant.io/integrations/switch.template/
+#-------------------------------------------
+
+  - platform: template
+    switches:
+      office_pc:
+        friendly_name: "Office PC"
+        value_template: "{{ is_state('binary_sensor.office_pc_connected', 'on') }}"
+        turn_on:
+          service: script.office_pc_wake
+        turn_off:
+          service: script.office_pc_shutdown
+        icon_template: mdi:laptop
+
+#-------------------------------------------
+# Scripts - https://www.home-assistant.io/integrations/script/
+#-------------------------------------------
+
+script:
+
+  office_pc_wake:
+    alias: "Office PC - Wake"
+    sequence:
+      - service: wake_on_lan.send_magic_packet
+        data:
+          mac: !secret mac_officepc
+
+  office_pc_shutdown:
+    alias: "Office PC - Shutdown"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/shutdown"
+          payload: ""
+
+  office_pc_suspend:
+    alias: "Office PC - Suspend"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/suspend"
+          payload: ""
+
+  office_pc_hibernate:
+    alias: "Office PC - Hibernate"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/hibernate"
+          payload: ""
+
+  office_pc_reboot:
+    alias: "Office PC - Reboot"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/reboot"
+          payload: ""
+
+  office_pc_lock:
+    alias: "Office PC - Lock"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/lock"
+          payload: ""
+
+  office_pc_logoff:
+    alias: "Office PC - Logoff"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/logoff"
+          payload: ""
+
+  office_pc_vol_mute:
+    alias: "Office PC - Toggle Mute"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/volume/mute"
+          payload: ""
+
+  office_pc_vol_max:
+    alias: "Office PC - Vol Max"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/volume/set"
+          payload: "100"
+
+  office_pc_displays_on:
+    alias: "Office PC - Displays ON"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/displays/on"
+          payload: ""
+
+  office_pc_displays_off:
+    alias: "Office PC - Displays OFF"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/displays/off"
+          payload: ""
+
+  office_pc_refresh:
+    alias: "Office PC - Refresh"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/refresh"
+          payload: ""
+
+  office_pc_notify:
+    alias: "Office PC - Notify"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/commands/notify"
+          payload: '{ "title": "My Notification Title", "message": "This is an example of notification using IOT Link", "launchParams": "toast://open/https://iotlink.gitlab.io" }'
+
+#-------------------------------------------
+# Automation - https://www.home-assistant.io/integrations/automation/
+#-------------------------------------------
+
+automation:
+
+#-- Refresh stats on HA restart
+  - id: IOTLink_Startup
+    alias: IOTLink Startup
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-5ept5hq/refresh"
+          payload: ""
