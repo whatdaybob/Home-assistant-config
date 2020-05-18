@@ -70,10 +70,10 @@ I have Home Assistant running on an [Intel NUC DN2820FYKH (Similar Model as mine
 
 ### Sensors
 * [Withings Body Cardio](https://amzn.to/2Xa0FCw) gets me generic health data.
-
 * Apple/iOS Devices - [iPhone 11](https://amzn.to/2X5z59t), [iPhone 8](https://amzn.to/2TfaQou) & [iPads](https://amzn.to/2X0aXoQ)
 * [Philips Hue Motion](https://amzn.to/2zLUpsG)
 * [Smartthings Door Sensor](https://amzn.to/369TkqO)
+* [Smartthings Smart Plug](https://amzn.to/3dWoZPe)
 * [Xbox One](https://amzn.to/3bIkxSB) for bedroom gaming.
 * [Xbox One X](https://amzn.to/2LAxpzo) for living room gaming.
 * [Aeon Labs Home Energy Meter](https://amzn.to/2z4BTf2)
