@@ -1,13 +1,14 @@
 # Packages
 ## [withings.yaml](./withings.yaml)
-### details
 
 The `withings` sensor platform consumes data from various health products produced by Withings. Currently I only own the [Withings Body Cardio](https://amzn.to/2Xa0FCw) scale but have been happy with it overall.
 
 This is exposed as its own package as the integration has a template sensor to work with the data and I plan on expanding it more in future as I get more devices.
 
-### defined entities 
+<details><summary>Defined entities</summary>
+<p>
 
+### defined entities 
 * **sensor.withings_bone_mass_kg** - Bone mass from the scales
 * **sensor.withings_fat_free_mass_kg**
 * **sensor.withings_fat_mass_kg**
@@ -19,7 +20,10 @@ This is exposed as its own package as the integration has a template sensor to w
 * **sensor.withings_weight_kg** - The default weight measurement
 * **sensor.withings_weight_stlb** - The default weight measurement converted to Stones and Pounds
 
-<details><summary>Unused Sensors</summary>
+</p>
+</details>
+
+<details><summary>Unused entities</summary>
 <p>
 
 #### Unpopulated due to not having a device to record measurements
