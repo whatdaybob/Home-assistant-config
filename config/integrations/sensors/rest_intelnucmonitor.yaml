@@ -5,15 +5,13 @@
 #-------------------------------------------
 
 #-------------------------------------------
-# Integration Details:
-# https://www.home-assistant.io/integrations/rest/
+# RESTful - https://www.home-assistant.io/integrations/rest/
 #-------------------------------------------
 
-#-- Depends on https://github.com/ned-kelly/ha-monitor-api/
 - platform: rest
   name: intelnuc
   entity_namespace: system
-  resource: http://192.168.1.159:8124/
+  resource: !secret rest_hamonitorapi_resources
   timeout: 30
   json_attributes:
     - cpu_current
@@ -27,3 +25,38 @@
   headers:
     Content-Type: application/json
     User-Agent: Home Assistant Agent
+
+#-------------------------------------------
+# Template Sensor - https://www.home-assistant.io/integrations/template/
+#-------------------------------------------
+
+- platform: template
+  sensors:
+    system_intelnuc_cputemp:
+      value_template: '{{ states.sensor.system_intelnuc.attributes["cpu_temperature"] }}'
+      unit_of_measurement: '°'
+      entity_id: sensor.system_intelnuc
+    system_intelnuc_cpuused:
+      value_template: '{{ states.sensor.system_intelnuc.attributes["cpu_current"] }}'
+      unit_of_measurement: '%'
+      entity_id: sensor.system_intelnuc
+    system_intelnuc_freegb:
+      value_template: '{{ states.sensor.system_intelnuc.attributes["drive"]["freeGb"] }}'
+      unit_of_measurement: 'GB'
+      entity_id: sensor.system_intelnuc
+    system_intelnuc_driveused:
+      value_template: '{{ states.sensor.system_intelnuc.attributes["drive"]["usedPercentage"] }}'
+      unit_of_measurement: '%'
+      entity_id: sensor.system_intelnuc
+    system_intelnuc_freemem:
+      value_template: '{{ states.sensor.system_intelnuc.attributes["memory"]["freeMemPercentage"] }}'
+      unit_of_measurement: '%'
+      entity_id: sensor.system_intelnuc
+    system_intelnuc_networkin:
+      value_template: '{{ states.sensor.system_intelnuc.attributes["network"]["ens2"]["inputBytes"] | multiply(0.000000001024) | round(2) }}'
+      entity_id: sensor.system_intelnuc
+      unit_of_measurement: 'GB'
+    system_intelnuc_networkout:
+      value_template: '{{ states.sensor.system_intelnuc.attributes["network"]["ens2"]["outputBytes"] | multiply(0.000000001024) | round(2) }}'
+      entity_id: sensor.system_intelnuc
+      unit_of_measurement: 'GB'
