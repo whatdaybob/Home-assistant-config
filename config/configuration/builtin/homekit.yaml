@@ -20,8 +20,8 @@ filter:
     - climate.living_room
     - climate.master_bedroom
   # person
-    - person.kayleigh_johnson
-    - person.martin_jones
+    - person.kay
+    - person.bob
   # media_players
     - media_player.living_room_skyq
     - media_player.living_room_universal

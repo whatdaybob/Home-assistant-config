@@ -1,9 +1,9 @@
 # https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/persons.html
 
 persons: 
-  - name: Martin
-    track: person.martin_jones
-    picture_path: 'images/people/martin-square.jpg'
+  - name: Bob
+    track: person.bob
+    picture_path: 'images/people/bob-square.jpg'
     more_entities:
       columns: 1 #optional
       entities:
@@ -15,7 +15,7 @@ persons:
         - entity: sensor.phone_kay_steps
         - entity: sensor.withings_weight_kg_bob
   - name: Kay
-    track: person.kayleigh_johnson
+    track: person.kay
     picture_path: 'images/people/kay-square.jpg'
     more_entities:
       columns: 1 #optional

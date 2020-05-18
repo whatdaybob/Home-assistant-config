@@ -103,7 +103,7 @@ device_tracker.office_wlanbridge:
 
 device_tracker.phone_bob:
   friendly_name: "Phone Bob"
-  entity_picture: /local/images/people/martin-square.jpg
+  entity_picture: /local/images/people/bob-square.jpg
 
 device_tracker.phone_bob_gps:
   friendly_name: "Phone Bob"

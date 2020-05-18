@@ -53,13 +53,13 @@ automation:
 
       - service: python_script.date_countdown
         data:
-          name: Martin
+          name: Bob
           type: birthday
           date: !secret ps_date_countdown_bday_1
           # date: 13/09/1985
       - service: python_script.date_countdown
         data:
-          name: Kayleigh
+          name: Kay
           type: birthday
           date: !secret ps_date_countdown_bday_2
           # date: 30/05/1985

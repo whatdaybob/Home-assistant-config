@@ -116,8 +116,8 @@ sensor.birthday_ava:
   icon: mdi:calendar-star
   unit_of_measurement: "days"
 
-sensor.birthday_kayleigh:
-  friendly_name: "Kayleigh's Birthday"
+sensor.birthday_kay:
+  friendly_name: "Kay's Birthday"
   icon: mdi:calendar-star
   unit_of_measurement: "days"
 
@@ -126,8 +126,8 @@ sensor.birthday_leah:
   icon: mdi:calendar-star
   unit_of_measurement: "days"
 
-sensor.birthday_martin:
-  friendly_name: "Martin's Birthday"
+sensor.birthday_bob:
+  friendly_name: "Bob's Birthday"
   icon: mdi:calendar-star
   unit_of_measurement: "days"
 

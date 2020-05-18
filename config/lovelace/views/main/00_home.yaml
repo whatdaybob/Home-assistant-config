@@ -52,7 +52,7 @@
         - type: horizontal-stack
           cards: 
             - type: picture-glance
-              entity: person.martin_jones
+              entity: person.bob
               entities:
                 - entity: device_tracker.bob_tado
                   icon: mdi:cellphone-wireless
@@ -61,12 +61,12 @@
                 # - entity: device_tracker.smartphone_david_bt
                 #   icon: mdi:bluetooth
               state_image:
-                "home": /local/images/people/martin-square.jpg
-                "not_home": /local/images/people/martin-square-grey.jpg
-              title: "Martin"
+                "home": /local/images/people/bob-square.jpg
+                "not_home": /local/images/people/bob-square-grey.jpg
+              title: "Bob"
 
             - type: picture-glance
-              entity: person.kayleigh_johnson
+              entity: person.kay
               entities:
                 - entity: device_tracker.kay_tado
                   icon: mdi:cellphone-wireless
@@ -354,10 +354,10 @@
         - entity: sensor.birthday_leah
           secondary_info: '[[ {entity}.attributes.nextoccur ]]  ( [[ {entity}.attributes.years ]] Years )'
           type: 'custom:secondaryinfo-entity-row'
-        - entity: sensor.birthday_kayleigh
+        - entity: sensor.birthday_kay
           secondary_info: '[[ {entity}.attributes.nextoccur ]]  ( [[ {entity}.attributes.years ]] Years )'
           type: 'custom:secondaryinfo-entity-row'
-        - entity: sensor.birthday_martin
+        - entity: sensor.birthday_bob
           secondary_info: '[[ {entity}.attributes.nextoccur ]]  ( [[ {entity}.attributes.years ]] Years )'
           type: 'custom:secondaryinfo-entity-row'
         - type: custom:vertical-stack-in-card
