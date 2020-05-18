@@ -1,3 +1,4 @@
+# config
 So I use my own dashboard mainly as all devices are available in it but recently I added the [lovelace-dwains-theme](https://github.com/dwainscheeren/lovelace-dwains-theme) to my configuration to simplify the mobile app experience.
 
 Majority of my setup is in [packages](./packages) to make it easier to string things together.
