@@ -7,7 +7,6 @@ The Unifi Gateway Custom Integration connects to a Ubiquiti Controller instance 
 <details><summary>Defined entities</summary>
 <p>
 
-### defined entities 
 * **sensor.unifi_gateway_wan** - Default WAN/USG sensor exposing multiple details
     <details><summary>Templates using this sensor</summary><p>
 
@@ -49,7 +48,6 @@ This is exposed as its own package as the integration has a template sensor to w
 <details><summary>Defined entities</summary>
 <p>
 
-### defined entities 
 * **sensor.withings_bone_mass_kg** - Bone mass from the scales
 * **sensor.withings_fat_free_mass_kg**
 * **sensor.withings_fat_mass_kg**
