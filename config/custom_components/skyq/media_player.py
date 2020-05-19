@@ -3,30 +3,51 @@ import logging
 import voluptuous as vol
 import asyncio
 import aiohttp
+from datetime import timedelta
 
-from homeassistant.components.media_player import MediaPlayerDevice, PLATFORM_SCHEMA
-from homeassistant.components.media_player.const import (
-    MEDIA_TYPE_TVSHOW,
-    MEDIA_TYPE_APP,
-)
+import homeassistant.helpers.config_validation as cv
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
+
+# from homeassistant.exceptions import PlatformNotReady
+
 from homeassistant.const import (
     CONF_HOST,
     CONF_NAME,
+    CONF_SCAN_INTERVAL,
+    HTTP_OK,
     STATE_OFF,
     STATE_UNKNOWN,
     STATE_PAUSED,
     STATE_PLAYING,
 )
-import homeassistant.helpers.config_validation as cv
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
+
+try:
+    from homeassistant.helpers.network import get_url
+except ImportError:
+    pass
+
+from homeassistant.components.media_player import PLATFORM_SCHEMA
+from homeassistant.components.media_player.const import (
+    MEDIA_TYPE_TVSHOW,
+    MEDIA_TYPE_APP,
+)
+
+try:
+    from homeassistant.components.media_player import MediaPlayerEntity
+except ImportError:
+    from homeassistant.components.media_player import (
+        MediaPlayerDevice as MediaPlayerEntity,
+    )
+
 
 from pyskyqremote.skyq_remote import SkyQRemote
 from custom_components.skyq.util.config_gen import SwitchMaker
 from pyskyqremote.const import (
     APP_EPG,
+    SKY_STATE_ON,
+    SKY_STATE_OFF,
     SKY_STATE_PAUSED,
     SKY_STATE_STANDBY,
-    SKY_STATE_ON,
 )
 from .const import (
     APP_TITLES,
@@ -50,7 +71,6 @@ from .const import (
     FEATURE_IMAGE,
     FEATURE_LIVE_TV,
     FEATURE_SWITCHES,
-    RESPONSE_OK,
     SKYQ_APP,
     SKYQ_LIVE,
     SKYQ_PVR,
@@ -58,6 +78,8 @@ from .const import (
     SUPPORT_SKYQ,
     TIMEOUT,
 )
+
+SCAN_INTERVAL = timedelta(seconds=10)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -75,6 +97,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_LIVE_TV, default=True): cv.boolean,
         vol.Optional(CONF_COUNTRY, default=CONST_DEFAULT): cv.string,
         vol.Optional(CONF_TEST_CHANNEL, default=CONST_TEST): cv.string,
+        vol.Optional(CONF_SCAN_INTERVAL, default=SCAN_INTERVAL): cv.time_period,
     }
 )
 
@@ -86,17 +109,6 @@ async def async_setup_platform(hass, config, add_entities, discovery_info=None):
     country = config.get(CONF_COUNTRY)
     if country == CONST_DEFAULT:
         country = None
-    if country:
-        if country.casefold() == "it":
-            country = "ITA"
-            _LOGGER.warning(
-                f"Please change country 'it' to 'ITA' in your configuration."
-            )
-        if country.casefold() == "uk":
-            country = "GBR"
-            _LOGGER.warning(
-                f"Please change country 'uk' to 'GBR' in your configuration."
-            )
 
     test_channel = config.get(CONF_TEST_CHANNEL)
     if test_channel == CONST_TEST:
@@ -120,10 +132,10 @@ async def async_setup_platform(hass, config, add_entities, discovery_info=None):
         config.get(CONF_OUTPUT_PROGRAMME_IMAGE),
         config.get(CONF_LIVE_TV),
     )
-    add_entities([player])
+    add_entities([player], True)
 
 
-class SkyQDevice(MediaPlayerDevice):
+class SkyQDevice(MediaPlayerEntity):
     """Representation of a SkyQ Box."""
 
     def __init__(
@@ -138,7 +150,6 @@ class SkyQDevice(MediaPlayerDevice):
         live_tv,
     ):
         """Initialise the SkyQRemote."""
-        self._hass = hass
         self._name = name
         self._state = STATE_OFF
         self._enabled_features = ENABLED_FEATURES
@@ -152,6 +163,11 @@ class SkyQDevice(MediaPlayerDevice):
         self._lastAppTitle = None
         self._appImageUrl = None
         self._remote = remote
+        self._available = True
+        self._startupSetup = True
+        self._unique_id = None
+        self._deviceInfo = None
+        self._firstError = True
 
         if not (output_programme_image):
             self._enabled_features ^= FEATURE_IMAGE
@@ -166,6 +182,11 @@ class SkyQDevice(MediaPlayerDevice):
 
         if self._enabled_features & FEATURE_SWITCHES:
             SwitchMaker(hass, name, room, [*self._source_names.keys()])
+
+        if not self._remote.deviceSetup:
+            self._available = False
+            self._startupSetup = False
+            _LOGGER.warning(f"W0010M - Device is not available: {self.name}")
 
     @property
     def supported_features(self):
@@ -248,6 +269,30 @@ class SkyQDevice(MediaPlayerDevice):
         return DEVICE_CLASS
 
     @property
+    def available(self):
+        """Entity availability."""
+        return self._available
+
+    @property
+    def device_info(self):
+        """Entity device information."""
+        device_info = None
+        if self._deviceInfo:
+            device_info = {
+                "identifiers": {(DOMAIN, self._deviceInfo.serialNumber)},
+                "name": self.name,
+                "manufacturer": self._deviceInfo.manufacturer,
+                "model": self._deviceInfo.hardwareModel,
+                "sw_version": f"{self._deviceInfo.ASVersion}:{self._deviceInfo.versionNumber}",
+            }
+        return device_info
+
+    @property
+    def unique_id(self):
+        """Entity unique id."""
+        return self._unique_id
+
+    @property
     def device_state_attributes(self):
         """Return entity specific state attributes."""
         attributes = {}
@@ -262,7 +307,11 @@ class SkyQDevice(MediaPlayerDevice):
         self._season = None
         self._title = None
 
-        await self._async_updateState()
+        if not self._deviceInfo:
+            await self._async_getDeviceInfo()
+
+        if self._deviceInfo:
+            await self._async_updateState()
 
         if self._state != STATE_UNKNOWN and self._state != STATE_OFF:
             await self._async_updateCurrentProgramme()
@@ -307,18 +356,14 @@ class SkyQDevice(MediaPlayerDevice):
 
     async def async_play_media(self, media_id, media_type):
         """Perform a media action."""
-        if media_type.casefold() == DOMAIN or media_type.casefold() == "command":
-            if media_type.casefold() == "command":
-                _LOGGER.warning(
-                    f"Please use 'skyq' instead of 'command' as the type in your button."
-                )
-
+        if media_type.casefold() == DOMAIN:
             await self.hass.async_add_executor_job(
                 self._remote.press, media_id.casefold()
             )
 
     async def _async_updateState(self):
         powerState = await self.hass.async_add_executor_job(self._remote.powerStatus)
+        self._setPowerStatus(powerState)
         if powerState == SKY_STATE_ON:
             self._state = STATE_PLAYING
             # this checks is flakey during channel changes, so only used for pause checks if we know its on
@@ -390,7 +435,7 @@ class SkyQDevice(MediaPlayerDevice):
 
         except Exception as err:
             _LOGGER.exception(
-                f"X0020M - Current Media retrieval failed: {currentMedia} : {err}"
+                f"X0010M - Current Media retrieval failed: {currentMedia} : {err}"
             )
 
     async def _async_getAppImageUrl(self, appTitle):
@@ -398,27 +443,66 @@ class SkyQDevice(MediaPlayerDevice):
         if appTitle == self._lastAppTitle:
             return self._appImageUrl
 
-        self._lastAppTitle = appTitle
         self._appImageUrl = None
 
         appImageUrl = APP_IMAGE_URL_BASE.format(appTitle.casefold())
 
-        websession = async_get_clientsession(self._hass)
-        request_url = self._hass.config.api.base_url + appImageUrl
+        websession = async_get_clientsession(self.hass)
+        try:
+            base_url = get_url(self.hass)
+        except NameError:
+            base_url = self.hass.config.api.base_url
+        request_url = base_url + appImageUrl
 
         try:
             async with getattr(websession, "head")(
                 request_url, timeout=TIMEOUT,
             ) as response:
-                if response.status == RESPONSE_OK:
+                if response.status == HTTP_OK:
                     self._appImageUrl = appImageUrl
 
+                self._lastAppTitle = appTitle
+
                 return self._appImageUrl
+        except aiohttp.client_exceptions.ClientConnectorError as err:
+            # This error when server is starting up and app running
+            if self._firstError:
+                self._firstError = False
+            else:
+                _LOGGER.exception(
+                    f"X0020M - Image file check failed: {request_url} : {err}"
+                )
+                self._lastAppTitle = appTitle
+            return self._appImageUrl
         except asyncio.TimeoutError as err:
-            _LOGGER.info(f"I0010M - Image file check timed out: {appImageUrl} : {err}")
+            _LOGGER.info(f"I0030M - Image file check timed out: {request_url} : {err}")
+            self._lastAppTitle = appTitle
             return self._appImageUrl
-        except aiohttp.ClientError as err:
+        except (aiohttp.ClientError, Exception) as err:
             _LOGGER.exception(
-                f"X0010M - Image file check failed: {appImageUrl} : {err}"
+                f"X0030M - Image file check failed: {request_url} : {err}"
             )
+            self._lastAppTitle = appTitle
             return self._appImageUrl
+
+    async def _async_getDeviceInfo(self):
+        self._deviceInfo = await self.hass.async_add_executor_job(
+            self._remote.getDeviceInformation
+        )
+        if self._deviceInfo and not self._unique_id:
+            self._unique_id = self._deviceInfo.epgCountryCode + "".join(
+                e for e in self._deviceInfo.serialNumber.casefold() if e.isalnum()
+            )
+
+    def _setPowerStatus(self, powerStatus):
+        if powerStatus == SKY_STATE_OFF and self._available:
+            self._available = False
+            _LOGGER.info(f"I0010M - Device is not available: {self.name}")
+
+        if powerStatus != SKY_STATE_OFF and not self._available:
+            self._available = True
+            if self._startupSetup:
+                _LOGGER.info(f"I0020M - Device is now available: {self.name}")
+            else:
+                self._startupSetup = True
+                _LOGGER.warning(f"W0020M - Device is now available: {self.name}")
