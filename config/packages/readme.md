@@ -53,11 +53,11 @@ This is a package to manage Windows computers over MQTT. It uses the [IOT Link](
 
 ## [mqtt_iotlink_officepc.yaml](./mqtt_iotlink_officepc.yaml)
 
-See [mqtt_iotlink_device.yaml](#mqtt_iotlink_device.yaml).
+See [mqtt_iotlink_device.yaml](#mqtt_iotlink_deviceyaml).
 
 ## [mqtt_iotlink_surfacebook.yaml](./mqtt_iotlink_surfacebook)
 
-See [mqtt_iotlink_device.yaml](#mqtt_iotlink_device.yaml).
+See [mqtt_iotlink_device.yaml](#mqtt_iotlink_deviceyaml).
 
 ## [mqtt_zigbee2mqtt.yaml](./mqtt_zigbee2mqtt.yaml)
 
