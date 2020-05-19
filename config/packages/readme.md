@@ -1,4 +1,64 @@
 # Packages
+## [mqtt_fix_retained_flag.yaml](./mqtt_fix_retained_flag.yaml)
+
+Using all these MQTT devices is great but on the odd occasion (especially device name changes) you can end up with an issue caused by retained flags. This gives you the option to add a UI to fix this issue.
+
+<details><summary>Defined entities</summary>
+
+* **input_text.clear_mqtt_topic** - Type the topic to clear in this text box.
+
+</details>
+
+<details><summary>Automations</summary>
+
+* **automation.clear_mqtt_topic** - checks as you type for a matching sensor, once found it sends a retained flag removal to that topic.
+
+</details>
+
+
+## [mqtt_iotlink_device.yaml]()
+
+This is a package to manage Windows computers over MQTT. It uses the [IOT Link](https://iotlink.gitlab.io/) software on these devices to send and receive the messages.
+
+<details><summary>Defined entities</summary>
+
+* **binary_sensor.surface_book_connected** - uses LWT to see if device is connected to MQTT.
+* **binary_sensor.surface_book_charging** - is it plugged in and charging
+* **binary_sensor.surface_book_battery_status** - is it using battery atm?
+* **camera.surface_book_screen_0** - a screen grab of current screen
+* **camera.surface_book_screen_1** - if device has a second screen it will show a screen grab.
+* **script.surface_book_displays_[on/off]** - scripts to toggle the screens.
+* **script.surface_book_[MULTI]** - all the power control options.
+* **script.surface_book_notify** - sends windows 10 ui notifications.
+* **script.surface_book_vol_[max/mute]** - sets volume.
+* **sensor.surface_book_boot_time** - system boot timestamp.
+* **sensor.surface_book_cpu_usage** - percentage of CPU.
+* **sensor.surface_book_current_user** - current logged in user name.
+* **sensor.surface_book_hdd_[MULTI]** - all the HDD sensors you would need.
+* **sensor.surface_book_idle_time** - how long the system has been idle
+* **sensor.surface_book_ram_[MULTI]** - all the Ram sensors you would need.
+* **sensor.surface_book_remaining_[battery/battery_time]** - battery sensors
+* **sensor.surface_book_uptime** - uptime in human readable terms
+* **switch.surface_book** - switch the computer on (WOL) and off (MQTT)
+
+</details>
+
+<details><summary>Automations</summary>
+
+* **automation.iotlink_startup__device_** - refreshes the sensors on HA start via MQTT message.
+
+</details>
+
+
+
+## [mqtt_iotlink_officepc.yaml](./mqtt_iotlink_officepc.yaml)
+
+See [mqtt_iotlink_device.yaml](#mqtt_iotlink_device.yaml).
+
+## [mqtt_iotlink_surfacebook.yaml](./mqtt_iotlink_surfacebook)
+
+See [mqtt_iotlink_device.yaml](#mqtt_iotlink_device.yaml).
+
 ## [mqtt_zigbee2mqtt.yaml](./mqtt_zigbee2mqtt.yaml)
 
 This is a package that gives total control of [Zigbee2mqtt](https://www.zigbee2mqtt.io/).

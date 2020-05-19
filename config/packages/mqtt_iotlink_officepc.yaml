@@ -451,7 +451,7 @@ script:
 automation:
 
 #-- Refresh stats on HA restart
-  - id: IOTLink_Startup
+  - id: IOTLink_Startup_officepc
     alias: IOTLink Startup
     trigger:
       - platform: homeassistant
