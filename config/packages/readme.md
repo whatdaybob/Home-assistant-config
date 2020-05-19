@@ -1,4 +1,38 @@
 # Packages
+## [logger_set_levels.yaml](./logger_set_levels.yaml)
+
+A package to allow me to change the logging level of HA and its components all via the UI.
+
+<details><summary>Defined entities</summary>
+
+* **input_select.log_integration:** - select this before changing the log level to only affect this integration.
+* **input_select.log_level** - sets the log level of HA or the selected integration.
+
+</details>
+<details><summary>Automations</summary>
+
+* **automation.logger_setdefaultlevel** - changes the log level to the one set in the input_select.
+* **automation.logger_setdefault_component** - changes the log level to the one set in the input_select when an integration is selected.
+
+</details>
+
+
+## [media_server.yaml](./media_server.yaml)
+
+Sets up all media related sensors. Nothing to fancy going on in here.
+
+<details><summary>Defined entities</summary>
+
+* **sensor.trakt_upcoming_calendar** - allows me to track my upcoming shows.
+* **sensor.nzbget_[MULTI]** - all nzbget metrics and statistics.
+* **sensor.sonarr_upcoming_media** - all episode sonarr is tracking.
+* **sensor.plex_recently_added_movies** - new movies on the plex server.
+* **sensor.plex_recently_added_movies** - new shows on the plex server.
+* **sensor.youtube_[MULTI]** - sensor to show the latest videos from youtube channels.
+
+</details>
+
+
 ## [mqtt_fix_retained_flag.yaml](./mqtt_fix_retained_flag.yaml)
 
 Using all these MQTT devices is great but on the odd occasion (especially device name changes) you can end up with an issue caused by retained flags. This gives you the option to add a UI to fix this issue.
