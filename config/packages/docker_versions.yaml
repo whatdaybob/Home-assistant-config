@@ -17,7 +17,6 @@
 
 #-------------------------------------------
 # Package Notes:
-#   Need to add MQTT (Eclipse) somehow 
 #   Need to add Caddy somehow 
 #   Need to add HassDB (MariaDB) somehow 
 #   Need to add Unifi Docker somehow 
@@ -170,6 +169,27 @@ sensor:
     value_template: >-
       {{ value_json.tag_name }}
     scan_interval: 3600
+  - platform: rest
+    name: github_airconnect_version
+    resource: 'https://api.github.com/repos/philippe44/AirConnect/releases/latest'
+    headers:
+      accept: application/vnd.github.v3+json
+      content-type: application/json
+      user-agent: home-assistant/rest-sensor
+    value_template: >-
+      {{ value_json.tag_name }}
+    scan_interval: 3600
+  - platform: rest
+    name: github_mosquittomqtt_version
+    resource: 'https://api.github.com/repos/eclipse/mosquitto/tags'
+    headers:
+      accept: application/vnd.github.v3+json
+      content-type: application/json
+      user-agent: home-assistant/rest-sensor
+    value_template: >-
+      {{ value_json[0].name | regex_replace(find='^[v]', replace='', ignorecase=False)  }}
+    scan_interval: 3600
+
 
 #-------------------------------------------
 # Template Sensor - https://www.home-assistant.io/integrations/template/
