@@ -1,4 +1,62 @@
 # Packages
+## [tado.yaml](./tado.yaml)
+
+My favorite purchase so far is tado° as it offers so much! I use this for heating, presence detection, boiler usage and stats, open window monitoring and mold indicators.
+
+<details><summary>Defined entities</summary>
+
+* **climate._room_** - a climate device for every room of the house
+
+    <details><summary>Templates using this sensor</summary>
+    
+    * **binary_sensor.landing_boiler** - is the boiler active
+        
+        <details><summary>Templates using this sensor</summary>
+    
+        * **sensor.cooling_hours_today** - history stats
+        * **sensor.cooling_hours_two_days_ago** - history stats
+        * **sensor.cooling_hours_yesterday** - history stats
+        * **sensor.heating_hours_today** - history stats
+        * **sensor.heating_hours_two_days_ago** - history stats
+        * **sensor.heating_hours_yesterday** - history stats
+        </details>
+
+    </details>
+
+* **sensor._room__early_start** - is early start heating enabled on this device
+* **sensor._room__heating** - what percentage of heating is called for
+
+    <details><summary>Templates using this sensor</summary>
+
+    * **sensor.landing_boiler_heat_call** - how much heat is being called for from the boiler.
+    </details>
+
+* **sensor._room__humidity** - room humidity 
+
+    <details><summary>Templates using this sensor</summary>
+
+    * **sensor._room__mold** - indication for possible mold growth.
+    </details>
+
+* **sensor._room__link** - is the device connected
+* **sensor._room__open_window** - is a window detected as open 
+
+    <details><summary>Templates using this sensor</summary>
+
+    * **binary_sensor._room__open_window** - used to pass data to homekit.
+    </details>
+
+* **sensor._room__overlay** - is this climate zone being manually set
+* **sensor._room__power** - is the device powered
+* **sensor._room__tado_mode** - climate mode
+* **sensor._room__temperature** - room temperature
+
+</details>
+
+## [telegram_bot.yaml](./telegram_bot.yaml)
+
+The `telegram` platform uses [Telegram](https://web.telegram.org/) to deliver notifications from Home Assistant to your supported devices. My implementation is just to get the basics up and running for now.
+
 ## [unifi_gateway_sensors.yaml](./unifi_gateway_sensors.yaml)
 
 An all in one package for the [Unifi Gateway Custom Integration](https://github.com/custom-components/sensor.unifigateway/).
