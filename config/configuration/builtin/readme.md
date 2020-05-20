@@ -28,7 +28,7 @@ I have only defined and customised sensors I feel I would need in the home app. 
 
 The `http` integration serves all files and data required for the Home Assistant frontend. 
 
-In here it is best to set a `base_url` and any proxy settings you need to expose your system to the outside world.
+In here it is best to set any proxy settings you need to expose your system to the outside world.
 
 ## logbook.yaml
 #### [Link to details](https://www.home-assistant.io/integrations/logbook/)

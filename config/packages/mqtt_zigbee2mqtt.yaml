@@ -219,13 +219,6 @@ automation:
           message: "Name: {{trigger.payload_json.meta.friendly_name}},
                     Vendor: {{trigger.payload_json.meta.vendor}},
                     Description: {{trigger.payload_json.meta.description}}"
-      - service: dwains_theme.notification_create
-        data_template:
-          message: "Device joined the zigbee2mqtt network,
-                    Name: {{trigger.payload_json.meta.friendly_name}},
-                    Vendor: {{trigger.payload_json.meta.vendor}},
-                    Description: {{trigger.payload_json.meta.description}}"
-          notification_id: '2'
 
 #-- Notify on new version available
   - id: check_zigbee2mqtt_version
@@ -245,7 +238,3 @@ automation:
         data_template:
           message: "{{states('sensor.zigbee2mqtt_github_version') | string }} is available for download" 
           title: 'Update available'
-      - service: dwains_theme.notification_create
-        data_template:
-          message: "{{states('sensor.zigbee2mqtt_github_version') | string }} is available for download" 
-          notification_id: '3'

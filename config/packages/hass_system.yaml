@@ -280,10 +280,6 @@ automation:
         data_template:
           message: "{{states('sensor.ha_version_docker_stable') | string }} is available for download" 
           title: 'HA Update available'
-      - service: dwains_theme.notification_create
-        data_template:
-          message: "{{states('sensor.ha_version_docker_stable') | string }} is available for download" 
-          notification_id: '1'
 
 #-- Increment Warnings Counter
   - id: logs_warning_counter

@@ -76,9 +76,6 @@ include:
     - remote.living_room_harmony
 exclude:
   entities:
-    - dwains_theme.1
-    - dwains_theme.2
-    - dwains_theme.3
     - sensor.phone_kay_info
     - sensor.phone_bob_info
     - sensor.phone_kay_next_update
