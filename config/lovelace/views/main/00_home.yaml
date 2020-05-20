@@ -327,7 +327,7 @@
             - type: divider
             - type: weblink
               name: Home Assistant Logs
-              url: https://logs.whatdaybob.com/container/bd49a0afe100
+              url: https://logs.whatdaybob.com/container/ad1a0c79c0b5
               icon: mdi:home-assistant
     - type: weather-forecast
       entity: weather.home

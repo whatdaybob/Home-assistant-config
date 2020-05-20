@@ -93,6 +93,15 @@ sensor:
       {{ value_json.tag_name if value_json.tag_name.split('.')|length != 2 else value_json.tag_name ~ '.0' }}
     scan_interval: 1800
 
+  - platform: rest
+    name: ha_log_url
+    resource: 'http://192.168.1.159:8126/container/homeassistant/stats'
+    headers:
+      content-type: application/json
+      user-agent: home-assistant/rest-sensor
+    value_template: >-
+      {{ "https://logs.whatdaybob.com/container/"+value_json.id[:12] }}
+    scan_interval: 3600
 #-------------------------------------------
 # Template Sensor - https://www.home-assistant.io/integrations/template/
 #-------------------------------------------
