@@ -19,7 +19,7 @@
 #   Timer:
 #     Countdown for Zigbee2mqtt pairing mode
 #   Sensors:
-#     Zigbee2mqtt Status, Version (local,Github) and Coordinator Version
+#     Zigbee2mqtt Status and Coordinator Version
 #   Switch:
 #     Toggle Pairing Mode
 #   Automations:
@@ -105,12 +105,6 @@ sensor:
     name: Zigbee2mqtt Bridge state
     state_topic: "zigbee2mqtt/bridge/state"
     icon: mdi:router-wireless
-#-- Showing the Zigbee2mqtt Version
-  - platform: mqtt
-    name: Zigbee2mqtt Version
-    state_topic: "zigbee2mqtt/bridge/config"
-    value_template: "{{ value_json.version }}"
-    icon: mdi:zigbee
 #-- Showing the Coordinator Version
   - platform: mqtt
     name: Coordinator Version
@@ -124,22 +118,6 @@ sensor:
     value_template: >-
       {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
     json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
-
-#-------------------------------------------
-# RESTful - https://www.home-assistant.io/integrations/rest/
-#-------------------------------------------
-
-#-- Showing the latest GitHub Version
-  - platform: rest
-    name: zigbee2mqtt_github_version
-    resource: 'https://api.github.com/repos/Koenkk/zigbee2mqtt/releases/latest'
-    headers:
-      accept: application/vnd.github.v3+json
-      content-type: application/json
-      user-agent: home-assistant/rest-sensor
-    value_template: >-
-      {{ value_json.tag_name if value_json.tag_name.split('.')|length != 2 else value_json.tag_name ~ '.0' }}
-    scan_interval: 1800
 
 switch:
 
@@ -219,22 +197,3 @@ automation:
           message: "Name: {{trigger.payload_json.meta.friendly_name}},
                     Vendor: {{trigger.payload_json.meta.vendor}},
                     Description: {{trigger.payload_json.meta.description}}"
-
-#-- Notify on new version available
-  - id: check_zigbee2mqtt_version
-    alias: Check Zigbee2mqtt Version
-    trigger:
-      platform: time_pattern
-      minutes: '/30'
-    condition:
-      condition: and
-      conditions:
-        - condition: template
-          value_template: "{{ states('sensor.zigbee2mqtt_version') != states('sensor.zigbee2mqtt_github_version') }}"
-        - condition: template
-          value_template: "{{ states('sensor.zigbee2mqtt_github_version') != 'unavailable'}}"
-    action:
-      - service: persistent_notification.create
-        data_template:
-          message: "{{states('sensor.zigbee2mqtt_github_version') | string }} is available for download" 
-          title: 'Update available'

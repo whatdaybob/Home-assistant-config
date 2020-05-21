@@ -11,9 +11,11 @@
 
 automation.battery_charged:
   friendly_name: "Battery Charged"
+  icon: mdi:battery
 
 automation.battery_charging:
   friendly_name: "Battery Charging"
+  icon: mdi:battery
 
 automation.bob_away_homeassistant_start:
   friendly_name: "Bob Away Homeassistant Start"
@@ -43,6 +45,12 @@ automation.hallway_alexa_auto_dnd_on:
   friendly_name: "Hallway Alexa Auto Dnd On"
 
 automation.iotlink_startup:
+  friendly_name: "Iotlink Startup"
+
+automation.iotlink_startup_2:
+  friendly_name: "Iotlink Startup"
+
+automation.iotlink_startup_3:
   friendly_name: "Iotlink Startup"
 
 automation.kay_away_homeassistant_start:
@@ -77,12 +85,16 @@ automation.system_update_template_sensors:
 
 automation.zigbee2mqtt_log_level:
   friendly_name: "Zigbee2mqtt Log Level"
+  icon: mdi:zigbee
 
 automation.zigbee_join_disabled:
   friendly_name: "Zigbee Join Disabled"
+  icon: mdi:zigbee
 
 automation.zigbee_join_enabled:
   friendly_name: "Zigbee Join Enabled"
+  icon: mdi:zigbee
 
 automation.zigbee_successfull_interview:
   friendly_name: "Zigbee Successfull Interview"
+  icon: mdi:zigbee

@@ -100,7 +100,6 @@ This is a package that gives total control of [Zigbee2mqtt](https://www.zigbee2m
 <details><summary>Defined entities</summary>
 
 * **switch.zigbee2mqtt_main_join** - starts a timer and permits joining the network.
-* **sensor.zigbee2mqtt_github_version** - Zigbee2mqtt github version check.
 * **sensor.zigbee2mqtt_networkmap** - populates the Zigbee2mqtt [zigbee2mqtt-networkmap](https://github.com/azuwis/zigbee2mqtt-networkmap).
 * **sensor.zigbee2mqtt_bridge_state** - Zigbee2mqtt bridge status.
 * **input_text.zigbee2mqtt_remove** - used with corresponding script to remove device from network.
@@ -115,7 +114,6 @@ This is a package that gives total control of [Zigbee2mqtt](https://www.zigbee2m
 * **automation.zigbee_join_enabled** - starts the timer to allow me to add to the network.
 * **automation.zigbee_join_disabled** - stops the timer and resets the join switch.
 * **automation.zigbee_successfull_interview** - notification on successful device joining.
-* **automation.check_zigbee2mqtt_version** - updates the version sensor.
 
 </details>
 

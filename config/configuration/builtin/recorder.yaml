@@ -233,9 +233,7 @@ include:
   #---- zigbee2mqtt monitoring sensors
     - sensor.coordinator_version
     - sensor.zigbee2mqtt_bridge_state
-    - sensor.zigbee2mqtt_github_version
     - sensor.zigbee2mqtt_networkmap
-    - sensor.zigbee2mqtt_version
 
   #---- HA monitoring sensors
     - sensor.db_size
@@ -243,45 +241,6 @@ include:
     - sensor.hacs
     - sensor.hass_last_motion_sensor_triggered
     - sensor.hass_uptime
-
-  #---- Version monitoring sensors
-    - sensor.docker_adguardhome_version
-    - sensor.docker_adminer_version
-    - sensor.docker_airconnect_version_2
-    - sensor.docker_alertmanager_version
-    - sensor.docker_cadvisor_version
-    - sensor.docker_dozzle_version
-    - sensor.docker_grafana_version
-    - sensor.docker_mosquittomqtt_version
-    - sensor.docker_mosquittomqtt_version_2
-    - sensor.docker_node_exporter_version
-    - sensor.docker_nodered_version
-    - sensor.docker_nzbget_version
-    - sensor.docker_prometheus_version
-    - sensor.docker_radarr_version
-    - sensor.docker_sonarr_version
-    - sensor.docker_tautulli_version
-    - sensor.docker_unifi_poller_version
-    - sensor.github_adguardhome_version
-    - sensor.github_adminer_version
-    - sensor.github_airconnect_version
-    - sensor.github_alertmanager_version
-    - sensor.github_cadvisor_version
-    - sensor.github_dozzle_version
-    - sensor.github_grafana_version
-    - sensor.github_mosquittomqtt_version
-    - sensor.github_node_exporter_version
-    - sensor.github_nodered_version
-    - sensor.github_nzbget_version
-    - sensor.github_prometheus_version
-    - sensor.github_radarr_version
-    - sensor.github_sonarr_version
-    - sensor.github_tautulli_version
-    - sensor.github_unifi_poller_version
-    - sensor.ha_github_version
-    - sensor.ha_pypi_version
-    - sensor.ha_version
-    - sensor.ha_version_docker_stable
 
   #---- Alexa monitoring sensors
     - sensor.hallway_echo_next_alarm

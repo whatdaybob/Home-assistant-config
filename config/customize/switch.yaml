@@ -41,6 +41,10 @@ switch.adminer:
   friendly_name: "Adminer"
   icon: mdi:docker
 
+switch.airconnect:
+  friendly_name: "Airconnect"
+  icon: mdi:docker
+
 switch.alertmanager:
   friendly_name: "Alertmanager"
   icon: mdi:docker

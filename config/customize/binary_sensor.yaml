@@ -9,6 +9,94 @@
 # https://www.home-assistant.io/docs/configuration/customizing-devices/
 #-------------------------------------------
 
+binary_sensor.docker_adguardhome_versioncheck:
+  friendly_name: "Docker Adguardhome Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_adminer_versioncheck:
+  friendly_name: "Docker Adminer Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_airconnect_versioncheck:
+  friendly_name: "Docker Airconnect Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_alertmanager_versioncheck:
+  friendly_name: "Docker Alertmanager Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_caddy_versioncheck:
+  friendly_name: "Docker Caddy Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_cadvisor_versioncheck:
+  friendly_name: "Docker Cadvisor Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_dozzle_versioncheck:
+  friendly_name: "Docker Dozzle Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_grafana_versioncheck:
+  friendly_name: "Docker Grafana Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_homeassistant_versioncheck:
+  friendly_name: "Docker Homeassistant Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_mariadb_versioncheck:
+  friendly_name: "Docker Mariadb Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_mqtt_versioncheck:
+  friendly_name: "Docker Mqtt Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_nodeexporter_versioncheck:
+  friendly_name: "Docker Nodeexporter Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_nodered_versioncheck:
+  friendly_name: "Docker Nodered Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_nzbget_versioncheck:
+  friendly_name: "Docker Nzbget Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_prometheus_versioncheck:
+  friendly_name: "Docker Prometheus Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_radarr_versioncheck:
+  friendly_name: "Docker Radarr Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_sonarr_versioncheck:
+  friendly_name: "Docker Sonarr Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_tautulli_versioncheck:
+  friendly_name: "Docker Tautulli Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_unifi_controller_versioncheck:
+  friendly_name: "Docker Unifi Controller Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_unifi_mongo_versioncheck:
+  friendly_name: "Docker Unifi Mongo Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_unifi_poller_versioncheck:
+  friendly_name: "Docker Unifi Poller Versioncheck"
+  icon: mdi:docker
+
+binary_sensor.docker_zigbee2mqtt_versioncheck:
+  friendly_name: "Docker Zigbee2mqtt Versioncheck"
+  icon: mdi:docker
+
 binary_sensor.hallway_open_window:
   friendly_name: "Hallway Open Window"
   device_class: window
@@ -19,10 +107,6 @@ binary_sensor.hue_motion_sensor_occupancy:
 
 binary_sensor.hue_motion_sensor_update_available:
   friendly_name: "Hue Motion Sensor Update Available"
-
-binary_sensor.iss:
-  friendly_name: "International Space Station"
-  device_class: visible
 
 binary_sensor.kids_bedroom_open_window:
   friendly_name: "Kids Bedroom Open Window"
@@ -159,7 +243,3 @@ binary_sensor.surface_book_connected:
 
 binary_sensor.updater:
   friendly_name: "Updater"
-
-binary_sensor.workday_sensor:
-  friendly_name: "Workday Sensor"
-  device_class: None

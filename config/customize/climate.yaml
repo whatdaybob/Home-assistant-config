@@ -26,24 +26,3 @@ climate.living_room:
 
 climate.master_bedroom:
   friendly_name: "Master Bedroom"
-
-climate.tado_smart_radiator_thermostat_va0555158272:
-  friendly_name: "Tado Smart Radiator Thermostat Va0555158272"
-
-climate.tado_smart_radiator_thermostat_va0623512832:
-  friendly_name: "Tado Smart Radiator Thermostat Va0623512832"
-
-climate.tado_smart_radiator_thermostat_va0637995008:
-  friendly_name: "Tado Smart Radiator Thermostat Va0637995008"
-
-climate.tado_smart_radiator_thermostat_va0906037248:
-  friendly_name: "Tado Smart Radiator Thermostat Va0906037248"
-
-climate.tado_smart_radiator_thermostat_va2665745152:
-  friendly_name: "Tado Smart Radiator Thermostat Va2665745152"
-
-climate.tado_smart_radiator_thermostat_va4225895168:
-  friendly_name: "Tado Smart Radiator Thermostat Va4225895168"
-
-climate.tado_smart_thermostat_ru1781073408:
-  friendly_name: "Tado Smart Thermostat Ru1781073408"

@@ -14,7 +14,7 @@
       entities:
       - entity: sensor.zigbee2mqtt_bridge_state
       - entity: sensor.zigbee2mqtt_version
-      - entity: sensor.zigbee2mqtt_github_version
+      - entity: binary_sensor.docker_zigbee2mqtt_versioncheck
       - entity: sensor.coordinator_version
       - entity: input_select.zigbee2mqtt_log_level
       - type: divider

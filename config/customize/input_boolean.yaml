@@ -9,30 +9,9 @@
 # https://www.home-assistant.io/docs/configuration/customizing-devices/
 #-------------------------------------------
 
-input_boolean.bob_driving_flag:
-  friendly_name: "Bob Driving Flag"
-
-input_boolean.bob_far_away_flag:
-  friendly_name: "Bob Far Away Flag"
-
 input_boolean.ch_kiosk_mode:
   friendly_name: "Kiosk Mode"
   icon: mdi:overscan
-
-input_boolean.kay_door_tracker:
-  friendly_name: "Kay Unopened Door"
-
-input_boolean.loading_shieldtv:
-  friendly_name: Loading Shieldtv
-
-input_boolean.loading_skyq:
-  friendly_name: Loading Skyq
-
-input_boolean.loading_sonoslounge:
-  friendly_name: Loading Sonoslounge
-
-input_boolean.loading_xboxonex:
-  friendly_name: Loading Xboxonex
 
 input_boolean.lovelace_toggle:
   friendly_name: "Show Lovelace Entities"
@@ -44,7 +23,3 @@ input_boolean.node_red:
 input_boolean.toggle_hidden_elements:
   friendly_name: "Toggle Hidden Elements"
   icon: mdi:wrench
-
-input_boolean.wfh_notify:
-  friendly_name: "Notify When Wfh Status Wrong"
-  icon: mdi:domain

@@ -17,8 +17,8 @@
   type: module
 
 # Custom Header https://github.com/maykar/custom-header
-- url: /hacsfiles/custom-header/custom-header.js
-  type: module
+# - url: /hacsfiles/custom-header/custom-header.js
+#   type: module
 
 # Card-Mod https://github.com/thomasloven/lovelace-card-mod
 - url: /hacsfiles/lovelace-card-mod/card-mod.js

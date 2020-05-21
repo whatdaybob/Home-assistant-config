@@ -8,11 +8,9 @@
 # Package Details:
 #   Sensors:
 #     HA Uptime
-#     HA Version Sensors (Docker,Local,Python,Github)
 #     Database Size sensor
 #     Integrations counts 
 #   Automations:
-#     Notify on new HA version
 #     Increment Log Counters (Warn,Error,Critical)
 #     Reset Log Counters on HA Restart
 #     Update integrations counts
@@ -50,23 +48,6 @@ sensor:
     unit_of_measurement: hours
 
 #-------------------------------------------
-# Version Sensor - https://www.home-assistant.io/integrations/version/
-#-------------------------------------------
-
-  - platform: version
-    beta: false
-    source: docker
-    name: ha_version_docker_stable
-  - platform: version
-    name: ha_version
-    source: local
-    beta: false
-  - platform: version
-    name: ha_pypi_version
-    source: pypi
-    beta: false
-
-#-------------------------------------------
 # SQL Sensor - https://www.home-assistant.io/integrations/sql/
 #-------------------------------------------
 
@@ -83,17 +64,6 @@ sensor:
 #-------------------------------------------
 
   - platform: rest
-    name: ha_github_version
-    resource: 'https://api.github.com/repos/home-assistant/home-assistant/releases/latest'
-    headers:
-      accept: application/vnd.github.v3+json
-      content-type: application/json
-      user-agent: home-assistant/rest-sensor
-    value_template: >-
-      {{ value_json.tag_name if value_json.tag_name.split('.')|length != 2 else value_json.tag_name ~ '.0' }}
-    scan_interval: 1800
-
-  - platform: rest
     name: ha_log_url
     resource: 'http://192.168.1.159:8126/container/homeassistant/stats'
     headers:
@@ -102,6 +72,7 @@ sensor:
     value_template: >-
       {{ "https://logs.whatdaybob.com/container/"+value_json.id[:12] }}
     scan_interval: 3600
+
 #-------------------------------------------
 # Template Sensor - https://www.home-assistant.io/integrations/template/
 #-------------------------------------------
@@ -261,34 +232,6 @@ sensor:
 #-------------------------------------------
 
 automation:
-
-#-- Create notifications on newer version available
-  - id: check_home_assistant_versions
-    alias: Check Home Assistant Versions
-    trigger:
-      platform: time_pattern
-      minutes: '/30'
-    condition:
-      condition: and
-      conditions:
-        - condition: template
-          value_template: "{{ states('sensor.ha_version') != states('sensor.ha_version_docker_stable') }}"
-        - condition: template
-          value_template: "{{ states('sensor.ha_version_docker_stable') != 'unavailable'}}"
-        - condition: template
-          value_template: >-
-            {% set check = namespace(exists=false) %}      
-            {% for notifications in states.persistent_notification %}
-              {% if notifications.attributes.title == 'HA Update available' %}
-                {% set check.exists = True %}
-              {% endif %}
-            {% endfor %}
-            {% if check.exists %}false{% else %}true{% endif %}
-    action:
-      - service: persistent_notification.create
-        data_template:
-          message: "{{states('sensor.ha_version_docker_stable') | string }} is available for download" 
-          title: 'HA Update available'
 
 #-- Increment Warnings Counter
   - id: logs_warning_counter

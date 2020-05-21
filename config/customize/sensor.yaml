@@ -116,6 +116,11 @@ sensor.birthday_ava:
   icon: mdi:calendar-star
   unit_of_measurement: "days"
 
+sensor.birthday_bob:
+  friendly_name: "Bob's Birthday"
+  icon: mdi:calendar-star
+  unit_of_measurement: "days"
+
 sensor.birthday_kay:
   friendly_name: "Kay's Birthday"
   icon: mdi:calendar-star
@@ -123,11 +128,6 @@ sensor.birthday_kay:
 
 sensor.birthday_leah:
   friendly_name: "Leah's Birthday"
-  icon: mdi:calendar-star
-  unit_of_measurement: "days"
-
-sensor.birthday_bob:
-  friendly_name: "Bob's Birthday"
   icon: mdi:calendar-star
   unit_of_measurement: "days"
 
@@ -145,6 +145,11 @@ sensor.brown_bin:
 sensor.bulb_energy_meter_energy_meter:
   friendly_name: "Bulb Energy Meter Energy Meter"
   unit_of_measurement: "kWh"
+
+sensor.cert_expiry_sonarr_whatdaybob_com:
+  friendly_name: "Cert Expiry (Sonarr.whatdaybob.com)"
+  icon: mdi:certificate
+  unit_of_measurement: "d"
 
 sensor.cert_expiry_whatdaybob_com:
   friendly_name: "Cert Expiry (Whatdaybob.com)"
@@ -195,50 +200,11 @@ sensor.db_size:
   friendly_name: "Db Size"
   unit_of_measurement: "kB"
 
-sensor.docker_adguardhome_version:
-  friendly_name: "Docker Adguardhome Version"
+sensor.docker_airconnect_version:
+  friendly_name: "Docker Airconnect Version"
 
-sensor.docker_adminer_version:
-  friendly_name: "Docker Adminer Version"
-
-sensor.docker_alertmanager_version:
-  friendly_name: "Docker Alertmanager Version"
-
-sensor.docker_cadvisor_version:
-  friendly_name: "Docker Cadvisor Version"
-
-sensor.docker_dozzle_version:
-  friendly_name: "Docker Dozzle Version"
-
-sensor.docker_grafana_version:
-  friendly_name: "Docker Grafana Version"
-
-sensor.docker_node_exporter_version:
-  friendly_name: "Docker Node Exporter Version"
-
-sensor.docker_nodered_version:
-  friendly_name: "Docker Nodered Version"
-
-sensor.docker_nzbget_version:
-  friendly_name: "Docker Nzbget Version"
-
-sensor.docker_prometheus_version:
-  friendly_name: "Docker Prometheus Version"
-
-sensor.docker_radarr_version:
-  friendly_name: "Docker Radarr Version"
-
-sensor.docker_sonarr_version:
-  friendly_name: "Docker Sonarr Version"
-
-sensor.docker_tautulli_version:
-  friendly_name: "Docker Tautulli Version"
-
-sensor.docker_unifi_poller_version:
-  friendly_name: "Docker Unifi Poller Version"
-
-sensor.dwains_theme_version:
-  friendly_name: "Dwains Theme Version"
+sensor.docker_mosquittomqtt_version:
+  friendly_name: "Docker Mosquittomqtt Version"
 
 sensor.esp_fa2045_rx:
   friendly_name: "Esp-Fa2045 Rx"
@@ -259,71 +225,20 @@ sensor.floorplan_date:
 sensor.floorplan_time:
   friendly_name: "Time"
 
+sensor.funhaus:
+  friendly_name: "Funhaus"
+
 sensor.gdacs_53_10033_2_029591:
   friendly_name: "Gdacs (53.10033, -2.029591)"
   icon: mdi:alert
   unit_of_measurement: "alerts"
 
-sensor.github_adguardhome_version:
-  friendly_name: "Github Adguardhome Version"
-
-sensor.github_adminer_version:
-  friendly_name: "Github Adminer Version"
-
-sensor.github_alertmanager_version:
-  friendly_name: "Github Alertmanager Version"
-
-sensor.github_cadvisor_version:
-  friendly_name: "Github Cadvisor Version"
-
-sensor.github_dozzle_version:
-  friendly_name: "Github Dozzle Version"
-
-sensor.github_grafana_version:
-  friendly_name: "Github Grafana Version"
-
-sensor.github_node_exporter_version:
-  friendly_name: "Github Node Exporter Version"
-
-sensor.github_nodered_version:
-  friendly_name: "Github Nodered Version"
-
-sensor.github_nzbget_version:
-  friendly_name: "Github Nzbget Version"
-
-sensor.github_prometheus_version:
-  friendly_name: "Github Prometheus Version"
-
-sensor.github_radarr_version:
-  friendly_name: "Github Radarr Version"
-
-sensor.github_sonarr_version:
-  friendly_name: "Github Sonarr Version"
-
-sensor.github_tautulli_version:
-  friendly_name: "Github Tautulli Version"
-
-sensor.github_unifi_poller_version:
-  friendly_name: "Github Unifi Poller Version"
-
 sensor.grey_bin:
   friendly_name: "Grey Bin"
   unit_of_measurement: "days until collection"
 
-sensor.ha_github_version:
-  friendly_name: "Ha Github Version"
-
-sensor.ha_pypi_version:
-  friendly_name: "Ha Pypi Version"
-  icon: mdi:package-up
-
-sensor.ha_version:
-  friendly_name: "Ha Version"
-  icon: mdi:package-up
-
-sensor.ha_version_docker_stable:
-  friendly_name: "Ha Version Docker Stable"
-  icon: mdi:package-up
+sensor.ha_log_url:
+  friendly_name: "Ha Log Url"
 
 sensor.hacs:
   friendly_name: "Hacs"
@@ -1150,6 +1065,15 @@ sensor.phone_bob_average_active_pace:
   icon: mdi:speedometer
   unit_of_measurement: "m/s"
 
+sensor.phone_bob_badge:
+  friendly_name: "Phone Bob"
+  entity_picture: /local/images/people/martin-square.jpg
+  icon: mdi:shield-account
+
+sensor.phone_bob_battery:
+  friendly_name: "Phone-Bob-Battery"
+  icon: mdi:battery
+
 sensor.phone_bob_battery_level:
   friendly_name: "Phone Bob Battery Level"
   icon: mdi:battery-80
@@ -1161,13 +1085,26 @@ sensor.phone_bob_battery_state:
   icon: mdi:battery-80
   device_class: battery
 
+sensor.phone_bob_battery_status:
+  friendly_name: "Phone-Bob-Battery Status"
+  icon: mdi:battery
+
 sensor.phone_bob_bssid:
   friendly_name: "Phone Bob Bssid"
   icon: mdi:wifi-star
 
+sensor.phone_bob_calc_distance:
+  friendly_name: "Phone-Bob-Calc Dist"
+  icon: mdi:map-marker-distance
+  unit_of_measurement: "mi"
+
 sensor.phone_bob_connection_type:
   friendly_name: "Phone Bob Connection Type"
   icon: mdi:wifi
+
+sensor.phone_bob_dir_of_travel:
+  friendly_name: "Phone-Bob-Direction"
+  icon: mdi:compass-outline
 
 sensor.phone_bob_distance:
   friendly_name: "Phone Bob Distance"
@@ -1188,9 +1125,56 @@ sensor.phone_bob_geocoded_location:
   friendly_name: "Phone Bob Geocoded Location"
   icon: mdi:map
 
+sensor.phone_bob_gps_accuracy:
+  friendly_name: "Phone-Bob-Gps Accuracy"
+  icon: mdi:map-marker-radius
+
+sensor.phone_bob_info:
+  friendly_name: "Phone-Bob-Info"
+  icon: mdi:information-outline
+
+sensor.phone_bob_interval:
+  friendly_name: "Phone-Bob-Interval"
+  icon: mdi:clock-start
+
+sensor.phone_bob_last_located:
+  friendly_name: "Phone-Bob-Last Located"
+  icon: mdi:restore-clock
+
+sensor.phone_bob_last_update:
+  friendly_name: "Phone-Bob-Last Update"
+  icon: mdi:restore-clock
+
 sensor.phone_bob_last_update_trigger:
-  friendly_name: "Phone Bob Last Update Trigger"
-  icon: mdi:cellphone-wireless
+  friendly_name: Phone Bob Last Update Trigger
+
+sensor.phone_bob_last_zone:
+  friendly_name: "Phone-Bob-Last Zone"
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_last_zone_name1:
+  friendly_name: "Phone-Bob-Last Zone"
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_last_zone_name2:
+  friendly_name: "Phone-Bob-Last Zone"
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_last_zone_name3:
+  friendly_name: "Phone-Bob-Last Zone"
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_name:
+  friendly_name: "Phone-Bob-Name"
+  icon: mdi:account
+
+sensor.phone_bob_next_update:
+  friendly_name: "Phone-Bob-Next Update"
+  icon: mdi:update
+
+sensor.phone_bob_poll_count:
+  friendly_name: "Phone-Bob-Poll Count"
+  icon: mdi:counter
 
 sensor.phone_bob_rx:
   friendly_name: "Phone Bob Rx"
@@ -1209,9 +1193,52 @@ sensor.phone_bob_steps:
   icon: mdi:walk
   unit_of_measurement: "steps"
 
+sensor.phone_bob_travel_distance:
+  friendly_name: "Phone-Bob-Travel Dist"
+  icon: mdi:map-marker-distance
+  unit_of_measurement: "mi"
+
+sensor.phone_bob_travel_time:
+  friendly_name: "Phone-Bob-Travel Time"
+  icon: mdi:clock-outline
+
+sensor.phone_bob_trigger:
+  friendly_name: "Phone-Bob-Trigger"
+  icon: mdi:flash-outline
+
 sensor.phone_bob_tx:
   friendly_name: "Phone Bob Tx"
   unit_of_measurement: "MB"
+
+sensor.phone_bob_waze_distance:
+  friendly_name: "Phone-Bob-Waze Dist"
+  icon: mdi:map-marker-distance
+  unit_of_measurement: ""
+
+sensor.phone_bob_zone:
+  friendly_name: "Phone-Bob-Zone"
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_zone_distance:
+  friendly_name: "Phone-Bob-Zone Distance"
+  icon: mdi:map-marker-distance
+  unit_of_measurement: "mi"
+
+sensor.phone_bob_zone_name1:
+  friendly_name: "Phone-Bob-Zone"
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_zone_name2:
+  friendly_name: "Phone-Bob-Zone"
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_zone_name3:
+  friendly_name: "Phone-Bob-Zone"
+  icon: mdi:cellphone-iphone
+
+sensor.phone_bob_zone_timestamp:
+  friendly_name: "Phone-Bob-Zone Timestamp"
+  icon: mdi:restore-clock
 
 sensor.phone_kay_activity:
   friendly_name: "Phone Kay Activity"
@@ -1428,6 +1455,10 @@ sensor.rx_2:
   friendly_name: "Living Room Xbox Rx"
   unit_of_measurement: "MB"
 
+sensor.rx_3:
+  friendly_name: " Rx"
+  unit_of_measurement: "MB"
+
 sensor.rx_4:
   friendly_name: "3d Printer Rx"
   unit_of_measurement: "MB"
@@ -1445,6 +1476,11 @@ sensor.smartthings_hub_rx:
 sensor.smartthings_hub_tx:
   friendly_name: "Smartthings Hub Tx"
   unit_of_measurement: "MB"
+
+sensor.smartthings_multi_sensor_2015_model_battery:
+  friendly_name: "Smartthings Multi Sensor (2015 Model) Battery"
+  device_class: battery
+  unit_of_measurement: "%"
 
 sensor.smartthings_multi_sensor_2015_model_linkquality:
   friendly_name: "Smartthings Multi Sensor (2015 Model) Linkquality"
@@ -1466,6 +1502,9 @@ sensor.smartthings_outlet_power:
   friendly_name: "Smartthings Outlet Power"
   icon: mdi:flash
   unit_of_measurement: "W"
+
+sensor.sonarr_upcoming_media:
+  friendly_name: "Sonarr Upcoming Media"
 
 sensor.steam_76561197972022737:
   friendly_name: "Oatcakepapi"
@@ -1522,18 +1561,8 @@ sensor.surface_book_hdd_format_c:
   icon: mdi:harddisk
   unit_of_measurement: ""
 
-sensor.surface_book_hdd_format_d:
-  friendly_name: "Surface Book - Hdd Format (D)"
-  icon: mdi:harddisk
-  unit_of_measurement: ""
-
 sensor.surface_book_hdd_free_space_c:
   friendly_name: "Surface Book - Hdd Free Space (C)"
-  icon: mdi:harddisk
-  unit_of_measurement: "GB"
-
-sensor.surface_book_hdd_free_space_d:
-  friendly_name: "Surface Book - Hdd Free Space (D)"
   icon: mdi:harddisk
   unit_of_measurement: "GB"
 
@@ -1542,18 +1571,8 @@ sensor.surface_book_hdd_label_c:
   icon: mdi:harddisk
   unit_of_measurement: ""
 
-sensor.surface_book_hdd_label_d:
-  friendly_name: "Surface Book - Hdd Label (D)"
-  icon: mdi:harddisk
-  unit_of_measurement: ""
-
 sensor.surface_book_hdd_total_free_space_c:
   friendly_name: "Surface Book - Hdd Total Free Space (C)"
-  icon: mdi:harddisk
-  unit_of_measurement: "GB"
-
-sensor.surface_book_hdd_total_free_space_d:
-  friendly_name: "Surface Book - Hdd Total Free Space (D)"
   icon: mdi:harddisk
   unit_of_measurement: "GB"
 
@@ -1562,18 +1581,8 @@ sensor.surface_book_hdd_total_size_c:
   icon: mdi:harddisk
   unit_of_measurement: "GB"
 
-sensor.surface_book_hdd_total_size_d:
-  friendly_name: "Surface Book - Hdd Total Size (D)"
-  icon: mdi:harddisk
-  unit_of_measurement: "GB"
-
 sensor.surface_book_hdd_usage_c:
   friendly_name: "Surface Book - Hdd Usage (C)"
-  icon: mdi:chart-donut
-  unit_of_measurement: "%"
-
-sensor.surface_book_hdd_usage_d:
-  friendly_name: "Surface Book - Hdd Usage (D)"
   icon: mdi:chart-donut
   unit_of_measurement: "%"
 
@@ -1582,15 +1591,15 @@ sensor.surface_book_hdd_used_space_c:
   icon: mdi:harddisk
   unit_of_measurement: "GB"
 
-sensor.surface_book_hdd_used_space_d:
-  friendly_name: "Surface Book - Hdd Used Space (D)"
-  icon: mdi:harddisk
-  unit_of_measurement: "GB"
-
 sensor.surface_book_idle_time:
   friendly_name: "Surface Book - Idle Time"
   icon: mdi:timer
   unit_of_measurement: "seconds"
+
+sensor.surface_book_predicted_lifetime:
+  friendly_name: "Surface Book - Predicted Lifetime"
+  icon: mdi:timer
+  unit_of_measurement: "minutes"
 
 sensor.surface_book_ram_available:
   friendly_name: "Surface Book - Ram Available"
@@ -1612,6 +1621,16 @@ sensor.surface_book_ram_used:
   icon: mdi:memory
   unit_of_measurement: "MB"
 
+sensor.surface_book_remaining_battery:
+  friendly_name: "Surface Book - Remaining Battery"
+  device_class: battery
+  unit_of_measurement: "%"
+
+sensor.surface_book_remaining_battery_time:
+  friendly_name: "Surface Book - Remaining Battery Time"
+  icon: mdi:timer
+  unit_of_measurement: "minutes"
+
 sensor.surface_book_uptime:
   friendly_name: "Surface Book - Uptime"
   icon: mdi:ethernet
@@ -1619,6 +1638,34 @@ sensor.surface_book_uptime:
 
 sensor.system_intelnuc:
   friendly_name: "Intelnuc"
+
+sensor.system_intelnuc_cputemp:
+  friendly_name: "System Intelnuc Cputemp"
+  unit_of_measurement: "°"
+
+sensor.system_intelnuc_cpuused:
+  friendly_name: "System Intelnuc Cpuused"
+  unit_of_measurement: "%"
+
+sensor.system_intelnuc_driveused:
+  friendly_name: "System Intelnuc Driveused"
+  unit_of_measurement: "%"
+
+sensor.system_intelnuc_freegb:
+  friendly_name: "System Intelnuc Freegb"
+  unit_of_measurement: "GB"
+
+sensor.system_intelnuc_freemem:
+  friendly_name: "System Intelnuc Freemem"
+  unit_of_measurement: "%"
+
+sensor.system_intelnuc_networkin:
+  friendly_name: "System Intelnuc Networkin"
+  unit_of_measurement: "GB"
+
+sensor.system_intelnuc_networkout:
+  friendly_name: "System Intelnuc Networkout"
+  unit_of_measurement: "GB"
 
 sensor.tablet_ipad_rx:
   friendly_name: "Tablet Ipad Rx"
@@ -1635,6 +1682,9 @@ sensor.tado_hub_rx:
 sensor.tado_hub_tx:
   friendly_name: "Tado Hub Tx"
   unit_of_measurement: "MB"
+
+sensor.test:
+  friendly_name: "Inside Gaming"
 
 sensor.time:
   friendly_name: "Time"
@@ -1743,6 +1793,10 @@ sensor.tx:
 
 sensor.tx_2:
   friendly_name: "Living Room Xbox Tx"
+  unit_of_measurement: "MB"
+
+sensor.tx_3:
+  friendly_name: " Tx"
   unit_of_measurement: "MB"
 
 sensor.tx_4:
@@ -2055,9 +2109,6 @@ sensor.youtube_letsplay:
 sensor.zigbee2mqtt_bridge_state:
   friendly_name: "Zigbee2mqtt Bridge State"
   icon: mdi:router-wireless
-
-sensor.zigbee2mqtt_github_version:
-  friendly_name: "Zigbee2mqtt Github Version"
 
 sensor.zigbee2mqtt_networkmap:
   friendly_name: "Zigbee2mqtt Networkmap"

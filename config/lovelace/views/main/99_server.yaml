@@ -105,7 +105,7 @@
       entities:
         - sensor.hass_uptime
         - sensor.ha_version
-        - sensor.ha_github_version
+        - binary_sensor.docker_homeassistant_versioncheck
         - sensor.ha_pypi_version
         - sensor.ha_version_docker_stable
     - type: entities
