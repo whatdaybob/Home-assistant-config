@@ -22,6 +22,7 @@ backup/
 #-------------------------------------------
 # Ensure these files are ignored
 #-------------------------------------------
+config/.pip_progress
 .vscode/settings.json
 hass.code-workspace
 .homekit.state
@@ -39,4 +40,3 @@ config/custom_components/installed via hacs.txt
 #-------------------------------------------
 *.old 
 *.disabled 
-
