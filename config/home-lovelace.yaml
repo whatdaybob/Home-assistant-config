@@ -5,14 +5,7 @@
 #-------------------------------------------
 
 resources: !include_dir_merge_list ./dwains-theme/resources/
-
-custom_header:
-  !include ./lovelace/plugins/custom_header/configuration.yaml
-
+# custom_header: !include ./lovelace/plugins/custom_header/configuration.yaml
 background: var(--background-image)
-
-views:
-  !include_dir_merge_list ./lovelace/views/main/
-
-button_card_templates:
-  !include_dir_merge_named ./lovelace/plugins/button-cards-templates
+views: !include_dir_merge_list ./lovelace/views/main/
+button_card_templates: !include_dir_merge_named ./lovelace/plugins/button-cards-templates
