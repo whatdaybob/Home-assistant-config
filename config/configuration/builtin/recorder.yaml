@@ -12,11 +12,9 @@
 purge_keep_days: 3
 db_url: !secret recorder_dburl
 include:
-  domains:
-    - sensor
-    - switch
   entities:
-  # binary_sensor
+
+  #-- binary_sensor
     - binary_sensor.hallway_open_window
     - binary_sensor.hue_motion_sensor_occupancy
     - binary_sensor.kids_bedroom_open_window
@@ -28,14 +26,16 @@ include:
     - binary_sensor.office_smartthing_motion_sensor_motion
     - binary_sensor.office_smartthing_motion_sensor_tamper
     - binary_sensor.smartthings_multi_sensor_2015_model_contact
-  # climate
+
+  #-- climate
     - climate.hallway
     - climate.kids_bedroom
     - climate.kitchen
     - climate.landing
     - climate.living_room
     - climate.master_bedroom
-  # device_tracker
+
+  #-- device_tracker
     - device_tracker.bob_tado
     - device_tracker.guest_tado
     - device_tracker.kay_tado
@@ -46,11 +46,13 @@ include:
     - device_tracker.phone_kay_gps
     - device_tracker.phone_kay_unifi
     - device_tracker.phone_louise
-  # input_select
+
+  #-- input_select
     - input_select.bob_tado
     - input_select.kay_tado
     - input_select.lightpack_input
-  # light
+
+  #-- light
     - light.hallway_light
     - light.kids_bedroom
     - light.landing_1
@@ -58,7 +60,8 @@ include:
     - light.living_room_floor_lamp
     - light.living_room_table_lamp
     - light.master_bedroom_main
-  # media_player
+
+  #-- media_player
     - media_player.kitchen_sonos
     - media_player.living_room_androidtv
     - media_player.living_room_kodi
@@ -69,14 +72,632 @@ include:
     - media_player.living_room_sonos
     - media_player.living_room_universal
     - media_player.living_room_xboxone
-  # person
+
+  #-- person
     - person.kay
     - person.bob
-  # remote
+
+  #-- remote
     - remote.living_room_harmony
+
+  #-- switch
+    - switch.adguard_filtering
+    - switch.adguard_parental_control
+    - switch.adguard_protection
+    - switch.adguard_query_log
+    - switch.adguard_safe_browsing
+    - switch.adguard_safe_search
+    - switch.adguardhome
+    - switch.adminer
+    - switch.airconnect
+    - switch.alertmanager
+    - switch.caddy
+    - switch.cadvisor
+    - switch.dozzle
+    - switch.everywhere_do_not_disturb_switch
+    - switch.everywhere_repeat_switch
+    - switch.everywhere_shuffle_switch
+    - switch.godaddyddns
+    - switch.grafana
+    - switch.ha_dockermon
+    - switch.ha_monitor_api
+    - switch.hallway_echo_do_not_disturb_switch
+    - switch.hallway_echo_repeat_switch
+    - switch.hallway_echo_shuffle_switch
+    - switch.homeassistant
+    - switch.kitchen_dot_do_not_disturb_switch
+    - switch.kitchen_dot_repeat_switch
+    - switch.kitchen_dot_shuffle_switch
+    - switch.living_room_sonos_night_sound
+    - switch.living_room_sonos_speech_enhance
+    - switch.mariadb
+    - switch.master_bedroom_dot_do_not_disturb_switch
+    - switch.master_bedroom_dot_repeat_switch
+    - switch.master_bedroom_dot_shuffle_switch
+    - switch.mqtt
+    - switch.nodeexporter
+    - switch.nodered
+    - switch.nzbget
+    - switch.office_dot_do_not_disturb_switch
+    - switch.office_dot_repeat_switch
+    - switch.office_dot_shuffle_switch
+    - switch.office_pc
+    - switch.prometheus
+    - switch.radarr
+    - switch.remote_living_room_shield
+    - switch.remote_living_room_skyq
+    - switch.remote_living_room_xbox
+    - switch.smartthings_outlet_switch
+    - switch.sonarr
+    - switch.surface_book
+    - switch.tautulli
+    - switch.unifi_controller
+    - switch.unifi_mongo
+    - switch.unifi_poller
+    - switch.xboxrestapi
+    - switch.zigbee2mqtt
+    - switch.zigbee2mqtt_main_join
+
+  #-- sensor
+  
+  #---- adguard sensors
+    - sensor.adguard_average_processing_speed
+    - sensor.adguard_dns_queries
+    - sensor.adguard_dns_queries_blocked
+    - sensor.adguard_dns_queries_blocked_ratio
+    - sensor.adguard_parental_control_blocked
+    - sensor.adguard_rules_count
+    - sensor.adguard_safe_browsing_blocked
+    - sensor.adguard_safe_searches_enforced
+  
+  #---- power monitoring sensors
+    - sensor.aeotec_power_monitor_energy_meter
+    - sensor.aeotec_power_monitor_power_meter
+    - sensor.aeotec_power_monitor_voltage_measurement
+    - sensor.cert_expiry_whatdaybob_com
+    - sensor.daily_energy
+    - sensor.hourly_energy
+    - sensor.monthly_energy
+
+  #---- climate monitoring sensors
+    - sensor.cooling_hours_today
+    - sensor.cooling_hours_two_days_ago
+    - sensor.cooling_hours_yesterday
+    - sensor.hallway_early_start
+    - sensor.hallway_heating
+    - sensor.hallway_humidity
+    - sensor.hallway_link
+    - sensor.hallway_mold
+    - sensor.hallway_open_window
+    - sensor.hallway_overlay
+    - sensor.hallway_power
+    - sensor.hallway_tado_mode
+    - sensor.hallway_temperature
+    - sensor.landing_boiler_heat_call
+    - sensor.landing_early_start
+    - sensor.landing_heating
+    - sensor.landing_humidity
+    - sensor.landing_link
+    - sensor.landing_mold
+    - sensor.landing_open_window
+    - sensor.landing_overlay
+    - sensor.landing_power
+    - sensor.landing_tado_mode
+    - sensor.landing_temperature
+    - sensor.living_room_early_start
+    - sensor.living_room_heating
+    - sensor.living_room_humidity
+    - sensor.living_room_link
+    - sensor.living_room_mold
+    - sensor.living_room_open_window
+    - sensor.living_room_overlay
+    - sensor.living_room_power
+    - sensor.living_room_tado_mode
+    - sensor.living_room_temperature
+    - sensor.kids_bedroom_early_start
+    - sensor.kids_bedroom_heating
+    - sensor.kids_bedroom_humidity
+    - sensor.kids_bedroom_link
+    - sensor.kids_bedroom_mold
+    - sensor.kids_bedroom_open_window
+    - sensor.kids_bedroom_overlay
+    - sensor.kids_bedroom_power
+    - sensor.kids_bedroom_tado_mode
+    - sensor.kids_bedroom_temperature
+    - sensor.kitchen_early_start
+    - sensor.kitchen_heating
+    - sensor.kitchen_humidity
+    - sensor.kitchen_link
+    - sensor.kitchen_mold
+    - sensor.kitchen_open_window
+    - sensor.kitchen_overlay
+    - sensor.kitchen_power
+    - sensor.kitchen_tado_mode
+    - sensor.kitchen_temperature
+    - sensor.master_bedroom_early_start
+    - sensor.master_bedroom_heating
+    - sensor.master_bedroom_humidity
+    - sensor.master_bedroom_link
+    - sensor.master_bedroom_mold
+    - sensor.master_bedroom_open_window
+    - sensor.master_bedroom_overlay
+    - sensor.master_bedroom_power
+    - sensor.master_bedroom_tado_mode
+    - sensor.master_bedroom_temperature
+    - sensor.heating_hours_today
+    - sensor.heating_hours_two_days_ago
+    - sensor.heating_hours_yesterday
+    - sensor.outdoor_humidity
+    - sensor.outdoor_temperature
+
+  #---- zigbee2mqtt monitoring sensors
+    - sensor.coordinator_version
+    - sensor.zigbee2mqtt_bridge_state
+    - sensor.zigbee2mqtt_github_version
+    - sensor.zigbee2mqtt_networkmap
+    - sensor.zigbee2mqtt_version
+
+  #---- HA monitoring sensors
+    - sensor.db_size
+    - sensor.ha_log_url
+    - sensor.hacs
+    - sensor.hass_last_motion_sensor_triggered
+    - sensor.hass_uptime
+
+  #---- Version monitoring sensors
+    - sensor.docker_adguardhome_version
+    - sensor.docker_adminer_version
+    - sensor.docker_airconnect_version_2
+    - sensor.docker_alertmanager_version
+    - sensor.docker_cadvisor_version
+    - sensor.docker_dozzle_version
+    - sensor.docker_grafana_version
+    - sensor.docker_mosquittomqtt_version
+    - sensor.docker_mosquittomqtt_version_2
+    - sensor.docker_node_exporter_version
+    - sensor.docker_nodered_version
+    - sensor.docker_nzbget_version
+    - sensor.docker_prometheus_version
+    - sensor.docker_radarr_version
+    - sensor.docker_sonarr_version
+    - sensor.docker_tautulli_version
+    - sensor.docker_unifi_poller_version
+    - sensor.github_adguardhome_version
+    - sensor.github_adminer_version
+    - sensor.github_airconnect_version
+    - sensor.github_alertmanager_version
+    - sensor.github_cadvisor_version
+    - sensor.github_dozzle_version
+    - sensor.github_grafana_version
+    - sensor.github_mosquittomqtt_version
+    - sensor.github_node_exporter_version
+    - sensor.github_nodered_version
+    - sensor.github_nzbget_version
+    - sensor.github_prometheus_version
+    - sensor.github_radarr_version
+    - sensor.github_sonarr_version
+    - sensor.github_tautulli_version
+    - sensor.github_unifi_poller_version
+    - sensor.ha_github_version
+    - sensor.ha_pypi_version
+    - sensor.ha_version
+    - sensor.ha_version_docker_stable
+
+  #---- Alexa monitoring sensors
+    - sensor.hallway_echo_next_alarm
+    - sensor.hallway_echo_next_reminder
+    - sensor.hallway_echo_next_timer
+    - sensor.kitchen_dot_next_alarm
+    - sensor.kitchen_dot_next_reminder
+    - sensor.kitchen_dot_next_timer
+    - sensor.master_bedroom_dot_next_alarm
+    - sensor.master_bedroom_dot_next_reminder
+    - sensor.master_bedroom_dot_next_timer
+    - sensor.office_dot_next_alarm
+    - sensor.office_dot_next_reminder
+    - sensor.office_dot_next_timer
+
+  #---- External sensor monitoring
+    - sensor.hue_motion_sensor_battery
+    - sensor.hue_motion_sensor_illuminance
+    - sensor.hue_motion_sensor_illuminance_lux
+    - sensor.hue_motion_sensor_linkquality
+    - sensor.hue_motion_sensor_temperature
+    - sensor.living_room_switch_battery_level
+    - sensor.office_smartthing_motion_sensor_battery
+    - sensor.office_smartthing_motion_sensor_illuminance
+    - sensor.office_smartthing_motion_sensor_temperature
+    - sensor.smartthings_multi_sensor_2015_model_battery
+    - sensor.smartthings_multi_sensor_2015_model_linkquality
+    - sensor.smartthings_multi_sensor_2015_model_temperature
+    - sensor.smartthings_outlet_linkquality
+    - sensor.smartthings_outlet_power
+    - sensor.xiaomi_aqara_wireless_switch_action
+    - sensor.xiaomi_aqara_wireless_switch_battery
+    - sensor.xiaomi_aqara_wireless_switch_click
+    - sensor.xiaomi_aqara_wireless_switch_linkquality
+    - sensor.fibaro_button_orange_battery
+
+  #---- NZBGet Monitoring
+    - sensor.nzbget_article_cache
+    - sensor.nzbget_average_speed
+    - sensor.nzbget_disk_free
+    - sensor.nzbget_download_paused
+    - sensor.nzbget_post_processing_jobs
+    - sensor.nzbget_post_processing_paused
+    - sensor.nzbget_queue_size
+    - sensor.nzbget_size
+    - sensor.nzbget_speed
+    - sensor.nzbget_uptime
+
+  #---- Phones Monitoring
+    - sensor.phone_bob_activity
+    - sensor.phone_bob_average_active_pace
+    - sensor.phone_bob_badge
+    - sensor.phone_bob_battery
+    - sensor.phone_bob_battery_level
+    - sensor.phone_bob_battery_state
+    - sensor.phone_bob_battery_status
+    - sensor.phone_bob_bssid
+    - sensor.phone_bob_calc_distance
+    - sensor.phone_bob_connection_type
+    - sensor.phone_bob_dir_of_travel
+    - sensor.phone_bob_distance
+    - sensor.phone_bob_floors_ascended
+    - sensor.phone_bob_floors_descended
+    - sensor.phone_bob_geocoded_location
+    - sensor.phone_bob_gps_accuracy
+    - sensor.phone_bob_interval
+    - sensor.phone_bob_last_located
+    - sensor.phone_bob_last_update
+    - sensor.phone_bob_last_update_trigger
+    - sensor.phone_bob_last_zone
+    - sensor.phone_bob_last_zone_name1
+    - sensor.phone_bob_last_zone_name2
+    - sensor.phone_bob_last_zone_name3
+    - sensor.phone_bob_name
+    - sensor.phone_bob_next_update
+    - sensor.phone_bob_poll_count
+    - sensor.phone_bob_sim_1
+    - sensor.phone_bob_ssid
+    - sensor.phone_bob_steps
+    - sensor.phone_bob_travel_distance
+    - sensor.phone_bob_travel_time
+    - sensor.phone_bob_trigger
+    - sensor.phone_bob_waze_distance
+    - sensor.phone_bob_zone
+    - sensor.phone_bob_zone_distance
+    - sensor.phone_bob_zone_name1
+    - sensor.phone_bob_zone_name2
+    - sensor.phone_bob_zone_name3
+    - sensor.phone_bob_zone_timestamp
+    - sensor.phone_kay_activity
+    - sensor.phone_kay_average_active_pace
+    - sensor.phone_kay_badge
+    - sensor.phone_kay_battery
+    - sensor.phone_kay_battery_level
+    - sensor.phone_kay_battery_state
+    - sensor.phone_kay_battery_status
+    - sensor.phone_kay_bssid
+    - sensor.phone_kay_calc_distance
+    - sensor.phone_kay_connection_type
+    - sensor.phone_kay_dir_of_travel
+    - sensor.phone_kay_distance
+    - sensor.phone_kay_floors_ascended
+    - sensor.phone_kay_floors_descended
+    - sensor.phone_kay_geocoded_location
+    - sensor.phone_kay_gps_accuracy
+    - sensor.phone_kay_interval
+    - sensor.phone_kay_last_located
+    - sensor.phone_kay_last_update
+    - sensor.phone_kay_last_update_trigger
+    - sensor.phone_kay_last_zone
+    - sensor.phone_kay_last_zone_name1
+    - sensor.phone_kay_last_zone_name2
+    - sensor.phone_kay_last_zone_name3
+    - sensor.phone_kay_name
+    - sensor.phone_kay_next_update
+    - sensor.phone_kay_poll_count
+    - sensor.phone_kay_sim_1
+    - sensor.phone_kay_ssid
+    - sensor.phone_kay_steps
+    - sensor.phone_kay_travel_distance
+    - sensor.phone_kay_travel_time
+    - sensor.phone_kay_trigger
+    - sensor.phone_kay_waze_distance
+    - sensor.phone_kay_zone
+    - sensor.phone_kay_zone_distance
+    - sensor.phone_kay_zone_name1
+    - sensor.phone_kay_zone_name2
+    - sensor.phone_kay_zone_name3
+    - sensor.phone_kay_zone_timestamp
+
+  #---- Hardware Monitoring
+    - sensor.system_intelnuc
+    - sensor.system_intelnuc_cputemp
+    - sensor.system_intelnuc_cpuused
+    - sensor.system_intelnuc_driveused
+    - sensor.system_intelnuc_freegb
+    - sensor.system_intelnuc_freemem
+    - sensor.system_intelnuc_networkin
+    - sensor.system_intelnuc_networkout
+    - sensor.office_pc_boot_time
+    - sensor.office_pc_cpu_usage
+    - sensor.office_pc_current_user
+    - sensor.office_pc_hdd_format_c
+    - sensor.office_pc_hdd_format_d
+    - sensor.office_pc_hdd_free_space_c
+    - sensor.office_pc_hdd_free_space_d
+    - sensor.office_pc_hdd_label_c
+    - sensor.office_pc_hdd_label_d
+    - sensor.office_pc_hdd_total_free_space_c
+    - sensor.office_pc_hdd_total_free_space_d
+    - sensor.office_pc_hdd_total_size_c
+    - sensor.office_pc_hdd_total_size_d
+    - sensor.office_pc_hdd_usage_c
+    - sensor.office_pc_hdd_usage_d
+    - sensor.office_pc_hdd_used_space_c
+    - sensor.office_pc_hdd_used_space_d
+    - sensor.office_pc_idle_time
+    - sensor.office_pc_ram_available
+    - sensor.office_pc_ram_total
+    - sensor.office_pc_ram_usage
+    - sensor.office_pc_ram_used
+    - sensor.office_pc_uptime
+    - sensor.office_pc_rx
+    - sensor.office_pc_tx    
+    - sensor.surface_book_boot_time
+    - sensor.surface_book_cpu_usage
+    - sensor.surface_book_current_user
+    - sensor.surface_book_hdd_format_c
+    - sensor.surface_book_hdd_free_space_c
+    - sensor.surface_book_hdd_label_c
+    - sensor.surface_book_hdd_total_free_space_c
+    - sensor.surface_book_hdd_total_size_c
+    - sensor.surface_book_hdd_usage_c
+    - sensor.surface_book_hdd_used_space_c
+    - sensor.surface_book_idle_time
+    - sensor.surface_book_predicted_lifetime
+    - sensor.surface_book_ram_available
+    - sensor.surface_book_ram_total
+    - sensor.surface_book_ram_usage
+    - sensor.surface_book_ram_used
+    - sensor.surface_book_remaining_battery
+    - sensor.surface_book_remaining_battery_time
+    - sensor.surface_book_uptime
+
+  #---- Unifi
+    - sensor.unifi_gateway_alerts
+    - sensor.unifi_gateway_cpu
+    - sensor.unifi_gateway_lan
+    - sensor.unifi_gateway_memory
+    - sensor.unifi_gateway_speedtest_download
+    - sensor.unifi_gateway_speedtest_ping
+    - sensor.unifi_gateway_speedtest_upload
+    - sensor.unifi_gateway_uptime
+    - sensor.unifi_gateway_vpn
+    - sensor.unifi_gateway_wan
+    - sensor.unifi_gateway_wan_download
+    - sensor.unifi_gateway_wan_ip
+    - sensor.unifi_gateway_wan_upload
+    - sensor.unifi_gateway_wlan
+    - sensor.unifi_gateway_www
+    - sensor.unifi_lan_clients
+    - sensor.unifi_wlan_clients
+
+  #---- Lights
+    - sensor.hallway_lightpercent
+    - sensor.kids_bedroom_lightpercent
+    - sensor.landing1_lightpercent
+    - sensor.landing2_lightpercent
+    - sensor.living_room_lightpercent_floor
+    - sensor.living_room_lightpercent_table
+    - sensor.master_bedroom_lightpercent
+
+  #---- Coronavirus
+    - sensor.united_kingdom_coronavirus_confirmed
+    - sensor.united_kingdom_coronavirus_current
+    - sensor.united_kingdom_coronavirus_deaths
+    - sensor.united_kingdom_coronavirus_recovered
+    - sensor.worldwide_coronavirus_confirmed
+    - sensor.worldwide_coronavirus_current
+    - sensor.worldwide_coronavirus_deaths
+    - sensor.worldwide_coronavirus_recovered
+
+  #---- Withings
+    - sensor.withings_body_temperature_c_bob
+    - sensor.withings_bone_mass_kg_bob
+    - sensor.withings_diastolic_blood_pressure_mmhg_bob
+    - sensor.withings_fat_free_mass_kg_bob
+    - sensor.withings_fat_mass_kg_bob
+    - sensor.withings_fat_ratio_pct_bob
+    - sensor.withings_heart_pulse_bpm_bob
+    - sensor.withings_height_m_bob
+    - sensor.withings_hydration_bob
+    - sensor.withings_muscle_mass_kg_bob
+    - sensor.withings_pulse_wave_velocity_bob
+    - sensor.withings_skin_temperature_c_bob
+    - sensor.withings_sleep_deep_duration_seconds_bob
+    - sensor.withings_sleep_heart_rate_average_bpm_bob
+    - sensor.withings_sleep_heart_rate_max_bpm_bob
+    - sensor.withings_sleep_heart_rate_min_bpm_bob
+    - sensor.withings_sleep_light_duration_seconds_bob
+    - sensor.withings_sleep_rem_duration_seconds_bob
+    - sensor.withings_sleep_respiratory_average_bpm_bob
+    - sensor.withings_sleep_respiratory_max_bpm_bob
+    - sensor.withings_sleep_respiratory_min_bpm_bob
+    - sensor.withings_sleep_tosleep_duration_seconds_bob
+    - sensor.withings_sleep_towakeup_duration_seconds_bob
+    - sensor.withings_sleep_wakeup_count_bob
+    - sensor.withings_sleep_wakeup_duration_seconds_bob
+    - sensor.withings_spo2_pct_bob
+    - sensor.withings_systolic_blood_pressure_mmhg_bob
+    - sensor.withings_temperature_c_bob
+    - sensor.withings_weight_kg_bob
+    - sensor.withings_weight_stlb_bob
+
 exclude:
   entities:
-    - sensor.phone_kay_info
+    - sensor.rx
+    - sensor.rx_2
+    - sensor.rx_3
+    - sensor.rx_4
+    - sensor.amazon_cb712bc47_rx
+    - sensor.amazon_cb712bc47_tx
+    - sensor.bathroom_scales_rx
+    - sensor.bathroom_scales_tx
+    - sensor.esp_fa2045_rx
+    - sensor.esp_fa2045_tx
+    - sensor.hallway_camera_rx
+    - sensor.hallway_camera_tx
+    - sensor.hallway_echo_rx
+    - sensor.hallway_echo_tx
+    - sensor.hallway_energymonitor_rx
+    - sensor.hallway_energymonitor_tx
+    - sensor.home_phone_rx
+    - sensor.home_phone_tx
+    - sensor.hue_hub_rx
+    - sensor.hue_hub_tx
+    - sensor.kitchen_alexa_rx
+    - sensor.kitchen_alexa_tx
+    - sensor.kitchen_sonos_rx
+    - sensor.kitchen_sonos_tx
+    - sensor.laptop_bob_personal_rx
+    - sensor.laptop_bob_personal_tx
+    - sensor.living_room_harmony_rx
+    - sensor.living_room_harmony_tx
+    - sensor.living_room_lightpack_rx
+    - sensor.living_room_lightpack_tx
+    - sensor.living_room_pi_rx
+    - sensor.living_room_pi_tx
+    - sensor.living_room_shield_wired_rx
+    - sensor.living_room_shield_wired_tx
+    - sensor.living_room_skq_ethernet_rx
+    - sensor.living_room_skq_ethernet_tx
+    - sensor.living_room_skq_unknown_rx
+    - sensor.living_room_skq_unknown_tx
+    - sensor.living_room_sonos_rx
+    - sensor.living_room_sonos_tx
+    - sensor.living_room_tv_rx
+    - sensor.living_room_tv_tx
+    - sensor.living_room_xbox_rx
+    - sensor.living_room_xbox_tx
+    - sensor.martinjnessipad_rx
+    - sensor.martinjnessipad_tx
+    - sensor.master_bedroom_alexa_rx
+    - sensor.master_bedroom_alexa_tx
+    - sensor.nuc_server_rx
+    - sensor.nuc_server_tx
+    - sensor.office_wlanbridge_rx
+    - sensor.office_wlanbridge_tx
+    - sensor.phone_bob_rx
+    - sensor.phone_bob_tx
+    - sensor.phone_kay_rx
+    - sensor.phone_kay_tx
+    - sensor.phone_louise_rx
+    - sensor.phone_louise_tx
+    - sensor.smartthings_hub_rx
+    - sensor.smartthings_hub_tx
+    - sensor.tablet_ipad_rx
+    - sensor.tablet_ipad_tx
+    - sensor.tado_hub_rx
+    - sensor.tado_hub_tx
+    - sensor.ukstol0159_rx
+    - sensor.ukstol0159_tx
+    - sensor.tx
+    - sensor.tx_2
+    - sensor.tx_3
+    - sensor.tx_4
+    - sensor.bankholiday_early_may_bank_holiday
+    - sensor.bankholiday_easter_monday
+    - sensor.bankholiday_good_friday
+    - sensor.bankholiday_spring_bank_holiday
+    - sensor.bankholiday_summer_bank_holiday
+    - sensor.bed_load_value
+    - sensor.bin_week
+    - sensor.birthday_ava
+    - sensor.birthday_bob
+    - sensor.birthday_kay
+    - sensor.birthday_leah
+    - sensor.blue_bin
+    - sensor.bob_and_kay_s_home_tado_bridge_status
+    - sensor.brown_bin
+    - sensor.clock_am_pm
+    - sensor.clock_date
+    - sensor.clock_day
+    - sensor.clock_time
+    - sensor.date
+    - sensor.dwains_theme_version
+    - sensor.youtube_direwolf20
+    - sensor.youtube_funhaus
+    - sensor.youtube_inside_gaming
+    - sensor.youtube_letsplay    
+    #---- Other monitoring sensors
+    - sensor.funhaus
+    - sensor.gdacs_53_10033_2_029591
+    - sensor.floorplan_date
+    - sensor.floorplan_time
+    - sensor.grey_bin
+    - sensor.harmony_activity_living_room
+    - sensor.holiday_christmas_day
+    - sensor.holiday_new_year
+    - sensor.icloud3_event_log
+    - sensor.living_room_universal_source
+    - sensor.nodered_blue_bin_collection
+    - sensor.nodered_brown_bin_collection
+    - sensor.nodered_grey_bin_collection
+    - sensor.nodered_xbox_ashischarmed
+    - sensor.nodered_xbox_gremo
+    - sensor.nodered_xbox_iamaweapon
+    - sensor.nodered_xbox_laidbacks
+    - sensor.nodered_xbox_whatdaybob
+    - sensor.outdoor_moon
+    - sensor.plex_shieldtv
+    - sensor.potential_breaking_changes
+    - sensor.presence_bob_last_changed
+    - sensor.presence_kay_last_changed
+    - sensor.server_plex_recently_added_movies
+    - sensor.server_plex_recently_added_tv
+    - sensor.sonarr_upcoming_media
+    - sensor.test
+    - sensor.time
+    - sensor.trakt_upcoming_calendar
+
+  #---- HA monitoring
+    - sensor.total_automations
+    - sensor.total_binary_sensors
+    - sensor.total_cameras
+    - sensor.total_counters
+    - sensor.total_devicetrackers
+    - sensor.total_entities
+    - sensor.total_groups
+    - sensor.total_input_booleans
+    - sensor.total_input_datetimes
+    - sensor.total_input_numbers
+    - sensor.total_input_selects
+    - sensor.total_input_texts
+    - sensor.total_lights
+    - sensor.total_media_players
+    - sensor.total_persons
+    - sensor.total_remotes
+    - sensor.total_scenes
+    - sensor.total_scripts
+    - sensor.total_sensors
+    - sensor.total_switches
+    - sensor.total_timers
+    - sensor.total_zones
+    - sensor.total_zwave_devices
+
+  #---- Steam monitoring
+    - sensor.steam_76561197972022737
+    - sensor.steam_76561197994146112
+    - sensor.steam_76561197999452819
+    - sensor.steam_76561198046851607
+    - sensor.steam_76561198050119648
+    - sensor.steam_76561198058285987
+    - sensor.steam_wishlist
+
+  #---- Other monitoring
+    - sensor.bulb_energy_meter_energy_meter    
     - sensor.phone_bob_info
-    - sensor.phone_kay_next_update
-    - sensor.phone_bob_next_update
+    - sensor.phone_kay_info

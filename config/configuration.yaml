@@ -9,12 +9,14 @@
 #-------------------------------------------
 api:
 config:
+frontend: !include configuration/builtin/frontend.yaml
 history: !include configuration/builtin/history.yaml
 http: !include configuration/builtin/http.yaml
 homeassistant: !include configuration/builtin/homeassistant.yaml
 homekit: !include configuration/builtin/homekit.yaml
 logbook: !include configuration/builtin/logbook.yaml
 logger: !include configuration/builtin/logger.yaml
+lovelace: !include configuration/builtin/lovelace.yaml
 map:
 mobile_app:
 prometheus: !include configuration/builtin/prometheus.yaml

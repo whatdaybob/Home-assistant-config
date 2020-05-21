@@ -1,0 +1,9 @@
+mode: yaml
+resources: !include_dir_merge_list ../../lovelace/resources/
+dashboards:
+  home-theme:
+    mode: yaml
+    title: Home Theme
+    icon: mdi:alpha-d-box
+    show_in_sidebar: true
+    filename: home-lovelace.yaml
