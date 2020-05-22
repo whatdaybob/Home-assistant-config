@@ -315,7 +315,6 @@ include:
     - sensor.phone_bob_last_zone_name2
     - sensor.phone_bob_last_zone_name3
     - sensor.phone_bob_name
-    - sensor.phone_bob_next_update
     - sensor.phone_bob_poll_count
     - sensor.phone_bob_sim_1
     - sensor.phone_bob_ssid
@@ -355,7 +354,6 @@ include:
     - sensor.phone_kay_last_zone_name2
     - sensor.phone_kay_last_zone_name3
     - sensor.phone_kay_name
-    - sensor.phone_kay_next_update
     - sensor.phone_kay_poll_count
     - sensor.phone_kay_sim_1
     - sensor.phone_kay_ssid
@@ -660,3 +658,5 @@ exclude:
     - sensor.bulb_energy_meter_energy_meter    
     - sensor.phone_bob_info
     - sensor.phone_kay_info
+    - sensor.phone_bob_next_update
+    - sensor.phone_kay_next_update
