@@ -122,8 +122,9 @@
 
     - type: entities
       entities:
-        - entity: sensor.living_room_lightpercent_floor
-        - entity: sensor.living_room_lightpercent_table
+        - entity: sensor.living_room_lamps_lightpercent
+        - entity: sensor.living_room_floor_lamp_lightpercent
+        - entity: sensor.living_room_table_lamp_lightpercent
         - entity: sensor.harmony_activity_living_room
         - entity: device_tracker.living_room_switch
         - entity: remote.living_room_harmony

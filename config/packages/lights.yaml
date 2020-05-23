@@ -56,13 +56,17 @@ sensor:
         value_template: >-
           {% if is_state('light.hallway_storage_light', 'on') %} {{ (state_attr('light.hallway_storage_light', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
 
-      landing1_lightpercent:
+      landing_1_lightpercent:
         value_template: >-
           {% if is_state('light.landing_1', 'on') %} {{ (state_attr('light.landing_1', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
 
-      landing2_lightpercent:
+      landing_2_lightpercent:
         value_template: >-
           {% if is_state('light.landing_2', 'on') %} {{ (state_attr('light.landing_2', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
+
+      landing_group_lightpercent:
+        value_template: >-
+          {% if is_state('light.landing_group', 'on') %} {{ (state_attr('light.landing_group', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
 
       kids_bedroom_lightpercent:
         value_template: >-
@@ -72,10 +76,14 @@ sensor:
         value_template: >-
           {% if is_state('light.master_bedroom', 'on') %} {{ (state_attr('light.master_bedroom', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
 
-      living_room_lightpercent_floor:
+      living_room_floor_lamp_lightpercent:
         value_template: >-
           {% if is_state('light.living_room_floor_lamp', 'on') %} {{ (state_attr('light.living_room_floor_lamp', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
 
-      living_room_lightpercent_table:
+      living_room_table_lamp_lightpercent:
         value_template: >-
           {% if is_state('light.living_room_table_lamp', 'on') %} {{ (state_attr('light.living_room_table_lamp', 'brightness') / 2.54) | round }}{% else %}0{% endif %}
+
+      living_room_lamps_lightpercent:
+        value_template: >-
+          {% if is_state('light.living_room_lamps', 'on') %} {{ (state_attr('light.living_room_lamps', 'brightness') / 2.54) | round }}{% else %}0{% endif %}

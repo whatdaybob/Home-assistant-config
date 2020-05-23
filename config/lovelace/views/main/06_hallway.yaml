@@ -54,8 +54,9 @@
         - entity: sensor.hallway_echo_next_reminder
         - entity: sensor.hallway_echo_next_timer
         - entity: sensor.hallway_lightpercent
-        - entity: sensor.landing1_lightpercent
-        - entity: sensor.landing2_lightpercent
+        - entity: sensor.landing_group_lightpercent
+        - entity: sensor.landing_1_lightpercent
+        - entity: sensor.landing_2_lightpercent
         - entity: light.hallway
         - entity: light.hallway_storage
         - entity: light.landing_1

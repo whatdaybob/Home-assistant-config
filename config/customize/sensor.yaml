@@ -527,11 +527,14 @@ sensor.kitchen_temperature:
   device_class: temperature
   unit_of_measurement: "°C"
 
-sensor.landing1_lightpercent:
-  friendly_name: "Landing1 Lightpercent"
+sensor.landing_group_lightpercent:
+  friendly_name: "Landing Group Lightpercent"
 
-sensor.landing2_lightpercent:
-  friendly_name: "Landing2 Lightpercent"
+sensor.landing_1_lightpercent:
+  friendly_name: "Landing 1 Lightpercent"
+
+sensor.landing_2_lightpercent:
+  friendly_name: "Landing 2 Lightpercent"
 
 sensor.landing_boiler_heat_call:
   friendly_name: "Boiler Heat Call"
@@ -613,11 +616,14 @@ sensor.living_room_lightpack_tx:
   friendly_name: "Living Room Lightpack Tx"
   unit_of_measurement: "MB"
 
-sensor.living_room_lightpercent_floor:
-  friendly_name: "Living Room Lightpercent Floor"
+sensor.living_room_lamps_lightpercent:
+  friendly_name: "Living Room Lamps Lightpercent"
 
-sensor.living_room_lightpercent_table:
-  friendly_name: "Living Room Lightpercent Table"
+sensor.living_room_floor_lamp_lightpercent:
+  friendly_name: "Living Room Floor Lightpercent"
+
+sensor.living_room_table_lamp_lightpercent:
+  friendly_name: "Living Room Table Lightpercent"
 
 sensor.living_room_link:
   friendly_name: "Connection"
