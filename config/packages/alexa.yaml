@@ -29,12 +29,13 @@ alexa:
       - climate.living_room
       - climate.master_bedroom
       # light
-      - light.master_bedroom_main
+      - light.master_bedroom
       - light.kids_bedroom
       - light.Landing_Group
       - light.living_room_floor_lamp
       - light.living_room_table_lamp
-      - light.hallway_light
+      - light.hallway
+      - light.hallway_storage
       # script
       - script.living_room_universal_hdmi1
       - script.living_room_universal_hdmi2
@@ -73,7 +74,7 @@ alexa:
         name: "Master Bedroom Thermostat"
         display_categories: THERMOSTAT
     # light
-      light.master_bedroom_main:
+      light.master_bedroom:
         name: "Master Bedroom Light"
         description: "The light in the main bedroom"
         display_categories: LIGHT
@@ -93,9 +94,13 @@ alexa:
         name: "Living Room Table Lamp"
         description: "The living room table lamp"
         display_categories: LIGHT
-      light.hallway_light:
+      light.hallway:
         name: "Hallway Light"
         description: "The light in the hallway"
+        display_categories: LIGHT
+      light.hallway_storage:
+        name: "Hallway Storage Light"
+        description: "The light under the stairs"
         display_categories: LIGHT
     # script
       script.living_room_universal_hdmi1:

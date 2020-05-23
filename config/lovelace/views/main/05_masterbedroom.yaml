@@ -22,14 +22,14 @@
         # - entity: sensor.master_bedroom_temperature_target
         - entity: sensor.master_bedroom_temperature
         - entity: sensor.master_bedroom_humidity
-        - entity: light.master_bedroom_main
+        - entity: light.master_bedroom
           name: Ceiling Light
           secondary_info: last-changed
         # - entity: binary_sensor.master_bedroom_sensor_motion
         #   name: Door Sensor
           # secondary_info: battery
     - type: light
-      entity: light.master_bedroom_main
+      entity: light.master_bedroom
     - type: entities
       entities:
         - entity: sensor.master_bedroom_heating

@@ -56,7 +56,8 @@
         - entity: sensor.hallway_lightpercent
         - entity: sensor.landing1_lightpercent
         - entity: sensor.landing2_lightpercent
-        - entity: light.hallway_light
+        - entity: light.hallway
+        - entity: light.hallway_storage
         - entity: light.landing_1
         - entity: light.landing_2
 

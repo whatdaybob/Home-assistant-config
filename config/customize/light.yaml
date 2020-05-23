@@ -9,8 +9,11 @@
 # https://www.home-assistant.io/docs/configuration/customizing-devices/
 #-------------------------------------------
 
-light.hallway_light:
-  friendly_name: "Ceiling"
+light.hallway:
+  friendly_name: "Hallway"
+
+light.hallway_storage:
+  friendly_name: "Hallway Storage"
 
 light.kids_bedroom:
   friendly_name: "Kids Bedroom"
@@ -36,5 +39,5 @@ light.living_room_lamps:
 light.living_room_table_lamp:
   friendly_name: "Table Lamp"
 
-light.master_bedroom_main:
-  friendly_name: "Ceiling"
+light.master_bedroom:
+  friendly_name: "Master Bedroom"

@@ -103,7 +103,7 @@
           heading: "Hallway"
           link: /lovelace/6
           entities:
-            - entity: light.hallway_light
+            - entity: light.hallway
               name: Light
             - entity: sensor.hallway_temperature
               name: Temperature

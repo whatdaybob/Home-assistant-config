@@ -53,13 +53,14 @@ include:
     - input_select.lightpack_input
 
   #-- light
-    - light.hallway_light
+    - light.hallway
+    - light.hallway_storage
     - light.kids_bedroom
     - light.landing_1
     - light.landing_2
     - light.living_room_floor_lamp
     - light.living_room_table_lamp
-    - light.master_bedroom_main
+    - light.master_bedroom
 
   #-- media_player
     - media_player.kitchen_sonos
