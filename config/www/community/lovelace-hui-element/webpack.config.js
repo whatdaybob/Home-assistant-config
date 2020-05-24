@@ -3,9 +3,8 @@ const path = require('path');
 module.exports = {
   entry: './src/main.js',
   mode: 'production',
-  devtool: false,
   output: {
-    filename: 'lovelace-card-templater.js',
+    filename: 'hui-element.js',
     path: path.resolve(__dirname)
   }
 };

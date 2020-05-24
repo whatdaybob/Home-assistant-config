@@ -20,11 +20,13 @@ from .const import (
     CONF_LIVE_TV,
     CONF_COUNTRY,
     CONF_SOURCES,
+    CHANNEL_SOURCES_DISPLAY,
     DOMAIN,
     SKYQREMOTE,
 )
 from pyskyqremote.skyq_remote import SkyQRemote
 
+CHANNEL_DISPLAY = "{0} - {1}"
 
 DATA_SCHEMA = {
     vol.Required(CONF_HOST): str,
@@ -100,11 +102,12 @@ class SkyQOptionsFlowHandler(config_entries.OptionsFlow):
         """Initialize Sky Q options flow."""
         self._config_entry = config_entry
         self._remote = None
-        self._channel_sources = config_entry.options.get(CONF_CHANNEL_SOURCES)
-        sources = config_entry.options.get(CONF_SOURCES, {})
-        self._sources = None
-        if len(sources) > 0:
-            self._sources = json.dumps(sources)
+        self._channel_sources = config_entry.options.get(CONF_CHANNEL_SOURCES, [])
+
+        self._sources = json.dumps(config_entry.options.get(CONF_SOURCES))
+        if self._sources == "null":
+            self._sources = None
+
         self._room = config_entry.options.get(CONF_ROOM)
         self._gen_switch = config_entry.options.get(CONF_GEN_SWITCH, False)
         self._live_tv = config_entry.options.get(CONF_LIVE_TV, True)
@@ -112,7 +115,8 @@ class SkyQOptionsFlowHandler(config_entries.OptionsFlow):
         self._output_programme_image = config_entry.options.get(
             CONF_OUTPUT_PROGRAMME_IMAGE, True
         )
-        self._channelList = []
+        self._channelDisplay = []
+        self._channel_list = []
 
     async def async_step_init(self, user_input=None):
         """Set up the option flow."""
@@ -122,9 +126,23 @@ class SkyQOptionsFlowHandler(config_entries.OptionsFlow):
             channelData = await self.hass.async_add_executor_job(
                 self._remote.getChannelList
             )
+            self._channel_list = channelData.channels
 
-            for channel in channelData.channels:
-                self._channelList.append(channel.channelname)
+            for channel in self._channel_list:
+                self._channelDisplay.append(
+                    CHANNEL_DISPLAY.format(channel.channelno, channel.channelname)
+                )
+
+            self._channel_sources_display = []
+            for channel in self._channel_sources:
+                channelData = next(
+                    c for c in self._channel_list if c.channelname == channel
+                )
+                self._channel_sources_display.append(
+                    CHANNEL_DISPLAY.format(
+                        channelData.channelno, channelData.channelname
+                    )
+                )
 
             return await self.async_step_user()
 
@@ -135,19 +153,38 @@ class SkyQOptionsFlowHandler(config_entries.OptionsFlow):
         errors = {}
 
         if user_input:
-            self._channel_sources = user_input[CONF_CHANNEL_SOURCES]
-            if CONF_SOURCES in user_input:
-                self._sources = user_input[CONF_SOURCES]
-            if CONF_ROOM in user_input:
-                self._room = user_input[CONF_ROOM]
+            self._channel_sources_display = user_input[CHANNEL_SOURCES_DISPLAY]
+            user_input.pop(CHANNEL_SOURCES_DISPLAY)
+            if len(self._channel_sources_display) > 0:
+                channel_sources = []
+                for channel in self._channel_sources_display:
+                    channelData = next(
+                        c
+                        for c in self._channel_list
+                        if channel == CHANNEL_DISPLAY.format(c.channelno, c.channelname)
+                    )
+                    channel_sources.append(channelData.channelname)
+
+                user_input[CONF_CHANNEL_SOURCES] = channel_sources
+
             self._gen_switch = user_input[CONF_GEN_SWITCH]
             self._live_tv = user_input[CONF_LIVE_TV]
-            if CONF_COUNTRY in user_input:
-                self._country = user_input[CONF_COUNTRY]
             self._output_programme_image = user_input[CONF_OUTPUT_PROGRAMME_IMAGE]
 
+            self._room = None
+            if CONF_ROOM in user_input:
+                self._room = user_input[CONF_ROOM]
+
+            self._country = None
+            if CONF_COUNTRY in user_input:
+                self._country = user_input[CONF_COUNTRY]
+
             try:
-                user_input[CONF_SOURCES] = json.loads(self._sources)
+                self._sources = None
+                if CONF_SOURCES in user_input:
+                    self._sources = user_input[CONF_SOURCES]
+                    user_input[CONF_SOURCES] = json.loads(self._sources)
+
                 return self.async_create_entry(title="", data=user_input)
             except Exception:
                 errors["base"] = "invalid_sources"
@@ -157,8 +194,8 @@ class SkyQOptionsFlowHandler(config_entries.OptionsFlow):
             data_schema=vol.Schema(
                 {
                     vol.Optional(
-                        CONF_CHANNEL_SOURCES, default=self._channel_sources
-                    ): cv.multi_select(self._channelList),
+                        CHANNEL_SOURCES_DISPLAY, default=self._channel_sources_display
+                    ): cv.multi_select(self._channelDisplay),
                     vol.Optional(
                         CONF_OUTPUT_PROGRAMME_IMAGE,
                         default=self._output_programme_image,
