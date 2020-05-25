@@ -169,27 +169,10 @@ media_player:
     - media_player.living_room_shield_cast
     - media_player.living_room_androidtv
     - media_player.living_room_skyq
-    # - media_player.living_room_xboxone
+    - media_player.living_room_xboxone
     - media_player.living_room_lg_netcast
     - media_player.living_room_sonos
   state_template: >
-    {# old state template
-    {% set allmediaplayers = [
-      states.media_player.living_room_androidtv,
-      states.media_player.living_room_kodi,
-      states.media_player.living_room_lg_netcast,
-      states.media_player.living_room_plexapp,
-      states.media_player.living_room_shield_cast,
-      states.media_player.living_room_skyq,
-      states.media_player.living_room_sonos,
-      states.media_player.living_room_xboxone
-      ] %}
-    {% for mediaplayer in allmediaplayers %}
-      {% if as_timestamp(mediaplayer.last_changed) == as_timestamp(allmediaplayers | map(attribute='last_changed') | max) %}
-        {{ mediaplayer.attributes.friendly_name  | replace('Living Room','')}}: {{ mediaplayer.state }}
-      {% endif %}
-    {% endfor %} 
-    #}
     {% if is_state_attr('media_player.living_room_sonos','source','TV')%}
       {% set allmediaplayers = [
           states.media_player.living_room_androidtv,

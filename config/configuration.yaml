@@ -33,6 +33,8 @@ zeroconf:
 # CONFIGURATION - CUSTOM
 #-------------------------------------------
 browser_mod: !include configuration/custom/browser_mod.yaml
+lovelace_gen: !include configuration/custom/lovelace_gen.yaml
+
 #-------------------------------------------
 # INTEGRATIONS
 #-------------------------------------------

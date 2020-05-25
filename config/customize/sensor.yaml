@@ -1442,11 +1442,6 @@ sensor.plex_shieldtv:
   friendly_name: "Plex (Shieldtv)"
   icon: mdi:plex
   unit_of_measurement: "Watching"
-
-sensor.potential_breaking_changes:
-  friendly_name: "Potential Breaking Changes"
-  icon: mdi:package-up
-
 sensor.presence_bob_last_changed:
   friendly_name: "Presence Bob Last Changed"
 

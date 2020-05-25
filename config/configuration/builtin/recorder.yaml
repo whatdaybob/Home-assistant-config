@@ -613,7 +613,6 @@ exclude:
     - sensor.nodered_xbox_whatdaybob
     - sensor.outdoor_moon
     - sensor.plex_shieldtv
-    - sensor.potential_breaking_changes
     - sensor.presence_bob_last_changed
     - sensor.presence_kay_last_changed
     - sensor.server_plex_recently_added_movies

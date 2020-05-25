@@ -53,6 +53,8 @@ alexa:
       - binary_sensor.master_bedroom_open_window
       # switch
       - switch.smartthings_outlet_switch
+      - switch.nodered_hall_light_automation
+      - switch.nodered_landing_light_automation
     entity_config:
     # climate
       climate.hallway:
@@ -150,6 +152,14 @@ alexa:
     # switch
       switch.smartthings_outlet_switch:
         name: "Battery Charger"
+        display_categories: SWITCH
+      switch.nodered_hall_light_automation:
+        name: "Hallway Light Automation"
+        description: "When enabled will allow the Hallway light to turn off after X minutes"
+        display_categories: SWITCH
+      switch.nodered_landing_light_automation:
+        name: "Landing Light Automation"
+        description: "When enabled will allow the Landing light to turn off after X minutes"
         display_categories: SWITCH
 
 #-------------------------------------------
