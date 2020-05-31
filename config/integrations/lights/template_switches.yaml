@@ -1,0 +1,15 @@
+#-------------------------------------------
+# Template Light - https://www.home-assistant.io/integrations/light.template/
+#-------------------------------------------
+
+- platform: template
+  lights:
+#-- convert switch into light
+    living_room_main:
+      friendly_name: "Living Room Main"
+      turn_on:
+        service: switch.turn_on
+        entity_id: switch.living_room_main_light_switch
+      turn_off:
+        service: switch.turn_off
+        entity_id: switch.living_room_main_light_switch

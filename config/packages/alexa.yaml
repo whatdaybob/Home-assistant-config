@@ -36,6 +36,7 @@ alexa:
       - light.living_room_table_lamp
       - light.hallway
       - light.hallway_storage
+      - light.living_room_main
       # script
       - script.living_room_universal_hdmi1
       - script.living_room_universal_hdmi2
@@ -103,6 +104,10 @@ alexa:
       light.hallway_storage:
         name: "Hallway Storage Light"
         description: "The light under the stairs"
+        display_categories: LIGHT
+      light.living_room_main:
+        name: Living Room Main
+        description: "The living room ceiling light"
         display_categories: LIGHT
     # script
       script.living_room_universal_hdmi1:

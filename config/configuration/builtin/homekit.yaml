@@ -35,6 +35,7 @@ filter:
     - light.living_room_floor_lamp
     - light.living_room_table_lamp
     - light.master_bedroom
+    - light.living_room_main
   # binary_sensors
     - binary_sensor.office_smartthing_motion_sensor_motion
     - binary_sensor.hue_motion_sensor_occupancy
@@ -45,8 +46,10 @@ filter:
     - binary_sensor.landing_open_window
     - binary_sensor.living_room_open_window
     - binary_sensor.master_bedroom_open_window
-    # switch
+  # switch
     - switch.smartthings_outlet_switch
+    - switch.nodered_hall_light_automation
+    - switch.nodered_landing_light_automation
 entity_config:
 # media_players
   media_player.living_room_skyq:
@@ -85,6 +88,8 @@ entity_config:
     name: Hallway
   light.hallway_storage:
     name: Hallway Storage
+  light.living_room_main:
+    name: Living Room Main
 # binary_sensors
   binary_sensor.office_smartthing_motion_sensor_motion:
     name: Office
@@ -112,3 +117,7 @@ entity_config:
   switch.smartthings_outlet_switch:
     name: Battery Charger
     type: outlet
+  switch.nodered_hall_light_automation:
+    name: light automation
+  switch.nodered_landing_light_automation:
+    name: light automation

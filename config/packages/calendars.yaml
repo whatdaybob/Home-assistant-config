@@ -56,25 +56,25 @@ automation:
           name: Bob
           type: birthday
           date: !secret ps_date_countdown_bday_1
-          append_year:	true
+          append_year: true
       - service: python_script.date_countdown
         data:
           name: Kay
           type: birthday
           date: !secret ps_date_countdown_bday_2
-          append_year:	true
+          append_year: true
       - service: python_script.date_countdown
         data:
           name: Leah
           type: birthday
           date: !secret ps_date_countdown_bday_3
-          append_year:	true
+          append_year: true
       - service: python_script.date_countdown
         data:
           name: Ava
           type: birthday
           date: !secret ps_date_countdown_bday_4
-          append_year:	true
+          append_year: true
 
 #-- UK Holidays 
 

@@ -1,5 +1,9 @@
 # Resources Page
 
+# https://github.com/custom-cards/nintendo-wishlist-card
+- type: module
+  url: /hacsfiles/nintendo-wishlist-card/nintendo-wishlist-card.js
+
 # GUI Sandbox Card https://github.com/thomasloven/lovelace-gui-sandbox
 - url: /hacsfiles/lovelace-gui-sandbox/gui-sandbox.js
   type: module
@@ -17,8 +21,8 @@
   type: module
 
 # Custom Header https://github.com/maykar/custom-header
-# - url: /hacsfiles/custom-header/custom-header.js
-#   type: module
+- url: /hacsfiles/custom-header/custom-header.js
+  type: module
 
 # Card-Mod https://github.com/thomasloven/lovelace-card-mod
 - url: /hacsfiles/lovelace-card-mod/card-mod.js
@@ -111,3 +115,35 @@
 # https://github.com/bramkragten/swipe-card
 - type: module
   url: /hacsfiles/swipe-card/swipe-card.js
+
+# https://github.com/gadgetchnnel/lovelace-card-preloader
+- type: module
+  url: /hacsfiles/lovelace-card-preloader/lovelace-card-preloader.js
+
+# https://github.com/gadgetchnnel/lovelace-card-preloader
+- type: module
+  url: /hacsfiles/lovelace-card-preloader/lovelace-card-preloader.js
+
+# https://github.com/DBuit/light-popup-card
+- type: module
+  url: /hacsfiles/light-popup-card/light-popup-card.js
+
+# https://github.com/thomasloven/lovelace-hui-element
+- type: module
+  url: /hacsfiles/lovelace-hui-element/hui-element.js
+
+# https://github.com/thomasloven/lovelace-hui-element
+- type: module
+  url: /hacsfiles/popup-backdrop-filter/popup-backdrop-filter.js
+
+# https://github.com/custom-cards/stack-in-card
+- type: module
+  url: /hacsfiles/stack-in-card/stack-in-card.js
+
+# https://github.com/matt8707/hass-config
+- type: module
+  url: /local/fonts/custom_icons.js
+
+# https://github.com/matt8707/hass-config
+- type: css
+  url: /local/fonts/font.css

@@ -18,6 +18,8 @@ temperature_unit: C
 time_zone: !secret homeassistant_timezone
 customize: !include_dir_merge_named ../../customize
 packages: !include_dir_named ../../packages
+external_url: !secret homeassistant_external_url
+internal_url: !secret homeassistant_internal_url
 whitelist_external_dirs:
   - /config
 
@@ -42,7 +44,6 @@ auth_providers:
     trusted_networks:
       - !secret auth_provider_trusted_network
     trusted_users:
-      192.168.1.21: !secret integrations_person_bob
-      192.168.1.91: !secret integrations_person_bob
-      192.168.1.92: !secret integrations_person_kay
-
+      !secret ipaddr_Comp_GamingW: !secret integrations_person_bob
+      !secret ipaddr_phone_bob: !secret integrations_person_bob
+      !secret ipaddr_phone_kay: !secret integrations_person_kay
