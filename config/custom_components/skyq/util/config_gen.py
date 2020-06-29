@@ -8,11 +8,11 @@ To support easy usage with other home assistant integrations, e.g. google home
 class SwitchMaker:
     """The Switchmaker Class."""
 
-    def __init__(self, hass, name, room, channels):
+    def __init__(self, config_dir, name, room, channels):
         """Initialise the Switcmaker."""
         self._name = name
         self._room = room
-        self._root = hass.config.config_dir
+        self._root = config_dir
 
         if self._root[-1] != "/":
             self._root += "/"
@@ -24,7 +24,8 @@ class SwitchMaker:
         self._addSwitch("ff", "fastforward", "media_next_track")
         self._addSwitch("rw", "rewind", "media_previous_track")
 
-        for ch in channels:
+        dedup_channels = list(dict.fromkeys(channels))
+        for ch in dedup_channels:
             self._addSwitch(ch, ch, "select_source", True)
 
         self._f.close()

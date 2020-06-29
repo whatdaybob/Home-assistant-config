@@ -1,16 +1,19 @@
 import logging
 from typing import List
 
+from homeassistant.helpers.entity import Entity
+from homeassistant.util import slugify
+
+from .types import SteamGame
+from .util import get_steam_game
+
 try:
     from homeassistant.components.binary_sensor import BinarySensorEntity
 except ImportError:
     # Prior to HA v0.110
-    from homeassistant.components.binary_sensor import BinarySensorDevice as BinarySensorEntity
-from homeassistant.helpers.entity import Entity
-from homeassistant.util import slugify
-
-from .util import get_steam_game
-from .types import SteamGame
+    from homeassistant.components.binary_sensor import (
+        BinarySensorDevice as BinarySensorEntity,
+    )
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -67,6 +70,14 @@ class SteamWishlistEntity(Entity):
     @property
     def device_state_attributes(self):
         return {"on_sale": self.on_sale}
+
+    async def async_update(self):
+        """Update the entity.
+
+        This is only used by the generic entity update service. Normal updates
+        happen via the coordinator.
+        """
+        await self.coordinator.async_request_refresh()
 
     async def async_added_to_hass(self):
         """Connect to dispatcher listening for entity data notifications."""
@@ -130,6 +141,14 @@ class SteamGameEntity(BinarySensorEntity):
         return get_steam_game(
             self.game["steam_id"], self.coordinator.data[self.game["steam_id"]]
         )
+
+    async def async_update(self):
+        """Update the entity.
+
+        This is only used by the generic entity update service. Normal updates
+        happen via the coordinator.
+        """
+        await self.coordinator.async_request_refresh()
 
     async def async_added_to_hass(self):
         """Connect to dispatcher listening for entity data notifications."""

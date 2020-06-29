@@ -1,11 +1,9 @@
 """The skyq platform allows you to control a SkyQ set top box."""
 import logging
-import voluptuous as vol
 import asyncio
 import aiohttp
-from datetime import timedelta
+from dataclasses import dataclass, field, InitVar
 
-import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 # from homeassistant.exceptions import PlatformNotReady
@@ -13,7 +11,6 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.const import (
     CONF_HOST,
     CONF_NAME,
-    CONF_SCAN_INTERVAL,
     HTTP_OK,
     STATE_OFF,
     STATE_UNKNOWN,
@@ -26,7 +23,6 @@ try:
 except ImportError:
     pass
 
-from homeassistant.components.media_player import PLATFORM_SCHEMA
 from homeassistant.components.media_player.const import (
     MEDIA_TYPE_TVSHOW,
     MEDIA_TYPE_APP,
@@ -77,28 +73,12 @@ from .const import (
     SUPPORT_SKYQ,
     TIMEOUT,
 )
+from .utils import convert_sources
 
-SCAN_INTERVAL = timedelta(seconds=10)
 
 _LOGGER = logging.getLogger(__name__)
 
 ENABLED_FEATURES = FEATURE_BASIC | FEATURE_IMAGE | FEATURE_LIVE_TV | FEATURE_SWITCHES
-
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
-    {
-        vol.Required(CONF_SOURCES, default={}): {cv.string: cv.string},
-        vol.Required(CONF_HOST): cv.string,
-        vol.Required(CONF_NAME): cv.string,
-        vol.Optional(CONF_ROOM, default=CONST_DEFAULT_ROOM): cv.string,
-        vol.Optional(CONF_DIR): cv.string,
-        vol.Optional(CONF_GEN_SWITCH, default=False): cv.boolean,
-        vol.Optional(CONF_OUTPUT_PROGRAMME_IMAGE, default=True): cv.boolean,
-        vol.Optional(CONF_LIVE_TV, default=True): cv.boolean,
-        vol.Optional(CONF_COUNTRY): cv.string,
-        vol.Optional(CONF_TEST_CHANNEL): cv.string,
-        vol.Optional(CONF_SCAN_INTERVAL, default=SCAN_INTERVAL): cv.time_period,
-    }
-)
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
@@ -116,7 +96,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     name = config.get(CONF_NAME)
 
     await _async_setup_platform_entry(
-        hass, config, async_add_entities, remote, unique_id, name,
+        config, async_add_entities, remote, unique_id, name, hass.config.config_dir
     )
 
 
@@ -128,27 +108,38 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     name = config_entry.data[CONF_NAME]
 
     await _async_setup_platform_entry(
-        hass, config_entry.options, async_add_entities, remote, unique_id, name,
+        config_entry.options,
+        async_add_entities,
+        remote,
+        unique_id,
+        name,
+        hass.config.config_dir,
     )
 
 
 async def _async_setup_platform_entry(
-    hass, config_item, async_add_entities, remote, unique_id, name
+    config_item, async_add_entities, remote, unique_id, name, config_dir
 ):
-    player = SkyQDevice(
-        hass,
-        remote,
+
+    config = Config(
         unique_id,
         name,
+        config_item.get(CONF_ROOM, CONST_DEFAULT_ROOM),
         config_item.get(CONF_TEST_CHANNEL),
         config_item.get(CONF_COUNTRY),
-        config_item.get(CONF_SOURCES, {}),
-        config_item.get(CONF_ROOM, CONST_DEFAULT_ROOM),
+        config_item.get(CONF_SOURCES),
+        config_item.get(CONF_CHANNEL_SOURCES, []),
         config_item.get(CONF_GEN_SWITCH, False),
         config_item.get(CONF_OUTPUT_PROGRAMME_IMAGE, True),
         config_item.get(CONF_LIVE_TV, True),
-        config_item.get(CONF_CHANNEL_SOURCES, {}),
     )
+
+    if config.enabled_features & FEATURE_SWITCHES:
+        SwitchMaker(
+            config_dir, name, config.room, config.source_list,
+        )
+
+    player = SkyQDevice(remote, config,)
     async_add_entities([player], True)
 
 
@@ -156,61 +147,27 @@ class SkyQDevice(MediaPlayerEntity):
     """Representation of a SkyQ Box."""
 
     def __init__(
-        self,
-        hass,
-        remote,
-        unique_id,
-        name,
-        test_channel,
-        overrideCountry,
-        sources,
-        room,
-        generate_switches_for_channels,
-        output_programme_image,
-        live_tv,
-        channel_sources,
+        self, remote, config,
     ):
         """Initialise the SkyQRemote."""
-        self._name = name
+        self._config = config
+        self._unique_id = config.unique_id
         self._state = STATE_OFF
-        self._enabled_features = ENABLED_FEATURES
-        self._test_channel = test_channel
-        self._overrideCountry = overrideCountry
+        self._skyq_type = STATE_OFF
         self._title = None
         self._channel = None
         self._episode = None
         self._imageUrl = None
         self._imageRemotelyAccessible = False
         self._season = None
-        self._skyq_type = STATE_OFF
         self._lastAppTitle = None
         self._appImageUrl = None
         self._remote = remote
         self._available = True
         self._startupSetup = True
-        self._unique_id = unique_id
         self._deviceInfo = None
         self._firstError = True
         self._channel_list = None
-
-        if not (output_programme_image):
-            self._enabled_features ^= FEATURE_IMAGE
-
-        if not (live_tv):
-            self._enabled_features ^= FEATURE_LIVE_TV
-
-        if not (generate_switches_for_channels):
-            self._enabled_features ^= FEATURE_SWITCHES
-
-        self._source_names = sources or []
-        self._channel_sources = channel_sources or []
-        self._source_list = []
-        if len(self._source_names) > 0:
-            self._source_list = [*self._source_names.keys()]
-        self._source_list += self._channel_sources
-
-        if self._enabled_features & FEATURE_SWITCHES:
-            SwitchMaker(hass, name, room, [*self._source_names.keys()])
 
         if not self._remote.deviceSetup:
             self._available = False
@@ -225,7 +182,7 @@ class SkyQDevice(MediaPlayerEntity):
     @property
     def name(self):
         """Get the name of the devices."""
-        return self._name
+        return self._config.name
 
     @property
     def should_poll(self):
@@ -240,12 +197,12 @@ class SkyQDevice(MediaPlayerEntity):
     @property
     def source_list(self):
         """Get the list of sources for the device."""
-        return self._source_list
+        return self._config.source_list
 
     @property
     def media_image_url(self):
         """Image url of current playing media."""
-        return self._imageUrl if self._enabled_features & FEATURE_IMAGE else None
+        return self._imageUrl if self._config.enabled_features & FEATURE_IMAGE else None
 
     @property
     def media_image_remotely_accessible(self):
@@ -350,6 +307,7 @@ class SkyQDevice(MediaPlayerEntity):
         powerStatus = await self.hass.async_add_executor_job(self._remote.powerStatus)
         if powerStatus == SKY_STATE_ON:
             await self.hass.async_add_executor_job(self._remote.press, "power")
+            await self.async_update()
 
     async def async_turn_on(self):
         """Turn SkyQ box on."""
@@ -358,36 +316,44 @@ class SkyQDevice(MediaPlayerEntity):
             await self.hass.async_add_executor_job(
                 self._remote.press, ["home", "dismiss"]
             )
+            await self.async_update()
 
     async def async_media_play(self):
         """Play the current media item."""
         await self.hass.async_add_executor_job(self._remote.press, "play")
         self._state = STATE_PLAYING
+        self.async_write_ha_state()
 
     async def async_media_pause(self):
         """Pause the current media item."""
         await self.hass.async_add_executor_job(self._remote.press, "pause")
         self._state = STATE_PAUSED
+        self.async_write_ha_state()
 
     async def async_media_next_track(self):
         """Fast forward the current media item."""
         await self.hass.async_add_executor_job(self._remote.press, "fastforward")
+        await self.async_update()
 
     async def async_media_previous_track(self):
         """Rewind the current media item."""
         await self.hass.async_add_executor_job(self._remote.press, "rewind")
+        await self.async_update()
 
     async def async_select_source(self, source):
         """Select the specified source."""
         command = None
-        if source in self._source_names:
-            command = self._source_names.get(source).split(",")
+        if source in self._config.custom_sources:
+            command = self._config.custom_sources.get(source).split(",")
         else:
-            channel = next(c for c in self._channel_list if c.channelname == source)
-            if channel:
+            try:
+                channel = next(c for c in self._channel_list if c.channelname == source)
                 command = list(channel.channelno)
+            except (TypeError, StopIteration):
+                command = source
         if command:
             await self.hass.async_add_executor_job(self._remote.press, command)
+            await self.async_update()
 
     async def async_play_media(self, media_id, media_type):
         """Perform a media action."""
@@ -395,13 +361,14 @@ class SkyQDevice(MediaPlayerEntity):
             await self.hass.async_add_executor_job(
                 self._remote.press, media_id.casefold()
             )
+            await self.async_update()
 
     async def _async_updateState(self):
         powerState = await self.hass.async_add_executor_job(self._remote.powerStatus)
         self._setPowerStatus(powerState)
         if powerState == SKY_STATE_ON:
             self._state = STATE_PLAYING
-            # this checks is flakey during channel changes, so only used for pause checks if we know its on
+            # This check is flakey during channel changes, so only used for pause checks if we know its on
             currentState = await self.hass.async_add_executor_job(
                 self._remote.getCurrentState
             )
@@ -446,7 +413,7 @@ class SkyQDevice(MediaPlayerEntity):
                 self._channel = currentMedia.channel
                 self._imageUrl = currentMedia.imageUrl
                 self._skyq_type = SKYQ_LIVE
-                if self._enabled_features & FEATURE_LIVE_TV:
+                if self._config.enabled_features & FEATURE_LIVE_TV:
                     currentProgramme = await self.hass.async_add_executor_job(
                         self._remote.getCurrentLiveTVProgramme, currentMedia.sid
                     )
@@ -522,7 +489,9 @@ class SkyQDevice(MediaPlayerEntity):
 
     async def _async_getDeviceInfo(self):
         await self.hass.async_add_executor_job(
-            self._remote.setOverrides, self._overrideCountry, self._test_channel
+            self._remote.setOverrides,
+            self._config.overrideCountry,
+            self._config.test_channel,
         )
         self._deviceInfo = await self.hass.async_add_executor_job(
             self._remote.getDeviceInformation
@@ -530,7 +499,7 @@ class SkyQDevice(MediaPlayerEntity):
         if self._deviceInfo:
             self._setUniqueId()
 
-            if not self._channel_list and len(self._channel_sources) > 0:
+            if not self._channel_list and len(self._config.channel_sources) > 0:
                 channelData = await self.hass.async_add_executor_job(
                     self._remote.getChannelList
                 )
@@ -554,3 +523,46 @@ class SkyQDevice(MediaPlayerEntity):
             else:
                 self._startupSetup = True
                 _LOGGER.warning(f"W0020M - Device is now available: {self.name}")
+
+
+@dataclass
+class Config:
+    """Sky Q configuration information."""
+
+    unique_id: str = field(init=True, repr=True, compare=True)
+    name: str = field(init=True, repr=True, compare=True)
+    room: str = field(init=True, repr=True, compare=True)
+    test_channel: str = field(init=True, repr=True, compare=True)
+    overrideCountry: str = field(init=True, repr=True, compare=True)
+    custom_sources: field(init=True, repr=False, compare=True)
+    channel_sources: list = field(init=True, repr=True, compare=True)
+    generate_switches_for_channels: InitVar[bool]
+    output_programme_image: InitVar[bool]
+    live_tv: InitVar[bool]
+    enabled_features: int = None
+    source_list = None
+
+    def __post_init__(
+        self, generate_switches_for_channels, output_programme_image, live_tv
+    ):
+        """Set up the config."""
+        self.enabled_features = ENABLED_FEATURES
+        self.source_list = []
+
+        if not (output_programme_image):
+            self.enabled_features ^= FEATURE_IMAGE
+
+        if not (live_tv):
+            self.enabled_features ^= FEATURE_LIVE_TV
+
+        if not (generate_switches_for_channels):
+            self.enabled_features ^= FEATURE_SWITCHES
+
+        if isinstance(self.custom_sources, list):
+            self.custom_sources = convert_sources(sources_list=self.custom_sources)
+        elif not self.custom_sources:
+            self.custom_sources = []
+
+        if self.custom_sources and len(self.custom_sources) > 0:
+            self.source_list = [*self.custom_sources.keys()]
+        self.source_list += self.channel_sources

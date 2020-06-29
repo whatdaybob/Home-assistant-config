@@ -44,6 +44,7 @@ CONF_LIVE_TV = "live_tv"
 CONF_COUNTRY = "country"
 CONF_TEST_CHANNEL = "test_channel"
 CHANNEL_SOURCES_DISPLAY = "channel_sources_display"
+CHANNEL_DISPLAY = "{0} - {1}"
 
 CONST_DEFAULT_ROOM = "Default Room"
 CONST_SKYQ_MEDIA_TYPE = "skyq_media_type"
